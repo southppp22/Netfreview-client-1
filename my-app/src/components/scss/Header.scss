@@ -1,0 +1,80 @@
+.header {
+  width: 100vw;
+  height: 70px;
+  background: linear-gradient(rgba(51, 51, 51, 1) 0%, rgba(51, 51, 51, 0) 90%);
+  color: var(--color-white);
+  .nav {
+    width: 1280px;
+    height: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+
+    color: var(--color-white);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    // border: 2px solid red;
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      // background: olivedrab;
+
+      .nav-left__logo {
+        width: 150px;
+        height: 28.12px;
+
+        // position: absolute;
+        // left: 80px;
+        // top: 21px;
+
+        background: url(../../images/netfreviewLogo.png) no-repeat;
+
+        text-indent: -9900px;
+        overflow: hidden;
+      }
+
+      .nav-left__type {
+        margin-left: 44px;
+        display: flex;
+        li {
+          margin-right: 20px;
+        }
+      }
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      // background: pink;
+      .search-form {
+        width: 250px;
+        border-bottom: 1px solid var(--color-white);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .search-form__input {
+          width: 90%;
+          padding: 8px 5px;
+          color: var(--color-white);
+          // background: purple;
+        }
+        .search-form__button {
+          width: 10%;
+          height: 18.12px;
+
+          background: url(../../images/search-icon.png) no-repeat right;
+          cursor: pointer;
+          // background-color: blue;
+        }
+      }
+      .nav-right__auth {
+        margin-left: 30px;
+      }
+    }
+  }
+}
+a {
+  color: var(--color-white);
+}

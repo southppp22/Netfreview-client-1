@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
+/***** Components *****/
+import Header from './components/Header';
 import Search from './pages/Search';
 import Review from './pages/Review';
 import Sign from './pages/Sign';
@@ -10,7 +13,7 @@ function App() {
   return (
     <Router>
       <Header />
-      <Switch>
+      {/* <Switch>
         <Route path='/' exact component={Home} />
         <Route path='/mypage' component={Mypage} />
         <Route path='/search' component={Search} />
@@ -20,7 +23,7 @@ function App() {
         <Route path='/signin' component={Sign} />
         <Route path='/signup' component={SignUp} />
       </Switch>
-      <Footer />
+      <Footer /> */}
     </Router>
   );
 }

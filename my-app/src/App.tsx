@@ -4,6 +4,7 @@ import axios from 'axios';
 
 /***** Components *****/
 import Header from './components/Header';
+import Footer from './components/Footer';
 // import Search from './pages/Search';
 // import Review from './pages/Review';
 // import Sign from './pages/Sign';
@@ -23,8 +24,8 @@ function App() {
         <Route path='/review/:id/page?' component={Review} />
         <Route path='/signin' component={Sign} />
         <Route path='/signup' component={SignUp} />
-      </Switch>
-      <Footer /> */}
+      </Switch> */}
+      <Footer />
     </Router>
   );
 }

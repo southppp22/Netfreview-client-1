@@ -1,0 +1,90 @@
+.footer {
+  width: 100vw;
+  padding: 40px 0;
+  font-size: 13px;
+  color: var(--color-gray);
+  background-color: var(--color-black);
+  // border: 2px solid red;
+  .footer-wrap {
+    width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+
+    .footer__left {
+      .footer__policy {
+        display: flex;
+        li + li:before {
+          content: '|';
+          margin: 18px;
+        }
+      }
+
+      div {
+        display: flex;
+        align-items: center;
+      }
+      ul {
+        margin-bottom: 20px;
+      }
+      .footer__company {
+        margin-bottom: 8px;
+      }
+
+      .footer__logo {
+        width: 84px;
+        height: 15.43px;
+        margin-right: 18px;
+        background: url(../../images/netfreview-footer.png) no-repeat;
+        text-indent: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+
+      li {
+        span {
+          margin: 18px;
+        }
+        b {
+          font-weight: var(--weight-medium);
+        }
+      }
+    }
+    .footer__right {
+      text-align: right;
+      .footer__social-links {
+        margin-top: 90px;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        .footer__social-link {
+          margin-left: 20px;
+          text-indent: 100%;
+          white-space: nowrap;
+          overflow: hidden;
+          // border: 1px solid springgreen;
+        }
+        .facebook {
+          width: 25px;
+          height: 25px;
+          background: url(../../images/facebook.png) no-repeat;
+        }
+        .instagram {
+          width: 25px;
+          height: 25px;
+          background: url(../../images/instagram.png) no-repeat;
+        }
+        .twitter {
+          width: 28.5px;
+          height: 23px;
+          background: url(../../images/twitter.png) no-repeat;
+        }
+        .youtube {
+          width: 35.5px;
+          height: 25px;
+          background: url(../../images/youtube.png) no-repeat;
+        }
+      }
+    }
+  }
+}

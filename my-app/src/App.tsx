@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import axios from 'axios';
 
 /***** Components *****/
 import Header from './components/Header';
-import Search from './pages/Search';
-import Review from './pages/Review';
-import Sign from './pages/Sign';
-import axios from 'axios';
+// import Search from './pages/Search';
+// import Review from './pages/Review';
+// import Sign from './pages/Sign';
+
 import './App.css';
 
 function App() {

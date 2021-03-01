@@ -1,14 +1,22 @@
 import React, { useState } from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect,
+} from 'react-router-dom';
+import axios from 'axios';
 
-function SignIn() {
+function SmallPoster() {
   return (
-    <section className='login'>
-      <img />
-      <div className='login-warp'>
-        <h3></h3>
+    <article className='smallPoster'>
+      <img></img>
+      <div className='smallPoster__info'>
+        <span className='smallPoster__name'></span>
       </div>
-    </section>
+    </article>
   );
 }
 
-export default SignIn;
+export default SmallPoster;

@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 /***** Components *****/
-// import Search from './pages/Search';
-// import Review from './pages/Review';
-// import Sign from './pages/Sign';
 import Header from './components/Header';
-
+import Search from './pages/Search';
+import Review from './pages/Review';
+import Sign from './pages/Sign';
+import axios from 'axios';
 import './App.css';
 
 function App() {

@@ -1,25 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Search from './pages/Search';
+import Review from './pages/Review';
+import Sign from './pages/Sign';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Header />
+      <Switch>
+        <Route path='/' exact component={Home} />
+        <Route path='/mypage' component={Mypage} />
+        <Route path='/search' component={Search} />
+        <Route path='/recommend' component={RecommendedModal} />
+        <Route path='/review/:id' component={Review} />
+        <Route path='/review/:id/page?' component={Review} />
+        <Route path='/signin' component={Sign} />
+        <Route path='/signup' component={SignUp} />
+      </Switch>
+      <Footer />
+    </Router>
   );
 }
 

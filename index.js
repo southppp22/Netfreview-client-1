@@ -1,2 +1,0 @@
-const helloworld;
-const hi;

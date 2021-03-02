@@ -1,5 +1,6 @@
 .footer {
   width: 100vw;
+  margin-top: 100px;
   padding: 40px 0;
   font-size: 13px;
   color: var(--color-gray);
@@ -32,7 +33,7 @@
   width: 84px;
   height: 15.43px;
   margin-right: 18px;
-  background: url(../../images/netfreview-footer.png) no-repeat;
+  background: url(../images/netfreview-footer.png) no-repeat;
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
@@ -61,22 +62,22 @@
 .footer .footer-wrap .footer__right .footer__social-links .facebook {
   width: 25px;
   height: 25px;
-  background: url(../../images/facebook.png) no-repeat;
+  background: url(../images/facebook.png) no-repeat center;
 }
 .footer .footer-wrap .footer__right .footer__social-links .instagram {
   width: 25px;
   height: 25px;
-  background: url(../../images/instagram.png) no-repeat;
+  background: url(../images/instagram.png) no-repeat center;
 }
 .footer .footer-wrap .footer__right .footer__social-links .twitter {
   width: 28.5px;
   height: 23px;
-  background: url(../../images/twitter.png) no-repeat;
+  background: url(../images/twitter.png) no-repeat center;
 }
 .footer .footer-wrap .footer__right .footer__social-links .youtube {
   width: 35.5px;
   height: 25px;
-  background: url(../../images/youtube.png) no-repeat;
+  background: url(../images/youtube.png) no-repeat center;
 }
 
 /*# sourceMappingURL=Footer.css.map */

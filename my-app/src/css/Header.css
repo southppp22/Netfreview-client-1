@@ -1,8 +1,9 @@
 .header {
   width: 100vw;
   height: 70px;
-  background: linear-gradient(#333333 0%, rgba(51, 51, 51, 0) 90%);
   color: var(--color-white);
+  position: fixed;
+  z-index: 9999;
 }
 .header .nav {
   width: 1280px;
@@ -21,7 +22,7 @@
 .header .nav .nav-left .nav-left__logo {
   width: 150px;
   height: 28.12px;
-  background: url(../../images/netfreviewLogo.png) no-repeat;
+  background: url(../images/netfreviewLogo.png) no-repeat;
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
@@ -52,7 +53,7 @@
 .header .nav .nav-right .search-form .search-form__button {
   width: 10%;
   height: 18.12px;
-  background: url(../../images/search-icon.png) no-repeat right;
+  background: url(../images/search-icon.png) no-repeat right;
   cursor: pointer;
 }
 .header .nav .nav-right .nav-right__auth {

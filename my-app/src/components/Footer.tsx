@@ -1,5 +1,5 @@
 import React from 'react';
-import './css/Footer.css';
+import '../css/Footer.css';
 
 function Footer() {
   return (
@@ -34,6 +34,7 @@ function Footer() {
             <li>
               <em>사업자 등록 번호 </em>
               <span>|</span>
+              <b>codestates FULL IM 25th team3</b>
             </li>
           </ul>
           <div>

@@ -1,28 +1,34 @@
 import React from 'react';
-import './css/BigPoster.css';
+import { Link } from 'react-router-dom';
+import '../css/BigPoster.css';
 
 type BigPosterProps = {
-  id: number;
+  id?: number;
   rating: number;
   title: string;
   posterUrl: string;
 };
 
-function BigPoster(/*{ id:number, rating, title, posterUrl }: BigPosterProps*/) {
-  // return (
-  //   <article className='poster-big'>
-  //     <div className='poster-big__img'>
-  //       <img src={posterUrl} alt={title} />
-  //     </div>
-  //     <div className='poster-big__info'>
-  //       <span className='poster-big__name'>{title}</span>
-  //       <div className='poster-big__rate'>
-  //         <span>평균</span>
-  //         <span className='poster-big__rate-number'>{rating}</span>
-  //       </div>
-  //     </div>
-  //   </article>
-  // );
+function BigPoster({ id, rating, title, posterUrl }: BigPosterProps) {
+  return (
+    <article className='poster-big'>
+      <div className='poster-big__img'>
+        <Link to='/'>
+          <img src={posterUrl} alt={title} />
+        </Link>
+      </div>
+      <div className='poster-big__info'>
+        <span className='poster-big__name'>
+          <Link to='/'>{title}</Link>
+        </span>
+        <div className='poster-big__rate'>
+          <span className='poster-big__avg'>평균</span>
+          <span className='poster-big__rate-number'>{rating}</span>
+        </div>
+      </div>
+    </article>
+  );
+  /*
   return (
     <article className='poster-big'>
       <div className='poster-big__img'>
@@ -37,6 +43,7 @@ function BigPoster(/*{ id:number, rating, title, posterUrl }: BigPosterProps*/) 
       </div>
     </article>
   );
+  */
 }
 
 export default BigPoster;

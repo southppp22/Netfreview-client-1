@@ -1,0 +1,50 @@
+.banner {
+  width: 100vw;
+  height: 555px;
+  background: url(https://wallpapercave.com/wp/wp4428130.jpg) no-repeat 50% 15%;
+  background-size: cover;
+}
+.banner .bg-color {
+  height: 100%;
+  background: linear-gradient(77deg, rgba(0, 0, 0, 0.6) 0, rgba(0, 0, 0, 0) 85%);
+}
+.banner__container {
+  width: 1280px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.banner__container article {
+  margin-top: 180px;
+  color: var(--color-white);
+}
+.banner__container article button {
+  width: 130px;
+  height: 36px;
+  margin-top: 20px;
+  color: var(--color-white);
+  border-radius: 5px;
+  background-color: var(--color-netflix);
+  cursor: pointer;
+}
+.banner__title {
+  font-size: var(--font-title);
+  font-weight: var(--weight-bold);
+}
+.banner__title-eng {
+  margin-top: 10px;
+  font-family: var(--font-eng);
+  font-weight: var(--weight-medium);
+  font-size: var(--font-sub-title);
+}
+.banner__synopsis {
+  margin-top: 45px;
+  line-height: 30px;
+}
+
+.bg-color__top {
+  height: 70px;
+  background: linear-gradient(rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 90%);
+  position: absolute;
+}
+
+/*# sourceMappingURL=Main.css.map */

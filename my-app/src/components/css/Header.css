@@ -22,7 +22,8 @@
   width: 150px;
   height: 28.12px;
   background: url(../../images/netfreviewLogo.png) no-repeat;
-  text-indent: -9900px;
+  text-indent: 100%;
+  white-space: nowrap;
   overflow: hidden;
 }
 .header .nav .nav-left .nav-left__type {

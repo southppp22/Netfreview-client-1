@@ -1,0 +1,22 @@
+.poster-big {
+  width: 20%;
+  // border: 2px solid red;
+  .poster-big__img {
+    border-radius: 10px;
+    overflow: hidden;
+    img {
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+  .poster-big__info {
+    margin-top: 10px;
+    font-size: var(--font-regular);
+    display: flex;
+    justify-content: space-between;
+    .poster-big__avg {
+      font-size: var(--font-small);
+      margin-right: 5px;
+    }
+  }
+}

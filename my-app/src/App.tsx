@@ -4,6 +4,7 @@ import axios from 'axios';
 
 /***** Components *****/
 import Header from './components/Header';
+import Main from './pages/Main';
 import Footer from './components/Footer';
 // import Search from './pages/Search';
 // import Review from './pages/Review';
@@ -15,16 +16,16 @@ function App() {
   return (
     <Router>
       <Header />
-      {/* <Switch>
-        <Route path='/' exact component={Home} />
-        <Route path='/mypage' component={Mypage} />
+      <Switch>
+        <Route path='/' exact component={Main} />
+        {/* <Route path='/mypage' component={Mypage} />
         <Route path='/search' component={Search} />
         <Route path='/recommend' component={RecommendedModal} />
         <Route path='/review/:id' component={Review} />
         <Route path='/review/:id/page?' component={Review} />
         <Route path='/signin' component={Sign} />
-        <Route path='/signup' component={SignUp} />
-      </Switch> */}
+        <Route path='/signup' component={SignUp} /> */}
+      </Switch>
       <Footer />
     </Router>
   );

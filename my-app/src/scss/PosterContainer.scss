@@ -1,0 +1,16 @@
+.poster-container {
+  width: 1280px;
+  margin: 70px auto 0;
+  // border: 2px solid red;
+  &__title {
+    font: {
+      size: var(--font-sub-title);
+      weight: var(--weight-bold);
+    }
+    margin-bottom: 25px;
+  }
+  &__list {
+    display: flex;
+    margin: 0 -12px;
+  }
+}

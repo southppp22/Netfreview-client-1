@@ -1,0 +1,36 @@
+.poster-big {
+  width: 20%;
+  padding: 0 12px;
+  // border: 2px solid red;
+  &__img {
+    border-radius: 5px;
+    overflow: hidden;
+    img {
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+  &__info {
+    margin-top: 10px;
+    font-size: var(--font-regular);
+    display: flex;
+    justify-content: space-between;
+  }
+  &__name {
+    width: 75%;
+    font-weight: var(--weight-medium);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    a {
+      color: var(--color-black);
+    }
+  }
+  &__avg {
+    font-size: var(--font-small);
+    margin-right: 5px;
+  }
+  &__rate-number {
+    font-weight: var(--weight-medium);
+  }
+}

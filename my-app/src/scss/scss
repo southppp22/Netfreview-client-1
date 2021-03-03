@@ -1,0 +1,6 @@
+.scss 파일을 만들어 css를 만든다.
+ex) sass --watch src/scss/SmallPoster.scss src/css/SmallPoster.css
+or
+sass --watch src/scss:src/css
+
+ex) 처럼 파일하나당 이렇게 css로 컴파일해주어야한다. 폴더를 만들지 않아도 자동생성됨.

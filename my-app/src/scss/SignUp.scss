@@ -1,0 +1,90 @@
+.login {
+  border: 1px solid black;
+  margin: 0 auto;
+  margin-top: 94px;
+  width: 470px;
+  height: 836px;
+  left: 485px;
+  top: 156px;
+}
+.img {
+  margin: auto;
+  margin-top: 75px;
+}
+.login__wrap {
+  //border: 1px solid red;
+  margin-top: 63px;
+  width: 379px;
+  margin-left: 47px;
+  margin-right: 47px;
+}
+.login-title {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 23px;
+}
+
+.login-form {
+  //border: 1px solid green;
+  margin-top: 30px;
+}
+
+.login-input {
+  width: 379px;
+  height: 47px;
+  margin-bottom: 15px;
+  background-color: #f0efef;
+}
+
+.login-btn {
+  //border: 1px solid blue;
+  margin-top: 47px;
+}
+
+#Btn {
+  // border: 1px solid orange;
+  width: 379px;
+  height: 59px;
+  border-radius: 3px;
+  margin-bottom: 15px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 23px;
+}
+.completeButton {
+  background-color: #df2e1c;
+  color: #fff;
+}
+.loginButton {
+  border: 2px solid #df2e1c;
+}
+
+.login-social {
+  border-top: 2px solid #d4cece;
+  margin-top: 22px;
+  padding-top: 24px;
+}
+.login-social__wrap {
+  //border: 1px solid black;
+  width: 170px;
+  height: 30px;
+  margin-left: 104px;
+}
+
+.google {
+  //border: 1px solid pink;
+  display: inline-block;
+  margin-right: 38px;
+}
+.facebook {
+  display: inline-block;
+}
+
+.logo {
+  width: 30px;
+  height: 30px;
+}

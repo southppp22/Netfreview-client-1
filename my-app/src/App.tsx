@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import axios from 'axios';
+//import axios from 'axios';
 
 /***** Components *****/
 import Header from './components/Header';
@@ -11,6 +11,13 @@ import Footer from './components/Footer';
 // import Sign from './pages/Sign';
 
 import './App.css';
+import ReviewBanner from './components/ReviewBanner';
+import SmallPoster from './components/SmallPoster';
+import InfoCard from './components/InfoCard';
+import Myreview from './components/Myreview';
+import SignIn from './components/SignIn';
+import ReviewComment from './components/ReviewComment';
+import ReviewList from './components/ReviewComment';
 
 function App() {
   return (

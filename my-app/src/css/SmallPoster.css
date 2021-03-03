@@ -1,0 +1,32 @@
+.smallPoster {
+  width: 170px;
+  height: 320px;
+  margin-top: 53px;
+  margin-right: 40px;
+  display: inline-block;
+}
+
+.poster {
+  background-color: lightgrey;
+  width: 180px;
+  height: 260px;
+  border-radius: 10px;
+}
+
+.smallPoster__info {
+  margin-top: 12px;
+}
+
+.smallPoster__poster-name {
+  font-size: 18px;
+}
+
+.smallPoster__poster-rate {
+  font-size: 15px;
+}
+
+.poster-rate__rate-num {
+  margin-left: 5px;
+}
+
+/*# sourceMappingURL=SmallPoster.css.map */

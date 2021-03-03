@@ -1,0 +1,35 @@
+.mysearchlist {
+  border: 1px solid red;
+  width: 1280px;
+  height: 100vh;
+  margin: 0 auto;
+}
+.nosearch__info {
+  border: 1px solid black;
+  height: 100vh;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.info-wrapper {
+  border: 1px solid blue;
+}
+.info-wrapper__img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+.info-wrapper__title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  font-weight: bold;
+  line-height: 60px;
+}
+.info-wrapper__text {
+  font-size: 15px;
+  line-height: 40px;
+}

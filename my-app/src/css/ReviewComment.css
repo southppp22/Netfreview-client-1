@@ -1,0 +1,80 @@
+.reviewList__wholeInfo {
+  border: 1px solid #c4c4c4;
+  width: 840px;
+  height: 275px;
+  border-radius: 5px;
+}
+
+.reviewList-wrap {
+  width: 700px;
+  height: 180px;
+  margin: 40px auto;
+}
+
+.reviewList-top {
+  height: 58px;
+  position: relative;
+}
+
+.wholeInfo__profile {
+  float: left;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 5px;
+}
+
+.profile__img {
+  display: inline-block;
+}
+
+.profile__nickname {
+  float: right;
+  line-height: 28px;
+  padding-left: 5px;
+}
+
+.wholeInfo__count {
+  width: 152px;
+  height: 30px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(125%, -50%);
+}
+
+.count__rate {
+  width: 60px;
+  height: 30px;
+  display: inline-block;
+}
+
+.img-rate {
+  float: left;
+}
+
+.count__heart {
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+  margin-left: 30px;
+}
+
+.img-heart {
+  float: left;
+}
+
+.rate-num {
+  float: right;
+  margin-top: 5px;
+}
+
+.wholeInfo__textarea {
+  border: 1px solid #c4c4c4;
+  width: 700px;
+  padding: 12px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+/*# sourceMappingURL=ReviewComment.css.map */

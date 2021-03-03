@@ -1,0 +1,83 @@
+.footer {
+  width: 100vw;
+  margin-top: 100px;
+  padding: 40px 0;
+  font-size: 13px;
+  color: var(--color-gray);
+  background-color: var(--color-black);
+}
+.footer .footer-wrap {
+  width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+.footer .footer-wrap .footer__left .footer__policy {
+  display: flex;
+}
+.footer .footer-wrap .footer__left .footer__policy li + li:before {
+  content: "|";
+  margin: 18px;
+}
+.footer .footer-wrap .footer__left div {
+  display: flex;
+  align-items: center;
+}
+.footer .footer-wrap .footer__left ul {
+  margin-bottom: 20px;
+}
+.footer .footer-wrap .footer__left .footer__company {
+  margin-bottom: 8px;
+}
+.footer .footer-wrap .footer__left .footer__logo {
+  width: 84px;
+  height: 15.43px;
+  margin-right: 18px;
+  background: url(../images/netfreview-footer.png) no-repeat;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.footer .footer-wrap .footer__left li span {
+  margin: 18px;
+}
+.footer .footer-wrap .footer__left li b {
+  font-weight: var(--weight-medium);
+}
+.footer .footer-wrap .footer__right {
+  text-align: right;
+}
+.footer .footer-wrap .footer__right .footer__social-links {
+  margin-top: 90px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+}
+.footer .footer-wrap .footer__right .footer__social-links .footer__social-link {
+  margin-left: 20px;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.footer .footer-wrap .footer__right .footer__social-links .facebook {
+  width: 25px;
+  height: 25px;
+  background: url(../images/facebook.png) no-repeat center;
+}
+.footer .footer-wrap .footer__right .footer__social-links .instagram {
+  width: 25px;
+  height: 25px;
+  background: url(../images/instagram.png) no-repeat center;
+}
+.footer .footer-wrap .footer__right .footer__social-links .twitter {
+  width: 28.5px;
+  height: 23px;
+  background: url(../images/twitter.png) no-repeat center;
+}
+.footer .footer-wrap .footer__right .footer__social-links .youtube {
+  width: 35.5px;
+  height: 25px;
+  background: url(../images/youtube.png) no-repeat center;
+}
+
+/*# sourceMappingURL=Footer.css.map */

@@ -3,8 +3,13 @@
 :root {
   /* Color */
   --color-netflix: #e50914;
-  --color-black: #000000;
+  --color-black: #333;
   --color-white: #fff;
+  --color-gray: #888;
+
+  /* Font family */
+  --font-eng: 'Roboto', sans-serif;
+  --font-kor: 'Noto Sans KR', sans-serif;
 
   /* Font size */
   --font-title: 48px;
@@ -39,7 +44,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: var(--font-small);
-  font-family: 'Roboto', sans-serif, 'Noto Sans KR', sans-serif;
+  font-family: var(--font-kor);
   letter-spacing: -0.2px;
   color: var(--color-black);
   cursor: default;
@@ -50,7 +55,7 @@ tr,
 th,
 td {
   font-size: var(--font-small);
-  font-family: 'Roboto', sans-serif, 'Noto Sans KR', sans-serif;
+  font-family: var(--font-kor);
   letter-spacing: -0.2px;
   color: var(--color-black);
   word-spacing: -1px;

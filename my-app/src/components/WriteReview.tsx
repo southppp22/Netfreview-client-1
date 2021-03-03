@@ -8,28 +8,45 @@ import {
   Redirect,
 } from 'react-router-dom';
 //import axios from 'axios';
+import '../css/WriteReview.css';
+import plantM from '../img/plantM.png';
+import emptyplantM from '../img/emptyplantM.png';
 
 function WriteReview() {
   return (
-    <article className='myreview'>
-      <div className='myreview__myscore'>
-        <span className='myscore__title'></span>
-        <ul className='myscore__emoji'>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
-      </div>
+    <div className='writereview'>
+      <div className='writereview-wrap'>
+        <div className='writereview__myscore'>
+          <h5 className='myscore__title'>총평</h5>
+          <ul className='myscore__rate'>
+            <li className='rate-pic'>
+              <img src={plantM} />
+            </li>
+            <li className='rate-pic'>
+              <img src={plantM} />
+            </li>
+            <li className='rate-pic'>
+              <img src={plantM} />
+            </li>
+            <li className='rate-pic'>
+              <img src={plantM} />
+            </li>
+            <li className='rate-pic'>
+              <img src={plantM} />
+            </li>
+          </ul>
+        </div>
 
-      <div className='myreview__text'>
-        <span className='text__title'></span>
-        <textarea
-          /*name="" id="" cols="30" rows="10"*/ className='text_textarea'
-        ></textarea>
+        <div className='writereview__text'>
+          <h6 className='text__title'>나의 리뷰</h6>
+          <input className='text__textarea'></input>
+
+          <div className='text__btn'>
+            <button className='btn__review'>리뷰등록하기</button>
+          </div>
+        </div>
       </div>
-    </article>
+    </div>
   );
 }
 

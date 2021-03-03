@@ -1,0 +1,22 @@
+.reviewList {
+  width: 840px;
+  margin-top: 40px;
+  display: inline-block;
+}
+.pagenation {
+  //border: 1px solid red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.before-page {
+}
+.after-page {
+}
+.pagenum {
+  margin: 10px 10px;
+  font-size: var(--font-regular);
+}
+.pagenum:hover {
+  color: red;
+}

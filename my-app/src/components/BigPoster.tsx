@@ -11,7 +11,7 @@ type BigPosterProps = {
 
 function BigPoster({ id, rating, title, posterUrl }: BigPosterProps) {
   return (
-    <article className='poster-big'>
+    <article className='poster-big poster-recommend'>
       <div className='poster-big__img'>
         <Link to='/'>
           <img src={posterUrl} alt={title} />

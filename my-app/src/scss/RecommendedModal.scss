@@ -1,0 +1,43 @@
+.recommend {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: inherit;
+  z-index: 200;
+  &__container {
+    margin-top: -50px;
+    width: 1140px;
+    height: 650px;
+    background: var(--color-white);
+    // border: 2px solid blue;
+    display: flex;
+    // align-items: center;
+    justify-content: center;
+  }
+  &__wrap {
+    width: 1020px;
+  }
+  &__title {
+    margin-top: 80px;
+    font: {
+      size: var(--font-medium);
+      weight: var(--weight-bold);
+    }
+  }
+  &__description {
+    margin: {
+      top: 20px;
+      bottom: 45px;
+    }
+  }
+  &__list {
+    display: flex;
+    margin: 0 -12px;
+  }
+}
+
+.poster-recommend {
+  width: 25%;
+}

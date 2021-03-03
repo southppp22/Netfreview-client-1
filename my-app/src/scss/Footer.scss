@@ -1,10 +1,14 @@
 .footer {
   width: 100vw;
+  height: 242px;
   margin-top: 100px;
   padding: 40px 0;
   font-size: 13px;
   color: var(--color-gray);
+  position: absolute;
+  bottom: 0;
   background-color: var(--color-black);
+
   .footer-wrap {
     width: 1280px;
     margin: 0 auto;

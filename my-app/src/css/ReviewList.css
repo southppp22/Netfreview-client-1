@@ -1,3 +1,22 @@
+.reviewList {
+  width: 840px;
+  margin-top: 40px;
+  display: inline-block;
+}
 
+.pagenation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagenum {
+  margin: 10px 10px;
+  font-size: var(--font-regular);
+}
+
+.pagenum:hover {
+  color: red;
+}
 
 /*# sourceMappingURL=ReviewList.css.map */

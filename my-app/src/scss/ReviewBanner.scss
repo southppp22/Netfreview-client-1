@@ -1,18 +1,17 @@
 .reviewbanner {
   //border: 1px solid black;
-  width: 100%;
+  width: 100vw;
   height: 325px;
   background-color: lightgrey;
 }
 .review-wrap {
-  border: 1px solid red;
   width: 1280px;
   margin: 0 auto;
 }
 .reviewbanner__title {
   //border: 1px solid blue;
   font-size: 48px;
-  margin-top: 187px;
+  padding-top: 185px;
   margin-bottom: 15px;
   font-weight: bold;
 }

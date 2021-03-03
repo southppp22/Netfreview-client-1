@@ -14,7 +14,6 @@ function ReviewBanner() {
   return (
     <div className='reviewbanner'>
       <div className='review-wrap'>
-        {/* <Header /> */}
         <h1 className='reviewbanner__title'>영화제목 </h1>
         <button className='reviewbanner__netflix'>바로보러가기</button>
       </div>

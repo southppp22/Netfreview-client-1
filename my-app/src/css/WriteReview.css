@@ -1,0 +1,63 @@
+.writereview {
+  border: 1px solid #c4c4c4;
+  width: 840px;
+  height: 275px;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+.writereview-wrap {
+  width: 700px;
+  height: 250px;
+  margin: 10px auto;
+}
+
+.writereview__myscore {
+  height: 80px;
+  margin-bottom: 5px;
+}
+
+.myscore__title {
+  margin-left: 10px;
+  font-weight: var(--weight-bold);
+}
+
+.myscore__rate {
+  float: left;
+  margin: 10px;
+}
+
+.rate-pic {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.text__title {
+  float: left;
+  margin: 10px;
+  font-weight: var(--weight-bold);
+}
+
+.text__textarea {
+  border: 1px solid #c4c4c4;
+  width: 700px;
+  height: 68px;
+  padding: 12px;
+  border-radius: 10px;
+}
+
+.text__btn {
+  float: right;
+}
+
+.btn__review {
+  width: 130px;
+  height: 35px;
+  background-color: var(--color-black);
+  color: var(--color-white);
+  border-radius: 5px;
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+/*# sourceMappingURL=WriteReview.css.map */

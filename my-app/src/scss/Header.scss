@@ -7,7 +7,7 @@
   // background: linear-gradient(rgba(51, 51, 51, 1) 0%, rgba(51, 51, 51, 0) 90%);
   // background-blend-mode: multiply;
   position: fixed;
-  z-index: 100;
+  z-index: 99;
   .nav {
     width: 1280px;
     height: 100%;
@@ -36,6 +36,7 @@
         // top: 21px;
 
         background: url(../images/netfreviewLogo.png) no-repeat;
+        //
 
         text-indent: 100%;
         white-space: nowrap;
@@ -80,6 +81,7 @@
       }
       .nav-right__auth {
         margin-left: 30px;
+        cursor: pointer;
       }
     }
   }

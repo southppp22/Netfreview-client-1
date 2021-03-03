@@ -1,0 +1,98 @@
+.login {
+  border: 1px solid black;
+  margin: 0 auto;
+  margin-top: 156px;
+  width: 470px;
+  height: 712px;
+  left: 485px;
+  top: 156px;
+}
+
+.img {
+  margin: auto;
+  margin-top: 75px;
+}
+
+.login__wrap {
+  width: 379px;
+  margin-left: 47px;
+  margin-right: 47px;
+}
+
+.login-title {
+  margin-top: 63px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 23px;
+}
+
+.login-form {
+  margin-top: 30px;
+}
+
+.login-input {
+  width: 379px;
+  height: 47px;
+  margin-bottom: 15px;
+  background-color: #f0efef;
+  padding-left: 10px;
+}
+
+input::placeholder {
+  color: #c4c4c4;
+}
+
+.login-btn {
+  margin-top: 47px;
+}
+
+#loginBtn {
+  width: 379px;
+  height: 59px;
+  border-radius: 3px;
+  margin-bottom: 15px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 23px;
+}
+
+.loginButton {
+  background-color: #df2e1c;
+  color: #fff;
+}
+
+.signinButton {
+  border: 2px solid #df2e1c;
+}
+
+.login-social {
+  border-top: 2px solid #d4cece;
+  margin-top: 22px;
+  padding-top: 24px;
+}
+
+.login-social__wrap {
+  width: 170px;
+  height: 30px;
+  margin-left: 104px;
+}
+
+.google {
+  display: inline-block;
+  margin-right: 38px;
+}
+
+.facebook {
+  display: inline-block;
+}
+
+.logo {
+  width: 30px;
+  height: 30px;
+}
+
+/*# sourceMappingURL=SignIn.css.map */

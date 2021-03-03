@@ -1,0 +1,16 @@
+.infocard {
+  border: 1px solid black;
+  width: 360px;
+}
+
+.infocard__title {
+  color: #666;
+  font-size: 18px;
+}
+
+.infocard__detail {
+  font-size: 14px;
+  line-height: 22px;
+}
+
+/*# sourceMappingURL=InfoCard.css.map */

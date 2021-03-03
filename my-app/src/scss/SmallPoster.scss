@@ -1,0 +1,31 @@
+.smallPoster {
+  //border: 1px solid black;
+  width: 170px;
+  height: 320px;
+  margin-top: 53px;
+  margin-right: 40px;
+  display: inline-block;
+}
+.poster {
+  background-color: lightgrey;
+  width: 180px;
+  height: 260px;
+  border-radius: 10px;
+}
+.smallPoster__info {
+  //border: 1px solid blue;
+  margin-top: 12px;
+}
+.smallPoster__poster-name {
+  //border: 1px solid red;
+  font-size: 18px;
+}
+.smallPoster__poster-rate {
+  //border: 1px solid green;
+  font-size: 15px;
+}
+.poster-rate__name {
+}
+.poster-rate__rate-num {
+  margin-left: 5px;
+}

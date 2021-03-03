@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import '../css/Header.css';
+import SignIn from './SignIn';
 
 function Header() {
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <header className='header'>
       <nav className='nav'>
@@ -27,11 +38,15 @@ function Header() {
             />
             <button type='submit' className='search-form__button'></button>
           </form>
-          <Link to='/signin' className='nav-right__auth'>
+          {/* <Link to='/sign' className='nav-right__auth'>
             로그인
-          </Link>
+          </Link> */}
+          <p onClick={openModal} className='nav-right__auth'>
+            로그인
+          </p>
         </div>
       </nav>
+      {isModalOpen ? <SignIn closeModal={closeModal} /> : null}
     </header>
   );
 }

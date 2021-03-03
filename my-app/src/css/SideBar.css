@@ -1,0 +1,44 @@
+.video-info {
+  border: 1px solid #c4c4c4;
+  border-radius: 5px;
+  width: 400px;
+  display: inline-block;
+}
+
+.video-info__wrap {
+  width: 364px;
+  margin: 0 auto;
+}
+
+.wrap__average {
+  margin-top: 31px;
+  margin-bottom: 20px;
+}
+
+.wrap__average-title {
+  margin-bottom: 15px;
+  font-weight: var(--weight-bold);
+}
+
+.wrap__average-rate {
+  height: 40px;
+}
+
+.wrap__average-score {
+  font-size: var(--font-medium);
+  font-weight: var(--weight-bold);
+  float: left;
+  margin-top: -6px;
+}
+
+.wrap__average-emoji {
+  float: right;
+  margin-left: 10px;
+}
+
+.average-pic {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+/*# sourceMappingURL=SideBar.css.map */

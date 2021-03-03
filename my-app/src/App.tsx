@@ -7,7 +7,7 @@ import Header from './components/Header';
 import Main from './pages/Main';
 import Footer from './components/Footer';
 // import Search from './pages/Search';
-// import Review from './pages/Review';
+import Review from './pages/Review';
 // import Sign from './pages/Sign';
 
 import './App.css';
@@ -17,12 +17,15 @@ import InfoCard from './components/InfoCard';
 import Myreview from './components/Myreview';
 import SignIn from './components/SignIn';
 import ReviewComment from './components/ReviewComment';
-import ReviewList from './components/ReviewComment';
+import ReviewList from './components/ReviewList';
+import SideBar from './components/SideBar';
+import WriteReview from './components/WriteReview';
 
 function App() {
   return (
     <Router>
       <Header />
+      {/* <SignIn /> */}
       <Switch>
         <Route path='/' exact component={Main} />
         {/* <Route path='/mypage' component={Mypage} />
@@ -30,7 +33,7 @@ function App() {
         <Route path='/recommend' component={RecommendedModal} />
         <Route path='/review/:id' component={Review} />
         <Route path='/review/:id/page?' component={Review} />
-        <Route path='/signin' component={Sign} />
+        <Route path='/signin' component={SignIn} />
         <Route path='/signup' component={SignUp} /> */}
       </Switch>
       <Footer />

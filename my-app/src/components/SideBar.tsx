@@ -8,21 +8,34 @@ import {
   Redirect,
 } from 'react-router-dom';
 //import axios from 'axios';
+import '../css/SideBar.css';
+import plantM from '../img/plantM.png';
+import emptyplantM from '../img/emptyplantM.png';
 
 function SideBar() {
   return (
     <aside className='video-info'>
-      <ul>
-        <li className='video-info__average'>
-          <h6 className='video-in__average--title'></h6>
-          <div className='video-info__average--rate'>
-            <span className='video-info__average--score'></span>
-            <ul className='video-info__average--emoji'>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
+      <ul className='video-info__wrap'>
+        <li className='wrap__average'>
+          <h5 className='wrap__average-title'>총평</h5>
+          <div className='wrap__average-rate'>
+            <span className='wrap__average-score'>3.6</span>
+            <ul className='wrap__average-emoji'>
+              <li className='average-pic'>
+                <img src={plantM} />
+              </li>
+              <li className='average-pic'>
+                <img src={plantM} />
+              </li>
+              <li className='average-pic'>
+                <img src={plantM} />
+              </li>
+              <li className='average-pic'>
+                <img src={plantM} />
+              </li>
+              <li className='average-pic'>
+                <img src={plantM} />
+              </li>
             </ul>
           </div>
         </li>

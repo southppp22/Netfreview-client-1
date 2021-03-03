@@ -6,7 +6,7 @@
   // background: linear-gradient(rgba(51, 51, 51, 1) 0%, rgba(51, 51, 51, 0) 90%);
   // background-blend-mode: multiply;
   position: fixed;
-  z-index: 9999;
+  z-index: 99;
   .nav {
     width: 1280px;
     height: 100%;
@@ -76,6 +76,7 @@
       }
       .nav-right__auth {
         margin-left: 30px;
+        cursor: pointer;
       }
     }
   }

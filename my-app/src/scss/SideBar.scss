@@ -1,0 +1,40 @@
+.video-info {
+  border: 1px solid #c4c4c4;
+  border-radius: 5px;
+  width: 400px;
+  display: inline-block;
+}
+.video-info__wrap {
+  //border: 2px solid blue;
+  width: 364px;
+  margin: 0 auto;
+}
+.wrap__average {
+  //border: 1px solid green;
+  margin-top: 31px;
+  margin-bottom: 20px;
+}
+.wrap__average-title {
+  //border: 1px solid pink;
+  margin-bottom: 15px;
+  font-weight: var(--weight-bold);
+}
+.wrap__average-rate {
+  //border: 1px solid black;
+  height: 40px;
+}
+.wrap__average-score {
+  font-size: var(--font-medium);
+  font-weight: var(--weight-bold);
+  float: left;
+  margin-top: -6px;
+}
+.wrap__average-emoji {
+  float: right;
+  margin-left: 10px;
+}
+.average-pic {
+  //border: 1px solid red;
+  display: inline-block;
+  margin-left: 10px;
+}

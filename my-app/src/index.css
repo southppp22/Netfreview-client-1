@@ -48,6 +48,12 @@ body {
   letter-spacing: -0.2px;
   color: var(--color-black);
   cursor: default;
+  -ms-overflow-style: none;
+  scrollbar-width: none; /*firefox*/
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 
 table,

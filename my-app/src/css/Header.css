@@ -3,7 +3,7 @@
   height: 70px;
   color: var(--color-white);
   position: fixed;
-  z-index: 9999;
+  z-index: 99;
 }
 .header .nav {
   width: 1280px;
@@ -58,6 +58,7 @@
 }
 .header .nav .nav-right .nav-right__auth {
   margin-left: 30px;
+  cursor: pointer;
 }
 
 a {

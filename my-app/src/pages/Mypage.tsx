@@ -32,6 +32,11 @@ function Mypage() {
         <h2 className='review-container__title'>내가 쓴 리뷰List</h2>
         <div className='review-container__list'>
           <SmallPoster />
+          <SmallPoster />
+          <SmallPoster />
+          <SmallPoster />
+          <SmallPoster />
+          <SmallPoster />
         </div>
       </section>
     </div>

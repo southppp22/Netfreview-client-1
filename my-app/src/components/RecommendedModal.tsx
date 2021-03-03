@@ -17,7 +17,7 @@ type RecommendedModalProps = {
 function RecommendedModal({ open, close }: RecommendedModalProps) {
   useEffect(() => {
     if (open) {
-      // 모달창이 띄워진 상태로 분기
+      // open이라는 상태(모달창이 떠있으면 true, 모달창이 close되어 있으면 false)로 분기
       // 스크롤 방지
       document.body.style.overflow = 'hidden';
     } else {

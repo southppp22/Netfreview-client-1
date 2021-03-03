@@ -1,0 +1,39 @@
+.recommend {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: inherit;
+  z-index: 200;
+}
+.recommend__container {
+  margin-top: -50px;
+  width: 1140px;
+  height: 650px;
+  background: var(--color-white);
+  display: flex;
+  justify-content: center;
+}
+.recommend__wrap {
+  width: 1020px;
+}
+.recommend__title {
+  margin-top: 80px;
+  font-size: var(--font-medium);
+  font-weight: var(--weight-bold);
+}
+.recommend__description {
+  margin-top: 20px;
+  margin-bottom: 45px;
+}
+.recommend__list {
+  display: flex;
+  margin: 0 -12px;
+}
+
+.poster-recommend {
+  width: 25%;
+}
+
+/*# sourceMappingURL=RecommendedModal.css.map */

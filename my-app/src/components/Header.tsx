@@ -1,11 +1,24 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useRef, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 import '../css/Header.css';
 import SignIn from './SignIn';
 
 function Header() {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [headerClass, setHeaderClass] = useState('basic');
+
+  const handleScroll = () => {
+    if (pageYOffset > 70) {
+      setHeaderClass('');
+    } else if (pageYOffset <= 70 && pageYOffset >= 0) {
+      setHeaderClass('basic');
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+  });
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -16,7 +29,15 @@ function Header() {
   };
 
   return (
-    <header className='header'>
+    // path가 /(메인) 혹은 /review인 경우는 'header'와 headerClass로 className을 할당한다. 그 외에는 'header'만 할당해준다.
+    //headerClass는 스크롤에 따른 헤더 배경으르 갈아준다.
+    <header
+      className={
+        useLocation().pathname === '/' || useLocation().pathname === '/review'
+          ? `header ${headerClass}`
+          : 'header'
+      }
+    >
       <nav className='nav'>
         <div className='nav-left'>
           <Link to='/' className='nav-left__logo'></Link>
@@ -41,9 +62,9 @@ function Header() {
           {/* <Link to='/sign' className='nav-right__auth'>
             로그인
           </Link> */}
-          <p onClick={openModal} className='nav-right__auth'>
+          <div onClick={openModal} className='nav-right__auth'>
             로그인
-          </p>
+          </div>
         </div>
       </nav>
       {isModalOpen ? <SignIn closeModal={closeModal} /> : null}

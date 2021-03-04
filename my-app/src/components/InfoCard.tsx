@@ -7,7 +7,7 @@ import React, { useState } from 'react';
 //   Redirect,
 // } from 'react-router-dom';
 // import axios from 'axios';
-import '../css/InfoCard.css';
+import '../scss/InfoCard.scss';
 
 function InfoCard() {
   return (

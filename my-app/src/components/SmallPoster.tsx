@@ -7,7 +7,7 @@ import React, { useState } from 'react';
 //   Redirect,
 // } from 'react-router-dom';
 // import axios from 'axios';
-import '../css/SmallPoster.css';
+import '../scss/SmallPoster.scss';
 
 function SmallPoster() {
   return (

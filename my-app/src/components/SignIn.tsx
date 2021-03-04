@@ -3,7 +3,7 @@ import img from '../img/logo.png';
 import facebook from '../img/facebook.png';
 import google from '../img/google.png';
 import kakao from '../img/kakao-talk.png';
-import '../css/SignIn.css';
+import '../scss/SignIn.scss';
 // import {
 //   BrowserRouter as Router,
 //   Switch,

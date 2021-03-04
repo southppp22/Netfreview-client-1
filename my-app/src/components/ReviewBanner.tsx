@@ -8,7 +8,7 @@ import React, { useState } from 'react';
 // } from 'react-router-dom';
 // import axios from 'axios';
 import Header from '../components/Header';
-import '../css/ReviewBanner.css';
+import '../scss/ReviewBanner.scss';
 
 function ReviewBanner() {
   return (

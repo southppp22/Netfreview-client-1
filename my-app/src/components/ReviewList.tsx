@@ -8,7 +8,7 @@ import {
   Redirect,
 } from 'react-router-dom';
 //import axios from 'axios';
-import '../css/ReviewList.css';
+import '../scss/ReviewList.scss';
 import left from '../img/left.png';
 import right from '../img/right.png';
 

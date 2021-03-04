@@ -1,25 +1,57 @@
 .recommend {
+  width: 100%;
   height: 100vh;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.5);
-  position: inherit;
+  position: fixed;
   z-index: 200;
+}
+.recommend .dim {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 250;
+}
+.recommend .close {
+  width: 40px;
+  height: 40px;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  position: relative;
+  left: 1060px;
+  top: 40px;
+}
+.recommend .close:before, .recommend .close:after {
+  content: "";
+  width: 50px;
+  height: 1px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  background: #000;
+}
+.recommend .close:before {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+.recommend .close:after {
+  transform: translate(-50%, -50%) rotate(45deg);
 }
 .recommend__container {
   margin-top: -50px;
   width: 1140px;
   height: 650px;
   background: var(--color-white);
-  display: flex;
-  justify-content: center;
+  z-index: 300;
 }
 .recommend__wrap {
   width: 1020px;
+  margin: 0 auto;
 }
 .recommend__title {
-  margin-top: 80px;
+  margin-top: 40px;
   font-size: var(--font-medium);
   font-weight: var(--weight-bold);
 }
@@ -34,6 +66,11 @@
 
 .poster-recommend {
   width: 25%;
+}
+
+.recommend.isModal {
+  display: flex;
+  animation: modal-bg-show 0.3s;
 }
 
 /*# sourceMappingURL=RecommendedModal.css.map */

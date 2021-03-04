@@ -1,11 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import PosterContainer from '../components/PosterContainer';
+import RecommendedModal from '../components/RecommendedModal';
 
 import '../css/Main.css';
 
 function Main() {
+  const [isModal, setIsModal] = useState(false);
+
+  const handleModal = () => {
+    setIsModal(!isModal);
+  };
   return (
     <main>
+      <button className='btn-recommend' onClick={handleModal}>
+        <span>
+          이거
+          <br />
+          어때?
+        </span>
+      </button>
+      <RecommendedModal open={isModal} close={handleModal} />
       <div className='bg-color__top'></div>
       <section className='banner'>
         <div className='bg-color'>

@@ -19,11 +19,12 @@
   &__name {
     width: 75%;
     font-weight: var(--weight-medium);
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+
     a {
       color: var(--color-black);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
   }
   &__avg {

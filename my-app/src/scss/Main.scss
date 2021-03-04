@@ -1,6 +1,33 @@
 main {
   padding-bottom: 342px;
 }
+.btn-recommend {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  text-align: left;
+
+  background-color: var(--color-netflix);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: fixed;
+  right: 5%; /*81.51%;*/
+  bottom: 8%;
+  z-index: 150;
+  span {
+    color: var(--color-white);
+    font-weight: var(--weight-medium);
+  }
+}
+.bg-color__top {
+  height: 70px;
+  background: linear-gradient(rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 90%);
+  position: absolute;
+}
+
 .banner {
   width: 100vw;
   height: 555px;
@@ -59,10 +86,4 @@ main {
     margin-top: 45px;
     line-height: 30px;
   }
-}
-
-.bg-color__top {
-  height: 70px;
-  background: linear-gradient(rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 90%);
-  position: absolute;
 }

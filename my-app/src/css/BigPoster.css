@@ -19,12 +19,12 @@
 .poster-big__name {
   width: 75%;
   font-weight: var(--weight-medium);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 .poster-big__name a {
   color: var(--color-black);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .poster-big__avg {
   font-size: var(--font-small);

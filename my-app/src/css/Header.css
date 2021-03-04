@@ -2,6 +2,8 @@
   width: 100vw;
   height: 70px;
   color: var(--color-black);
+  background-color: var(--color-white);
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 0px 0px;
   position: fixed;
   z-index: 99;
 }
@@ -15,11 +17,11 @@
   align-items: center;
   justify-content: space-between;
 }
-.header .nav .nav-left {
+.header .nav-left {
   display: flex;
   align-items: center;
 }
-.header .nav .nav-left .nav-left__logo {
+.header .nav-left__logo {
   width: 150px;
   height: 28.12px;
   background: url(../images/netfreviewLogo.png) no-repeat;
@@ -27,42 +29,65 @@
   white-space: nowrap;
   overflow: hidden;
 }
-.header .nav .nav-left .nav-left__type {
+.header .nav-left__type {
   margin-left: 44px;
   display: flex;
 }
-.header .nav .nav-left .nav-left__type li {
+.header .nav-left__type li {
   margin-right: 20px;
 }
-.header .nav .nav-right {
+.header .nav-right {
   display: flex;
   align-items: center;
 }
-.header .nav .nav-right .search-form {
+.header .nav-right .search-form {
   width: 250px;
   border-bottom: 1px solid var(--color-black);
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.header .nav .nav-right .search-form .search-form__input {
+.header .nav-right .search-form__input {
   width: 90%;
   padding: 8px 5px;
   color: var(--color-black);
 }
-.header .nav .nav-right .search-form .search-form__button {
+.header .nav-right .search-form__button {
   width: 10%;
   height: 18.12px;
-  background: url(../images/search-icon-b.png) no-repeat right;
-  cursor: pointer;
+  background-image: url(../images/search-icon-b.png);
+  background-no-repeat: right;
+  background-cursor: pointer;
+  background-repeat: no-repeat;
+  background-position: right center;
 }
-.header .nav .nav-right .nav-right__auth {
+.header .nav-right__auth {
   margin-left: 30px;
   cursor: pointer;
 }
-
-a {
+.header a {
   color: var(--color-black);
+}
+
+.header.basic {
+  color: var(--color-white);
+  background: transparent;
+  box-shadow: none;
+}
+.header.basic a {
+  color: var(--color-white);
+}
+.header.basic .nav {
+  color: var(--color-white);
+}
+.header.basic .nav-right .search-form {
+  border-bottom: 1px solid var(--color-white);
+}
+.header.basic .nav-right .search-form__input {
+  color: var(--color-white);
+}
+.header.basic .nav-right .search-form__button {
+  background-image: url(../images/search-icon-w.png);
 }
 
 /*# sourceMappingURL=Header.css.map */

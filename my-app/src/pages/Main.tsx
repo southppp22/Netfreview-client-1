@@ -13,9 +13,11 @@ function Main() {
     setIsModal(!isModal);
   };
 
-  // useEffect(() => {
-  //   // axios.get()
-  // });
+  useEffect(() => {
+    axios
+      .get('/videos/videolist/?path=main')
+      .then((res) => console.log(res.data));
+  });
   return (
     <main>
       <button className='btn-recommend' onClick={handleModal}>

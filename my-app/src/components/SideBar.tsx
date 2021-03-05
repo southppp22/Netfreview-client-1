@@ -8,7 +8,7 @@ import {
   Redirect,
 } from 'react-router-dom';
 //import axios from 'axios';
-import '../css/SideBar.css';
+import '../scss/SideBar.scss';
 import plantM from '../img/plantM.png';
 import emptyplantM from '../img/emptyplantM.png';
 

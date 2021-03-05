@@ -5,7 +5,7 @@ import SideBar from '../components/SideBar';
 import WriteReview from '../components/WriteReview';
 import Myreview from '../components/Myreview';
 import Header from '../components/Header';
-import '../css/Review.css';
+import '../scss/Review.scss';
 function Search() {
   const [isLogin, setIsLogin] = useState(true);
 

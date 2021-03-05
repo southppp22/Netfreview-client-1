@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../css/BigPoster.css';
+import '../scss/BigPoster.scss';
 
 type BigPosterProps = {
   id?: number;

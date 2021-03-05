@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import PosterContainer from '../components/PosterContainer';
 import RecommendedModal from '../components/RecommendedModal';
@@ -11,6 +12,10 @@ function Main() {
   const handleModal = () => {
     setIsModal(!isModal);
   };
+
+  // useEffect(() => {
+  //   // axios.get()
+  // });
   return (
     <main>
       <button className='btn-recommend' onClick={handleModal}>

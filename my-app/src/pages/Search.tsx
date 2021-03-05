@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import SmallPoster from '../components/SmallPoster';
 import Header from '../components/Header';
 import nosearch from '../img/nosearch.png';
-import '../css/Search.css';
+import '../scss/Search.scss';
 
 function Search() {
   const [isSearch, setIsSearch] = useState(true);

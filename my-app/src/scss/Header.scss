@@ -38,7 +38,7 @@
         // left: 80px;
         // top: 21px;
 
-        background: url(../images/netfreviewLogo.png) no-repeat;
+        background: url(../img/netfreviewLogo.png) no-repeat;
         //
 
         text-indent: 100%;
@@ -78,7 +78,7 @@
           height: 18.12px;
 
           background: {
-            image: url(../images/search-icon-b.png);
+            image: url(../img/search-icon-b.png);
             no-repeat: right;
             cursor: pointer;
             repeat: no-repeat;
@@ -114,7 +114,7 @@
             color: var(--color-white);
           }
           &__button {
-            background-image: url(../images/search-icon-w.png);
+            background-image: url(../img/search-icon-w.png);
           }
         }
       }

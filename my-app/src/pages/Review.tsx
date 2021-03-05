@@ -25,12 +25,17 @@ function Search() {
       </div>
       {/* ) : (
         //isLogin(로그아웃)이 false
-        <>
-          <ReviewBanner />
+<ReviewBanner />
+      <div className='area'>
+        <div className='left'>
           <SideBar />
-          <Myreview />
+        </div>
+
+        <div className='right'>
+          <WriteReview />
           <ReviewList />
-        </>
+        </div>
+      </div>
       )} */}
     </div>
   );

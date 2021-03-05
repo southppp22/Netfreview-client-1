@@ -31,13 +31,14 @@ function App() {
       <Router>
         <Header />
         <Switch>
-          <Route path='/' exact component={Main} />
+          {/* <Route path='/' exact component={Main} />
           <Route path='/mypage' component={Mypage} />
           {/*<Route path='/search' component={Search} />
         <Route path='/review/:id' component={Review} />
         <Route path='/review/:id/page?' component={Review} />
         <Route path='/signin' component={SignIn} />
         <Route path='/signup' component={SignUp} /> */}
+
         </Switch>
         <Footer />
       </Router>

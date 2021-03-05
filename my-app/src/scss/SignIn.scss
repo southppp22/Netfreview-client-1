@@ -18,6 +18,17 @@
   background-color: rgba(0, 0, 0, 0.6);
 }
 
+p.input {
+  color: #bf1650;
+  margin-top: -10px;
+  margin-bottom: 8px;
+}
+
+p.input::before {
+  display: inline;
+  content: '⚠ ';
+}
+
 .login {
   border: 1px solid black;
   position: relative;

@@ -42,13 +42,24 @@
   overflow: hidden;
   z-index: 1000;
 }
+p.input {
+  color: #bf1650;
+  margin-top: -8px;
+  margin-bottom: 3px;
+}
+
+p.input::before {
+  display: inline;
+  content: '⚠ ';
+}
+
 .img {
   margin: auto;
   margin-top: 75px;
 }
 .login__wrap {
   //border: 1px solid red;
-  margin-top: 63px;
+  margin-top: 60px;
   width: 379px;
   margin-left: 47px;
   margin-right: 47px;
@@ -69,13 +80,13 @@
 .login-input {
   width: 379px;
   height: 47px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   background-color: #f0efef;
 }
 
 .login-btn {
   //border: 1px solid blue;
-  margin-top: 47px;
+  margin-top: 40px;
 }
 
 #Btn {
@@ -100,7 +111,7 @@
 
 .login-social {
   border-top: 2px solid #d4cece;
-  margin-top: 22px;
+  margin-top: 20px;
   padding-top: 24px;
 }
 .login-social__wrap {

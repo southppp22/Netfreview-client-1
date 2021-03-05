@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import '../scss/Header.scss';
+import SignUp from './SignUp';
 import SignIn from './SignIn';
 
 function Header() {

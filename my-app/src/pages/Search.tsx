@@ -8,24 +8,30 @@ function Search() {
   const [isSearch, setIsSearch] = useState(true);
 
   return (
-    <div>
-      {/* {isSearch ? ( 
+    <div className='whole'>
+      {/* {isSearch ? (  */}
       <section className='mysearchlist'>
-        <Header />
-        <SmallPoster />
-        <SmallPoster />
-        <SmallPoster />
-        <SmallPoster />
-        <SmallPoster />
-        <SmallPoster />
-        <SmallPoster />
-        <SmallPoster />
-        <SmallPoster />
-        <SmallPoster />
-      </section>*/}
+        <div className='searchlist-line'>
+          <SmallPoster />
+          <SmallPoster />
+          <SmallPoster />
+          <SmallPoster />
+          <SmallPoster />
+          <SmallPoster />
+          <SmallPoster />
+          <SmallPoster />
+          <SmallPoster />
+          <SmallPoster />
+          <SmallPoster />
+          <SmallPoster />
+          <SmallPoster />
+          <SmallPoster />
+          <SmallPoster />
+          <SmallPoster />
+        </div>
+      </section>
       {/* ) : ( */}
-      <section className='mysearchlist'>
-        <Header />
+      {/* <section className='mysearchlist'>
         <div className='nosearch__info'>
           <div className='info-wrapper'>
             <img className='info-wrapper__img' src={nosearch} alt='검색결과' />
@@ -35,7 +41,7 @@ function Search() {
             </span>
           </div>
         </div>
-      </section>
+      </section> */}
       {/* )} */}
     </div>
   );

@@ -43,20 +43,20 @@ function Mypage() {
     });
   });
 
-  const renderVideoList = () => {
-    if (videoList) {
-      return videoList.map((video) => (
-        <SmallPoster
-          key={video.id}
-          id={video.id}
-          title={video.title}
-          posterUrl={video.posterUrl}
-          rating={video.rating}
-        />
-      ));
-    }
-    return <></>;
-  };
+  // const renderVideoList = () => {
+  //   if (videoList) {
+  //     return videoList.map((video) => (
+  //       <SmallPoster
+  //         key={video.id}
+  //         id={video.id}
+  //         title={video.title}
+  //         posterUrl={video.posterUrl}
+  //         rating={video.rating}
+  //       />
+  //     ));
+  //   }
+  //   return <></>;
+  // };
 
   const handleImgChange = (e: ChangeEvent<HTMLInputElement>) => {
     const fileList = e.target.files;
@@ -115,7 +115,7 @@ function Mypage() {
           <SmallPoster />
           <SmallPoster />
           <SmallPoster /> */}
-          {renderVideoList()}
+          {/* {renderVideoList()} */}
         </div>
       </section>
     </div>

@@ -15,20 +15,23 @@ type SmallPosterProps = {
   posterUrl: string;
   rating: number;
 };
-function SmallPoster({ id, title, posterUrl, rating }: SmallPosterProps) {
+// { id, title, posterUrl, rating }: SmallPosterProps ->인자로 들어갈 값
+
+function SmallPoster() {
   return (
     <article className="smallPoster">
-      <img className="poster" src={posterUrl}></img>
+      <img className="poster"></img>
+      {/*src={posterUrl}*/}
       <div className="smallPoster__info">
         <span className="smallPoster__poster-name">
-          {/* 포스터이름{ */}
-          {title}
+          포스터이름
+          {/*{title}*/}
         </span>
         <div className="smallPoster__poster-rate">
           <span className="poster-rate__name">평점</span>
           <span className="poster-rate__rate-num">
-            {/* 5.0*/}
-            {rating}
+            5.0
+            {/*{rating}*/}
           </span>
         </div>
       </div>

@@ -34,7 +34,8 @@ function Header() {
     //headerClass는 스크롤에 따른 헤더 배경으르 갈아준다.
     <header
       className={
-        useLocation().pathname === '/' || useLocation().pathname === '/review'
+        useLocation().pathname === '/' ||
+        useLocation().pathname === '/review/:id'
           ? `header ${headerClass}`
           : 'header'
       }

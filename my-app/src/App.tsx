@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-//import axios from 'axios';
+import axios from 'axios';
 import './App.css';
 
 /***** Components *****/
@@ -20,6 +20,10 @@ import ReviewComment from './components/ReviewComment';
 import ReviewList from './components/ReviewList';
 import SideBar from './components/SideBar';
 import WriteReview from './components/WriteReview';
+
+axios.defaults.baseURL = 'https://www.gettoday4.click';
+axios.defaults.withCredentials = true;
+axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 function App() {
   return (

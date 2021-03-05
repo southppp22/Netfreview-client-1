@@ -1,6 +1,6 @@
 import React from 'react';
 import SmallPoster from '../components/SmallPoster';
-import '../css/Mypage.css';
+import '../scss/Mypage.scss';
 
 function Mypage() {
   return (

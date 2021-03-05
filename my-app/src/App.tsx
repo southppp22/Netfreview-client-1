@@ -9,7 +9,7 @@ import Main from './pages/Main';
 import Mypage from './pages/Mypage';
 import Footer from './components/Footer';
 // import RecommendedModal from './components/RecommendedModal';
-// import Search from './pages/Search';
+import Search from './pages/Search';
 import Review from './pages/Review';
 // import Sign from './pages/Sign';
 import ReviewBanner from './components/ReviewBanner';

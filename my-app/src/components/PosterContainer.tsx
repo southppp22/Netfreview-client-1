@@ -1,7 +1,7 @@
 import React from 'react';
 import BigPoster from './BigPoster';
 
-import '../css/PosterContainer.css';
+import '../scss/PosterContainer.scss';
 
 type PosterContainerProps = {
   subTitle: string;

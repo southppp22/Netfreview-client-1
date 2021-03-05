@@ -8,7 +8,6 @@ import Header from './components/Header';
 import Main from './pages/Main';
 import Mypage from './pages/Mypage';
 import Footer from './components/Footer';
-// import RecommendedModal from './components/RecommendedModal';
 import Search from './pages/Search';
 import Review from './pages/Review';
 // import Sign from './pages/Sign';
@@ -30,9 +29,7 @@ function App() {
         <Switch>
           <Route path='/' exact component={Main} />
           <Route path='/mypage' component={Mypage} />
-          {/* <Route path='/recommend' component={RecommendedModal} /> */}
           {/*<Route path='/search' component={Search} />
-        
         <Route path='/review/:id' component={Review} />
         <Route path='/review/:id/page?' component={Review} />
         <Route path='/signin' component={SignIn} />

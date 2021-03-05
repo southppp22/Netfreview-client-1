@@ -8,7 +8,7 @@ import {
   Redirect,
 } from 'react-router-dom';
 //import axios from 'axios';
-import '../css/ReviewComment.css';
+import '../scss/ReviewComment.scss';
 import profile from '../img/profile.png';
 import plant from '../img/plant.png';
 import heart from '../img/heart.png';

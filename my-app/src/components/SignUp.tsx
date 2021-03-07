@@ -67,14 +67,7 @@ function SignUp({ closeModal }: isModalprops) {
       })
       .then((res) => alert(`회원가입이 완료되었습니다!`))
       .catch((error) => console.log(error));
-    // alert(JSON.stringify(data));
-    // console.log('data', data);
-    // const { success, msg } = await ;
-    // if (success) {
-    // }
   };
-
-  // console.log(watch('Name', 'Nickname'));
 
   const [isSignInOpen, setIsSignInOpen] = useState<boolean>(false);
   const [isSignUpClose, setIsSignUpClose] = useState<boolean>(false);

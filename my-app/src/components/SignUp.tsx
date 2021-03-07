@@ -1,7 +1,7 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef /*FormEvent*/ } from 'react';
 import _ from 'lodash/fp';
-import ReactDOM from 'react-dom';
-import { useForm, SubmitHandler } from 'react-hook-form';
+//import ReactDOM from 'react-dom';
+import { useForm } from 'react-hook-form';
 import img from '../img/logo.png';
 import facebook from '../img/facebook.png';
 import google from '../img/google.png';
@@ -39,6 +39,9 @@ function SignUp({ closeModal }: isModalprops) {
   const [nickname, setNickname] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  // console.log(watch('password-confirm'));
+  const Password = useRef();
+  Password.current = watch('Password');
 
   const onChangeName = (e: any) => {
     setName(e.target.value);
@@ -54,15 +57,15 @@ function SignUp({ closeModal }: isModalprops) {
   };
 
   const onSubmit = () => {
-    console.log(name, nickname, email, password);
+    //e.preventDefault();
     axios
-      .post('https://netfreview.com/users/signup', {
+      .post('/users/signup', {
         name,
         nickname,
         email,
         password,
       })
-      .then((res) => console.log(res))
+      .then((res) => alert(`회원가입이 완료되었습니다!`))
       .catch((error) => console.log(error));
     // alert(JSON.stringify(data));
     // console.log('data', data);
@@ -81,9 +84,9 @@ function SignUp({ closeModal }: isModalprops) {
     setIsSignUpClose(true);
   };
 
-  const closeSignIn = () => {
-    setIsSignInOpen(false);
-  };
+  // const closeSignIn = () => {
+  //   setIsSignInOpen(false);
+  // };
 
   return (
     <div>
@@ -93,7 +96,7 @@ function SignUp({ closeModal }: isModalprops) {
           <section className="signup">
             <img className="img" src={img} />
             <div className="login__wrap">
-              <h3 className="login-title">회원가입</h3>
+              <h3 className="Login-title">회원가입</h3>
               <form onSubmit={handleSubmit(onSubmit)} className="login-form">
                 <input
                   name="Name"
@@ -165,23 +168,42 @@ function SignUp({ closeModal }: isModalprops) {
 
                 <input
                   onChange={onChangePassword}
-                  name="password"
+                  name="Password"
                   ref={register({
                     required: true,
-                    pattern: /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/,
+                    // pattern: /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/,
+                    pattern: /([a-zA-Z0-9].*[!,@,#,$,%,^,&,*,?,_,~])|([!,@,#,$,%,^,&,*,?,_,~].*[a-zA-Z0-9])/,
                   })}
                   className="login-input"
                   type="password"
                   placeholder="Password"
                 />
-                {_.get('email.type', errors) === 'required' && (
+                {_.get('Password.type', errors) === 'required' && (
                   <p className="input">입력해주세요!</p>
                 )}
-                {_.get('email.type', errors) === 'pattern' && (
+                {_.get('Password.type', errors) === 'pattern' && (
                   <p className="input">
-                    특수문자 / 문자 / 숫자 포함 형태의 8~15자리 이내로
-                    적어주세요!
+                    영문,숫자,특수문자(!@$%^&* 만 허용)를 사용하여 6~16자까지
+                    적어주세요!(영문은 대소문자를 구분합니다)
                   </p>
+                )}
+
+                <input
+                  // onChange={onChangePassword}
+                  name="password-confirm"
+                  ref={register({
+                    required: true,
+                    validate: (value) => value === Password.current,
+                  })}
+                  className="login-input"
+                  type="password"
+                  placeholder="Password"
+                />
+                {_.get('password-confirm.type', errors) === 'required' && (
+                  <p className="input">입력해주세요!</p>
+                )}
+                {_.get('password-confirm.type', errors) === 'validate' && (
+                  <p className="input">비밀번호가 맞지 않습니다!</p>
                 )}
 
                 <div className="login-btn">
@@ -195,6 +217,7 @@ function SignUp({ closeModal }: isModalprops) {
                   </button>
                   <button
                     onClick={openSignIn}
+                    type="button"
                     id="Btn"
                     className="loginMoveButton"
                   >
@@ -205,15 +228,17 @@ function SignUp({ closeModal }: isModalprops) {
 
               <ul className="login-social">
                 <li className="login-social__wrap">
-                  <li className="google">
-                    <img className="logo" src={google} />
-                  </li>
-                  <li className="google">
-                    <img className="logo" src={kakao} />
-                  </li>
-                  <li className="facebook ">
-                    <img className="logo" src={facebook} />
-                  </li>
+                  <ul>
+                    <li className="google">
+                      <img className="logo" src={google} />
+                    </li>
+                    <li className="google">
+                      <img className="logo" src={kakao} />
+                    </li>
+                    <li className="facebook ">
+                      <img className="logo" src={facebook} />
+                    </li>
+                  </ul>
                 </li>
               </ul>
             </div>

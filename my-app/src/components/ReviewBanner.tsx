@@ -7,15 +7,15 @@ import React, { useState } from 'react';
 //   Redirect,
 // } from 'react-router-dom';
 // import axios from 'axios';
-import Header from '../components/Header';
+//import Header from '../components/Header';
 import '../scss/ReviewBanner.scss';
 
 function ReviewBanner() {
   return (
-    <div className='reviewbanner'>
-      <div className='review-wrap'>
-        <h1 className='reviewbanner__title'>영화제목 </h1>
-        <button className='reviewbanner__netflix'>바로보러가기</button>
+    <div className="reviewbanner">
+      <div className="review-wrap">
+        <h1 className="reviewbanner__title">영화제목 </h1>
+        <button className="reviewbanner__netflix">바로보러가기</button>
       </div>
     </div>
   );

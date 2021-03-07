@@ -3,8 +3,8 @@ import ReviewBanner from '../components/ReviewBanner';
 import ReviewList from '../components/ReviewList';
 import SideBar from '../components/SideBar';
 import WriteReview from '../components/WriteReview';
-import Myreview from '../components/Myreview';
-import Header from '../components/Header';
+// import Myreview from '../components/Myreview';
+// import Header from '../components/Header';
 import '../scss/Review.scss';
 function Search() {
   const [isLogin, setIsLogin] = useState(true);
@@ -13,12 +13,12 @@ function Search() {
     <div>
       {/* {isLogin ? ( //isLogin(로그인상태)이 true */}
       <ReviewBanner />
-      <div className='area'>
-        <div className='left'>
+      <div className="area">
+        <div className="left">
           <SideBar />
         </div>
 
-        <div className='right'>
+        <div className="right">
           <WriteReview />
           <ReviewList />
         </div>

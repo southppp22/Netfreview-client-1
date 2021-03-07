@@ -1,0 +1,129 @@
+.modify-user {
+  padding-top: 120px;
+  padding-bottom: 342px;
+
+  &-wrap {
+    width: 620px;
+    margin: 0 auto;
+  }
+  &__title {
+    font: {
+      size: var(--font-sub-title);
+      weight: var(--weight-bold);
+    }
+    margin-bottom: 25px;
+  }
+
+  .table {
+    width: 100%;
+    tr {
+      border-top: 1px solid #dfdfdf;
+      vertical-align: top;
+    }
+    &__th {
+      text-align: left;
+      width: 25%;
+      font-weight: var(--weight-regular);
+      &-cell {
+        padding: 30px;
+      }
+    }
+    &__td {
+      &-cell {
+        padding: 23px 0;
+        &.text {
+          padding-top: 30px;
+        }
+        input {
+          width: 100%;
+          height: 35px;
+          padding: 0 10px;
+          background-color: #eee;
+        }
+        textarea {
+          width: 100%;
+          height: 130px;
+          padding: 10px;
+          resize: none;
+          font-family: var(--font-kor);
+          background-color: #eee;
+        }
+        input:focus,
+        textarea:focus {
+          border: 1px solid var(--color-black);
+          background-color: var(--color-white);
+        }
+        div {
+          margin-top: 2px;
+          font-size: 12px;
+        }
+        &__pw {
+          &.error {
+            border: 1px solid var(--color-netflix);
+            background-color: var(--color-white);
+            &:focus {
+              border-color: var(--color-netflix);
+            }
+          }
+          &-confirm {
+            margin-top: 15px;
+            &.error {
+              border: 1px solid var(--color-netflix);
+              background-color: var(--color-white);
+              &:focus {
+                border-color: var(--color-netflix);
+              }
+            }
+          }
+        }
+        &__caution {
+          // margin-bottom: 15px;
+          height: 17.28px;
+          color: var(--color-gray);
+          &.error {
+            color: var(--color-netflix);
+          }
+        }
+      }
+    }
+    &__introduction {
+      border-bottom: 1px solid #dfdfdf;
+    }
+  }
+}
+.btn {
+  width: 70px;
+  height: 34px;
+  border: 1px solid #ccc;
+  font: {
+    family: var(--font-kor);
+    size: 12px;
+  }
+  &-wrap {
+    width: 150px;
+    margin: 30px auto 0;
+    display: flex;
+    justify-content: space-between;
+  }
+  &-cancel {
+    color: var(--color-netflix);
+    border-color: var(--color-netflix);
+  }
+  &-save {
+    width: 70px;
+    height: 34px;
+    color: var(--color-white);
+    border: none;
+    background-color: var(--color-netflix);
+    &.no-change {
+      // background-color: #dfdfdf;
+      font-size: 12px;
+      background-color: var(--color-white);
+      border: 1px solid #dfdfdf;
+      color: #dfdfdf;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}

@@ -17,6 +17,7 @@ import ModifyUserInfo from './pages/ModifyUserInfo';
 // import InfoCard from './components/InfoCard';
 // import Myreview from './components/Myreview';
 import SignIn from './components/SignIn';
+import useIsLogin from './hooks/useIsLogin';
 // import ReviewComment from './components/ReviewComment';
 // import ReviewList from './components/ReviewList';
 // import SideBar from './components/SideBar';
@@ -27,15 +28,16 @@ axios.defaults.withCredentials = true;
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 function App() {
-  const [isLogin, setIsLogin] = useState(true); // 회원정보 부분이라 로그인되어있는상태에만 작동되게 하려고 임의로 넣어놨습니다.
-  // 추후 정완이가 로그인부분 isLogin redux로 구현하면 그때 수정할 예정입니다!
+  const { useLogin } = useIsLogin();
+  const { setIsLogin, accessToken } = useLogin;
+  axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
   return (
     <div className="wrapper">
       <Router>
         <Header />
         <Switch>
           <Route path="/" exact component={Main} />
-          {isLogin ? (
+          {setIsLogin ? (
             <Route path="/mypage">
               <Switch>
                 <Route exact path="/mypage" component={Mypage} />

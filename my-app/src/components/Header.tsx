@@ -1,11 +1,19 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import useIsLogin from '../hooks/useIsLogin';
+import useUserInfo from '../hooks/useUserInfo';
 
 import '../scss/Header.scss';
 // import SignUp from './SignUp';
 import SignIn from './SignIn';
 
 function Header() {
+  const { useLogin } = useIsLogin();
+  const { setIsLogin } = useLogin;
+  const { userInfo } = useUserInfo();
+  const { profileImgPath } = userInfo;
+  // console.log(setIsLogin);
+
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [headerClass, setHeaderClass] = useState('basic');
 
@@ -35,7 +43,7 @@ function Header() {
     <header
       className={
         useLocation().pathname === '/' ||
-        useLocation().pathname === '/review/:id'
+        useLocation().pathname.includes('/review/')
           ? `header ${headerClass}`
           : 'header'
       }
@@ -64,10 +72,17 @@ function Header() {
           {/* <Link to='/sign' className='nav-right__auth'>
             로그인
           </Link> */}
-          {/* { isLogin ? () : ()} 로그인 true면 로그인 */}
-          <div onClick={openModal} className="nav-right__auth">
-            로그인
-          </div>
+          {setIsLogin ? (
+            <div className="nav-right__auth profileImg">
+              <Link to="/mypage">
+                <img src={profileImgPath} />
+              </Link>
+            </div>
+          ) : (
+            <div onClick={openModal} className="nav-right__auth">
+              로그인
+            </div>
+          )}
         </div>
       </nav>
       {isModalOpen ? <SignIn closeModal={closeModal} /> : null}

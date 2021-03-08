@@ -65,7 +65,6 @@ function SignIn({ closeModal }: isModalprops) {
   const errorRef: any = useRef();
 
   const onSubmit = () => {
-    //e.preventDefault()
     axios
       .post('/users/signin', {
         email,

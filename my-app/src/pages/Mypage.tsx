@@ -27,31 +27,35 @@ function Mypage() {
     posterUrl: string;
     rating: number;
   };
-  const [videoList, setVideoList] = useState<VideoList[] | undefined>([]);
+  const [videoList, setVideoList] = useState<VideoList[] | undefined>(
+    undefined
+  );
 
   useEffect(() => {
-    axios.get('/user/userinfo').then((res) => {
+    axios.get('/users/userinfo').then((res) => {
       console.log(res.data);
       const { id, name, nickname, introduction, profileUrl } = res.data;
       onSetUserId(id);
       onSetUserName(name);
       onSetIntroduction(introduction);
       onSetNickname(nickname);
-      onSetImg(profileUrl);
+      if (profileUrl) {
+        onSetImg(profileUrl);
+      }
     });
-    axios.get('/videos/videolist/?path=myPage').then((res) => {
-      console.log(res.data.videoLists);
-      const videos = res.data.videoList.map((video: any) => {
-        return {
-          id: video.id,
-          title: video.title,
-          posterUrl: video.posterUrl,
-          rating: video.rating,
-        };
-      });
-      setVideoList(videos);
-    });
-  });
+    // axios.get('/videos/videolist/?path=myPage').then((res) => {
+    //   console.log(res.data.videoLists);
+    //   const videos = res.data.videoList.map((video: any) => {
+    //     return {
+    //       id: video.id,
+    //       title: video.title,
+    //       posterUrl: video.posterUrl,
+    //       rating: video.rating,
+    //     };
+    //   });
+    //   setVideoList(videos);
+    // });
+  }, []);
 
   // const renderVideoList = () => {
   //   if (videoList) {

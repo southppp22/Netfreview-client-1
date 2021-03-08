@@ -54,6 +54,12 @@
   &__wrap {
     width: 1020px;
     margin: 0 auto;
+    &.noLogin {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+    }
   }
   &__title {
     margin-top: 40px;
@@ -61,11 +67,30 @@
       size: var(--font-medium);
       weight: var(--weight-bold);
     }
+    &.noLogin {
+      margin-top: 160px;
+    }
+  }
+  &__btn-login {
+    width: 380px;
+    height: 60px;
+    margin: 0 auto;
+    font-size: var(--font-regular);
+    color: var(--color-netflix);
+    border: 1px solid var(--color-netflix);
+    border-radius: 5px;
+    &:hover {
+      color: var(--color-white);
+      background-color: var(--color-netflix);
+    }
   }
   &__description {
     margin: {
       top: 20px;
       bottom: 45px;
+    }
+    &.noLogin {
+      margin-bottom: 90px;
     }
   }
   &__list {

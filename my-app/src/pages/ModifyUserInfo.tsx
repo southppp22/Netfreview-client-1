@@ -1,13 +1,7 @@
 import axios from 'axios';
-import React, {
-  ChangeEvent,
-  MouseEvent,
-  useState,
-  useEffect,
-  useRef,
-} from 'react';
+import React, { ChangeEvent, useState, useEffect } from 'react';
 // import useReactRouter from 'use-react-router';
-import { Link, Redirect, useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import useUserInfo from '../hooks/useUserInfo';
 import '../scss/ModifyUserInfo.scss';
 
@@ -68,7 +62,7 @@ function ModifyUserInfo() {
     const isModified = confirm('회원정보 변경 사항을 적용하시겠습니까?');
     if (isModified && password && isValidPw && isMatchPw) {
       axios
-        .post('/users', {
+        .patch('/users', {
           nickname: diffNickname,
           password,
           introduction: description,
@@ -81,7 +75,7 @@ function ModifyUserInfo() {
         });
     } else if (isModified && !password) {
       axios
-        .post('/users', {
+        .patch('/users', {
           nickname: diffNickname,
           introduction: description,
         })

@@ -7,13 +7,13 @@ import facebook from '../img/facebook.png';
 import google from '../img/google.png';
 import kakao from '../img/kakao-talk.png';
 import '../scss/SignUp.scss';
-// import {
-//   BrowserRouter as Router,
-//   Switch,
-//   Route,
-//   Link,
-//   Redirect,
-// } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect,
+} from 'react-router-dom';
 // import axios from 'axios';
 import SignIn from './SignIn';
 import axios from 'axios';
@@ -57,7 +57,6 @@ function SignUp({ closeModal }: isModalprops) {
   };
 
   const onSubmit = () => {
-    //e.preventDefault();
     axios
       .post('/users/signup', {
         name,
@@ -208,6 +207,7 @@ function SignUp({ closeModal }: isModalprops) {
                   >
                     입력완료
                   </button>
+
                   <button
                     onClick={openSignIn}
                     type="button"

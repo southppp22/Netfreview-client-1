@@ -45,7 +45,7 @@ p.input::before {
   overflow: hidden;
   z-index: 1000;
 }
-.img {
+.img-login {
   margin: auto;
   margin-top: 75px;
 }
@@ -131,4 +131,7 @@ input::placeholder {
 .logo {
   width: 30px;
   height: 30px;
+}
+.findpw {
+  color: black;
 }

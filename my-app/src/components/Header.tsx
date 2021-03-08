@@ -1,11 +1,19 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import useIsLogin from '../hooks/useIsLogin';
+import useUserInfo from '../hooks/useUserInfo';
 
 import '../scss/Header.scss';
 // import SignUp from './SignUp';
 import SignIn from './SignIn';
 
 function Header() {
+  const { useLogin } = useIsLogin();
+  const { setIsLogin } = useLogin;
+  const { userInfo } = useUserInfo();
+  const { profileImgPath } = userInfo;
+  // console.log(setIsLogin);
+
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [headerClass, setHeaderClass] = useState('basic');
 
@@ -35,38 +43,46 @@ function Header() {
     <header
       className={
         useLocation().pathname === '/' ||
-        useLocation().pathname === '/review/:id'
+        useLocation().pathname.includes('/review/')
           ? `header ${headerClass}`
           : 'header'
       }
     >
-      <nav className='nav'>
-        <div className='nav-left'>
-          <Link to='/' className='nav-left__logo'></Link>
-          <ul className='nav-left__type'>
+      <nav className="nav">
+        <div className="nav-left">
+          <Link to="/" className="nav-left__logo"></Link>
+          <ul className="nav-left__type">
             <li>
-              <Link to='/'>영화</Link>
+              <Link to="/">영화</Link>
             </li>
             <li>
-              <Link to='/'>TV 프로그램</Link>
+              <Link to="/">TV 프로그램</Link>
             </li>
           </ul>
         </div>
-        <div className='nav-right'>
-          <form className='search-form'>
+        <div className="nav-right">
+          <form className="search-form">
             <input
-              type='text'
-              className='search-form__input'
-              placeholder='작품 제목을 검색해 주세요'
+              type="text"
+              className="search-form__input"
+              placeholder="작품 제목을 검색해 주세요"
             />
-            <button type='submit' className='search-form__button'></button>
+            <button type="submit" className="search-form__button"></button>
           </form>
           {/* <Link to='/sign' className='nav-right__auth'>
             로그인
           </Link> */}
-          <div onClick={openModal} className='nav-right__auth'>
-            로그인
-          </div>
+          {setIsLogin ? (
+            <div className="nav-right__auth profileImg">
+              <Link to="/mypage">
+                <img src={profileImgPath} />
+              </Link>
+            </div>
+          ) : (
+            <div onClick={openModal} className="nav-right__auth">
+              로그인
+            </div>
+          )}
         </div>
       </nav>
       {isModalOpen ? <SignIn closeModal={closeModal} /> : null}

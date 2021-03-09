@@ -1,7 +1,7 @@
 import React, { useState, useRef /*FormEvent*/ } from 'react';
-import _ from 'lodash/fp';
 //import ReactDOM from 'react-dom';
 import { useForm } from 'react-hook-form';
+import useIsLogin from '../hooks/useIsLogin';
 import img from '../img/logo.png';
 import '../scss/Findpw.scss';
 // import {
@@ -29,8 +29,12 @@ type isModalprops = {
 /************ Function *************/
 
 function Findpw({ closeModal }: isModalprops) {
-  const { register, handleSubmit, watch, errors } = useForm<FormInput>();
-  const [isLogin, setIsLogin] = useState<boolean>(false);
+  const { register, handleSubmit, watch } = useForm<FormInput>();
+  // const { useLogin, onSetIsLogin, onSetToken } = useIsLogin();
+  // const { setIsLogin, accessToken } = useLogin;
+  const [isSignInOpen, setIsSignInOpen] = useState<boolean>(false);
+  const [isFindpwClose, setIsFindpwClose] = useState<boolean>(false);
+  //const [isLogin, setIsLogin] = useState<boolean>(false);
   const [email, setEmail] = useState<string>('');
 
   // console.log(watch('password-confirm'));
@@ -49,12 +53,10 @@ function Findpw({ closeModal }: isModalprops) {
       .then((res) => {
         alert(`이메일전송완료`);
         console.log(res);
+        //setIsFindpwClose(true);
       })
       .catch((error) => console.log(error));
   };
-
-  const [isSignInOpen, setIsSignInOpen] = useState<boolean>(false);
-  const [isFindpwClose, setIsFindpwClose] = useState<boolean>(false);
 
   const openSignIn = () => {
     setIsSignInOpen(true);
@@ -100,8 +102,6 @@ function Findpw({ closeModal }: isModalprops) {
                   >
                     로그인으로 이동
                   </button>
-
-                  <p>비밀번호를 잊으셨나요?</p>
                 </div>
               </form>
             </div>

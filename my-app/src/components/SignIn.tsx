@@ -6,19 +6,18 @@ import facebook from '../img/facebook.png';
 import google from '../img/google.png';
 import kakao from '../img/kakao-talk.png';
 import '../scss/SignIn.scss';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  Redirect,
-  useHistory,
-} from 'react-router-dom';
+// import {
+//   BrowserRouter as Router,
+//   Switch,
+//   Route,
+//   Link,
+//   Redirect,
+//   useHistory,
+// } from 'react-router-dom';
 import SignUp from './SignUp';
 import Findpw from './Findpw';
 import axios from 'axios';
 import useIsLogin from '../hooks/useIsLogin';
-import Main from '../pages/Main';
 
 /*********type************/
 interface FormInput {
@@ -26,23 +25,30 @@ interface FormInput {
   password: string;
 }
 
+type token = {
+  onLoginSuccess: () => void;
+  onRefresh: () => void;
+};
+
 type isModalprops = {
   closeModal: () => void;
 };
 
 /*********Function********/
-function SignIn({ closeModal }: isModalprops) {
+function SignIn(
+  { closeModal }: isModalprops,
+  { onLoginSuccess, onRefresh }: token
+) {
   const { register, handleSubmit, errors } = useForm<FormInput>();
   const { useLogin, onSetIsLogin, onSetToken } = useIsLogin();
   const { setIsLogin, accessToken } = useLogin;
-
   const [isSignUpOpen, setIsSignUpOpen] = useState<boolean>(false);
   const [isSignInClose, setIsSignInClose] = useState<boolean>(false);
   const [isFindpwOpen, setIsFindpwOpen] = useState<boolean>(false);
 
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const history = useHistory();
+  // const history = useHistory();
 
   const onChangeEmail = (e: any) => {
     setEmail(e.target.value);
@@ -60,9 +66,30 @@ function SignIn({ closeModal }: isModalprops) {
     setIsFindpwOpen(true);
   };
 
-  const emailRef: any = useRef();
-  const passwordRef: any = useRef();
-  const errorRef: any = useRef();
+  // const closeSignin = () => {
+  //   setIsSignInClose(true);
+  //   onSetIsLogin(true);
+  // };
+
+  //만료시간
+  const JWT_EXPIRY_TIME = 24 * 3600 * 1000;
+
+  //이메일, 비번을 보내면 refreshToken과 acessToken을 return
+  // const onLoginSuccess = (res: any) => {
+  //   const { accessToken } = res.data;
+  //   axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+  //   setTimeout(onRefresh, JWT_EXPIRY_TIME - 60000); //로그인연장
+  // };
+
+  //cookie에 담긴 refreshToken이 자동으로 보내지면, 새로운 refreshToekn과 accessToken을 return
+  // const onRefresh = () => {
+  //   axios
+  //     .get('/users/refresh')
+  //     .then(onLoginSuccess)
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
 
   const onSubmit = () => {
     axios
@@ -71,30 +98,31 @@ function SignIn({ closeModal }: isModalprops) {
         password,
       })
       .then((res) => {
+        console.log(res);
+        //console.log();
+        onLoginSuccess;
+        // const { accessToken } = res.data.data.accessToken;
         onSetIsLogin(true);
         onSetToken(res.data.data.accessToken);
         alert(`로그인 되었습니다.`);
-
-        // history.push('/');
-        // axios.defaults.headers.common[
-        //   'Authorization'
-        // ] = `Bearer ${accessToken}`;
+        setIsSignInClose(true);
+        // onRefresh();
       })
       .catch((error) => {
-        console.log(alert);
+        console.log(error.response.data);
+        if (error.response.data.message === `비밀번호가 올바르지 않습니다.`) {
+          alert(`비밀번호가 틀렸습니다.`);
+        } else if (
+          error.response.data.message === `이메일이 올바르지 않습니다.`
+        ) {
+          alert(`이메일이 틀렸습니다.`);
+        } else if (error.response.data.statusCode === 401) {
+          alert(`입력해주세요`);
+        }
+
         alert(`입력해주세요`);
       });
   };
-
-  // 로그인 연장
-  // onSilentRefresh = () => {
-  //   axios
-  //     .post('/silent-refresh', data)
-  //     .then(onLoginSuccess)
-  //     .catch((error) => {
-  //       // ... 로그인 실패 처리
-  //     });
-  // };
 
   // onLoginSuccess = (response) => {
   //   const { accessToken } = response.data;
@@ -141,6 +169,7 @@ function SignIn({ closeModal }: isModalprops) {
                 ></input>
               </form>
               <div className="login-btn">
+                {/* {setIsLogin ? ( */}
                 <button
                   onClick={onSubmit}
                   type="submit"
@@ -149,6 +178,16 @@ function SignIn({ closeModal }: isModalprops) {
                 >
                   로그인
                 </button>
+                {/*  ) : (
+                //   <button
+                //     onClick={closeSignin}
+                //     type="submit"
+                //     id="loginBtn"
+                //     className="loginButton"
+                //   >
+                //     로그인
+                //   </button>
+                // )} */}
 
                 <button
                   onClick={openSignUp}

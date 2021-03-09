@@ -7,13 +7,13 @@ import facebook from '../img/facebook.png';
 import google from '../img/google.png';
 import kakao from '../img/kakao-talk.png';
 import '../scss/SignUp.scss';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  Redirect,
-} from 'react-router-dom';
+// import {
+//   BrowserRouter as Router,
+//   Switch,
+//   Route,
+//   Link,
+//   Redirect,
+// } from 'react-router-dom';
 // import axios from 'axios';
 import SignIn from './SignIn';
 import axios from 'axios';
@@ -34,7 +34,7 @@ type isModalprops = {
 
 function SignUp({ closeModal }: isModalprops) {
   const { register, handleSubmit, watch, errors } = useForm<FormInput>();
-  const [isLogin, setIsLogin] = useState<boolean>(false);
+  // const [isLogin, setIsLogin] = useState<boolean>(false);
   const [name, setName] = useState<string>('');
   const [nickname, setNickname] = useState<string>('');
   const [email, setEmail] = useState<string>('');
@@ -64,8 +64,15 @@ function SignUp({ closeModal }: isModalprops) {
         email,
         password,
       })
-      .then((res) => alert(`회원가입이 완료되었습니다!`))
-      .catch((error) => console.log(error));
+      .then((res) => {
+        console.log(res);
+        alert(res.data);
+      })
+
+      .catch((error) => {
+        console.log(error);
+        alert(`제대로 입력해주세요!`);
+      });
   };
 
   const [isSignInOpen, setIsSignInOpen] = useState<boolean>(false);

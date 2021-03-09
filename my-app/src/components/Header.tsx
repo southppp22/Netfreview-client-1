@@ -53,7 +53,7 @@ function Header() {
           <Link to="/" className="nav-left__logo"></Link>
           <ul className="nav-left__type">
             <li>
-              <Link to="/">영화</Link>
+              <Link to="/resetpw">영화</Link>
             </li>
             <li>
               <Link to="/">TV 프로그램</Link>
@@ -67,7 +67,11 @@ function Header() {
               className="search-form__input"
               placeholder="작품 제목을 검색해 주세요"
             />
-            <button type="submit" className="search-form__button"></button>
+            <Link to="/search">
+              <button type="submit" className="search-form__button">
+                search
+              </button>
+            </Link>
           </form>
           {/* <Link to='/sign' className='nav-right__auth'>
             로그인

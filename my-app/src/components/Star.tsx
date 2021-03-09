@@ -1,23 +1,18 @@
 import React, { useMemo } from 'react';
+import useReviews from '../hooks/useReviews';
 import { StarIcon } from './StarsIcon';
 
 type StarsProps = {
   index: number;
-  rating: number;
-  hoverRating: number;
-  onMouseEnter: (index: number) => void;
-  onMouseLeave: () => void;
-  onSaveRating: (index: number) => void;
 };
 
-export function Stars({
-  index,
-  rating,
-  hoverRating,
-  onMouseEnter,
-  onMouseLeave,
-  onSaveRating,
-}: StarsProps) {
+export function Stars({ index }: StarsProps) {
+  const { reviews, onSetHoverRating, onSetRating } = useReviews();
+
+  const {
+    body: { rating, hoverRating },
+  } = reviews;
+
   const isFill = useMemo(() => {
     if (hoverRating >= index) {
       return true;
@@ -29,9 +24,9 @@ export function Stars({
 
   return (
     <div
-      onMouseEnter={() => onMouseEnter(index)}
-      onMouseLeave={() => onMouseLeave()}
-      onClick={() => onSaveRating(index)}
+      onMouseEnter={() => onSetHoverRating(index)}
+      onMouseLeave={() => onSetHoverRating(0)}
+      onClick={() => onSetRating(index)}
     >
       <StarIcon isActive={isFill} />
     </div>

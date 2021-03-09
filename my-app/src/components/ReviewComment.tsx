@@ -40,7 +40,7 @@ function ReviewComment(props: ReviewCommentProps) {
     likeCount,
   } = props;
 
-  const { addLike } = useReviews();
+  const { onAddLike } = useReviews();
 
   return (
     <div className="reviewList__wholeInfo">
@@ -60,7 +60,7 @@ function ReviewComment(props: ReviewCommentProps) {
             </div>
             <button
               onClick={async () => {
-                addLike(Number(id));
+                onAddLike(Number(id));
               }}
               type="button"
               className="count__heart"

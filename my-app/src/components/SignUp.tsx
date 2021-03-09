@@ -34,7 +34,7 @@ type isModalprops = {
 
 function SignUp({ closeModal }: isModalprops) {
   const { register, handleSubmit, watch, errors } = useForm<FormInput>();
-  const [isLogin, setIsLogin] = useState<boolean>(false);
+  // const [isLogin, setIsLogin] = useState<boolean>(false);
   const [name, setName] = useState<string>('');
   const [nickname, setNickname] = useState<string>('');
   const [email, setEmail] = useState<string>('');
@@ -57,7 +57,6 @@ function SignUp({ closeModal }: isModalprops) {
   };
 
   const onSubmit = () => {
-    //e.preventDefault();
     axios
       .post('/users/signup', {
         name,
@@ -65,8 +64,15 @@ function SignUp({ closeModal }: isModalprops) {
         email,
         password,
       })
-      .then((res) => alert(`회원가입이 완료되었습니다!`))
-      .catch((error) => console.log(error));
+      .then((res) => {
+        console.log(res);
+        alert(res.data);
+      })
+
+      .catch((error) => {
+        console.log(error);
+        alert(`제대로 입력해주세요!`);
+      });
   };
 
   const [isSignInOpen, setIsSignInOpen] = useState<boolean>(false);
@@ -208,6 +214,7 @@ function SignUp({ closeModal }: isModalprops) {
                   >
                     입력완료
                   </button>
+
                   <button
                     onClick={openSignIn}
                     type="button"

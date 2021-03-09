@@ -7,6 +7,9 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import rootReducer from './modules';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import axios from 'axios';
+axios.defaults.baseURL = 'https://www.gettoday4.click';
+axios.defaults.withCredentials = true;
 const store = createStore(rootReducer, composeWithDevTools());
 ReactDOM.render(
   <Provider store={store}>

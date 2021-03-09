@@ -16,36 +16,20 @@ import { Stars } from './Star';
 import {} from '../modules/reviews';
 
 type UpdateReviewType = {
-  videoId: number;
-  rate: number;
-  reviewText: string;
   setIsOn: any;
 };
 
-function UpdateReview({
-  videoId,
-  rate,
-  reviewText,
-  setIsOn,
-}: UpdateReviewType) {
-  const { onUpdateReview } = useReviews();
+function UpdateReview({ setIsOn }: UpdateReviewType) {
+  const { onUpdateReview, reviews, onSetText } = useReviews();
 
-  const [text, setText] = useState<string>(reviewText);
-  const [rating, setRating] = useState<number>(rate);
-  const payload = {
-    videoId,
-    text,
-    rating,
-  };
+  const params = useParams<{ videoId: string }>();
+
+  const { body } = reviews;
+  const { text, rating } = body;
 
   const [errorMessage, setErrorMessage] = useState<null | string>(null);
-  const [hoverRating, setHoverRating] = useState<number>(0);
 
-  const onMouseEnter = (index: number) => setHoverRating(index);
-  const onMouseLeave = () => setHoverRating(0);
-  const onSaveRating = (index: number) => setRating(index);
-
-  const isValid = () => Boolean(rating && reviewText);
+  const isValid = () => Boolean(rating && text);
 
   return (
     <div className="writereview">
@@ -54,17 +38,7 @@ function UpdateReview({
           <h5 className="myscore__title">총평</h5>
           <div className="myscore__rate">
             {[1, 2, 3, 4, 5].map((idx) => {
-              return (
-                <Stars
-                  index={idx}
-                  rating={rating}
-                  hoverRating={hoverRating}
-                  onMouseEnter={onMouseEnter}
-                  onMouseLeave={onMouseLeave}
-                  onSaveRating={onSaveRating}
-                  key={idx}
-                ></Stars>
-              );
+              return <Stars index={idx} key={idx}></Stars>;
             })}
           </div>
         </div>
@@ -73,14 +47,14 @@ function UpdateReview({
           <h6 className="text__title">나의 리뷰</h6>
           <div className="text__div">
             <textarea
-              defaultValue={reviewText}
+              defaultValue={text}
               className={
                 isValid() || errorMessage === null
                   ? 'text__textarea'
                   : 'text__textarea invalid'
               }
               onChange={(e) => {
-                setText(e.target.value);
+                onSetText(e.target.value);
               }}
             ></textarea>
           </div>
@@ -89,8 +63,7 @@ function UpdateReview({
             <button
               className="btn__review"
               onClick={async () => {
-                console.log('pp', payload);
-                await onUpdateReview(payload);
+                await onUpdateReview(body);
                 setIsOn(false);
               }}
             >

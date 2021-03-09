@@ -3,7 +3,7 @@ import { ActionType, createAction, createReducer } from 'typesafe-actions';
 const FETCH_VIDEO = 'video/FETCH_VIDEO'
 
 export type Video = {
-  id: number | undefined,
+  id: number ,
   title: string,
   description: string ,
   director: string ,
@@ -17,7 +17,7 @@ export type Video = {
   type: string,
   createdAt: string,
   updatedAt: string,
-  rating: number | undefined,
+  rating: number,
   genres: string[]
 }
 
@@ -28,8 +28,8 @@ type VideoAction = ActionType<typeof actions>
 
 export type VideoState = Video
 
-const initialState: VideoState = {
-  id: undefined,
+export const initialVideoState: VideoState = {
+  id: 0,
   title: '',
   description: '',
   director: '',
@@ -43,11 +43,11 @@ const initialState: VideoState = {
   type: '',
   createdAt: '',
   updatedAt: '',
-  rating: undefined,
+  rating: 0,
   genres: []
 }
 
-const video = createReducer<VideoState, VideoAction>(initialState, {
+const video = createReducer<VideoState, VideoAction>(initialVideoState, {
   [FETCH_VIDEO]: (state, {payload: video}) => ({
     ...video
   })

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import InfoCard from './InfoCard';
 import {
   BrowserRouter as Router,
   Switch,
@@ -10,33 +9,19 @@ import {
 } from 'react-router-dom';
 //import axios from 'axios';
 import '../scss/WriteReview.scss';
-import useReviews from '../hooks/useReviews';
-import useVideo from '../hooks/useVideo';
+import useReviews, { addReviewType } from '../hooks/useReviews';
 import { Stars } from './Star';
-import {} from '../modules/reviews';
 
 function WriteReview() {
-  const { onAddReview, reviews } = useReviews();
-  const params = useParams<{ videoId: string }>();
+  const { onAddReview, onUpdateReview, reviews, onSetText } = useReviews();
+  const { status, myReview } = reviews;
 
-  const videoId = Number(params.videoId);
-  const [text, setText] = useState<string>('');
-  const [rating, setRating] = useState<number>(0);
-
-  const payload = {
-    videoId,
-    text,
-    rating,
-  };
+  const { body } = reviews;
+  const { text, rating } = body;
 
   const [errorMessage, setErrorMessage] = useState<null | string>(null);
-  const [hoverRating, setHoverRating] = useState<number>(0);
 
-  const onMouseEnter = (index: number) => setHoverRating(index);
-  const onMouseLeave = () => setHoverRating(0);
-  const onSaveRating = (index: number) => setRating(index);
-
-  const isValid = () => Boolean(rating && text);
+  const isValid = () => Boolean(rating && text); //에러처리해주기
 
   return (
     <div className="writereview">
@@ -45,17 +30,7 @@ function WriteReview() {
           <h5 className="myscore__title">총평</h5>
           <div className="myscore__rate">
             {[1, 2, 3, 4, 5].map((idx) => {
-              return (
-                <Stars
-                  index={idx}
-                  rating={rating}
-                  hoverRating={hoverRating}
-                  onMouseEnter={onMouseEnter}
-                  onMouseLeave={onMouseLeave}
-                  onSaveRating={onSaveRating}
-                  key={idx}
-                ></Stars>
-              );
+              return <Stars index={idx} key={idx}></Stars>;
             })}
           </div>
         </div>
@@ -69,8 +44,9 @@ function WriteReview() {
                   ? 'text__textarea'
                   : 'text__textarea invalid'
               }
+              defaultValue={myReview ? myReview.text : ''}
               onChange={(e) => {
-                setText(e.target.value);
+                onSetText(e.target.value);
               }}
             ></textarea>
           </div>
@@ -78,7 +54,13 @@ function WriteReview() {
           <div className="text__btn">
             <button
               className="btn__review"
-              onClick={() => onAddReview(payload)}
+              onClick={() => {
+                if (status === 'updating') {
+                  onUpdateReview(body);
+                } else {
+                  onAddReview(body);
+                }
+              }}
             >
               리뷰등록하기
             </button>

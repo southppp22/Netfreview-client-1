@@ -72,8 +72,7 @@ function App() {
             </Route>
           ) : null}
           <Route path="/search" component={Search} />
-          <Route path="/review/:id" component={Review} />
-          <Route path="/review/:id/page?" component={Review} />
+          <Route path="/review/:videoId" component={Review} />
           <Route path="/signin" component={SignIn} />
           <Route path="/resetpw" component={Resetpw} />
         </Switch>

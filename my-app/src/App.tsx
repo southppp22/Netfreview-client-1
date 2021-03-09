@@ -34,8 +34,7 @@ function App() {
           <Route path="/" exact component={Main} />
           <Route path="/mypage" component={Mypage} />
           <Route path="/search" component={Search} />
-          <Route path="/review/:id" component={Review} />
-          <Route path="/review/:id/page?" component={Review} />
+          <Route path="/review/:videoId" component={Review} />
           <Route path="/signin" component={SignIn} />
         </Switch>
         <Footer />

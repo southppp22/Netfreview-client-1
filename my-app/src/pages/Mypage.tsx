@@ -3,45 +3,59 @@ import axios from 'axios';
 import SmallPoster from '../components/SmallPoster';
 import '../scss/Mypage.scss';
 import useUserInfo from '../hooks/useUserInfo';
+import { Link, useHistory } from 'react-router-dom';
 
 function Mypage() {
-  const { userInfo, onSetUserId, onSetImg, onSetNickname } = useUserInfo();
-  const { userId, nickname, profileImgPath } = userInfo;
+  const history = useHistory();
+
+  const {
+    userInfo,
+    onSetUserId,
+    onSetUserName,
+    onSetImg,
+    onSetNickname,
+    onSetIntroduction,
+  } = useUserInfo();
+  const { userId, userName, nickname, profileImgPath, introduction } = userInfo;
 
   const [img, setImg] = useState<File | undefined>();
-  const [introduction, setIntroduction] = useState('');
-  const [userName, setUserName] = useState('');
+  // const [introduction, setIntroduction] = useState('');
+  // const [userName, setUserName] = useState('관리자(임시)');
   type VideoList = {
     id: number;
     title: string;
     posterUrl: string;
     rating: number;
   };
-  const [videoList, setVideoList] = useState<VideoList[] | undefined>([]);
+  const [videoList, setVideoList] = useState<VideoList[] | undefined>(
+    undefined
+  );
 
   useEffect(() => {
-    axios.get('/user/userinfo').then((res) => {
+    axios.get('/users/userinfo').then((res) => {
       console.log(res.data);
       const { id, name, nickname, introduction, profileUrl } = res.data;
-      setUserName(name);
-      setIntroduction(introduction);
       onSetUserId(id);
+      onSetUserName(name);
+      onSetIntroduction(introduction);
       onSetNickname(nickname);
-      onSetImg(profileUrl);
+      if (profileUrl) {
+        onSetImg(profileUrl);
+      }
     });
-    axios.get('/videos/videolist/?path=myPage').then((res) => {
-      console.log(res.data.videoLists);
-      const videos = res.data.videoList.map((video: any) => {
-        return {
-          id: video.id,
-          title: video.title,
-          posterUrl: video.posterUrl,
-          rating: video.rating,
-        };
-      });
-      setVideoList(videos);
-    });
-  });
+    // axios.get('/videos/videolist/?path=myPage').then((res) => {
+    //   console.log(res.data.videoLists);
+    //   const videos = res.data.videoList.map((video: any) => {
+    //     return {
+    //       id: video.id,
+    //       title: video.title,
+    //       posterUrl: video.posterUrl,
+    //       rating: video.rating,
+    //     };
+    //   });
+    //   setVideoList(videos);
+    // });
+  }, []);
 
   // const renderVideoList = () => {
   //   if (videoList) {
@@ -73,6 +87,18 @@ function Mypage() {
 
   // const uploadImg = (/*e: MouseEvent<HTMLButtonElement, MouseEvent>*/) => {};
 
+  const handleWithdraw = () => {
+    const isWithdraw = confirm('Netfreview에서 탈퇴하시겠습니까?');
+    if (isWithdraw) {
+      axios
+        .post(`/user/${userId}`)
+        .then(() => {
+          history.push('/');
+        })
+        .catch((err) => console.log(err));
+    }
+  };
+
   return (
     <div className="mypage">
       <section className="user">
@@ -97,11 +123,22 @@ function Mypage() {
           </div>
           <p className="user__description">{introduction}</p>
           <div className="button">
+            <Link to="/mypage/modify">
+              <label>
+                <input
+                  type="button"
+                  className="button__edit"
+                  value="정보 수정"
+                />
+              </label>
+            </Link>
             <label>
-              <input type="button" className="button__edit" value="수정" />
-            </label>
-            <label>
-              <input type="button" className="button__close" value="탈퇴" />
+              <input
+                type="button"
+                className="button__close"
+                value="회원 탈퇴"
+                onClick={handleWithdraw}
+              />
             </label>
           </div>
         </article>

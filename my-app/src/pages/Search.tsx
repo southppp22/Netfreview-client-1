@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import SmallPoster from '../components/SmallPoster';
-import Header from '../components/Header';
-import nosearch from '../img/nosearch.png';
+// import Header from '../components/Header';
+// import nosearch from '../img/nosearch.png';
 import '../scss/Search.scss';
 
 function Search() {
   const [isSearch, setIsSearch] = useState(true);
 
   return (
-    <div className='whole'>
+    <div className="whole">
       {/* {isSearch ? (  */}
-      <section className='mysearchlist'>
-        <div className='searchlist-line'>
+      <section className="mysearchlist">
+        <div className="searchlist-line">
           <SmallPoster />
           <SmallPoster />
           <SmallPoster />

@@ -1,13 +1,13 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
-import InfoCard from './InfoCard';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  Redirect,
-} from 'react-router-dom';
+// import InfoCard from './InfoCard';
+// import {
+//   BrowserRouter as Router,
+//   Switch,
+//   Route,
+//   Link,
+//   Redirect,
+// } from 'react-router-dom';
 //import axios from 'axios';
 import '../scss/ReviewComment.scss';
 import profile from '../img/profile.png';
@@ -58,7 +58,6 @@ function ReviewComment(props: ReviewCommentProps) {
             </button>
           </div>
         </div>
-
         <p className="wholeInfo__textarea">{text}</p>
       </div>
     </div>

@@ -4,7 +4,7 @@ import ReviewList from '../components/ReviewList';
 import SideBar from '../components/SideBar';
 import WriteReview from '../components/WriteReview';
 import Myreview from '../components/Myreview';
-import Header from '../components/Header';
+// import Header from '../components/Header';
 import '../scss/Review.scss';
 import useVideo from '../hooks/useVideo';
 import useReviews from '../hooks/useReviews';

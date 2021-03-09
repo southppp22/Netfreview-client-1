@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import InfoCard from './InfoCard';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  Redirect,
-} from 'react-router-dom';
+// import {
+//   BrowserRouter as Router,
+//   Switch,
+//   Route,
+//   Link,
+//   Redirect,
+// } from 'react-router-dom';
 //import axios from 'axios';
 import '../scss/SideBar.scss';
 import useVideo from '../hooks/useVideo';

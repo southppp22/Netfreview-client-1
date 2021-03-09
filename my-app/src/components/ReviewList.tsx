@@ -7,7 +7,7 @@ import {
   Link,
   Redirect,
 } from 'react-router-dom';
-//import axios from 'axios';
+// import axios from 'axios';
 import '../scss/ReviewList.scss';
 import left from '../img/left.png';
 import right from '../img/right.png';

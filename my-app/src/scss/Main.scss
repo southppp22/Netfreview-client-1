@@ -32,7 +32,8 @@ main {
   width: 100vw;
   height: 555px;
   // background-image: url(https://via.placeholder.com/1440x555);
-  background: url(https://wallpapercave.com/wp/wp4428130.jpg) no-repeat 50% 15%;
+  // background: url(https://wallpapercave.com/wp/wp4428130.jpg) no-repeat 50% 15%;
+  background-color: #ccc;
   // background-color: linear-gradient(
   //   rgba(51, 51, 51, 1) 0%,
   //   rgba(51, 51, 51, 0) 90%
@@ -73,17 +74,19 @@ main {
       size: var(--font-title);
       weight: var(--weight-bold);
     }
-    &-eng {
-      margin-top: 10px;
-      font: {
-        family: var(--font-eng);
-        weight: var(--weight-medium);
-        size: var(--font-sub-title);
-      }
+  }
+  &__year {
+    margin-top: 10px;
+    font: {
+      family: var(--font-eng);
+      weight: var(--weight-medium);
+      size: var(--font-sub-title);
     }
   }
   &__synopsis {
+    width: 330px;
     margin-top: 45px;
     line-height: 30px;
+    word-break: keep-all;
   }
 }

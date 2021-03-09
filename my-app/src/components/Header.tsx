@@ -42,12 +42,8 @@ function Header() {
     //headerClass는 스크롤에 따른 헤더 배경으르 갈아준다.
     <header
       className={
-<<<<<<< HEAD
-        useLocation().pathname === '/' || useLocation().pathname === '/review/'
-=======
         useLocation().pathname === '/' ||
         useLocation().pathname.includes('/review/')
->>>>>>> 3b04a7300f78efabdf34dde593925b98ce35a2bc
           ? `header ${headerClass}`
           : 'header'
       }
@@ -76,11 +72,6 @@ function Header() {
           {/* <Link to='/sign' className='nav-right__auth'>
             로그인
           </Link> */}
-<<<<<<< HEAD
-          <div onClick={openModal} className="nav-right__auth">
-            로그인
-          </div>
-=======
           {setIsLogin ? (
             <div className="nav-right__auth profileImg">
               <Link to="/mypage">
@@ -92,7 +83,6 @@ function Header() {
               로그인
             </div>
           )}
->>>>>>> 3b04a7300f78efabdf34dde593925b98ce35a2bc
         </div>
       </nav>
       {isModalOpen ? <SignIn closeModal={closeModal} /> : null}

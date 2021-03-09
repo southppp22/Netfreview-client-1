@@ -87,6 +87,14 @@
   margin-top: 5px;
 }
 
-.text__textarea {
-  height: 120px;
+.update__textarea {
+  border: 1px solid #c4c4c4;
+
+  resize: none;
+  width: 700px;
+  min-height: 68px;
+  padding: 12px;
+  border-radius: 10px;
+  line-height: 1.6;
+  overflow-y: scroll;
 }

@@ -15,14 +15,23 @@ import useVideo from '../hooks/useVideo';
 import { Stars } from './Star';
 import {} from '../modules/reviews';
 
-function WriteReview() {
-  const { onAddReview, reviews } = useReviews();
-  const params = useParams<{ videoId: string }>();
+type UpdateReviewType = {
+  videoId: number;
+  rate: number;
+  reviewText: string;
+  setIsOn: any;
+};
 
-  const videoId = Number(params.videoId);
-  const [text, setText] = useState<string>('');
-  const [rating, setRating] = useState<number>(0);
+function UpdateReview({
+  videoId,
+  rate,
+  reviewText,
+  setIsOn,
+}: UpdateReviewType) {
+  const { onUpdateReview } = useReviews();
 
+  const [text, setText] = useState<string>(reviewText);
+  const [rating, setRating] = useState<number>(rate);
   const payload = {
     videoId,
     text,
@@ -36,7 +45,7 @@ function WriteReview() {
   const onMouseLeave = () => setHoverRating(0);
   const onSaveRating = (index: number) => setRating(index);
 
-  const isValid = () => Boolean(rating && text);
+  const isValid = () => Boolean(rating && reviewText);
 
   return (
     <div className="writereview">
@@ -64,6 +73,7 @@ function WriteReview() {
           <h6 className="text__title">나의 리뷰</h6>
           <div className="text__div">
             <textarea
+              defaultValue={reviewText}
               className={
                 isValid() || errorMessage === null
                   ? 'text__textarea'
@@ -78,9 +88,13 @@ function WriteReview() {
           <div className="text__btn">
             <button
               className="btn__review"
-              onClick={() => onAddReview(payload)}
+              onClick={async () => {
+                console.log('pp', payload);
+                await onUpdateReview(payload);
+                setIsOn(false);
+              }}
             >
-              리뷰등록하기
+              리뷰수정하기
             </button>
           </div>
         </div>
@@ -89,4 +103,4 @@ function WriteReview() {
   );
 }
 
-export default WriteReview;
+export default UpdateReview;

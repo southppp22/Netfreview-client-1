@@ -1,19 +1,20 @@
+import React, { useState } from 'react'
 import axios from "axios";
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../modules";
-import {  addReview, deleteReview, handleReview, Review, updateCurrentPage, updateReview, updateStartEndPage, fetchReviews, fetchMyReviews, loading, succeeded, failed } from "../modules/reviews";
+import { addReviewType, updateReviewType, Review, updateCurrentPage, updateStartEndPage, fetchReviews, fetchMyReviews, loading, succeeded, failed } from "../modules/reviews";
 
 export default function useReviews() {
   const reviews = useSelector((state: RootState) => state.reviews);
 
   const dispatch = useDispatch();
 
-  const onAddReview = async (review: handleReview) => {
+  const onAddReview = async (review: addReviewType) => {
     try{
       await dispatch(loading());
       await axios.post('/reviews', {...review}, {headers: {
-        Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsInN1YiI6IjQ4MzY2ODJhLTNkNDgtNDZmNS1iYjY4LWIyZTYyOWZhNGM3YyIsImlhdCI6MTYxNTI1OTc0MiwiZXhwIjoxNjE1MjY2OTQyfQ.AHw0pllB0roR9dRVNy6mh-f6XtZ3NPMiW_XCfYBswGo'
+        Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRuZGRsMDMyQGdtYWlsLmNvbSIsInN1YiI6IjZlNjllMGJjLTZhYjYtNDM2OS04MWE2LWM2NjA0YzIwZWRjMyIsImlhdCI6MTYxNTMwMDIyNywiZXhwIjoxNjE1MzA3NDI3fQ.qC7ZVdZ-K3ii8Os0du8pbXcpttrJzQCIr_4FUyxrSeo'
       }})
       await dispatch(succeeded())
     } catch(e) {
@@ -21,15 +22,29 @@ export default function useReviews() {
     }
   }
   
-  const onUpdateReview = 
-    (review: handleReview) => axios.patch('/reviews', {...review}, {headers: {
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsInN1YiI6IjQ4MzY2ODJhLTNkNDgtNDZmNS1iYjY4LWIyZTYyOWZhNGM3YyIsImlhdCI6MTYxNTI1NTg0MCwiZXhwIjoxNjE1MjYzMDQwfQ.JpU_skHB9QzTuWejCXJ7mGbRCtDoVsUzhQqAF_NXlUM'
-    }})
-
-  const onDeleteReview = (reviewId: number) => axios.delete('/reviews', {headers: {
-    Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsInN1YiI6IjQ4MzY2ODJhLTNkNDgtNDZmNS1iYjY4LWIyZTYyOWZhNGM3YyIsImlhdCI6MTYxNTI1NTg0MCwiZXhwIjoxNjE1MjYzMDQwfQ.JpU_skHB9QzTuWejCXJ7mGbRCtDoVsUzhQqAF_NXlUM'
-  }, data: {reviewId},
-  })
+  const onUpdateReview = async (review: updateReviewType) => { 
+    try{
+      await dispatch(loading());
+      await axios.patch('/reviews', {...review}, {headers: {
+        Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRuZGRsMDMyQGdtYWlsLmNvbSIsInN1YiI6IjZlNjllMGJjLTZhYjYtNDM2OS04MWE2LWM2NjA0YzIwZWRjMyIsImlhdCI6MTYxNTMwMDIyNywiZXhwIjoxNjE1MzA3NDI3fQ.qC7ZVdZ-K3ii8Os0du8pbXcpttrJzQCIr_4FUyxrSeo'
+      }})
+      await dispatch(succeeded())
+    } catch(e) {
+      await dispatch(failed())
+    }
+  }
+  const onDeleteReview = async (reviewId: number) => {
+    try{
+      await dispatch(loading());
+      axios.delete('/reviews', { headers: {
+        Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRuZGRsMDMyQGdtYWlsLmNvbSIsInN1YiI6IjZlNjllMGJjLTZhYjYtNDM2OS04MWE2LWM2NjA0YzIwZWRjMyIsImlhdCI6MTYxNTMwMDIyNywiZXhwIjoxNjE1MzA3NDI3fQ.qC7ZVdZ-K3ii8Os0du8pbXcpttrJzQCIr_4FUyxrSeo'
+      }, data: { reviewId }
+    })
+      await dispatch(succeeded())
+    } catch(e) {
+      await dispatch(failed())
+    }
+  }
     
 
   const onUpdateCurrentPage = useCallback(
@@ -51,5 +66,19 @@ export default function useReviews() {
     (review: Review) => dispatch(fetchMyReviews(review)),
     [dispatch]
   )
-  return {reviews, onAddReview, onUpdateReview, onDeleteReview, onUpdateCurrentPage, onUpdateStartEndPage, onFetchReviews, onFetchMyReviews}
+
+  const addLike = async (reviewId: number) => {
+    try {
+      console.log('addlike')
+      await dispatch(loading());
+      await axios.post('/reviews/like', { reviewId }, {headers: {
+        Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRuZGRsMDMyQGdtYWlsLmNvbSIsInN1YiI6IjZlNjllMGJjLTZhYjYtNDM2OS04MWE2LWM2NjA0YzIwZWRjMyIsImlhdCI6MTYxNTMwMDIyNywiZXhwIjoxNjE1MzA3NDI3fQ.qC7ZVdZ-K3ii8Os0du8pbXcpttrJzQCIr_4FUyxrSeo'
+      }})
+      await dispatch(succeeded())
+    } catch(e) {
+      await dispatch(failed())
+    }
+  }
+
+  return {reviews, onAddReview, onUpdateReview, onDeleteReview, onUpdateCurrentPage, onUpdateStartEndPage, onFetchReviews, onFetchMyReviews, addLike}
 }

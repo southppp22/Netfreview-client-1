@@ -13,10 +13,12 @@ import '../scss/ReviewComment.scss';
 import profile from '../img/profile.png';
 import plant from '../img/plant.png';
 import heart from '../img/heart.png';
-
+import useReviews from '../hooks/useReviews';
+// import { addLike } from '../modules/reviews';
 type ReviewCommentProps = {
-  id: number;
   rating: number;
+  id: number;
+
   text: string;
   createdAt?: string;
   updatedAt?: string;
@@ -31,11 +33,15 @@ type ReviewCommentProps = {
 
 function ReviewComment(props: ReviewCommentProps) {
   const {
-    user: { id, nickname, profileUrl },
+    user: { nickname, profileUrl },
+    id,
     text,
     rating,
     likeCount,
   } = props;
+
+  const { addLike } = useReviews();
+
   return (
     <div className="reviewList__wholeInfo">
       <div className="reviewList-wrap">
@@ -52,7 +58,13 @@ function ReviewComment(props: ReviewCommentProps) {
               <img className="img-rate" src={plant} />
               <span className="rate-num">{rating}</span>
             </div>
-            <button className="count__heart">
+            <button
+              onClick={async () => {
+                addLike(Number(id));
+              }}
+              type="button"
+              className="count__heart"
+            >
               <img className="img-heart" src={heart} />
               <span className="rate-num">{likeCount}</span>
             </button>

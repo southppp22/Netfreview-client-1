@@ -1,19 +1,15 @@
 import { ActionType, createAction, createReducer } from 'typesafe-actions';
 
-const ADD_REVIEW = 'reviews/ADD_REVIEW'
-const UPDATE_REVIEW = 'reviews/UPDATE_REVIEW'
-const DELETE_REVIEW = 'reviews/DELETE_REVIEW'
 const UPDATE_CURRENT_PAGE = 'reviews/UPDATE_CURRENT_PAGE'
 const UPDATE_START_END_PAGE = 'reviews/UPDATE_START_END_PAGE'
 const FETCH_REVIEWS = 'reviews/FETCH_REVIEWS'
 const FETCH_MY_REVIEW = 'reviews/FETCH_MY_REVIEW'
-const ADD_LIKE = "reviews/ADD_LIKE"
 const LOADING = "reveiws/LOADING"
 const SUCCEEDED = "reviews/SUCCEEDED"
 const FAILED = "reviews/FAILED"
 
 export type Review = {
-  id?: number;
+  id: number;
   rating: number;
   text: string;
   createdAt?: string;
@@ -27,26 +23,28 @@ export type Review = {
   }
 }
 
-export type handleReview = {
+export type addReviewType = {
   videoId: number;
   text: string;
   rating: number;
 }
 
-export const addReview = createAction(ADD_REVIEW)<handleReview>();
-export const updateReview = createAction(UPDATE_REVIEW)<handleReview>();
-export const deleteReview = createAction(DELETE_REVIEW)();
+export type updateReviewType = {
+  videoId: number,
+  text: string,
+  rating: number
+}
+
 export const updateCurrentPage = createAction(UPDATE_CURRENT_PAGE)<number>();
 export const updateStartEndPage = createAction(UPDATE_START_END_PAGE)<{start:number, end:number, total:number}>();
 export const fetchReviews = createAction(FETCH_REVIEWS)<Review[]>();
 export const fetchMyReviews = createAction(FETCH_MY_REVIEW)<Review>();
-export const addLike = createAction(ADD_LIKE)<number>();
 export const loading = createAction(LOADING)();
 export const succeeded = createAction(SUCCEEDED)();
 export const failed = createAction(FAILED)();
 
 
-const actions = { addReview, updateReview, deleteReview, updateCurrentPage, updateStartEndPage, fetchReviews, fetchMyReviews, addLike, loading, succeeded, failed };
+const actions = {updateCurrentPage, updateStartEndPage, fetchReviews, fetchMyReviews, loading, succeeded, failed };
 type ReviewsAction = ActionType<typeof actions>;
 
 export type ReviewsState = {
@@ -74,18 +72,6 @@ const initialState: ReviewsState = {
 }
 
 const reviews = createReducer<ReviewsState, ReviewsAction>(initialState, {
-  [ADD_REVIEW]: (state, {payload: review}) => ({
-    ...state,
-    myReview: review
-  }),
-  [UPDATE_REVIEW]: (state, {payload: review}) => ({
-    ...state,
-    myReview: review
-  }),
-  [DELETE_REVIEW]: (state) => ({
-    ...state,
-    myReview: null
-  }),
   [UPDATE_CURRENT_PAGE]: (state, {payload: currentPage}) => ({
     ...state,
     paging: {
@@ -109,18 +95,6 @@ const reviews = createReducer<ReviewsState, ReviewsAction>(initialState, {
   [FETCH_MY_REVIEW]: (state, {payload: myReview}) => ({
     ...state,
     myReview
-  }),
-  [ADD_LIKE]: (state, {payload: reviewId}) => ({
-    ...state,
-    reviewList: state.reviewList.map(el => {
-      if (el.id === reviewId) {
-        return {
-          ...el,
-          likeCount: el.likeCount ? el.likeCount + 1 : el.likeCount,
-        }
-      }
-      return el;
-    })
   }),
   [LOADING]: (state) => ({
     ...state,

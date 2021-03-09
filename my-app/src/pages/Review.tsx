@@ -37,31 +37,27 @@ function Search() {
   }, [videoId]);
 
   useEffect(() => {
-    axios
-      .get(
-        `https://www.gettoday4.click/reviews/${videoId}/?page=${currentPage}`
-      )
-      .then((res) => {
-        const { myReview, totalCount, reviewList } = res.data;
-        const { start, end, totalPage } = getPaging(
-          totalCount,
-          8,
-          Number(currentPage)
-        );
-        const reviews = reviewList.map((review: any) => {
-          const { id, nickname, profileUrl } = review.user;
-          review.user = {
-            id,
-            nickname,
-            profileUrl,
-          };
-          return review;
-        });
-        onFetchReviews(reviews);
-        onFetchMyReviews(myReview);
-        onUpdateCurrentPage(Number(currentPage));
-        onUpdateStartEndPage({ start, end, total: totalPage });
+    axios.get(`reviews/${videoId}/?page=${currentPage}`).then((res) => {
+      const { myReview, totalCount, reviewList } = res.data;
+      const { start, end, totalPage } = getPaging(
+        totalCount,
+        8,
+        Number(currentPage)
+      );
+      const reviews = reviewList.map((review: any) => {
+        const { id, nickname, profileUrl } = review.user;
+        review.user = {
+          id,
+          nickname,
+          profileUrl,
+        };
+        return review;
       });
+      onFetchReviews(reviews);
+      onFetchMyReviews(myReview);
+      onUpdateCurrentPage(Number(currentPage));
+      onUpdateStartEndPage({ start, end, total: totalPage });
+    });
   }, [currentPage, videoId, status]);
 
   return (

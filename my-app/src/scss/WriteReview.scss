@@ -1,18 +1,17 @@
 .writereview {
   border: 1px solid #c4c4c4;
   width: 840px;
-  height: 275px;
+  height: auto;
   border-radius: 5px;
-  display: inline-block;
 }
 .writereview-wrap {
-  //border: 1px solid purple;
   width: 700px;
-  height: 250px;
+  height: 100%;
   margin: 10px auto;
+  // background-color: brown;
 }
 .writereview__myscore {
-  //border: 1px solid blue;
+  // border: 1px solid blue;
   height: 80px;
   margin-bottom: 5px;
 }
@@ -22,37 +21,50 @@
 }
 
 .myscore__rate {
-  float: left;
   margin: 10px;
+  display: flex;
 }
 .rate-pic {
-  //border: 1px solid red;
+  // border: 1px solid red;
   display: inline-block;
   margin-right: 10px;
 }
 .writereview__text {
-  //border: 1px solid black;
+  height: auto;
 }
+
 .text__title {
-  float: left;
   margin: 10px;
   font-weight: var(--weight-bold);
+}
+
+.text__div {
+  height: auto;
 }
 
 .text__textarea {
   border: 1px solid #c4c4c4;
 
+  resize: none;
   width: 700px;
-  height: 68px;
+  height: 100%;
+  min-height: 130px;
   padding: 12px;
   border-radius: 10px;
+  line-height: 1.6;
+  overflow-y: scroll;
 }
+
+.invalid {
+  border: 1px solid #b91f1f;
+  background-color: #feeff4;
+}
+
 .text__btn {
-  //border: 1px solid orange;
-  float: right;
+  text-align: right;
 }
 .btn__review {
-  width: 130px;
+  width: 130px !important;
   height: 35px;
   background-color: var(--color-black);
   color: var(--color-white);

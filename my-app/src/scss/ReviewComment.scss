@@ -18,18 +18,23 @@
   position: relative;
 }
 .wholeInfo__profile {
-  float: left;
   //border: 1px solid red;
-  position: absolute;
+  position: relative;
   top: 50%;
   transform: translateY(-50%);
   margin-left: 5px;
+  width: 15px;
+  height: 15px;
 }
 .profile__img {
-  display: inline-block;
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
 }
 .profile__nickname {
-  float: right;
+  position: absolute;
+  top: 50%;
+  left: 300%;
   line-height: 28px;
   padding-left: 5px;
 }
@@ -74,4 +79,12 @@
   padding: 12px;
   border-radius: 10px;
   margin-top: 20px;
+}
+
+.profile__wrapper {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  padding: 5px;
+  margin: 5px;
 }

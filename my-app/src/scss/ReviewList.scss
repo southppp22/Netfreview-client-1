@@ -18,5 +18,9 @@
   font-size: var(--font-regular);
 }
 .pagenum:hover {
-  color: red;
+  color: #ff0000;
+}
+
+.current {
+  color: #ff0000;
 }

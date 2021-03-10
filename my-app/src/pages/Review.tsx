@@ -6,15 +6,15 @@ import WriteReview from '../components/WriteReview';
 import Myreview from '../components/Myreview';
 // import Header from '../components/Header';
 import '../scss/Review.scss';
-import useVideo from '../hooks/useVideo';
 import useReviews from '../hooks/useReviews';
 import { useLocation, useParams } from 'react-router-dom';
 import queryString from 'query-string';
 import axios from 'axios';
 import { getPaging } from '../common/utils/getPaging';
+import { useDispatch } from 'react-redux';
+import { fetchVideoThunk } from '../modules/video';
 
-function Search() {
-  const { onFetchVideo } = useVideo();
+function Review() {
   const {
     reviews,
     onFetchReviews,
@@ -30,10 +30,14 @@ function Search() {
   const location = useLocation();
   const currentPage = queryString.parse(location.search).page;
 
+  const dispatch = useDispatch();
+
+  const getVideoInfo = (videoId: string) => {
+    dispatch(fetchVideoThunk(videoId));
+  };
+
   useEffect(() => {
-    axios.get(`videos/${videoId}`).then((res) => {
-      onFetchVideo(res.data);
-    });
+    getVideoInfo(videoId);
   }, [videoId]);
 
   useEffect(() => {
@@ -76,4 +80,4 @@ function Search() {
     </div>
   );
 }
-export default Search;
+export default Review;

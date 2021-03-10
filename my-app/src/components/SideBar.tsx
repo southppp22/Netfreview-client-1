@@ -9,12 +9,12 @@ import InfoCard from './InfoCard';
 // } from 'react-router-dom';
 //import axios from 'axios';
 import '../scss/SideBar.scss';
-import useVideo from '../hooks/useVideo';
 import { StarIcon } from './StarsIcon';
+import { RootState } from '../modules';
+import { useSelector } from 'react-redux';
 
 function SideBar() {
-  const { video } = useVideo();
-  const { rating } = video;
+  const { rating } = useSelector((state: RootState) => state.video.videoInfo);
   return (
     <aside className="video-info">
       <ul className="video-info__wrap">

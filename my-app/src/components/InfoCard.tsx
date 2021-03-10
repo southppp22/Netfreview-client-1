@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import useVideo from '../hooks/useVideo';
+import { useSelector } from 'react-redux';
+import { RootState } from '../modules';
 // import {
 //   BrowserRouter as Router,
 //   Switch,
@@ -11,7 +12,6 @@ import useVideo from '../hooks/useVideo';
 import '../scss/InfoCard.scss';
 
 function InfoCard() {
-  const { video } = useVideo();
   const {
     description,
     releaseYear,
@@ -20,7 +20,8 @@ function InfoCard() {
     actor,
     director,
     genres,
-  } = video;
+  } = useSelector((state: RootState) => state.video.videoInfo);
+
   return (
     <>
       <li className="infocard">

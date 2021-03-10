@@ -7,7 +7,7 @@ import { LoginAction, LoginPayloadType } from "./types";
 export function loginThunk(payload: LoginPayloadType): ThunkAction<void, RootState, null, LoginAction> {
   return async dispatch => {
     const {request, success, failure} = loginAsync;
-    dispatch(request());
+      dispatch(request());
     try {
       const accessToken = await signIn(payload);
       dispatch(success(accessToken))

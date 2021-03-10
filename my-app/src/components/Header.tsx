@@ -1,12 +1,17 @@
+import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import useIsLogin from '../hooks/useIsLogin';
 import useUserInfo from '../hooks/useUserInfo';
+import profile from '../img/profileImg.svg';
 
 import '../scss/Header.scss';
 // import SignUp from './SignUp';
 import SignIn from './SignIn';
-import axios from 'axios';
+
+type ProfileUrl = {
+  profileUrl: string;
+};
 
 type inputTextProps = {
   setIsVideo: (e: any) => void;
@@ -14,13 +19,14 @@ type inputTextProps = {
 
 function Header({ setIsVideo }: inputTextProps) {
   const { useLogin } = useIsLogin();
-  const { setIsLogin } = useLogin;
+  const { setIsLogin, accessToken } = useLogin;
   const { userInfo } = useUserInfo();
   const { profileImgPath } = userInfo;
   // console.log(setIsLogin);
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [headerClass, setHeaderClass] = useState('basic');
+  const [profileImg, setProfileImg] = useState(profileImgPath);
 
   const [inputText, setInputText] = useState<string>('');
 
@@ -44,7 +50,28 @@ function Header({ setIsVideo }: inputTextProps) {
       setHeaderClass('basic');
     }
   };
+  const isLogin = () => {
+    return setIsLogin;
+  };
+  const IsMain = () => {
+    return useLocation().pathname === '/';
+  };
+  const IsReview = () => {
+    return useLocation().pathname.includes('/review/');
+  };
 
+  useEffect(() => {
+    axios
+      .get('/users/userinfo', {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      })
+      .then((res) => {
+        const { profileUrl }: ProfileUrl = res.data;
+        if (profileUrl) {
+          setProfileImg(profileUrl);
+        }
+      });
+  }, [userInfo]);
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
   });
@@ -56,17 +83,12 @@ function Header({ setIsVideo }: inputTextProps) {
   const closeModal = () => {
     setIsModalOpen(false);
   };
-  console.log(useLocation().pathname);
+
   return (
     // path가 /(메인) 혹은 /review인 경우는 'header'와 headerClass로 className을 할당한다. 그 외에는 'header'만 할당해준다.
     //headerClass는 스크롤에 따른 헤더 배경으르 갈아준다.
     <header
-      className={
-        useLocation().pathname === '/' ||
-        useLocation().pathname.includes('/review/')
-          ? `header ${headerClass}`
-          : 'header'
-      }
+      className={IsMain() || IsReview() ? `header ${headerClass}` : 'header'}
     >
       <nav className="nav">
         <div className="nav-left">
@@ -98,13 +120,10 @@ function Header({ setIsVideo }: inputTextProps) {
               </button>
             </Link>
           </form>
-          {/* <Link to='/sign' className='nav-right__auth'>
-            로그인
-          </Link> */}
-          {setIsLogin ? (
+          {isLogin() ? (
             <div className="nav-right__auth profileImg">
               <Link to="/mypage">
-                <img src={profileImgPath} />
+                <img src={profileImg} />
               </Link>
             </div>
           ) : (

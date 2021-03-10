@@ -4,9 +4,12 @@ import SmallPoster from '../components/SmallPoster';
 import '../scss/Mypage.scss';
 import useUserInfo from '../hooks/useUserInfo';
 import { Link, useHistory } from 'react-router-dom';
+import useIsLogin from '../hooks/useIsLogin';
 
 function Mypage() {
   const history = useHistory();
+  const { useLogin, onSetIsLogin, onSetToken } = useIsLogin();
+  const { setIsLogin, accessToken } = useLogin;
 
   const {
     userInfo,
@@ -18,7 +21,7 @@ function Mypage() {
   } = useUserInfo();
   const { userId, userName, nickname, profileImgPath, introduction } = userInfo;
 
-  const [img, setImg] = useState<File | undefined>();
+  const [img, setImg] = useState<File | undefined>(undefined);
   // const [introduction, setIntroduction] = useState('');
   // const [userName, setUserName] = useState('관리자(임시)');
   type VideoList = {
@@ -32,30 +35,39 @@ function Mypage() {
   );
 
   useEffect(() => {
-    axios.get('/users/userinfo').then((res) => {
-      console.log(res.data);
-      const { id, name, nickname, introduction, profileUrl } = res.data;
-      onSetUserId(id);
-      onSetUserName(name);
-      onSetIntroduction(introduction);
-      onSetNickname(nickname);
-      if (profileUrl) {
-        onSetImg(profileUrl);
-      }
-    });
-    // axios.get('/videos/videolist/?path=myPage').then((res) => {
-    //   console.log(res.data.videoLists);
-    //   const videos = res.data.videoList.map((video: any) => {
-    //     return {
-    //       id: video.id,
-    //       title: video.title,
-    //       posterUrl: video.posterUrl,
-    //       rating: video.rating,
-    //     };
-    //   });
-    //   setVideoList(videos);
-    // });
-  }, []);
+    axios
+      .get('/users/userinfo', {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      })
+      .then((res) => {
+        console.log(res.data);
+        const { id, name, nickname, introduction, profileUrl } = res.data;
+        onSetUserId(id);
+        onSetUserName(name);
+        onSetIntroduction(introduction);
+        onSetNickname(nickname);
+        if (profileUrl) {
+          onSetImg(profileUrl);
+        }
+      })
+      .catch((err) => console.log(err.response));
+    axios
+      .get('/videos/videolist/?path=myPage', {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      })
+      .then((res) => {
+        console.log(res.data.videoLists);
+        const videos = res.data.videoList.map((video: any) => {
+          return {
+            id: video.id,
+            title: video.title,
+            posterUrl: video.posterUrl,
+            rating: video.rating,
+          };
+        });
+        setVideoList(videos);
+      });
+  }, [useLogin]);
 
   // const renderVideoList = () => {
   //   if (videoList) {
@@ -72,31 +84,18 @@ function Mypage() {
   //   return <></>;
   // };
 
-  const handleImgChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const fileList = e.target.files;
-    if (!fileList) return;
-    setImg(fileList[0]);
-    if (img) {
-      const formData = new FormData();
-      formData.append('image', img);
-      // 서버의 upload API 호출
-      // const res = await axios.post('/api/upload', formData);
-      // console.log(res);
-    }
-  };
-
-  // const uploadImg = (/*e: MouseEvent<HTMLButtonElement, MouseEvent>*/) => {};
-
-  const handleWithdraw = () => {
-    const isWithdraw = confirm('Netfreview에서 탈퇴하시겠습니까?');
-    if (isWithdraw) {
-      axios
-        .post(`/user/${userId}`)
-        .then(() => {
-          history.push('/');
-        })
-        .catch((err) => console.log(err));
-    }
+  const handleLogout = () => {
+    axios
+      .post('/users/signout', null, {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      })
+      .then((res) => {
+        console.log(res);
+        onSetIsLogin(false);
+        onSetToken('');
+        history.push('/');
+      })
+      .catch((err) => console.log(err.response));
   };
 
   return (
@@ -104,18 +103,9 @@ function Mypage() {
       <section className="user">
         <article className="user__aboutme">
           <div className="user__profile">
-            <label className="user__profile-img">
-              <input
-                className="user__profile-img__input"
-                type="file"
-                accept="image/*"
-                name="profile_img"
-                onChange={handleImgChange}
-              />
-              {/* <button onClick={uploadImg}>Choose Picture</button> */}
+            <div className="user__profile-img">
               <img src={profileImgPath} alt="profile image" />
-              <div className="user__profile-img__hover"></div>
-            </label>
+            </div>
             <div className="user__info">
               <h3 className="user__id">{nickname}</h3>
               <span className="user__name">{userName}</span>
@@ -136,8 +126,8 @@ function Mypage() {
               <input
                 type="button"
                 className="button__close"
-                value="회원 탈퇴"
-                onClick={handleWithdraw}
+                value="로그아웃"
+                onClick={handleLogout}
               />
             </label>
           </div>

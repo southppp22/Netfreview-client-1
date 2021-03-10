@@ -8,8 +8,13 @@ import {
   setIntroduction,
 } from '../modules/userInfo';
 import { useCallback } from 'react';
+import axios from 'axios';
+import useIsLogin from './useIsLogin';
+import profile from '../img/profileImg.png';
 
 export default function useUserInfo() {
+  const { useLogin } = useIsLogin();
+  const { accessToken } = useLogin;
   const userInfo = useSelector((state: RootState) => state.userInfo);
 
   const dispatch = useDispatch();
@@ -18,19 +23,78 @@ export default function useUserInfo() {
     (userId: number) => dispatch(setUserId(userId)),
     [dispatch]
   );
-  const onSetImg = useCallback((imgPath: string) => dispatch(setImg(imgPath)), [
-    dispatch,
-  ]);
+  const onSetImg = useCallback(
+    (imgPath: string) => {
+      {
+        imgPath
+          ? axios
+              .patch(
+                '/users',
+                { profileUrl: imgPath },
+                {
+                  headers: { Authorization: `Bearer ${accessToken}` },
+                }
+              )
+              .then((res) => {
+                console.log(res, 'Change Image');
+                dispatch(setImg(imgPath));
+              })
+              .catch((err) => console.log(err.response))
+          : axios
+              .patch(
+                '/users',
+                { profileUrl: null },
+                {
+                  headers: { Authorization: `Bearer ${accessToken}` },
+                }
+              )
+              .then((res) => {
+                console.log(res, 'Reset Image');
+                dispatch(setImg(profile));
+              })
+              .catch((err) => console.log(err.response));
+      }
+    },
+    [dispatch]
+  );
   const onSetUserName = useCallback(
     (imgPath: string) => dispatch(setUserName(imgPath)),
     [dispatch]
   );
   const onSetNickname = useCallback(
-    (nickname: string) => dispatch(setNickname(nickname)),
+    (nickname: string) => {
+      axios
+        .patch(
+          '/users',
+          { nickname },
+          {
+            headers: { Authorization: `Bearer ${accessToken}` },
+          }
+        )
+        .then((res) => {
+          console.log('save diff nickname');
+          dispatch(setNickname(nickname));
+        })
+        .catch((err) => console.log(err.response));
+    },
     [dispatch]
   );
   const onSetIntroduction = useCallback(
-    (introduction: string) => dispatch(setIntroduction(introduction)),
+    (introduction: string) => {
+      axios
+        .patch(
+          '/users',
+          { introduction },
+          {
+            headers: { Authorization: `Bearer ${accessToken}` },
+          }
+        )
+        .then((res) => {
+          console.log('save 자기소개');
+          dispatch(setIntroduction(introduction));
+        })
+        .catch((err) => console.log(err.response));
+    },
     [dispatch]
   );
   return {

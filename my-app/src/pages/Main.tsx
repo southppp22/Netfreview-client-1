@@ -15,7 +15,7 @@ type Video = {
   description?: string;
 };
 function Main() {
-  const [isModal, setIsModal] = useState(false);
+  const [isModal, setIsModal] = useState<boolean>(false);
   const [topRate, setTopRate] = useState<Video[] | undefined>(undefined);
   const [mostReviews, setMostReviews] = useState<Video[] | undefined>(
     undefined
@@ -30,6 +30,13 @@ function Main() {
 
   const handleModal = () => {
     setIsModal(!isModal);
+  };
+  const openModal = () => {
+    setIsModal(true);
+  };
+
+  const closeModal = () => {
+    setIsModal(false);
   };
 
   useEffect(() => {
@@ -88,18 +95,75 @@ function Main() {
         setLessReviews(lessReviewVideos);
       })
       .catch((res) => console.log(res.response));
+    return () => {
+      axios
+        .get('/videos/videolist/?path=main')
+        .then((res) => {
+          const {
+            top5VideoList,
+            mostReviewVidList,
+            lessReviewVidList,
+          } = res.data;
+
+          const top5Videos = top5VideoList.map((video: Video) => ({
+            id: video.id,
+            title: video.title,
+            posterUrl: video.posterUrl,
+            bannerUrl: video.bannerUrl,
+            rating: video.rating,
+            releaseYear: video.releaseYear,
+            description: video.description,
+          }));
+          setTopRate(top5Videos);
+          const {
+            id,
+            title,
+            posterUrl,
+            bannerUrl,
+            rating,
+            releaseYear,
+            description,
+          } = top5VideoList[0];
+          setTopVideo({
+            id,
+            title,
+            posterUrl,
+            bannerUrl,
+            rating,
+            releaseYear,
+            description,
+          });
+
+          const mostReviewVideos = mostReviewVidList.map((video: Video) => ({
+            id: video.id,
+            title: video.title,
+            posterUrl: video.posterUrl,
+            rating: video.rating,
+          }));
+          setMostReviews(mostReviewVideos);
+
+          const lessReviewVideos = lessReviewVidList.map((video: Video) => ({
+            id: video.id,
+            title: video.title,
+            posterUrl: video.posterUrl,
+            rating: video.rating,
+          }));
+          setLessReviews(lessReviewVideos);
+        })
+        .catch((res) => console.log(res.response));
+    };
   }, []);
 
   return (
     <main>
-      <button className="btn-recommend" onClick={handleModal}>
+      <button className="btn-recommend" onClick={openModal}>
         <span>
           이거
           <br />
           어때?
         </span>
       </button>
-      <RecommendedModal open={isModal} close={handleModal} />
+      <RecommendedModal open={isModal} close={closeModal} />
       <div className="bg-color__top"></div>
       <section
         className="banner"

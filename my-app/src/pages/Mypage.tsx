@@ -5,7 +5,6 @@ import '../scss/Mypage.scss';
 import useUserInfo from '../hooks/useUserInfo';
 import { Link, useHistory } from 'react-router-dom';
 import useIsLogin from '../hooks/useIsLogin';
-import instance from '../ApiController';
 
 function Mypage() {
   const history = useHistory();

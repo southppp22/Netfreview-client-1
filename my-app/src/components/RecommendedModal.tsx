@@ -57,6 +57,26 @@ function RecommendedModal({ open, close }: RecommendedModalProps) {
         })
         .catch((err) => console.log(err.response));
     }
+    return () => {
+      if (setIsLogin) {
+        axios
+          .get('/videos/videolist/?path=aboutThis', {
+            headers: { Authorization: `Bearer ${accessToken}` },
+          })
+          .then((res) => {
+            console.log(res.data);
+            const { videoList } = res.data;
+            const videos = videoList.map((video: Video) => ({
+              id: video.id,
+              title: video.title,
+              posterUrl: video.posterUrl,
+              rating: video.rating,
+            }));
+            setRecommendVideo(videos);
+          })
+          .catch((err) => console.log(err.response));
+      }
+    };
   }, [setIsLogin]);
   const renderPosterList = () => {
     if (recommendVideo && recommendVideo.length > 0) {

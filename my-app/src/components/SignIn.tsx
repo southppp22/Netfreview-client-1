@@ -106,6 +106,7 @@ function SignIn(
         onSetToken(res.data.data.accessToken);
         alert(`로그인 되었습니다.`);
         setIsSignInClose(true);
+        closeModal();
       })
       .catch((error) => {
         console.log(error.response.data);

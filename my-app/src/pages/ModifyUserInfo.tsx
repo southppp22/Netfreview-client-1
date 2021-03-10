@@ -37,6 +37,13 @@ function ModifyUserInfo() {
     } else if (password === confirmPw) {
       setIsMatchPw(true);
     }
+    return () => {
+      if (password !== confirmPw && confirmPw) {
+        setIsMatchPw(false);
+      } else if (password === confirmPw) {
+        setIsMatchPw(true);
+      }
+    };
   });
   const handleNickname = (e: ChangeEvent<HTMLInputElement>) => {
     setDiffNickname(e.target.value);
@@ -94,7 +101,7 @@ function ModifyUserInfo() {
     const isDelete = confirm('정말로 탈퇴하시겠습니까?');
     if (isDelete) {
       axios
-        .delete(`/users/${userId}`, {
+        .delete(`/users`, {
           headers: { Authorization: `Bearer ${accessToken}` },
         })
         .then((res) => {

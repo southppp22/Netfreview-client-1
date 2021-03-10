@@ -50,7 +50,7 @@ function Header() {
           setProfileImg(profileUrl);
         }
       });
-  });
+  }, [userInfo]);
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
   });
@@ -62,7 +62,7 @@ function Header() {
   const closeModal = () => {
     setIsModalOpen(false);
   };
-  console.log(useLocation().pathname);
+
   return (
     // path가 /(메인) 혹은 /review인 경우는 'header'와 headerClass로 className을 할당한다. 그 외에는 'header'만 할당해준다.
     //headerClass는 스크롤에 따른 헤더 배경으르 갈아준다.

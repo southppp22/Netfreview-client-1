@@ -69,9 +69,16 @@
           // color: var(--color-white);
           // background: purple;
         }
-        &__button {
+        a {
           width: 10%;
           height: 19px;
+        }
+        &__button {
+          width: 100%;
+          height: 19px;
+          text-indent: 100%;
+          white-space: nowrap;
+          overflow: hidden;
 
           background: {
             image: url(../img/search-icon-b.svg);

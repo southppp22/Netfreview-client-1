@@ -6,7 +6,6 @@ import useUserInfo from '../hooks/useUserInfo';
 import profile from '../img/profileImg.svg';
 
 import '../scss/Header.scss';
-// import SignUp from './SignUp';
 import SignIn from './SignIn';
 
 type ProfileUrl = {

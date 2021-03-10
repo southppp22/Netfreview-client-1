@@ -1,8 +1,12 @@
 .reviewbanner {
-  //border: 1px solid black;
   width: 100vw;
-  height: 325px;
+  height: 400px;
   background-color: lightgrey;
+  // background: linear-gradient(blue, pink);
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.8;
 }
 .review-wrap {
   width: 1280px;
@@ -18,8 +22,10 @@
 .reviewbanner__netflix {
   width: 130px;
   height: 36px;
+  line-height: 36px;
   border-radius: 5px;
   background-color: #e50914;
   color: #fff;
   font-size: 14px;
+  text-align: center;
 }

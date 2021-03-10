@@ -1,0 +1,13 @@
+.star-active {
+  margin-right: 5px;
+  height: 46px;
+  cursor: pointer;
+}
+
+.star-no-active {
+  filter: invert(92%) sepia(0%) saturate(0%) hue-rotate(100deg) brightness(92%)
+    contrast(87%);
+  margin-right: 5px;
+  height: 46px;
+  cursor: pointer;
+}

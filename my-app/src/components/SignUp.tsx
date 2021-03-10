@@ -17,6 +17,7 @@ import '../scss/SignUp.scss';
 // import axios from 'axios';
 import SignIn from './SignIn';
 import axios from 'axios';
+import { NumberLiteralType } from 'typescript';
 
 /********* type ********/
 interface FormInput {
@@ -39,6 +40,8 @@ function SignUp({ closeModal }: isModalprops) {
   const [nickname, setNickname] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [rePassword, setRePassword] = useState<string>('');
+  const number = 4;
   // console.log(watch('password-confirm'));
   const Password = useRef();
   Password.current = watch('Password');
@@ -56,23 +59,39 @@ function SignUp({ closeModal }: isModalprops) {
     setPassword(e.target.value);
   };
 
-  const onSubmit = () => {
-    axios
-      .post('/users/signup', {
-        name,
-        nickname,
-        email,
-        password,
-      })
-      .then((res) => {
-        console.log(res);
-        alert(res.data);
-      })
+  const emailRef: any = useRef();
+  const nameRef: any = useRef();
+  const passwordRef: any = useRef();
+  const rePasswordRef: any = useRef();
+  const errorRef: any = useRef();
 
-      .catch((error) => {
-        console.log(error);
-        alert(`제대로 입력해주세요!`);
-      });
+  const onSubmit = () => {
+    if (!name || !nickname || !email || !password) {
+      return alert('항목을 전부 입력해주세요');
+    } else {
+      axios
+        .post('/users/signup', {
+          name,
+          nickname,
+          email,
+          password,
+        })
+        .then((res) => {
+          console.log(res);
+          // alert(res.data);
+        })
+        .catch((error) => {
+          console.log(error.response.data);
+          if (error.response.data.message === `이미 존재하는 이메일입니다.`) {
+            alert(`이미 존재하는 이메일입니다.`);
+          }
+          if (error.response.data.message === `이미 존재하는 닉네임입니다.`) {
+            alert(`이미 존재하는 닉네임입니다`);
+          } else if (error.response.data.status !== 422) {
+            alert(`제대로 입력해주세요!`);
+          }
+        });
+    }
   };
 
   const [isSignInOpen, setIsSignInOpen] = useState<boolean>(false);
@@ -99,14 +118,14 @@ function SignUp({ closeModal }: isModalprops) {
               <form onSubmit={handleSubmit(onSubmit)} className="login-form">
                 <input
                   name="Name"
+                  maxLength={number}
                   ref={register({
                     required: true,
-                    maxLength: 4,
                     minLength: 2,
                     pattern: /^[가-힣]+$/,
                   })}
                   className="login-input"
-                  // type='text'
+                  type="text"
                   onChange={onChangeName}
                   placeholder="Name"
                 />

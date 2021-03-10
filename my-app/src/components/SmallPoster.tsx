@@ -1,11 +1,5 @@
 import React, { useState } from 'react';
-// import {
-//   BrowserRouter as Router,
-//   Switch,
-//   Route,
-//   Link,
-//   Redirect,
-// } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 // import axios from 'axios';
 import '../scss/SmallPoster.scss';
 
@@ -15,24 +9,19 @@ type SmallPosterProps = {
   posterUrl: string;
   rating: number;
 };
-// { id, title, posterUrl, rating }: SmallPosterProps ->인자로 들어갈 값
 
-function SmallPoster() {
+function SmallPoster({ id, title, posterUrl, rating }: SmallPosterProps) {
   return (
     <article className="smallPoster">
-      <img className="poster"></img>
-      {/*src={posterUrl}*/}
+      <Link to={`/review/${id}/?page=1`}>
+        <img src={posterUrl} className="poster"></img>
+      </Link>
+
       <div className="smallPoster__info">
-        <span className="smallPoster__poster-name">
-          포스터이름
-          {/*{title}*/}
-        </span>
+        <span className="smallPoster__poster-name">{title}</span>
         <div className="smallPoster__poster-rate">
           <span className="poster-rate__name">평점</span>
-          <span className="poster-rate__rate-num">
-            5.0
-            {/*{rating}*/}
-          </span>
+          <span className="poster-rate__rate-num">{rating}</span>
         </div>
       </div>
     </article>

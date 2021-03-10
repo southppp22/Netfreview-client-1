@@ -7,7 +7,7 @@ import profile from '../img/profileImg.svg';
 import SignIn from './SignIn';
 import '../scss/Header.scss';
 
-/******* 타입 ********/
+/**************** 타입 ***************/
 
 type ProfileUrl = {
   profileUrl: string;
@@ -17,7 +17,7 @@ type inputTextProps = {
   setIsVideo: (e: any) => void;
 };
 
-/***** 함수 *****/
+/************** 함수 *************/
 
 function Header({ setIsVideo }: inputTextProps) {
   const { useLogin } = useIsLogin();
@@ -124,9 +124,6 @@ function Header({ setIsVideo }: inputTextProps) {
               >
                 search
               </button>
-              {/* <button type="submit" onClick={onCleanText}>
-                delete
-              </button> */}
             </Link>
           </form>
           {isLogin() ? (

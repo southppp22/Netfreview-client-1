@@ -4,7 +4,12 @@ import SmallPoster from '../components/SmallPoster';
 // import Header from '../components/Header';
 import nosearch from '../img/nosearch.png';
 import '../scss/Search.scss';
-
+type Video = {
+  id: number;
+  title: string;
+  posterUrl: string;
+  rating: number;
+};
 type inputText = {
   isVideo: [];
 };
@@ -16,7 +21,9 @@ function Search({ isVideo }: inputText) {
     <div className="whole">
       {/* {isSearch ? (  */}
       <section className="mysearchlist">
-        <div className="searchlist-line">{/* <SmallPoster /> */}</div>
+        <div className="searchlist-line">
+          {/* <SmallPoster id, title, posterUrl, rating/> */}
+        </div>
         {!isVideo || isVideo.length === 0 ? (
           <section className="mysearchlist">
             <div className="nosearch__info">

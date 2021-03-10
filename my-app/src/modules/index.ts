@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 import userInfo from './userInfo';
 import reviews from './reviews'
-import video from './video'
 import isLogin from './isLogin';
 import login from './login'
+import video from './video'
 
 const rootReducer = combineReducers({
   userInfo,

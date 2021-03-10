@@ -6,8 +6,13 @@ import useUserInfo from '../hooks/useUserInfo';
 import '../scss/Header.scss';
 // import SignUp from './SignUp';
 import SignIn from './SignIn';
+import axios from 'axios';
 
-function Header() {
+type inputTextProps = {
+  setIsVideo: (e: any) => void;
+};
+
+function Header({ setIsVideo }: inputTextProps) {
   const { useLogin } = useIsLogin();
   const { setIsLogin } = useLogin;
   const { userInfo } = useUserInfo();
@@ -16,6 +21,21 @@ function Header() {
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [headerClass, setHeaderClass] = useState('basic');
+
+  const [inputText, setInputText] = useState<string>('');
+
+  const Searchbtn = () => {
+    axios
+      .get(`/videos/videolist?q=${inputText}`)
+      .then((res) => {
+        setIsVideo(res.data.videoList);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const onChangeText = (e: any) => {
+    setInputText(e.target.value);
+  };
 
   const handleScroll = () => {
     if (pageYOffset > 70) {
@@ -63,12 +83,17 @@ function Header() {
         <div className="nav-right">
           <form className="search-form">
             <input
+              onChange={onChangeText}
               type="text"
               className="search-form__input"
               placeholder="작품 제목을 검색해 주세요"
             />
             <Link to="/search">
-              <button type="submit" className="search-form__button">
+              <button
+                onClick={Searchbtn}
+                type="submit"
+                className="search-form__button"
+              >
                 search
               </button>
             </Link>

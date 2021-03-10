@@ -74,23 +74,6 @@ function SignIn(
   //만료시간
   const JWT_EXPIRY_TIME = 24 * 3600 * 1000;
 
-  //이메일, 비번을 보내면 refreshToken과 acessToken을 return
-  // const onLoginSuccess = (res: any) => {
-  //   const { accessToken } = res.data;
-  //   axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
-  //   setTimeout(onRefresh, JWT_EXPIRY_TIME - 60000); //로그인연장
-  // };
-
-  //cookie에 담긴 refreshToken이 자동으로 보내지면, 새로운 refreshToekn과 accessToken을 return
-  // const onRefresh = () => {
-  //   axios
-  //     .get('/users/refresh')
-  //     .then(onLoginSuccess)
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
-
   const onSubmit = () => {
     axios
       .post('/users/signin', {
@@ -99,7 +82,6 @@ function SignIn(
       })
       .then((res) => {
         console.log(res);
-        //console.log();
         onLoginSuccess;
         // const { accessToken } = res.data.data.accessToken;
         onSetIsLogin(true);
@@ -108,30 +90,18 @@ function SignIn(
         setIsSignInClose(true);
       })
       .catch((error) => {
-        console.log(error.response.data);
-        if (error.response.data.message === `비밀번호가 올바르지 않습니다.`) {
-          alert(`비밀번호가 틀렸습니다.`);
-        } else if (
-          error.response.data.message === `이메일이 올바르지 않습니다.`
-        ) {
-          alert(`이메일이 틀렸습니다.`);
-        } else if (error.response.data.statusCode === 401) {
-          alert(`입력해주세요`);
-        }
-
-        alert(`입력해주세요`);
+        console.log(error.data);
+        // if (error.response.data.message === `비밀번호가 올바르지 않습니다.`) {
+        //   alert(`비밀번호가 틀렸습니다.`);
+        // } else if (
+        //   error.response.data.message === `이메일이 올바르지 않습니다.`
+        // ) {
+        //   alert(`이메일이 틀렸습니다.`);
+        // } else if (error.response.data.statusCode === 401) {
+        //   alert(`입력해주세요`);
+        // }
       });
   };
-
-  // onLoginSuccess = (response) => {
-  //   const { accessToken } = response.data;
-
-  //   // accessToken 설정
-  //   axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
-
-  //   // accessToken 만료하기 1분 전에 로그인 연장
-  //   setTimeout(onSilentRefresh, JWT_EXPIRRY_TIME - 60000);
-  // };
 
   return (
     <div>

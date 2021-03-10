@@ -29,8 +29,9 @@ axios.defaults.withCredentials = true;
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 function App() {
-  const { useLogin } = useIsLogin();
+  const { useLogin, onSetIsLogin, onSetToken } = useIsLogin();
   const { setIsLogin, accessToken } = useLogin;
+  const [isvideo, setIsVideo] = useState<any>([]);
 
   //만료시간
   const JWT_EXPIRY_TIME = 24 * 3600 * 1000;
@@ -39,15 +40,18 @@ function App() {
   const onLoginSuccess = (res: any) => {
     const { accessToken } = res.data;
     axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
-    onRefresh();
     setTimeout(onRefresh, JWT_EXPIRY_TIME - 60000); //로그인연장
   };
 
   //cookie에 담긴 refreshToken이 자동으로 보내지면, 새로운 refreshToekn과 accessToken을 return
   const onRefresh = () => {
     axios
-      .post('/users/refresh')
-      .then((res) => console.log(res))
+      .get('users/refresh') // 쿠키에 있는 refresh 토큰을 보내서 -> accesstoken 발급받는다.
+      .then((res) => {
+        const { accessToken } = res.data.data;
+        onSetIsLogin(true);
+        onSetToken(accessToken);
+      })
       .catch((error) => {
         console.log(error);
       });
@@ -55,12 +59,12 @@ function App() {
 
   useEffect(() => {
     onRefresh();
-  });
+  }, []);
 
   return (
     <div className="wrapper">
       <Router>
-        <Header />
+        <Header setIsVideo={setIsVideo} />
         <Switch>
           <Route path="/" exact component={Main} />
           {setIsLogin ? (
@@ -71,7 +75,12 @@ function App() {
               </Switch>
             </Route>
           ) : null}
-          <Route path="/search" component={Search} />
+          <Route
+            path="/search"
+            render={() => {
+              return <Search isVideo={isvideo} />;
+            }}
+          />
           <Route path="/review/:id" component={Review} />
           <Route path="/review/:id/page?" component={Review} />
           <Route path="/signin" component={SignIn} />

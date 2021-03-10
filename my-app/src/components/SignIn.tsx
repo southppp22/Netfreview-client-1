@@ -138,7 +138,6 @@ function SignIn(
                   placeholder="비밀번호"
                 ></input>
               </form>
-              /********************* */
               <div className="login-btn">
                 {/* {setIsLogin ? ( */}
                 <button
@@ -164,7 +163,6 @@ function SignIn(
                 >
                   로그인
                 </button> */}
-                /**************/
                 <button
                   onClick={openSignUp}
                   id="loginBtn"
@@ -173,17 +171,15 @@ function SignIn(
                 >
                   회원가입으로 이동
                 </button>
-                /**************/
                 <button className="findpw" onClick={openFindpw} type="button">
                   비밀번호를 잊으셨나요?
                 </button>
               </div>
-              /**************/
               <ul className="login-social">
                 <li className="login-social__wrap">
                   <ul>
                     <a
-                      href="https://www.gettoday4.click/users/googe"
+                      href="https://www.gettoday4.click/users/google"
                       className="google"
                     >
                       <img className="logo" src={google} />

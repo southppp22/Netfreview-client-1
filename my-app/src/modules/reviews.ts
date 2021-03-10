@@ -30,7 +30,7 @@ export type Review = MyReview & {
     profileUrl: null | string;
   }
 }
-
+//addReviewm, updateReview, deleteReview, AddLike
 export const updateCurrentPage = createAction(UPDATE_CURRENT_PAGE)<number>();
 export const updateStartEndPage = createAction(UPDATE_START_END_PAGE)<{start:number, end:number, total:number}>();
 export const fetchReviews = createAction(FETCH_REVIEWS)<Review[]>();

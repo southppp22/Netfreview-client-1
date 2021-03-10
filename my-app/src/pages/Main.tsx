@@ -24,9 +24,6 @@ function Main() {
     undefined
   );
   const [topVideo, setTopVideo] = useState<Video | undefined>(undefined);
-  // const { id, title, posterUrl, bannerUrl, rating } = topVideo
-
-  // const { id, title, posterUrl, bannerUrl, rating }: Video = topRate[0];
 
   const handleModal = () => {
     setIsModal(!isModal);
@@ -49,16 +46,16 @@ function Main() {
           lessReviewVidList,
         } = res.data;
 
-        const top5Videos = top5VideoList.map((video: Video) => ({
-          id: video.id,
-          title: video.title,
-          posterUrl: video.posterUrl,
-          bannerUrl: video.bannerUrl,
-          rating: video.rating,
-          releaseYear: video.releaseYear,
-          description: video.description,
-        }));
-        setTopRate(top5Videos);
+        // const top5Videos = top5VideoList.map((video: Video) => ({
+        //   id: video.id,
+        //   title: video.title,
+        //   posterUrl: video.posterUrl,
+        //   bannerUrl: video.bannerUrl,
+        //   rating: video.rating,
+        //   releaseYear: video.releaseYear,
+        //   description: video.description,
+        // }));
+        setTopRate(top5VideoList);
         const {
           id,
           title,
@@ -78,21 +75,21 @@ function Main() {
           description,
         });
 
-        const mostReviewVideos = mostReviewVidList.map((video: Video) => ({
-          id: video.id,
-          title: video.title,
-          posterUrl: video.posterUrl,
-          rating: video.rating,
-        }));
-        setMostReviews(mostReviewVideos);
+        // const mostReviewVideos = mostReviewVidList.map((video: Video) => ({
+        //   id: video.id,
+        //   title: video.title,
+        //   posterUrl: video.posterUrl,
+        //   rating: video.rating,
+        // }));
+        setMostReviews(mostReviewVidList);
 
-        const lessReviewVideos = lessReviewVidList.map((video: Video) => ({
-          id: video.id,
-          title: video.title,
-          posterUrl: video.posterUrl,
-          rating: video.rating,
-        }));
-        setLessReviews(lessReviewVideos);
+        // const lessReviewVideos = lessReviewVidList.map((video: Video) => ({
+        //   id: video.id,
+        //   title: video.title,
+        //   posterUrl: video.posterUrl,
+        //   rating: video.rating,
+        // }));
+        setLessReviews(lessReviewVidList);
       })
       .catch((res) => console.log(res.response));
     return () => {

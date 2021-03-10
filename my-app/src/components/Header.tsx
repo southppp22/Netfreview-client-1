@@ -23,7 +23,7 @@ function Header({ setIsVideo }: inputTextProps) {
   const { userInfo } = useUserInfo();
   const { profileImgPath } = userInfo;
   // console.log(setIsLogin);
-
+  const location = useLocation().pathname;
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [headerClass, setHeaderClass] = useState('basic');
   const [profileImg, setProfileImg] = useState(profileImgPath);
@@ -56,24 +56,29 @@ function Header({ setIsVideo }: inputTextProps) {
     return setIsLogin;
   };
   const IsMain = () => {
-    setIsMain(useLocation().pathname === '/');
+    return useLocation().pathname === '/';
   };
   const IsReview = () => {
-    setIsReview(useLocation().pathname.includes('/review/'));
+    return useLocation().pathname.includes('/review/');
   };
 
   useEffect(() => {
-    axios
-      .get('/users/userinfo', {
-        headers: { Authorization: `Bearer ${accessToken}` },
-      })
-      .then((res) => {
-        const { profileUrl }: ProfileUrl = res.data;
-        if (profileUrl) {
-          setProfileImg(profileUrl);
-        }
-      });
-  }, [userInfo]);
+    if (isLogin()) {
+      console.log(location);
+      axios
+        .get('/users/userinfo', {
+          headers: { Authorization: `Bearer ${accessToken}` },
+        })
+        .then((res) => {
+          const { profileUrl }: ProfileUrl = res.data;
+          if (profileUrl) {
+            setProfileImg(profileUrl);
+          }
+        })
+        .catch((err) => console.log(err.response));
+    }
+  }, [location]);
+
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
   });
@@ -89,7 +94,9 @@ function Header({ setIsVideo }: inputTextProps) {
   return (
     // path가 /(메인) 혹은 /review인 경우는 'header'와 headerClass로 className을 할당한다. 그 외에는 'header'만 할당해준다.
     //headerClass는 스크롤에 따른 헤더 배경으르 갈아준다.
-    <header className={isMain || isReview ? `header ${headerClass}` : 'header'}>
+    <header
+      className={IsMain() || IsReview() ? `header ${headerClass}` : 'header'}
+    >
       <nav className="nav">
         <div className="nav-left">
           <Link to="/" className="nav-left__logo"></Link>

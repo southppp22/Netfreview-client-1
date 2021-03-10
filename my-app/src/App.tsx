@@ -15,9 +15,9 @@ import SignIn from './components/SignIn';
 import useIsLogin from './hooks/useIsLogin';
 import Resetpw from './pages/Resetpw';
 
-axios.defaults.baseURL = 'https://www.gettoday4.click';
-axios.defaults.withCredentials = true;
-axios.defaults.headers.post['Content-Type'] = 'application/json';
+// axios.defaults.baseURL = 'https://server.netfreview.com';
+// axios.defaults.withCredentials = true;
+// axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 function App() {
   const { useLogin, onSetIsLogin, onSetToken } = useIsLogin();

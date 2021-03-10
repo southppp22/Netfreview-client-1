@@ -98,16 +98,17 @@
         &.profileImg {
           height: 34px;
           margin-top: 2px;
+          display: flex;
+          justify-content: center;
 
           a {
             width: 34px;
-            height: 100%;
-            display: flex;
-            justify-content: center;
+            height: 34px;
+
             border-radius: 50%;
             overflow: hidden;
             img {
-              width: 100%;
+              width: 34px;
               min-height: 34px;
               object-fit: cover;
             }

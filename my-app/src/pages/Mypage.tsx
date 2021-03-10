@@ -46,7 +46,7 @@ function Mypage() {
         onSetUserName(name);
         onSetIntroduction(introduction);
         onSetNickname(nickname);
-        if (profileUrl) {
+        if (profileUrl !== profileImgPath) {
           onSetImg(profileUrl);
         }
       })

@@ -21,7 +21,7 @@ function RecommendedModal({ open, close }: RecommendedModalProps) {
   const { userInfo } = useUserInfo();
   const { nickname } = userInfo;
   const { useLogin } = useIsLogin();
-  const { setIsLogin } = useLogin;
+  const { setIsLogin, accessToken } = useLogin;
 
   const [recommendVideo, setRecommendVideo] = useState<Video[] | undefined>();
   const [isLoginModal, setIsLoginModal] = useState(false);
@@ -39,16 +39,24 @@ function RecommendedModal({ open, close }: RecommendedModalProps) {
   }); // 마지막에 배열을 넣지 않은 이유: 상태가 바뀔때마다 변경되어야되서
   // 배열을 넣을 경우: 화면 첫페이지에서 한번 실행되기 때문에 추후 모달창이 뜰때 변경이 되지 않는다
   useEffect(() => {
-    axios.get('/videos/videolist/?path=aboutThis').then((res) => {
-      const { videoList } = res.data;
-      const videos = videoList.map((video: Video) => ({
-        id: video.id,
-        title: video.title,
-        posterUrl: video.posterUrl,
-        rating: video.rating,
-      }));
-      setRecommendVideo(videos);
-    });
+    if (setIsLogin) {
+      axios
+        .get('/videos/videolist/?path=aboutThis', {
+          headers: { Authorization: `Bearer ${accessToken}` },
+        })
+        .then((res) => {
+          console.log(res.data);
+          const { videoList } = res.data;
+          const videos = videoList.map((video: Video) => ({
+            id: video.id,
+            title: video.title,
+            posterUrl: video.posterUrl,
+            rating: video.rating,
+          }));
+          setRecommendVideo(videos);
+        })
+        .catch((err) => console.log(err.response));
+    }
   }, [setIsLogin]);
   const renderPosterList = () => {
     if (recommendVideo && recommendVideo.length > 0) {
@@ -89,36 +97,7 @@ function RecommendedModal({ open, close }: RecommendedModalProps) {
                   <br />
                   나도 몰랐던 나의 흥미를 찾아드릴게요
                 </p>
-                <div className="recommend__list">
-                  {renderPosterList() || (
-                    <>
-                      <BigPoster
-                        id={1}
-                        rating={3.6}
-                        title="미나리"
-                        posterUrl="https://an2-img.amz.wtchn.net/image/v2/2aa2e957ce3e3403b913c0ba3eeb34a1.jpg?jwt=ZXlKaGJHY2lPaUpJVXpJMU5pSjkuZXlKaVlXTnJaM0p2ZFc1a0lqcDdJbklpT2pJMU5Td2laeUk2TWpVMUxDSmlJam95TlRWOUxDSmpjbTl3SWpwMGNuVmxMQ0pvWldsbmFIUWlPamN3TUN3aWNHRjBhQ0k2SWk5Mk1pOXpkRzl5WlM5cGJXRm5aUzh4TmpFek16YzNOakF6TkRRME9EZzROemcwSWl3aWNYVmhiR2wwZVNJNk9EQXNJbmRwWkhSb0lqbzBPVEI5Lk1SczBrUDBoeFQ1aUVRY2pmdTJZMV9uVEdNajNFZ2RTcVVzM25VRmZjQlk"
-                      />
-                      <BigPoster
-                        id={1}
-                        rating={3.6}
-                        title="미나리"
-                        posterUrl="https://an2-img.amz.wtchn.net/image/v2/2aa2e957ce3e3403b913c0ba3eeb34a1.jpg?jwt=ZXlKaGJHY2lPaUpJVXpJMU5pSjkuZXlKaVlXTnJaM0p2ZFc1a0lqcDdJbklpT2pJMU5Td2laeUk2TWpVMUxDSmlJam95TlRWOUxDSmpjbTl3SWpwMGNuVmxMQ0pvWldsbmFIUWlPamN3TUN3aWNHRjBhQ0k2SWk5Mk1pOXpkRzl5WlM5cGJXRm5aUzh4TmpFek16YzNOakF6TkRRME9EZzROemcwSWl3aWNYVmhiR2wwZVNJNk9EQXNJbmRwWkhSb0lqbzBPVEI5Lk1SczBrUDBoeFQ1aUVRY2pmdTJZMV9uVEdNajNFZ2RTcVVzM25VRmZjQlk"
-                      />
-                      <BigPoster
-                        id={1}
-                        rating={3.6}
-                        title="미나리"
-                        posterUrl="https://an2-img.amz.wtchn.net/image/v2/2aa2e957ce3e3403b913c0ba3eeb34a1.jpg?jwt=ZXlKaGJHY2lPaUpJVXpJMU5pSjkuZXlKaVlXTnJaM0p2ZFc1a0lqcDdJbklpT2pJMU5Td2laeUk2TWpVMUxDSmlJam95TlRWOUxDSmpjbTl3SWpwMGNuVmxMQ0pvWldsbmFIUWlPamN3TUN3aWNHRjBhQ0k2SWk5Mk1pOXpkRzl5WlM5cGJXRm5aUzh4TmpFek16YzNOakF6TkRRME9EZzROemcwSWl3aWNYVmhiR2wwZVNJNk9EQXNJbmRwWkhSb0lqbzBPVEI5Lk1SczBrUDBoeFQ1aUVRY2pmdTJZMV9uVEdNajNFZ2RTcVVzM25VRmZjQlk"
-                      />
-                      <BigPoster
-                        id={1}
-                        rating={3.6}
-                        title="미나리"
-                        posterUrl="https://an2-img.amz.wtchn.net/image/v2/2aa2e957ce3e3403b913c0ba3eeb34a1.jpg?jwt=ZXlKaGJHY2lPaUpJVXpJMU5pSjkuZXlKaVlXTnJaM0p2ZFc1a0lqcDdJbklpT2pJMU5Td2laeUk2TWpVMUxDSmlJam95TlRWOUxDSmpjbTl3SWpwMGNuVmxMQ0pvWldsbmFIUWlPamN3TUN3aWNHRjBhQ0k2SWk5Mk1pOXpkRzl5WlM5cGJXRm5aUzh4TmpFek16YzNOakF6TkRRME9EZzROemcwSWl3aWNYVmhiR2wwZVNJNk9EQXNJbmRwWkhSb0lqbzBPVEI5Lk1SczBrUDBoeFQ1aUVRY2pmdTJZMV9uVEdNajNFZ2RTcVVzM25VRmZjQlk"
-                      />
-                    </>
-                  )}
-                </div>
+                <div className="recommend__list">{renderPosterList()}</div>
               </div>
             ) : (
               <div className="recommend__wrap noLogin">

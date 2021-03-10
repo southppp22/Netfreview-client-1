@@ -87,7 +87,7 @@ function Main() {
         }));
         setLessReviews(lessReviewVideos);
       })
-      .catch((err) => console.log(err));
+      .catch((res) => console.log(res.response));
   }, []);
 
   return (
@@ -104,10 +104,12 @@ function Main() {
       <section
         className="banner"
         style={{
-          background: `url(https://wallpapercave.com/wp/wp4428130.jpg) no-repeat 50% 15%`,
-          backgroundSize: 'cover',
+          backgroundImage: `url(${topVideo?.bannerUrl})`,
+          // backgroundSize: 'cover',
+          // backgroundPosition: 'center',
         }}
       >
+        {/* <img className="banner__img" src={topVideo?.bannerUrl} alt="top1 Video" /> */}
         <div className="bg-color">
           <div className="banner__container">
             <article>

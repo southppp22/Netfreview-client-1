@@ -34,7 +34,7 @@
         // left: 80px;
         // top: 21px;
 
-        background: url(../img/netfreviewLogo.png) no-repeat;
+        background: url(../img/netfreviewLogo.svg) no-repeat;
         //
 
         text-indent: 100%;
@@ -69,12 +69,19 @@
           // color: var(--color-white);
           // background: purple;
         }
-        &__button {
+        a {
           width: 10%;
-          height: 18.12px;
+          height: 19px;
+        }
+        &__button {
+          width: 100%;
+          height: 19px;
+          text-indent: 100%;
+          white-space: nowrap;
+          overflow: hidden;
 
           background: {
-            image: url(../img/search-icon-b.png);
+            image: url(../img/search-icon-b.svg);
 
             no-repeat: right;
             cursor: pointer;
@@ -93,12 +100,15 @@
           margin-top: 2px;
 
           a {
-            width: 100%;
+            width: 34px;
             height: 100%;
             display: flex;
             justify-content: center;
+            border-radius: 50%;
+            overflow: hidden;
             img {
-              height: 100%;
+              width: 100%;
+              min-height: 34px;
               object-fit: cover;
             }
           }
@@ -126,7 +136,7 @@
             color: var(--color-white);
           }
           &__button {
-            background-image: url(../img/search-icon-w.png);
+            background-image: url(../img/search-icon-w.svg);
           }
         }
       }

@@ -2,13 +2,22 @@ import axios from 'axios';
 import React, { ChangeEvent, useState, useEffect } from 'react';
 // import useReactRouter from 'use-react-router';
 import { Link, useHistory } from 'react-router-dom';
+import useIsLogin from '../hooks/useIsLogin';
 import useUserInfo from '../hooks/useUserInfo';
+import profile from '../img/profileImg.png';
 import '../scss/ModifyUserInfo.scss';
 
 function ModifyUserInfo() {
   const history = useHistory();
-  const { userInfo, onSetNickname, onSetIntroduction } = useUserInfo();
-  const { userName, nickname, introduction } = userInfo;
+  const {
+    userInfo,
+    onSetImg,
+    onSetNickname,
+    onSetIntroduction,
+  } = useUserInfo();
+  const { userId, userName, nickname, profileImgPath, introduction } = userInfo;
+  const { useLogin, onSetIsLogin, onSetToken } = useIsLogin();
+  const { accessToken } = useLogin;
 
   const [diffNickname, setDiffNickname] = useState(nickname);
   const [password, setPassword] = useState('');
@@ -16,6 +25,10 @@ function ModifyUserInfo() {
   const [description, setDescription] = useState(introduction);
   const [isValidPw, setIsValidPw] = useState(true);
   const [isMatchPw, setIsMatchPw] = useState(true);
+  const [imgFile, setImgFile] = useState<File | undefined>(undefined);
+  const [previewURL, setPreviewURL] = useState<string | ArrayBuffer | null>(
+    profileImgPath
+  );
 
   // const errorRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -24,6 +37,13 @@ function ModifyUserInfo() {
     } else if (password === confirmPw) {
       setIsMatchPw(true);
     }
+    return () => {
+      if (password !== confirmPw && confirmPw) {
+        setIsMatchPw(false);
+      } else if (password === confirmPw) {
+        setIsMatchPw(true);
+      }
+    };
   });
   const handleNickname = (e: ChangeEvent<HTMLInputElement>) => {
     setDiffNickname(e.target.value);
@@ -51,8 +71,57 @@ function ModifyUserInfo() {
     setDescription(e.target.value);
   };
 
+  const handleImgChange = (e: ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    const reader = new FileReader();
+    const fileList = e.target.files;
+    console.log(fileList);
+
+    reader.onloadend = () => {
+      console.log('onloaded');
+
+      if (!fileList) {
+        console.log('!fileList');
+        return;
+      }
+      setImgFile(fileList[0]);
+      setPreviewURL(reader.result);
+    };
+    if (fileList) {
+      console.log(fileList[0]);
+      reader.readAsDataURL(fileList[0]);
+    }
+  };
+
+  const resetImg = () => {
+    setPreviewURL(profile);
+  };
+
+  const deleteAccount = () => {
+    const isDelete = confirm('정말로 탈퇴하시겠습니까?');
+    if (isDelete) {
+      axios
+        .delete(`/users`, {
+          headers: { Authorization: `Bearer ${accessToken}` },
+        })
+        .then((res) => {
+          console.log(res);
+          onSetIsLogin(false);
+          onSetToken('');
+          history.push('/');
+        })
+        .catch((err) => console.log(err.response));
+    }
+  };
+
   const checkModified = () => {
-    if (diffNickname !== nickname || password || description !== introduction) {
+    if (
+      diffNickname !== nickname ||
+      password ||
+      description !== introduction ||
+      imgFile ||
+      previewURL === profile
+    ) {
       return true;
     }
     return false;
@@ -60,31 +129,52 @@ function ModifyUserInfo() {
 
   const confirmModified = () => {
     const isModified = confirm('회원정보 변경 사항을 적용하시겠습니까?');
-    if (isModified && password && isValidPw && isMatchPw) {
-      axios
-        .patch('/users', {
-          nickname: diffNickname,
-          password,
-          introduction: description,
-        })
-        .then(() => {
-          history.push('/mypage');
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else if (isModified && !password) {
-      axios
-        .patch('/users', {
-          nickname: diffNickname,
-          introduction: description,
-        })
-        .then(() => {
-          history.push('/mypage');
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+    if (isModified) {
+      if (imgFile) {
+        const formData = new FormData();
+        formData.append('image', imgFile);
+
+        axios
+          .post('/image', formData, {
+            headers: { Authorization: `Bearer ${accessToken}` },
+          })
+          .then((res) => {
+            console.log(res.data.data.profileUrl);
+            onSetImg(res.data.data.profileUrl);
+            console.log('done');
+          })
+          .catch((err) => console.log(err.response));
+      } else if (previewURL === profile) {
+        console.log('modify-deleteImg');
+
+        onSetImg('');
+      }
+
+      if (diffNickname !== nickname) {
+        console.log('modify-nickname');
+        onSetNickname(diffNickname);
+      }
+
+      if (description !== introduction) {
+        console.log('modify-intro');
+        onSetIntroduction(description);
+      }
+
+      if (password && isValidPw && isMatchPw) {
+        axios
+          .patch(
+            '/users',
+            { password },
+            {
+              headers: { Authorization: `Bearer ${accessToken}` },
+            }
+          )
+          .then((res) => {
+            console.log('modify-pw!');
+          })
+          .catch((err) => console.log(err.response));
+      }
+      history.push('/mypage');
     }
   };
   return (
@@ -95,10 +185,45 @@ function ModifyUserInfo() {
           <tbody>
             <tr className="table__name">
               <th className="table__th">
-                <div className="table__th-cell">이름</div>{' '}
+                <div className="table__th-cell">이름</div>
               </th>
               <td className="table__td">
                 <div className="table__td-cell text">{userName}</div>
+              </td>
+            </tr>
+            <tr className="table__name">
+              <th className="table__th">
+                <div className="table__th-cell">프로필 사진</div>
+              </th>
+              <td className="table__td">
+                <div className="table__td-cell image">
+                  <div className="table__td-cell__img-wrap">
+                    <img
+                      className="table__td-cell__img"
+                      src={
+                        typeof previewURL === 'string'
+                          ? previewURL
+                          : profileImgPath
+                      }
+                      alt="profile image"
+                    />
+                  </div>
+                  <div className="profile__btn-wrap">
+                    <label className="profile__btn change">
+                      사진 변경
+                      <input
+                        type="file"
+                        // accept="image/*"
+                        className="profile__btn-input"
+                        name="profile_img"
+                        onChange={handleImgChange}
+                      />
+                    </label>
+                    <button className="profile__btn delete" onClick={resetImg}>
+                      삭제
+                    </button>
+                  </div>
+                </div>
               </td>
             </tr>
             <tr className="table__nickname">
@@ -186,6 +311,14 @@ function ModifyUserInfo() {
             </tr>
           </tbody>
         </table>
+        <div className="delete__account">
+          <span className="delete__info">
+            넷프리뷰를 더 이상 이용하지 않는다면?
+          </span>
+          <span className="delete__account-btn" onClick={deleteAccount}>
+            회원탈퇴 바로가기 {'>>'}
+          </span>
+        </div>
         <div className="btn-wrap">
           <Link to="/mypage">
             <button className="btn btn-cancel">취소</button>

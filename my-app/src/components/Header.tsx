@@ -4,9 +4,10 @@ import { Link, useLocation } from 'react-router-dom';
 import useIsLogin from '../hooks/useIsLogin';
 import useUserInfo from '../hooks/useUserInfo';
 import profile from '../img/profileImg.svg';
-
-import '../scss/Header.scss';
 import SignIn from './SignIn';
+import '../scss/Header.scss';
+
+/******* 타입 ********/
 
 type ProfileUrl = {
   profileUrl: string;
@@ -16,23 +17,24 @@ type inputTextProps = {
   setIsVideo: (e: any) => void;
 };
 
+/***** 함수 *****/
+
 function Header({ setIsVideo }: inputTextProps) {
   const { useLogin } = useIsLogin();
   const { setIsLogin, accessToken } = useLogin;
   const { userInfo } = useUserInfo();
   const { profileImgPath } = userInfo;
-  // console.log(setIsLogin);
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [headerClass, setHeaderClass] = useState('basic');
   const [profileImg, setProfileImg] = useState(profileImgPath);
-
   const [inputText, setInputText] = useState<string>('');
 
   const Searchbtn = () => {
     axios
       .get(`/videos/videolist?q=${inputText}`)
       .then((res) => {
+        console.log(res.data.videoList);
         setIsVideo(res.data.videoList);
       })
       .catch((error) => console.log(error));
@@ -40,6 +42,10 @@ function Header({ setIsVideo }: inputTextProps) {
 
   const onChangeText = (e: any) => {
     setInputText(e.target.value);
+  };
+
+  const onCleanText = () => {
+    setInputText('');
   };
 
   const handleScroll = () => {
@@ -94,7 +100,8 @@ function Header({ setIsVideo }: inputTextProps) {
           <Link to="/" className="nav-left__logo"></Link>
           <ul className="nav-left__type">
             <li>
-              <Link to="/resetpw">영화</Link>
+              {/* <Link to="/resetpw">영화</Link> */}
+              영화
             </li>
             <li>
               <Link to="/">TV 프로그램</Link>
@@ -117,6 +124,9 @@ function Header({ setIsVideo }: inputTextProps) {
               >
                 search
               </button>
+              {/* <button type="submit" onClick={onCleanText}>
+                delete
+              </button> */}
             </Link>
           </form>
           {isLogin() ? (

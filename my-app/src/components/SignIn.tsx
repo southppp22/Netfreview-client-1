@@ -174,9 +174,12 @@ function SignIn(
               <ul className="login-social">
                 <li className="login-social__wrap">
                   <ul>
-                    <li className="google">
+                    <a
+                      href="https://www.gettoday4.click/users/googe"
+                      className="google"
+                    >
                       <img className="logo" src={google} />
-                    </li>
+                    </a>
                     <li className="google">
                       <img className="logo" src={kakao} />
                     </li>

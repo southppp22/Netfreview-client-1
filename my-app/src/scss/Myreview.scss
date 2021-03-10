@@ -66,10 +66,10 @@
   margin-top: 5px;
 }
 
-.wholeInfo__textarea {
+.wholeInfo__div {
   border: 1px solid #c4c4c4;
   width: 700px;
-  height: 68px;
+  min-height: 68px;
   padding: 12px;
   border-radius: 10px;
 }
@@ -85,4 +85,16 @@
   border-radius: 5px;
   margin-left: 5px;
   margin-top: 5px;
+}
+
+.update__textarea {
+  border: 1px solid #c4c4c4;
+
+  resize: none;
+  width: 700px;
+  min-height: 68px;
+  padding: 12px;
+  border-radius: 10px;
+  line-height: 1.6;
+  overflow-y: scroll;
 }

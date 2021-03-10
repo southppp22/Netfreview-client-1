@@ -75,6 +75,7 @@ function App() {
               </Switch>
             </Route>
           ) : null}
+<<<<<<< HEAD
           <Route
             path="/search"
             render={() => {
@@ -83,6 +84,10 @@ function App() {
           />
           <Route path="/review/:id" component={Review} />
           <Route path="/review/:id/page?" component={Review} />
+=======
+          <Route path="/search" component={Search} />
+          <Route path="/review/:videoId" component={Review} />
+>>>>>>> 7ee20498dd77934068e112fd530e9b0cc6c7218e
           <Route path="/signin" component={SignIn} />
           <Route path="/resetpw" component={Resetpw} />
         </Switch>

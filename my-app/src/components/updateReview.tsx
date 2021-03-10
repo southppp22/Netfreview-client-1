@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import InfoCard from './InfoCard';
 import {
   BrowserRouter as Router,
   Switch,
@@ -9,19 +10,26 @@ import {
 } from 'react-router-dom';
 //import axios from 'axios';
 import '../scss/WriteReview.scss';
-import useReviews, { addReviewType } from '../hooks/useReviews';
+import useReviews from '../hooks/useReviews';
+import useVideo from '../hooks/useVideo';
 import { Stars } from './Star';
+import {} from '../modules/reviews';
 
-function WriteReview() {
-  const { onAddReview, onUpdateReview, reviews, onSetText } = useReviews();
-  const { status, myReview } = reviews;
+type UpdateReviewType = {
+  setIsOn: any;
+};
+
+function UpdateReview({ setIsOn }: UpdateReviewType) {
+  const { onUpdateReview, reviews, onSetText } = useReviews();
+
+  const params = useParams<{ videoId: string }>();
 
   const { body } = reviews;
   const { text, rating } = body;
 
   const [errorMessage, setErrorMessage] = useState<null | string>(null);
 
-  const isValid = () => Boolean(rating && text); //에러처리해주기
+  const isValid = () => Boolean(rating && text);
 
   return (
     <div className="writereview">
@@ -39,12 +47,12 @@ function WriteReview() {
           <h6 className="text__title">나의 리뷰</h6>
           <div className="text__div">
             <textarea
+              defaultValue={text}
               className={
                 isValid() || errorMessage === null
                   ? 'text__textarea'
                   : 'text__textarea invalid'
               }
-              defaultValue={myReview ? myReview.text : ''}
               onChange={(e) => {
                 onSetText(e.target.value);
               }}
@@ -54,15 +62,12 @@ function WriteReview() {
           <div className="text__btn">
             <button
               className="btn__review"
-              onClick={() => {
-                if (status === 'updating') {
-                  onUpdateReview(body);
-                } else {
-                  onAddReview(body);
-                }
+              onClick={async () => {
+                await onUpdateReview(body);
+                setIsOn(false);
               }}
             >
-              리뷰등록하기
+              리뷰수정하기
             </button>
           </div>
         </div>
@@ -71,4 +76,4 @@ function WriteReview() {
   );
 }
 
-export default WriteReview;
+export default UpdateReview;

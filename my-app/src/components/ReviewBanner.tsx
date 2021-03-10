@@ -1,4 +1,5 @@
-import React from 'react';
+import { url } from 'inspector';
+import React, { useState } from 'react';
 // import {
 //   BrowserRouter as Router,
 //   Switch,
@@ -7,15 +8,28 @@ import React from 'react';
 //   Redirect,
 // } from 'react-router-dom';
 // import axios from 'axios';
-//import Header from '../components/Header';
+import Header from '../components/Header';
+import useVideo from '../hooks/useVideo';
 import '../scss/ReviewBanner.scss';
 
 function ReviewBanner() {
+  const { video } = useVideo();
+  const { title, netflixUrl, bannerUrl } = video;
   return (
-    <div className="reviewbanner">
+    <div
+      className="reviewbanner"
+      style={{ backgroundImage: `url(${bannerUrl})` }}
+    >
       <div className="review-wrap">
-        <h1 className="reviewbanner__title">영화제목 </h1>
-        <button className="reviewbanner__netflix">바로보러가기</button>
+        <h1 className="reviewbanner__title"> {title || 'loading'} </h1>
+        <a
+          href={netflixUrl || 'https://www.netflix.com/kr/'}
+          target="_blank"
+          rel="noreferrer"
+          className="reviewbanner__netflix"
+        >
+          바로보러가기
+        </a>
       </div>
     </div>
   );

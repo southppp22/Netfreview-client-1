@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 // import InfoCard from './InfoCard';
 // import {
@@ -12,36 +13,64 @@ import '../scss/ReviewComment.scss';
 import profile from '../img/profile.png';
 import plant from '../img/plant.png';
 import heart from '../img/heart.png';
+import useReviews from '../hooks/useReviews';
+// import { addLike } from '../modules/reviews';
+type ReviewCommentProps = {
+  rating: number;
+  id: number;
 
-function ReviewComment() {
+  text: string;
+  createdAt?: string;
+  updatedAt?: string;
+  user: {
+    id: string;
+    nickname: string;
+    profileUrl: null | string;
+  };
+  likeCount: number;
+  isLike: number;
+};
+
+function ReviewComment(props: ReviewCommentProps) {
+  const {
+    user: { nickname, profileUrl },
+    id,
+    text,
+    rating,
+    likeCount,
+  } = props;
+
+  const { onAddLike } = useReviews();
+
   return (
     <div className="reviewList__wholeInfo">
       <div className="reviewList-wrap">
         <div className="reviewList-top">
           <div className="wholeInfo__profile">
-            <img src={profile} className="profile__img" />
-            <span className="profile__nickname">wanny</span>
+            <div className="profile__wrapper">
+              <img src={profileUrl || profile} className="profile__img" />
+            </div>
+            <span className="profile__nickname">{nickname}</span>
           </div>
 
           <div className="wholeInfo__count">
             <div className="count__rate">
               <img className="img-rate" src={plant} />
-              <span className="rate-num">4.5</span>
+              <span className="rate-num">{rating}</span>
             </div>
-            <div className="count__heart">
+            <button
+              onClick={async () => {
+                onAddLike(Number(id));
+              }}
+              type="button"
+              className="count__heart"
+            >
               <img className="img-heart" src={heart} />
-              <span className="rate-num">2</span>
-            </div>
+              <span className="rate-num">{likeCount}</span>
+            </button>
           </div>
         </div>
-
-        <p className="wholeInfo__textarea">
-          갓갓갓! 고퀄리티 조선 좀비물 ㅎㅎ 영화 수준으로 영상미가 끝내준다.
-          <br />
-          작가분이 이 드라마의 주제는 배고픔 이라고 했듯이 , 사람들의 배고픔에
-          관심없는 정치판의 민낯 을 좀비라는 극적인 장치로 흥미진진하게 잘
-          보여준 ! 갓 웰메이드 드라마
-        </p>
+        <p className="wholeInfo__textarea">{text}</p>
       </div>
     </div>
   );

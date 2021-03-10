@@ -11,18 +11,9 @@ import Footer from './components/Footer';
 import Search from './pages/Search';
 import Review from './pages/Review';
 import ModifyUserInfo from './pages/ModifyUserInfo';
-// import Sign from './pages/Sign';
-// import ReviewBanner from './components/ReviewBanner';
-// import SmallPoster from './components/SmallPoster';
-// import InfoCard from './components/InfoCard';
-// import Myreview from './components/Myreview';
 import SignIn from './components/SignIn';
 import useIsLogin from './hooks/useIsLogin';
 import Resetpw from './pages/Resetpw';
-// import ReviewComment from './components/ReviewComment';
-// import ReviewList from './components/ReviewList';
-// import SideBar from './components/SideBar';
-// import WriteReview from './components/WriteReview';
 
 axios.defaults.baseURL = 'https://www.gettoday4.click';
 axios.defaults.withCredentials = true;
@@ -75,19 +66,13 @@ function App() {
               </Switch>
             </Route>
           ) : null}
-<<<<<<< HEAD
           <Route
             path="/search"
             render={() => {
               return <Search isVideo={isvideo} />;
             }}
           />
-          <Route path="/review/:id" component={Review} />
-          <Route path="/review/:id/page?" component={Review} />
-=======
-          <Route path="/search" component={Search} />
           <Route path="/review/:videoId" component={Review} />
->>>>>>> 7ee20498dd77934068e112fd530e9b0cc6c7218e
           <Route path="/signin" component={SignIn} />
           <Route path="/resetpw" component={Resetpw} />
         </Switch>

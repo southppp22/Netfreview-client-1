@@ -1,4 +1,9 @@
-import { ActionType, createAction, createReducer } from 'typesafe-actions';
+import {
+  ActionType,
+  createAction,
+  createReducer,
+  createAsyncAction,
+} from 'typesafe-actions';
 
 // 액션 타입 선언
 /*
@@ -73,10 +78,9 @@ export type UserInfoState = {
 const initialState: UserInfoState = {
   userId: undefined,
   profileImgPath: '/images/profileImg.png',
-  userName: '관리자(임시)',
-  nickname: 'Admin(임시)',
-  introduction:
-    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur modi nulla exercitationem officia ab possimus provident, repellendus eos. Corrupti laboriosam expedita magni consequuntur eaque dolores odio recusandae et est nihil.',
+  userName: 'ㅤ',
+  nickname: 'ㅤ',
+  introduction: 'ㅤ',
 };
 
 // 리듀서

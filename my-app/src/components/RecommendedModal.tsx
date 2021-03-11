@@ -3,9 +3,13 @@ import axios from 'axios';
 
 import BigPoster from './BigPoster';
 import SignIn from './SignIn';
-import useUserInfo from '../hooks/useUserInfo';
+// import useUserInfo from '../hooks/useUserInfo';
 import useIsLogin from '../hooks/useIsLogin';
 import '../scss/RecommendedModal.scss';
+import { isMainThread } from 'node:worker_threads';
+import { useLocation } from 'react-router';
+import { useSelector } from 'react-redux';
+import { RootState } from '../modules';
 
 type RecommendedModalProps = {
   open: boolean;
@@ -18,24 +22,28 @@ type Video = {
   rating: number;
 };
 function RecommendedModal({ open, close }: RecommendedModalProps) {
-  const { userInfo } = useUserInfo();
-  const { nickname } = userInfo;
+  const { nickname } = useSelector((state: RootState) => state.userInfo);
   const { useLogin } = useIsLogin();
   const { setIsLogin, accessToken } = useLogin;
 
   const [recommendVideo, setRecommendVideo] = useState<Video[] | undefined>();
   const [isLoginModal, setIsLoginModal] = useState(false);
+  // const [isMain, setIsMain] = useState(false);
+
+  const location = useLocation().pathname;
+  // console.log(useLocation());
 
   useEffect(() => {
     if (open) {
       // open이라는 상태(모달창이 떠있으면 true, 모달창이 close되어 있으면 false)로 분기
       // 스크롤 방지
       document.body.style.overflow = 'hidden';
-    } else {
+    }
+    return () => {
       // 스크롤 방지 해제
       document.body.style.overflow = 'scroll';
       // document.body.style.overflow = 'unset';
-    }
+    };
   }); // 마지막에 배열을 넣지 않은 이유: 상태가 바뀔때마다 변경되어야되서
   // 배열을 넣을 경우: 화면 첫페이지에서 한번 실행되기 때문에 추후 모달창이 뜰때 변경이 되지 않는다
   useEffect(() => {

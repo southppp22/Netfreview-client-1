@@ -3,7 +3,8 @@ import React, { useState } from 'react';
 import '../scss/Myreview.scss';
 import plant from '../img/plant.png';
 import heart from '../img/heart.png';
-import useUserInfo from '../hooks/useUserInfo';
+import profile from '../img/profileImg.svg';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../modules';
 import { addLikeThunk, deleteReviewThunk } from '../modules/review';
@@ -17,9 +18,9 @@ function Myreview({ setIsOn }: MyReviewProps) {
   const {
     reviews: { myReview },
   } = reviews;
-
-  const { userInfo } = useUserInfo();
-  const { nickname, profileImgPath } = userInfo;
+  const { nickname, profileUrl } = useSelector(
+    (state: RootState) => state.userInfo
+  );
 
   const dispatch = useDispatch();
 
@@ -49,7 +50,11 @@ function Myreview({ setIsOn }: MyReviewProps) {
         <div className="reviewList-wrap">
           <div className="reviewList-top">
             <div className="wholeInfo__profile">
-              <img src={profileImgPath} alt="프로필" className="profile__img" />
+              <img
+                src={profileUrl || profile}
+                alt="프로필"
+                className="profile__img"
+              />
               <span className="profile__nickname">{nickname}</span>
             </div>
 

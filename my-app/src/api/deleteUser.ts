@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { deleteUserPayloadType } from '../modules/userInfo1/types';
+import { deleteUserPayloadType } from '../modules/userInfo/types';
 
 export async function deleteUser(
   payload: deleteUserPayloadType

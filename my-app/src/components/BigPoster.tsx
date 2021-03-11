@@ -23,7 +23,10 @@ function BigPoster({ id, rating, title, posterUrl }: BigPosterProps) {
         </span>
         <div className="poster-big__rate">
           <span className="poster-big__avg">평균</span>
-          <span className="poster-big__rate-number">{rating.toFixed(1)}</span>
+          <span className="poster-big__rate-number">
+            {/* {rating.toFixed(1)} */}
+            {rating}
+          </span>
         </div>
       </div>
     </article>

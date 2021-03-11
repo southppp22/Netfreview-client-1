@@ -13,6 +13,8 @@ import ModifyUserInfo from './pages/ModifyUserInfo';
 import SignIn from './components/SignIn';
 import useIsLogin from './hooks/useIsLogin';
 import Resetpw from './pages/Resetpw';
+import thunk from 'redux-thunk';
+import { useSelector, useDispatch } from 'react-redux';
 
 // axios.defaults.baseURL = 'https://www.server.netfreview.com';
 // axios.defaults.withCredentials = true;
@@ -25,8 +27,10 @@ function App() {
   const { setIsLogin, accessToken } = useLogin;
   axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
   const [isvideo, setIsVideo] = useState<any>([]);
+  const dispatch = useDispatch();
   //만료시간
   const JWT_EXPIRY_TIME = 24 * 3600 * 1000;
+
   //이메일, 비번을 보내면 refreshToken과 acessToken을 return
   const onLoginSuccess = (res: any) => {
     const { accessToken } = res.data;

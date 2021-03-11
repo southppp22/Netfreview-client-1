@@ -4,23 +4,20 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import Thunk from 'redux-thunk';
+import { applyMiddleware, createStore } from 'redux';
 import rootReducer from './modules';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import axios from 'axios';
+import thunk from 'redux-thunk';
 
+// axios.defaults.baseURL = 'https://www.gettoday4.click';
 axios.defaults.baseURL = 'https://server.netfreview.com';
 axios.defaults.withCredentials = true;
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
-const composedEnhancer = composeWithDevTools(applyMiddleware(Thunk));
-
 const store = createStore(
   rootReducer,
-  composedEnhancer
-  // applyMiddleware(Thunk),
-  // composeWithDevTools()
+  composeWithDevTools(applyMiddleware(thunk))
 );
 ReactDOM.render(
   <Provider store={store}>

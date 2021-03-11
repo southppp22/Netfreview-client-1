@@ -59,11 +59,11 @@ function SignUp({ closeModal }: isModalprops) {
     setPassword(e.target.value);
   };
 
-  const emailRef: any = useRef();
-  const nameRef: any = useRef();
-  const passwordRef: any = useRef();
-  const rePasswordRef: any = useRef();
-  const errorRef: any = useRef();
+  // const emailRef: any = useRef();
+  // const nameRef: any = useRef();
+  // const passwordRef: any = useRef();
+  // const rePasswordRef: any = useRef();
+  // const errorRef: any = useRef();
 
   const onSubmit = () => {
     if (!name || !nickname || !email || !password) {
@@ -225,12 +225,7 @@ function SignUp({ closeModal }: isModalprops) {
                 )}
 
                 <div className="login-btn">
-                  <button
-                    onClick={onSubmit}
-                    type="submit"
-                    id="Btn"
-                    className="completeButton"
-                  >
+                  <button type="submit" id="Btn" className="completeButton">
                     입력완료
                   </button>
 

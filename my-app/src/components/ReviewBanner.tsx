@@ -1,5 +1,6 @@
 import { url } from 'inspector';
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 // import {
 //   BrowserRouter as Router,
 //   Switch,
@@ -8,13 +9,13 @@ import React, { useState } from 'react';
 //   Redirect,
 // } from 'react-router-dom';
 // import axios from 'axios';
-import Header from '../components/Header';
-import useVideo from '../hooks/useVideo';
+import { RootState } from '../modules';
 import '../scss/ReviewBanner.scss';
 
 function ReviewBanner() {
-  const { video } = useVideo();
-  const { title, netflixUrl, bannerUrl } = video;
+  const { title, netflixUrl, bannerUrl } = useSelector(
+    (state: RootState) => state.video.videoInfo
+  );
   return (
     <div
       className="reviewbanner"

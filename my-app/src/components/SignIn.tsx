@@ -92,15 +92,15 @@ function SignIn(
       })
       .catch((error) => {
         console.log(error.data);
-        // if (error.response.data.message === `비밀번호가 올바르지 않습니다.`) {
-        //   alert(`비밀번호가 틀렸습니다.`);
-        // } else if (
-        //   error.response.data.message === `이메일이 올바르지 않습니다.`
-        // ) {
-        //   alert(`이메일이 틀렸습니다.`);
-        // } else if (error.response.data.statusCode === 401) {
-        //   alert(`입력해주세요`);
-        // }
+        if (error.response.data.message === `비밀번호가 올바르지 않습니다.`) {
+          alert(`비밀번호가 틀렸습니다.`);
+        } else if (
+          error.response.data.message === `이메일이 올바르지 않습니다.`
+        ) {
+          alert(`이메일이 틀렸습니다.`);
+        } else if (error.response.data.statusCode === 401) {
+          alert(`입력해주세요`);
+        }
       });
   };
 
@@ -148,16 +148,21 @@ function SignIn(
                 >
                   로그인
                 </button>
-                {/*  ) : (
-                //   <button
-                //     onClick={closeSignin}
-                //     type="submit"
-                //     id="loginBtn"
-                //     className="loginButton"
-                //   >
-                //     로그인
-                //   </button>
-                // )} */}
+                {/* <button
+                  onClick={() => {
+                    dispatch(
+                      loginThunk({
+                        email,
+                        password,
+                      })
+                    );
+                  }}
+                  type="submit"
+                  id="loginBtn"
+                  className="loginButton"
+                >
+                  로그인
+                </button> */}
 
                 <button
                   onClick={openSignUp}
@@ -167,10 +172,12 @@ function SignIn(
                 >
                   회원가입으로 이동
                 </button>
+
                 <button className="findpw" onClick={openFindpw} type="button">
                   비밀번호를 잊으셨나요?
                 </button>
               </div>
+
               <ul className="login-social">
                 <li className="login-social__wrap">
                   <ul>

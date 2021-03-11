@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
-
 /***** Components *****/
 import Header from './components/Header';
 import Main from './pages/Main';
@@ -15,25 +14,25 @@ import SignIn from './components/SignIn';
 import useIsLogin from './hooks/useIsLogin';
 import Resetpw from './pages/Resetpw';
 
-// axios.defaults.baseURL = 'https://server.netfreview.com';
+// axios.defaults.baseURL = 'https://www.server.netfreview.com';
 // axios.defaults.withCredentials = true;
 // axios.defaults.headers.post['Content-Type'] = 'application/json';
+
+/**********function*************/
 
 function App() {
   const { useLogin, onSetIsLogin, onSetToken } = useIsLogin();
   const { setIsLogin, accessToken } = useLogin;
+  axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
   const [isvideo, setIsVideo] = useState<any>([]);
-
   //만료시간
   const JWT_EXPIRY_TIME = 24 * 3600 * 1000;
-
   //이메일, 비번을 보내면 refreshToken과 acessToken을 return
   const onLoginSuccess = (res: any) => {
     const { accessToken } = res.data;
     axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
     setTimeout(onRefresh, JWT_EXPIRY_TIME - 60000); //로그인연장
   };
-
   //cookie에 담긴 refreshToken이 자동으로 보내지면, 새로운 refreshToekn과 accessToken을 return
   const onRefresh = () => {
     axios
@@ -47,11 +46,9 @@ function App() {
         console.log(error);
       });
   };
-
   useEffect(() => {
     onRefresh();
   }, []);
-
   return (
     <div className="wrapper">
       <Router>
@@ -81,5 +78,4 @@ function App() {
     </div>
   );
 }
-
 export default App;

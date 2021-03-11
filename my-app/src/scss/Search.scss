@@ -1,23 +1,32 @@
 .whole {
   width: 100%;
-  height: 100%;
+  // height: 100%;
+  padding-bottom: 342px;
   display: block;
 }
 .mysearchlist {
-  border: 1px solid red;
+  //border: 1px solid red;
   width: 1280px;
   // height: 125vh;
   margin: 0 auto;
-  padding-top: 7%;
+  //padding-top: 7%;
 }
 .searchlist-line {
-  border: 1px solid blue;
+  //border: 1px solid blue;
   display: flex;
   flex-wrap: wrap;
   // justify-content: space-between;
 }
+
+.searchlist-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  width: 1320px;
+  padding-right: -40px;
+}
+
 .searchlist-poster {
-  border: 1px solid red;
+  //border: 1px solid red;
 }
 .nosearch__info {
   //border: 1px solid black;

@@ -3,11 +3,13 @@ import axios from 'axios';
 
 import BigPoster from './BigPoster';
 import SignIn from './SignIn';
-import useUserInfo from '../hooks/useUserInfo';
+// import useUserInfo from '../hooks/useUserInfo';
 import useIsLogin from '../hooks/useIsLogin';
 import '../scss/RecommendedModal.scss';
 import { isMainThread } from 'node:worker_threads';
 import { useLocation } from 'react-router';
+import { useSelector } from 'react-redux';
+import { RootState } from '../modules';
 
 type RecommendedModalProps = {
   open: boolean;
@@ -20,8 +22,7 @@ type Video = {
   rating: number;
 };
 function RecommendedModal({ open, close }: RecommendedModalProps) {
-  const { userInfo } = useUserInfo();
-  const { nickname } = userInfo;
+  const { nickname } = useSelector((state: RootState) => state.userInfo);
   const { useLogin } = useIsLogin();
   const { setIsLogin, accessToken } = useLogin;
 

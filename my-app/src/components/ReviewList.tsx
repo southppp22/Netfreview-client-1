@@ -12,11 +12,13 @@ import '../scss/ReviewList.scss';
 import left from '../img/left.png';
 import right from '../img/right.png';
 import useReviews from '../hooks/useReviews';
-import useVideo from '../hooks/useVideo';
+import { useSelector } from 'react-redux';
+import { RootState } from '../modules';
 
 function ReviewList() {
   const { reviews } = useReviews();
-  const { video } = useVideo();
+  const { id } = useSelector((state: RootState) => state.video.videoInfo);
+
   const { start, end, total, current } = reviews.paging;
   const pages = total
     ? Array(end - start + 1)
@@ -31,7 +33,7 @@ function ReviewList() {
       {pages ? (
         <div className="pagenation">
           <Link
-            to={`/review/${video.id}/?page=${start > 5 ? start - 5 : 1}`}
+            to={`/review/${id}/?page=${start > 5 ? start - 5 : 1}`}
             className="before-page"
           >
             <img src={left} />
@@ -39,16 +41,14 @@ function ReviewList() {
           {pages.map((el) => (
             <Link
               key={el}
-              to={`/review/${video.id}/?page=${el}`}
+              to={`/review/${id}/?page=${el}`}
               className={el === current ? 'pagenum current' : 'pagenum'}
             >
               {el}
             </Link>
           ))}
           <Link
-            to={`/review/${video.id}/?page=${
-              end + 1 > total ? total : end + 1
-            }`}
+            to={`/review/${id}/?page=${end + 1 > total ? total : end + 1}`}
             className="after-page"
             type="button"
           >

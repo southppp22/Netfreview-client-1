@@ -1,11 +1,12 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import useIsLogin from '../hooks/useIsLogin';
 import useUserInfo from '../hooks/useUserInfo';
 import profile from '../img/profileImg.svg';
 import SignIn from './SignIn';
 import '../scss/Header.scss';
+import { RootState } from '../modules';
+import { useSelector } from 'react-redux';
 
 /**************** 타입 ***************/
 
@@ -20,8 +21,9 @@ type inputTextProps = {
 /************** 함수 *************/
 
 function Header({ setIsVideo }: inputTextProps) {
-  const { useLogin } = useIsLogin();
-  const { setIsLogin, accessToken } = useLogin;
+  const { isLogin, accessToken } = useSelector(
+    (state: RootState) => state.login
+  );
   const { userInfo } = useUserInfo();
   const { profileImgPath } = userInfo;
   // console.log(setIsLogin);
@@ -58,9 +60,9 @@ function Header({ setIsVideo }: inputTextProps) {
       setHeaderClass('basic');
     }
   };
-  const isLogin = () => {
-    return setIsLogin;
-  };
+  // const isLogin = () => {
+  //   return setIsLogin;
+  // };
   const IsMain = () => {
     return useLocation().pathname === '/';
   };
@@ -69,7 +71,7 @@ function Header({ setIsVideo }: inputTextProps) {
   };
 
   useEffect(() => {
-    if (isLogin()) {
+    if (isLogin) {
       console.log(location);
       axios
         .get('/users/userinfo', {
@@ -134,7 +136,7 @@ function Header({ setIsVideo }: inputTextProps) {
               </button>
             </Link>
           </form>
-          {isLogin() ? (
+          {isLogin ? (
             <div className="nav-right__auth profileImg">
               <Link to="/mypage">
                 <img src={profileImgPath} />

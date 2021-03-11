@@ -1,17 +1,18 @@
 import { combineReducers } from 'redux';
 import userInfo from './userInfo';
 import review from './review';
-import isLogin from './isLogin';
 import login from './login';
+import videoList from './videoList';
 import video from './video';
+import userinfo from './userInfo1';
 
 const rootReducer = combineReducers({
   userInfo,
   review,
   video,
   videoList,
-  isLogin,
   login,
+  userinfo,
 });
 
 export default rootReducer;

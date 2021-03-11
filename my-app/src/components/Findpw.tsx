@@ -1,7 +1,6 @@
 import React, { useState, useRef /*FormEvent*/ } from 'react';
 //import ReactDOM from 'react-dom';
 import { useForm } from 'react-hook-form';
-import useIsLogin from '../hooks/useIsLogin';
 import img from '../img/logo.png';
 import '../scss/Findpw.scss';
 // import {
@@ -30,7 +29,6 @@ type isModalprops = {
 
 function Findpw({ closeModal }: isModalprops) {
   const { register, handleSubmit, watch } = useForm<FormInput>();
-  // const { useLogin, onSetIsLogin, onSetToken } = useIsLogin();
   // const { setIsLogin, accessToken } = useLogin;
   const [isSignInOpen, setIsSignInOpen] = useState<boolean>(false);
   const [isFindpwClose, setIsFindpwClose] = useState<boolean>(false);

@@ -1,4 +1,10 @@
 import { createReducer } from 'typesafe-actions';
+import {
+  DELETE_USER,
+  DELETE_USER_FAILURE,
+  DELETE_USER_SUCCESS,
+} from './actions';
+import { UserInfoAction, UserInfoState } from './types';
 // import { UserInfoState, UserInfoAction } from './types';
 // import {
 //   FETCH_USERINFO,
@@ -6,33 +12,44 @@ import { createReducer } from 'typesafe-actions';
 //   FETCH_USERINFO_FAILURE,
 // } from './actions';
 
-// const initialState: UserInfoState = {
-//   userId: undefined,
-//   userName: 'ㅤ',
-//   nickname: 'ㅤ',
-//   introduction: 'ㅤ',
-//   profileUrl: '/images/profileImg.png',
-//   status: 'idle',
-// };
+const initialState: UserInfoState = {
+  userId: '',
+  userName: '',
+  nickname: '',
+  introduction: '',
+  profileUrl: '/images/profileImg.png',
+  status: 'idle',
+};
 
-// const userInfo = createReducer<UserInfoState, UserInfoAction>(initialState, {
-//   [FETCH_USERINFO]: (state) => ({
-//     ...state,
-//     status: 'loading',
-//   }),
-//   [FETCH_USERINFO_SUCCESS]: (state, { payload }) => ({
-//     ...state,
-//     userId: payload.id,
-//     userName: payload.name,
-//     nickname: payload.nickname,
-//     introduction: payload.introduction,
-//     profileUrl: payload.profileUrl,
-//     status: 'idle',
-//   }),
-//   [FETCH_USERINFO_FAILURE]: (state) => ({
-//     ...state,
-//     status: 'failed',
-//   }),
-// });
+const userInfo = createReducer<UserInfoState, UserInfoAction>(initialState, {
+  [DELETE_USER]: (state) => ({
+    ...state,
+    status: 'loading',
+  }),
+  [DELETE_USER_SUCCESS]: (state) => ({
+    ...initialState,
+  }),
+  [DELETE_USER_FAILURE]: (state) => ({
+    ...state,
+    status: 'failed',
+  }),
+  // [FETCH_USERINFO]: (state) => ({
+  //   ...state,
+  //   status: 'loading',
+  // }),
+  // [FETCH_USERINFO_SUCCESS]: (state, { payload }) => ({
+  //   ...state,
+  //   userId: payload.id,
+  //   userName: payload.name,
+  //   nickname: payload.nickname,
+  //   introduction: payload.introduction,
+  //   profileUrl: payload.profileUrl,
+  //   status: 'idle',
+  // }),
+  // [FETCH_USERINFO_FAILURE]: (state) => ({
+  //   ...state,
+  //   status: 'failed',
+  // }),
+});
 
-// export default userInfo;
+export default userInfo;

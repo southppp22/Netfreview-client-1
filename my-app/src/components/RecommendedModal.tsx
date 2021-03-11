@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import axios from 'axios';
 
 import BigPoster from './BigPoster';
@@ -12,7 +12,8 @@ import { RootState } from '../modules';
 
 type RecommendedModalProps = {
   open: boolean;
-  close: () => void;
+  // close: () => void;
+  close: Dispatch<SetStateAction<boolean>>;
 };
 type Video = {
   id: number;
@@ -104,17 +105,17 @@ function RecommendedModal({ open, close }: RecommendedModalProps) {
   };
 
   const handleLoginBtn = () => {
-    close();
+    close(false);
     setIsLoginModal(!isLoginModal);
   };
 
   return (
     <>
       <div className={open ? 'isModal recommend' : 'recommend'}>
-        <div className="dim" onClick={close}></div>
+        <div className="dim" onClick={() => close(false)}></div>
         {open ? (
           <section className="recommend__container">
-            <button className="close" onClick={close}>
+            <button className="close" onClick={() => close(false)}>
               닫기
             </button>
             {isLogin ? (

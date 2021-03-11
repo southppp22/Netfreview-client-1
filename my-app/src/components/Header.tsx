@@ -1,18 +1,14 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import useUserInfo from '../hooks/useUserInfo';
 import profile from '../img/profileImg.svg';
 import SignIn from './SignIn';
 import '../scss/Header.scss';
 import { RootState } from '../modules';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchUserInfoThunk } from '../modules/userInfo';
 
 /**************** 타입 ***************/
-
-type ProfileUrl = {
-  profileUrl: string;
-};
 
 type inputTextProps = {
   setIsVideo: (e: any) => void;
@@ -21,19 +17,30 @@ type inputTextProps = {
 /************** 함수 *************/
 
 function Header({ setIsVideo }: inputTextProps) {
-  const { isLogin, accessToken } = useSelector(
-    (state: RootState) => state.login
-  );
-  const { userInfo } = useUserInfo();
-  const { profileImgPath } = userInfo;
-  // console.log(setIsLogin);
   const location = useLocation().pathname;
+  const dispatch = useDispatch();
+  const { status, isLogin } = useSelector((state: RootState) => state.login);
+  const { profileUrl } = useSelector((state: RootState) => state.userInfo);
+
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [headerClass, setHeaderClass] = useState('basic');
-  const [profileImg, setProfileImg] = useState(profileImgPath);
   const [inputText, setInputText] = useState<string>('');
-  const [isMain, setIsMain] = useState(false);
-  const [isReview, setIsReview] = useState(false);
+  // const [isMain, setIsMain] = useState(false);
+  // const [isReview, setIsReview] = useState(false);
+
+  const IsMain = () => {
+    return location === '/';
+  };
+  const IsReview = () => {
+    return location.includes('/review/');
+  };
+
+  const onChangeText = (e: any) => {
+    setInputText(e.target.value);
+  };
+  // const onCleanText = () => {
+  //   setInputText('');
+  // };
 
   const Searchbtn = () => {
     axios
@@ -45,12 +52,12 @@ function Header({ setIsVideo }: inputTextProps) {
       .catch((error) => console.log(error));
   };
 
-  const onChangeText = (e: any) => {
-    setInputText(e.target.value);
+  const openModal = () => {
+    setIsModalOpen(true);
   };
 
-  const onCleanText = () => {
-    setInputText('');
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   const handleScroll = () => {
@@ -60,44 +67,13 @@ function Header({ setIsVideo }: inputTextProps) {
       setHeaderClass('basic');
     }
   };
-  // const isLogin = () => {
-  //   return setIsLogin;
-  // };
-  const IsMain = () => {
-    return useLocation().pathname === '/';
-  };
-  const IsReview = () => {
-    return useLocation().pathname.includes('/review/');
-  };
-
-  useEffect(() => {
-    if (isLogin) {
-      console.log(location);
-      axios
-        .get('/users/userinfo', {
-          headers: { Authorization: `Bearer ${accessToken}` },
-        })
-        .then((res) => {
-          const { profileUrl }: ProfileUrl = res.data;
-          if (profileUrl) {
-            setProfileImg(profileUrl);
-          }
-        })
-        .catch((err) => console.log(err.response));
-    }
-  }, [location]);
-
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
   });
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
+  useEffect(() => {
+    dispatch(fetchUserInfoThunk());
+  }, [status === 'idle', dispatch]);
 
   return (
     // path가 /(메인) 혹은 /review인 경우는 'header'와 headerClass로 className을 할당한다. 그 외에는 'header'만 할당해준다.
@@ -139,7 +115,7 @@ function Header({ setIsVideo }: inputTextProps) {
           {isLogin ? (
             <div className="nav-right__auth profileImg">
               <Link to="/mypage">
-                <img src={profileImgPath} />
+                <img src={profileUrl || profile} />
               </Link>
             </div>
           ) : (

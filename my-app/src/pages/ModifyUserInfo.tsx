@@ -3,22 +3,21 @@ import React, { ChangeEvent, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // import useReactRouter from 'use-react-router';
 import { Link, useHistory } from 'react-router-dom';
-import useUserInfo from '../hooks/useUserInfo';
+// import useUserInfo from '../hooks/useUserInfo';
 import profile from '../img/profileImg.png';
 import { RootState } from '../modules';
-import { deleteUserThunk } from '../modules/userInfo1';
+import { deleteUserThunk } from '../modules/userInfo';
 import '../scss/ModifyUserInfo.scss';
 
 function ModifyUserInfo() {
   const history = useHistory();
+  const dispatch = useDispatch();
   const { status, isLogin, accessToken } = useSelector(
     (state: RootState) => state.login
   );
   const { userId, userName, nickname, profileUrl, introduction } = useSelector(
-    (state: RootState) => state.userinfo
+    (state: RootState) => state.userInfo
   );
-
-  const dispatch = useDispatch();
 
   const [diffNickname, setDiffNickname] = useState(nickname);
   const [password, setPassword] = useState('');

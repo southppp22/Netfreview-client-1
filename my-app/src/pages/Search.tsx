@@ -1,9 +1,18 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import { useLocation, useParams } from 'react-router-dom';
+import queryString from 'query-string';
 import SmallPoster from '../components/SmallPoster';
 // import Header from '../components/Header';
 import nosearch from '../img/nosearch.png';
 import '../scss/Search.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  fetchVideoListThunk,
+  resetVideoList,
+  VideoInfo,
+} from '../modules/videoList';
+import { RootState } from '../modules';
 
 type Video = {
   id: number;
@@ -12,11 +21,25 @@ type Video = {
   rating: number;
 };
 
-type inputText = {
-  isVideo: [];
-};
+function Search() {
+  const location = useLocation();
+  const query = queryString.parse(location.search).q;
+  const dispatch = useDispatch();
 
-function Search({ isVideo }: inputText) {
+  const {
+    videoInfoList: { videoList },
+    status,
+  } = useSelector((state: RootState) => state.videoList);
+
+  useEffect(() => {
+    if (typeof query === 'string') {
+      const payload = { query };
+      dispatch(fetchVideoListThunk(payload));
+    }
+    return () => {
+      dispatch(resetVideoList());
+    };
+  }, [query]);
   return (
     <div className="whole">
       {/* {isSearch ? (  */}
@@ -25,7 +48,7 @@ function Search({ isVideo }: inputText) {
           {/* <SmallPoster id, title, posterUrl, rating/> */}
         </div>
         <div className="searchlist-wrapper">
-          {!isVideo || isVideo.length === 0 ? (
+          {!videoList || videoList.length === 0 ? (
             <section className="mysearchlist">
               <div className="nosearch__info">
                 <div className="info-wrapper">
@@ -34,7 +57,10 @@ function Search({ isVideo }: inputText) {
                     src={nosearch}
                     alt="검색결과"
                   />
-                  <h3 className="info-wrapper__title">검색결과가 없습니다.</h3>
+                  {/* 검색어가 사라지게 구현을 해서 잠시 수정 해두었습니다. */}
+                  <h3 className="info-wrapper__title">
+                    {query}에 대한 검색결과가 없습니다.
+                  </h3>
                   <span className="info-wrapper__text">
                     단어철자가 정확한지 확인하거나 다른 키워드로 검색해보세요!
                   </span>
@@ -42,8 +68,8 @@ function Search({ isVideo }: inputText) {
               </div>
             </section>
           ) : (
-            isVideo.map((el: any) => {
-              const { id, title, posterUrl, rating } = el;
+            videoList.map((video: VideoInfo) => {
+              const { id, title, posterUrl, rating } = video;
               return (
                 <SmallPoster
                   key={id}

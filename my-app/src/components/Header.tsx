@@ -8,15 +8,9 @@ import { RootState } from '../modules';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUserInfoThunk } from '../modules/userInfo';
 
-/**************** 타입 ***************/
-
-type inputTextProps = {
-  setIsVideo: (e: any) => void;
-};
-
 /************** 함수 *************/
 
-function Header({ setIsVideo }: inputTextProps) {
+function Header() {
   const location = useLocation().pathname;
   const dispatch = useDispatch();
   const { status, isLogin } = useSelector((state: RootState) => state.login);
@@ -24,7 +18,7 @@ function Header({ setIsVideo }: inputTextProps) {
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [headerClass, setHeaderClass] = useState('basic');
-  const [inputText, setInputText] = useState<string>('');
+  const [query, setquery] = useState<string>('');
   // const [isMain, setIsMain] = useState(false);
   // const [isReview, setIsReview] = useState(false);
 
@@ -36,21 +30,11 @@ function Header({ setIsVideo }: inputTextProps) {
   };
 
   const onChangeText = (e: any) => {
-    setInputText(e.target.value);
+    setquery(e.target.value);
   };
   // const onCleanText = () => {
   //   setInputText('');
   // };
-
-  const Searchbtn = () => {
-    axios
-      .get(`/videos/videolist?q=${inputText}`)
-      .then((res) => {
-        console.log(res.data.videoList);
-        setIsVideo(res.data.videoList);
-      })
-      .catch((error) => console.log(error));
-  };
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -98,13 +82,14 @@ function Header({ setIsVideo }: inputTextProps) {
           <form className="search-form">
             <input
               onChange={onChangeText}
+              value={query}
               type="text"
               className="search-form__input"
               placeholder="작품 제목을 검색해 주세요"
             />
-            <Link to="/search">
+            <Link to={`/search?q=${query}`}>
               <button
-                onClick={Searchbtn}
+                onClick={() => setquery('')}
                 type="submit"
                 className="search-form__button"
               >

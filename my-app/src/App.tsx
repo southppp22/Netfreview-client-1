@@ -16,17 +16,16 @@ import Resetpw from './pages/Resetpw';
 import thunk from 'redux-thunk';
 import { useSelector, useDispatch } from 'react-redux';
 
-axios.defaults.baseURL = 'https://server.netfreview.com';
-axios.defaults.withCredentials = true;
-axios.defaults.headers.post['Content-Type'] = 'application/json';
+// axios.defaults.baseURL = 'https://www.server.netfreview.com';
+// axios.defaults.withCredentials = true;
+// axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 /**********function*************/
 
 function App() {
   const { useLogin, onSetIsLogin, onSetToken } = useIsLogin();
   const { setIsLogin, accessToken } = useLogin;
-  // import { useSelector, useDispatch } from 'react-redux';
-  // import { loginThunk } from '../modules/login/thunks';
+  axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
   const [isvideo, setIsVideo] = useState<any>([]);
   const dispatch = useDispatch();
   //만료시간

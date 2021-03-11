@@ -25,35 +25,35 @@ export default function useUserInfo() {
   );
   const onSetImg = useCallback(
     (imgPath: string) => {
-      {
-        imgPath
-          ? axios
-              .patch(
-                '/users',
-                { profileUrl: imgPath },
-                {
-                  headers: { Authorization: `Bearer ${accessToken}` },
-                }
-              )
-              .then((res) => {
-                console.log(res, 'Change Image');
-                dispatch(setImg(imgPath));
-              })
-              .catch((err) => console.log(err.response))
-          : axios
-              .patch(
-                '/users',
-                { profileUrl: null },
-                {
-                  headers: { Authorization: `Bearer ${accessToken}` },
-                }
-              )
-              .then((res) => {
-                console.log(res, 'Reset Image');
-                dispatch(setImg(profile));
-              })
-              .catch((err) => console.log(err.response));
-      }
+      // {
+      //   imgPath
+      //     ? axios
+      //         .patch(
+      //           '/users',
+      //           { profileUrl: imgPath },
+      //           {
+      //             headers: { Authorization: `Bearer ${accessToken}` },
+      //           }
+      //         )
+      //         .then((res) => {
+      //           console.log(res, 'Change Image');
+      dispatch(setImg(imgPath));
+      //     })
+      //     .catch((err) => console.log(err.response))
+      // : axios
+      //     .patch(
+      //       '/users',
+      //       { profileUrl: null },
+      //       {
+      //         headers: { Authorization: `Bearer ${accessToken}` },
+      //       }
+      //     )
+      //     .then((res) => {
+      //       console.log(res, 'Reset Image');
+      //       dispatch(setImg(profile));
+      //     })
+      //     .catch((err) => console.log(err.response));
+      // }
     },
     [dispatch]
   );
@@ -63,37 +63,37 @@ export default function useUserInfo() {
   );
   const onSetNickname = useCallback(
     (nickname: string) => {
-      axios
-        .patch(
-          '/users',
-          { nickname },
-          {
-            headers: { Authorization: `Bearer ${accessToken}` },
-          }
-        )
-        .then((res) => {
-          console.log('save diff nickname');
-          dispatch(setNickname(nickname));
-        })
-        .catch((err) => console.log(err.response));
+      // axios
+      //   .patch(
+      //     '/users',
+      //     { nickname },
+      //     {
+      //       headers: { Authorization: `Bearer ${accessToken}` },
+      //     }
+      //   )
+      //   .then((res) => {
+      //     console.log('save diff nickname');
+      dispatch(setNickname(nickname));
+      // })
+      // .catch((err) => console.log(err.response));
     },
     [dispatch]
   );
   const onSetIntroduction = useCallback(
     (introduction: string) => {
-      axios
-        .patch(
-          '/users',
-          { introduction },
-          {
-            headers: { Authorization: `Bearer ${accessToken}` },
-          }
-        )
-        .then((res) => {
-          console.log('save 자기소개');
-          dispatch(setIntroduction(introduction));
-        })
-        .catch((err) => console.log(err.response));
+      // axios
+      //   .patch(
+      //     '/users',
+      //     { introduction },
+      //     {
+      //       headers: { Authorization: `Bearer ${accessToken}` },
+      //     }
+      //   )
+      //   .then((res) => {
+      //     console.log('save 자기소개');
+      dispatch(setIntroduction(introduction));
+      // })
+      // .catch((err) => console.log(err.response));
     },
     [dispatch]
   );

@@ -11,7 +11,6 @@ import {
 //import axios from 'axios';
 import '../scss/WriteReview.scss';
 import useReviews from '../hooks/useReviews';
-import useVideo from '../hooks/useVideo';
 import { Stars } from './Star';
 import {} from '../modules/reviews';
 

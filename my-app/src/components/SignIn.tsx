@@ -1,4 +1,6 @@
 import React, { useState, useRef } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { loginThunk } from '../modules/login/thunks';
 import { useForm } from 'react-hook-form';
 import _ from 'lodash/fp';
 import img from '../img/logo.png';
@@ -40,8 +42,8 @@ function SignIn(
   { onLoginSuccess, onRefresh }: token
 ) {
   const { register, handleSubmit, errors } = useForm<FormInput>();
-  const { useLogin, onSetIsLogin, onSetToken } = useIsLogin();
-  const { setIsLogin, accessToken } = useLogin;
+  // const { useLogin, onSetIsLogin, onSetToken } = useIsLogin();
+  // const { setIsLogin, accessToken } = useLogin;
   const [isSignUpOpen, setIsSignUpOpen] = useState<boolean>(false);
   const [isSignInClose, setIsSignInClose] = useState<boolean>(false);
   const [isFindpwOpen, setIsFindpwOpen] = useState<boolean>(false);
@@ -49,6 +51,7 @@ function SignIn(
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   // const history = useHistory();
+  const dispatch = useDispatch();
 
   const onChangeEmail = (e: any) => {
     setEmail(e.target.value);
@@ -74,34 +77,38 @@ function SignIn(
   //만료시간
   const JWT_EXPIRY_TIME = 24 * 3600 * 1000;
 
-  const onSubmit = () => {
-    axios
-      .post('/users/signin', {
-        email,
-        password,
-      })
-      .then((res) => {
-        console.log(res);
-        onLoginSuccess;
-        // const { accessToken } = res.data.data.accessToken;
-        onSetIsLogin(true);
-        onSetToken(res.data.data.accessToken);
-        alert(`로그인 되었습니다.`);
-        setIsSignInClose(true);
-        closeModal();
-      })
-      .catch((error) => {
-        console.log(error.data);
-        if (error.response.data.message === `비밀번호가 올바르지 않습니다.`) {
-          alert(`비밀번호가 틀렸습니다.`);
-        } else if (
-          error.response.data.message === `이메일이 올바르지 않습니다.`
-        ) {
-          alert(`이메일이 틀렸습니다.`);
-        } else if (error.response.data.statusCode === 401) {
-          alert(`입력해주세요`);
-        }
-      });
+  // axios
+  //   .post('/users/signin', {
+  //     email,
+  //     password,
+  //   })
+  //   .then((res) => {
+  //     console.log(res);
+  //     onLoginSuccess;
+  //     // const { accessToken } = res.data.data.accessToken;
+  //     onSetIsLogin(true);
+  //     onSetToken(res.data.data.accessToken);
+  //     alert(`로그인 되었습니다.`);
+  const onSubmit = async () => {
+    try {
+      await dispatch(
+        loginThunk({
+          email,
+          password,
+        })
+      );
+      setIsSignInClose(true);
+      closeModal();
+    } catch (e) {
+      console.log(e);
+      if (e.message === `비밀번호가 올바르지 않습니다.`) {
+        alert(`비밀번호가 틀렸습니다.`);
+      } else if (e.message === `이메일이 올바르지 않습니다.`) {
+        alert(`이메일이 틀렸습니다.`);
+      } else if (e.statusCode === 401) {
+        alert(`입력해주세요`);
+      }
+    }
   };
 
   return (
@@ -138,18 +145,16 @@ function SignIn(
                   placeholder="비밀번호"
                 ></input>
               </form>
-              /********************* */
               <div className="login-btn">
-                {/* {setIsLogin ? ( */}
-                <button
+                {/* <button
                   onClick={onSubmit}
                   type="submit"
                   id="loginBtn"
                   className="loginButton"
                 >
                   로그인
-                </button>
-                {/* <button
+                </button> */}
+                <button
                   onClick={() => {
                     dispatch(
                       loginThunk({
@@ -163,8 +168,8 @@ function SignIn(
                   className="loginButton"
                 >
                   로그인
-                </button> */}
-                /**************/
+                </button>
+
                 <button
                   onClick={openSignUp}
                   id="loginBtn"
@@ -173,12 +178,11 @@ function SignIn(
                 >
                   회원가입으로 이동
                 </button>
-                /**************/
+
                 <button className="findpw" onClick={openFindpw} type="button">
                   비밀번호를 잊으셨나요?
                 </button>
               </div>
-              /**************/
               <ul className="login-social">
                 <li className="login-social__wrap">
                   <ul>

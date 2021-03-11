@@ -32,12 +32,6 @@ export type ReviewsState = {
     total: number;
     current: number;
   };
-  body: {
-    videoId: number;
-    text: string;
-    rating: number;
-    hoverRating: number;
-  };
   status: string;
 };
 

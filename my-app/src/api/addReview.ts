@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { addReviewPayloadType, MyReview } from '../modules/reviews/types';
+import { addReviewPayloadType, MyReview } from '../modules/review/types';
 
 export async function addReview(
   payload: addReviewPayloadType

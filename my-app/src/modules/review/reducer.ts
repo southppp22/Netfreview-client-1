@@ -1,4 +1,4 @@
-import { action, createReducer } from 'typesafe-actions';
+import { createReducer } from 'typesafe-actions';
 import {
   ADD_LIKE,
   ADD_LIKE_FAILURE,
@@ -12,10 +12,6 @@ import {
   FETCH_REVIEWS,
   FETCH_REVIEWS_FAILURE,
   FETCH_REVIEWS_SUCCESS,
-  SET_HOVER_RATING,
-  SET_RATING,
-  SET_TEXT,
-  SET_VIDEO_ID,
   UPDATE_CURRENT_PAGE,
   UPDATE_REVIEW,
   UPDATE_REVIEW_SUCCESS,
@@ -33,12 +29,6 @@ const initailState: ReviewsState = {
     end: 1,
     total: 1,
     current: 1,
-  },
-  body: {
-    videoId: 0,
-    text: '',
-    rating: 0,
-    hoverRating: 0,
   },
   status: 'idle',
 };
@@ -58,34 +48,6 @@ const review = createReducer<ReviewsState, ReviewsAction>(initailState, {
       start,
       end,
       total,
-    },
-  }),
-  [SET_VIDEO_ID]: (state, { payload: videoId }) => ({
-    ...state,
-    body: {
-      ...state.body,
-      videoId,
-    },
-  }),
-  [SET_TEXT]: (state, { payload: text }) => ({
-    ...state,
-    body: {
-      ...state.body,
-      text,
-    },
-  }),
-  [SET_RATING]: (state, { payload: rating }) => ({
-    ...state,
-    body: {
-      ...state.body,
-      rating,
-    },
-  }),
-  [SET_HOVER_RATING]: (state, { payload: hoverRating }) => ({
-    ...state,
-    body: {
-      ...state.body,
-      hoverRating,
     },
   }),
   [FETCH_REVIEWS]: (state) => ({
@@ -147,7 +109,7 @@ const review = createReducer<ReviewsState, ReviewsAction>(initailState, {
   }),
   [ADD_LIKE]: (state) => ({
     ...state,
-    status: 'idle',
+    status: 'loding',
   }),
   [ADD_LIKE_SUCCESS]: (state, action) => {
     const updateReviewList = state.reviews.reviewList.map((review) => {
@@ -158,6 +120,7 @@ const review = createReducer<ReviewsState, ReviewsAction>(initailState, {
     });
     return {
       ...state,
+      status: 'idle',
       reviews: {
         ...state.reviews,
         reviewList: updateReviewList,
@@ -166,7 +129,7 @@ const review = createReducer<ReviewsState, ReviewsAction>(initailState, {
   },
   [ADD_LIKE_FAILURE]: (state) => ({
     ...state,
-    status: 'idle',
+    status: 'failed',
   }),
 });
 

@@ -73,4 +73,3 @@ export const addLikeAsync = createAsyncAction(
   ADD_LIKE_SUCCESS,
   ADD_LIKE_FAILURE
 )<undefined, Review, AxiosError>();
-// Review

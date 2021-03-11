@@ -1,18 +1,18 @@
 import { combineReducers } from 'redux';
 import userInfo from './userInfo';
-import reviews from './reviews'
+import review from './review';
 import isLogin from './isLogin';
-import login from './login'
-import video from './video'
+import login from './login';
+import video from './video';
 
 const rootReducer = combineReducers({
   userInfo,
-  reviews,
+  review,
   video,
   isLogin,
-  login
+  login,
 });
-console.log('root',rootReducer);
+console.log('root', rootReducer);
 
 export default rootReducer;
 export type RootState = ReturnType<typeof rootReducer>;

@@ -11,12 +11,11 @@ import {
 import '../scss/ReviewList.scss';
 import left from '../img/left.png';
 import right from '../img/right.png';
-import useReviews from '../hooks/useReviews';
 import { useSelector } from 'react-redux';
 import { RootState } from '../modules';
 
 function ReviewList() {
-  const { reviews } = useReviews();
+  const reviews = useSelector((state: RootState) => state.review);
   const { id } = useSelector((state: RootState) => state.video.videoInfo);
 
   const { start, end, total, current } = reviews.paging;
@@ -27,7 +26,7 @@ function ReviewList() {
     : null;
   return (
     <div className="reviewList">
-      {reviews.reviewList.map((review: any) => (
+      {reviews.reviews.reviewList.map((review: any) => (
         <ReviewComment {...review} key={review.id} />
       ))}
       {pages ? (

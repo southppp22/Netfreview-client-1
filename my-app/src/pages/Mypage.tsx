@@ -4,13 +4,18 @@ import SmallPoster from '../components/SmallPoster';
 import '../scss/Mypage.scss';
 import useUserInfo from '../hooks/useUserInfo';
 import { Link, useHistory, useLocation } from 'react-router-dom';
-import useIsLogin from '../hooks/useIsLogin';
 import profile from '../img/profileImg.png';
+import { RootState } from '../modules';
+import { useDispatch, useSelector } from 'react-redux';
+import { logoutThunk } from '../modules/login';
 
 function Mypage() {
   const history = useHistory();
-  const { useLogin, onSetIsLogin, onSetToken } = useIsLogin();
-  const { setIsLogin, accessToken } = useLogin;
+  const dispatch = useDispatch();
+  const { status, isLogin, accessToken } = useSelector(
+    (state: RootState) => state.login
+  );
+
   const location = useLocation().pathname;
 
   const {
@@ -36,48 +41,46 @@ function Mypage() {
   );
 
   useEffect(() => {
-    console.log(location);
-
-    axios
-      .get('/users/userinfo', {
-        headers: { Authorization: `Bearer ${accessToken}` },
-      })
-      .then((res) => {
-        console.log(res.data);
-        const { id, name, nickname, introduction, profileUrl } = res.data;
-        onSetUserId(id);
-        onSetUserName(name);
-        onSetIntroduction(introduction);
-        onSetNickname(nickname);
-        console.log(profileUrl);
-        console.log(profileImgPath);
-
-        if (profileUrl) {
-          console.log('hello');
-          onSetImg(profileUrl);
-        } else {
-          onSetImg(profile);
-        }
-      })
-      .catch((err) => console.log(err.response));
-    axios
-      .get('/videos/videolist/?path=myPage', {
-        headers: { Authorization: `Bearer ${accessToken}` },
-      })
-      .then((res) => {
-        const videoLists = res.data.videoLists;
-        if (videoLists && videoLists.length > 0) {
-          const videos = res.data.videoList.map((video: any) => {
-            return {
-              id: video.id,
-              title: video.title,
-              posterUrl: video.posterUrl,
-              rating: video.rating,
-            };
-          });
-          setVideoList(videos);
-        }
-      });
+    // console.log(location);
+    // axios
+    //   .get('/users/userinfo', {
+    //     headers: { Authorization: `Bearer ${accessToken}` },
+    //   })
+    //   .then((res) => {
+    //     console.log(res.data);
+    //     const { id, name, nickname, introduction, profileUrl } = res.data;
+    //     onSetUserId(id);
+    //     onSetUserName(name);
+    //     onSetIntroduction(introduction);
+    //     onSetNickname(nickname);
+    //     console.log(profileUrl);
+    //     console.log(profileImgPath);
+    //     if (profileUrl) {
+    //       console.log('hello');
+    //       onSetImg(profileUrl);
+    //     } else {
+    //       onSetImg(profile);
+    //     }
+    //   })
+    //   .catch((err) => console.log(err.response));
+    // axios
+    //   .get('/videos/videolist/?path=myPage', {
+    //     headers: { Authorization: `Bearer ${accessToken}` },
+    //   })
+    //   .then((res) => {
+    //     const videoLists = res.data.videoLists;
+    //     if (videoLists && videoLists.length > 0) {
+    //       const videos = res.data.videoList.map((video: any) => {
+    //         return {
+    //           id: video.id,
+    //           title: video.title,
+    //           posterUrl: video.posterUrl,
+    //           rating: video.rating,
+    //         };
+    //       });
+    //       setVideoList(videos);
+    //     }
+    //   });
   }, []);
 
   const renderVideoList = () => {
@@ -95,18 +98,13 @@ function Mypage() {
     return null;
   };
 
-  const handleLogout = () => {
-    axios
-      .post('/users/signout', null, {
-        headers: { Authorization: `Bearer ${accessToken}` },
-      })
-      .then((res) => {
-        console.log(res);
-        onSetIsLogin(false);
-        onSetToken('');
-        history.push('/');
-      })
-      .catch((err) => console.log(err.response));
+  const handleLogout = async () => {
+    try {
+      dispatch(logoutThunk());
+      history.push('/');
+    } catch (e) {
+      console.log(e.response);
+    }
   };
 
   return (

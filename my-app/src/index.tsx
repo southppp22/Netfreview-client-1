@@ -13,8 +13,15 @@ import thunk from 'redux-thunk';
 axios.defaults.baseURL = 'https://server.netfreview.com';
 axios.defaults.withCredentials = true;
 axios.defaults.headers.post['Content-Type'] = 'application/json';
+axios.interceptors.request.use((config) => {
+  const { accessToken, isLogin } = store.getState().login;
+  if (isLogin && accessToken) {
+    config.headers.Authorization = `Bearer ${accessToken}`;
+  }
+  return config;
+});
 
-const store = createStore(
+export const store = createStore(
   rootReducer,
   composeWithDevTools(applyMiddleware(thunk))
 );

@@ -19,7 +19,7 @@ import '../scss/SignIn.scss';
 import SignUp from './SignUp';
 import Findpw from './Findpw';
 import axios from 'axios';
-import useIsLogin from '../hooks/useIsLogin';
+import { RootState } from '../modules';
 
 /*********type************/
 interface FormInput {
@@ -41,6 +41,8 @@ function SignIn(
   { closeModal }: isModalprops,
   { onLoginSuccess, onRefresh }: token
 ) {
+  const { status } = useSelector((state: RootState) => state.login);
+
   const { register, handleSubmit, errors } = useForm<FormInput>();
   // const { useLogin, onSetIsLogin, onSetToken } = useIsLogin();
   // const { setIsLogin, accessToken } = useLogin;
@@ -77,39 +79,38 @@ function SignIn(
   //만료시간
   const JWT_EXPIRY_TIME = 24 * 3600 * 1000;
 
-  // axios
-  //   .post('/users/signin', {
-  //     email,
-  //     password,
-  //   })
-  //   .then((res) => {
-  //     console.log(res);
-  //     onLoginSuccess;
-  //     // const { accessToken } = res.data.data.accessToken;
-  //     onSetIsLogin(true);
-  //     onSetToken(res.data.data.accessToken);
-  //     alert(`로그인 되었습니다.`);
   const onSubmit = async () => {
-    try {
-      await dispatch(
-        loginThunk({
-          email,
-          password,
-        })
-      );
-      setIsSignInClose(true);
+    await dispatch(
+      loginThunk({
+        email,
+        password,
+      })
+    );
+    if (status === 'idle') {
       closeModal();
-    } catch (e) {
-      console.log(e);
-      if (e.message === `비밀번호가 올바르지 않습니다.`) {
-        alert(`비밀번호가 틀렸습니다.`);
-      } else if (e.message === `이메일이 올바르지 않습니다.`) {
-        alert(`이메일이 틀렸습니다.`);
-      } else if (e.statusCode === 401) {
-        alert(`입력해주세요`);
-      }
     }
   };
+  // const onSubmit = async () => {
+  //   try {
+  //     await dispatch(
+  //       loginThunk({
+  //         email,
+  //         password,
+  //       })
+  //     );
+  //     setIsSignInClose(true);
+  //     closeModal();
+  //   } catch (e) {
+  //     console.log(e);
+  //     if (e.message === `비밀번호가 올바르지 않습니다.`) {
+  //       alert(`비밀번호가 틀렸습니다.`);
+  //     } else if (e.message === `이메일이 올바르지 않습니다.`) {
+  //       alert(`이메일이 틀렸습니다.`);
+  //     } else if (e.statusCode === 401) {
+  //       alert(`입력해주세요`);
+  //     }
+  //   }
+  // };
 
   return (
     <div>
@@ -155,14 +156,7 @@ function SignIn(
                   로그인
                 </button> */}
                 <button
-                  onClick={() => {
-                    dispatch(
-                      loginThunk({
-                        email,
-                        password,
-                      })
-                    );
-                  }}
+                  onClick={onSubmit}
                   type="submit"
                   id="loginBtn"
                   className="loginButton"

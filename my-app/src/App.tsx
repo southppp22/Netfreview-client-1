@@ -49,7 +49,7 @@ function App() {
   return (
     <div className="wrapper">
       <Router>
-        <Header setIsVideo={setIsVideo} />
+        <Header />
         <Switch>
           <Route path="/" exact component={Main} />
           {isLogin ? (
@@ -63,7 +63,7 @@ function App() {
           <Route
             path="/search"
             render={() => {
-              return <Search isVideo={isvideo} />;
+              return <Search />;
             }}
           />
           <Route path="/review/:videoId" component={Review} />

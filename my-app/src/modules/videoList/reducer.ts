@@ -3,6 +3,7 @@ import {
   FETCH_VIDEOLIST,
   FETCH_VIDEOLIST_SUCCESS,
   FETCH_VIDEOLIST_FAILURE,
+  RESET_VIDEOLIST,
 } from './actions';
 import { VideoListAction, VideoInfo, VideoList, VideoListState } from './types';
 
@@ -49,6 +50,10 @@ const videoList = createReducer<VideoListState, VideoListAction>(initialState, {
   [FETCH_VIDEOLIST_FAILURE]: (state) => ({
     ...state,
     status: 'failed',
+  }),
+  [RESET_VIDEOLIST]: (state) => ({
+    ...state,
+    ...initialState,
   }),
 });
 

@@ -27,7 +27,8 @@ function Main() {
   // };
 
   useEffect(() => {
-    dispatch(fetchVideoListThunk('main'));
+    const payload = { pathname: 'main' };
+    dispatch(fetchVideoListThunk(payload));
   }, [dispatch]);
 
   return (

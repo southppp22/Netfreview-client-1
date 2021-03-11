@@ -32,3 +32,8 @@ export type VideoListState = {
   videoInfoList: VideoList;
   status: string;
 };
+
+export type fetchVideoListPayloadType = {
+  pathname?: string;
+  query?: string;
+};

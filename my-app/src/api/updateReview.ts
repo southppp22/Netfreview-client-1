@@ -4,8 +4,6 @@ import { MyReview, updateReviewPayloadType } from '../modules/review/types';
 export async function updateReview(
   payload: updateReviewPayloadType
 ): Promise<MyReview> {
-  const { accessToken, ...body } = payload;
-  const config = { Authorization: `Bearer ${accessToken}` };
-  const res = await axios.patch('reviews', body, { headers: config });
+  const res = await axios.patch('reviews', payload);
   return res.data.myReview;
 }

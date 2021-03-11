@@ -2,8 +2,6 @@ import axios from 'axios';
 import { addLikePayloadType, Review } from '../modules/review/types';
 
 export async function addLike(payload: addLikePayloadType): Promise<Review> {
-  const { accessToken, ...body } = payload;
-  const config = { Authorization: `Bearer ${accessToken}` };
-  const res = await axios.post('reviews/like', body, { headers: config });
+  const res = await axios.post('reviews/like', payload);
   return res.data.review;
 }

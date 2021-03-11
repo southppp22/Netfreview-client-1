@@ -41,46 +41,45 @@ function Mypage() {
   );
 
   useEffect(() => {
-    // console.log(location);
-    // axios
-    //   .get('/users/userinfo', {
-    //     headers: { Authorization: `Bearer ${accessToken}` },
-    //   })
-    //   .then((res) => {
-    //     console.log(res.data);
-    //     const { id, name, nickname, introduction, profileUrl } = res.data;
-    //     onSetUserId(id);
-    //     onSetUserName(name);
-    //     onSetIntroduction(introduction);
-    //     onSetNickname(nickname);
-    //     console.log(profileUrl);
-    //     console.log(profileImgPath);
-    //     if (profileUrl) {
-    //       console.log('hello');
-    //       onSetImg(profileUrl);
-    //     } else {
-    //       onSetImg(profile);
-    //     }
-    //   })
-    //   .catch((err) => console.log(err.response));
-    // axios
-    //   .get('/videos/videolist/?path=myPage', {
-    //     headers: { Authorization: `Bearer ${accessToken}` },
-    //   })
-    //   .then((res) => {
-    //     const videoLists = res.data.videoLists;
-    //     if (videoLists && videoLists.length > 0) {
-    //       const videos = res.data.videoList.map((video: any) => {
-    //         return {
-    //           id: video.id,
-    //           title: video.title,
-    //           posterUrl: video.posterUrl,
-    //           rating: video.rating,
-    //         };
-    //       });
-    //       setVideoList(videos);
-    //     }
-    //   });
+    axios
+      .get('/users/userinfo', {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      })
+      .then((res) => {
+        console.log(res.data);
+        const { id, name, nickname, introduction, profileUrl } = res.data;
+        onSetUserId(id);
+        onSetUserName(name);
+        onSetIntroduction(introduction);
+        onSetNickname(nickname);
+        console.log(profileUrl);
+        console.log(profileImgPath);
+        if (profileUrl) {
+          console.log('hello');
+          onSetImg(profileUrl);
+        } else {
+          onSetImg(profile);
+        }
+      })
+      .catch((err) => console.log(err.response));
+    axios
+      .get('/videos/videolist/?path=myPage', {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      })
+      .then((res) => {
+        const videoLists = res.data.videoLists;
+        if (videoLists && videoLists.length > 0) {
+          const videos = res.data.videoList.map((video: any) => {
+            return {
+              id: video.id,
+              title: video.title,
+              posterUrl: video.posterUrl,
+              rating: video.rating,
+            };
+          });
+          setVideoList(videos);
+        }
+      });
   }, []);
 
   const renderVideoList = () => {

@@ -4,11 +4,9 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
-import { applyMiddleware, createStore } from 'redux';
-import rootReducer from './modules';
-import { composeWithDevTools } from 'redux-devtools-extension';
 import axios from 'axios';
-import thunk from 'redux-thunk';
+import configureStore from './store';
+import { PersistGate } from 'redux-persist/integration/react';
 // axios.defaults.baseURL = 'https://www.gettoday4.click';
 axios.defaults.baseURL = 'https://server.netfreview.com';
 axios.defaults.withCredentials = true;
@@ -21,13 +19,13 @@ axios.interceptors.request.use((config) => {
   return config;
 });
 
-export const store = createStore(
-  rootReducer,
-  composeWithDevTools(applyMiddleware(thunk))
-);
+const { store, persistor } = configureStore();
+
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <PersistGate loading={null} persistor={persistor}>
+      <App />
+    </PersistGate>
   </Provider>,
   document.getElementById('root')
 );

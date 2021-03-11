@@ -8,6 +8,7 @@ import { RootState } from '../modules';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutThunk } from '../modules/login';
 import { fetchUserInfoThunk } from '../modules/userInfo';
+import { fetchVideoListThunk } from '../modules/videoList';
 
 function Mypage() {
   const location = useLocation().pathname;
@@ -19,41 +20,18 @@ function Mypage() {
   const { userName, nickname, introduction, profileUrl } = useSelector(
     (state: RootState) => state.userInfo
   );
-  const [img, setImg] = useState<File | undefined>(undefined);
-
-  type VideoList = {
-    id: number;
-    title: string;
-    posterUrl: string;
-    rating: number;
-  };
-  const [videoList, setVideoList] = useState<VideoList[] | undefined>(
-    undefined
+  const { videoList } = useSelector(
+    (state: RootState) => state.videoList.videoInfoList
   );
 
   useEffect(() => {
-    dispatch(fetchUserInfoThunk());
-    axios
-      .get('/videos/videolist/?path=myPage', {
-        headers: { Authorization: `Bearer ${accessToken}` },
-      })
-      .then((res) => {
-        const videoLists = res.data.videoList;
-        console.log(res.data.videoList);
-        if (videoLists && videoLists.length > 0) {
-          const videos = res.data.videoList.map((video: any) => {
-            return {
-              id: video.id,
-              title: video.title,
-              posterUrl: video.posterUrl,
-              rating: video.rating,
-            };
-          });
-          setVideoList(videos);
-        }
-      })
-      .catch((err) => console.log(err.response));
-  }, [status === 'idle']);
+    try {
+      dispatch(fetchUserInfoThunk());
+      dispatch(fetchVideoListThunk('myPage'));
+    } catch (e) {
+      console.log(e.response);
+    }
+  }, [dispatch]);
 
   const renderVideoList = () => {
     if (videoList) {

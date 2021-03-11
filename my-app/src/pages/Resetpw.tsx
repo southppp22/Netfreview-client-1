@@ -1,15 +1,19 @@
 import axios from 'axios';
 import React, { ChangeEvent, useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 // import useReactRouter from 'use-react-router';
 import { Link, useHistory } from 'react-router-dom';
-import useUserInfo from '../hooks/useUserInfo';
+import { RootState } from '../modules';
+// import useUserInfo from '../hooks/useUserInfo';
 import '../scss/ModifyUserInfo.scss';
 
 function Resetpw() {
   const history = useHistory();
-  const { userInfo, onSetNickname, onSetIntroduction } = useUserInfo();
-  const { userName, nickname, introduction } = userInfo;
-
+  // const { userInfo, onSetNickname, onSetIntroduction } = useUserInfo();
+  // const { userName, nickname, introduction } = userInfo;
+  const { nickname, introduction } = useSelector(
+    (state: RootState) => state.userInfo
+  );
   const [diffNickname, setDiffNickname] = useState(nickname);
   const [password, setPassword] = useState('');
   const [confirmPw, setConfirmPw] = useState('');

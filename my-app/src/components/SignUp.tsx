@@ -1,4 +1,7 @@
 import React, { useState, useRef /*FormEvent*/ } from 'react';
+import thunk from 'redux-thunk';
+import { useSelector, useDispatch } from 'react-redux';
+import { loginThunk } from '../modules/login/thunks';
 import _ from 'lodash/fp';
 //import ReactDOM from 'react-dom';
 import { useForm } from 'react-hook-form';
@@ -18,6 +21,7 @@ import '../scss/SignUp.scss';
 import SignIn from './SignIn';
 import axios from 'axios';
 import { NumberLiteralType } from 'typescript';
+import { Dispatch } from 'redux';
 
 /********* type ********/
 interface FormInput {
@@ -43,6 +47,7 @@ function SignUp({ closeModal }: isModalprops) {
   const [rePassword, setRePassword] = useState<string>('');
   const number = 4;
   // console.log(watch('password-confirm'));
+  const dispatch = useDispatch();
   const Password = useRef();
   Password.current = watch('Password');
 
@@ -65,10 +70,24 @@ function SignUp({ closeModal }: isModalprops) {
   // const rePasswordRef: any = useRef();
   // const errorRef: any = useRef();
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     if (!name || !nickname || !email || !password) {
       return alert('항목을 전부 입력해주세요');
     } else {
+      // try {
+      //   await dispatch(loginThunk({ email, password }));
+      // } catch (error) {
+      //   console.log(error.response.data);
+      //   if (error.response.data.message === `이미 존재하는 이메일입니다.`) {
+      //     <div>이미 존재하는 이메일입니다</div>;
+      //     // alert(`이미 존재하는 이메일입니다.`);
+      //   }
+      //   if (error.response.data.message === `이미 존재하는 닉네임입니다.`) {
+      //     alert(`이미 존재하는 닉네임입니다`);
+      //   } else if (error.response.data.status !== 422) {
+      //     alert(`제대로 입력해주세요!`);
+      //   }
+      // }
       axios
         .post('/users/signup', {
           name,
@@ -83,7 +102,8 @@ function SignUp({ closeModal }: isModalprops) {
         .catch((error) => {
           console.log(error.response.data);
           if (error.response.data.message === `이미 존재하는 이메일입니다.`) {
-            alert(`이미 존재하는 이메일입니다.`);
+            <div>이미 존재하는 이메일입니다</div>;
+            // alert(`이미 존재하는 이메일입니다.`);
           }
           if (error.response.data.message === `이미 존재하는 닉네임입니다.`) {
             alert(`이미 존재하는 닉네임입니다`);

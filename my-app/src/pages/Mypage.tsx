@@ -3,13 +3,15 @@ import axios from 'axios';
 import SmallPoster from '../components/SmallPoster';
 import '../scss/Mypage.scss';
 import useUserInfo from '../hooks/useUserInfo';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import useIsLogin from '../hooks/useIsLogin';
+import profile from '../img/profileImg.png';
 
 function Mypage() {
   const history = useHistory();
   const { useLogin, onSetIsLogin, onSetToken } = useIsLogin();
   const { setIsLogin, accessToken } = useLogin;
+  const location = useLocation().pathname;
 
   const {
     userInfo,
@@ -22,8 +24,7 @@ function Mypage() {
   const { userId, userName, nickname, profileImgPath, introduction } = userInfo;
 
   const [img, setImg] = useState<File | undefined>(undefined);
-  // const [introduction, setIntroduction] = useState('');
-  // const [userName, setUserName] = useState('관리자(임시)');
+
   type VideoList = {
     id: number;
     title: string;
@@ -35,6 +36,8 @@ function Mypage() {
   );
 
   useEffect(() => {
+    console.log(location);
+
     axios
       .get('/users/userinfo', {
         headers: { Authorization: `Bearer ${accessToken}` },
@@ -46,8 +49,14 @@ function Mypage() {
         onSetUserName(name);
         onSetIntroduction(introduction);
         onSetNickname(nickname);
-        if (profileUrl !== profileImgPath) {
+        console.log(profileUrl);
+        console.log(profileImgPath);
+
+        if (profileUrl) {
+          console.log('hello');
           onSetImg(profileUrl);
+        } else {
+          onSetImg(profile);
         }
       })
       .catch((err) => console.log(err.response));
@@ -56,33 +65,35 @@ function Mypage() {
         headers: { Authorization: `Bearer ${accessToken}` },
       })
       .then((res) => {
-        console.log(res.data.videoLists);
-        const videos = res.data.videoList.map((video: any) => {
-          return {
-            id: video.id,
-            title: video.title,
-            posterUrl: video.posterUrl,
-            rating: video.rating,
-          };
-        });
-        setVideoList(videos);
+        const videoLists = res.data.videoLists;
+        if (videoLists && videoLists.length > 0) {
+          const videos = res.data.videoList.map((video: any) => {
+            return {
+              id: video.id,
+              title: video.title,
+              posterUrl: video.posterUrl,
+              rating: video.rating,
+            };
+          });
+          setVideoList(videos);
+        }
       });
-  }, [useLogin]);
+  }, []);
 
-  // const renderVideoList = () => {
-  //   if (videoList) {
-  //     return videoList.map((video) => (
-  //       <SmallPoster
-  //         key={video.id}
-  //         id={video.id}
-  //         title={video.title}
-  //         posterUrl={video.posterUrl}
-  //         rating={video.rating}
-  //       />
-  //     ));
-  //   }
-  //   return <></>;
-  // };
+  const renderVideoList = () => {
+    if (videoList) {
+      return videoList.map((video) => (
+        <SmallPoster
+          key={video.id}
+          id={video.id}
+          title={video.title}
+          posterUrl={video.posterUrl}
+          rating={video.rating}
+        />
+      ));
+    }
+    return null;
+  };
 
   const handleLogout = () => {
     axios
@@ -142,7 +153,7 @@ function Mypage() {
           <SmallPoster />
           <SmallPoster />
           <SmallPoster /> */}
-          {/* {renderVideoList()} */}
+          {renderVideoList()}
         </div>
       </section>
     </div>

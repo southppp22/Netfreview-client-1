@@ -64,7 +64,8 @@ main {
 
     // border: 2px solid red;
     article {
-      margin-top: 220px;
+      width: 450px;
+      margin-top: 170px;
       color: var(--color-white);
       button {
         width: 130px;
@@ -79,6 +80,7 @@ main {
     }
   }
   &__title {
+    word-break: keep-all;
     font: {
       size: var(--font-title);
       weight: var(--weight-bold);

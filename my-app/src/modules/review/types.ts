@@ -44,21 +44,18 @@ export type FetchReviewsType = {
 export type FetchReviewsPayloadType = {
   videoId: number;
   page: number;
-  accessToken?: string;
 };
 
 export type addReviewPayloadType = {
   videoId: number;
   text: string;
   rating: number;
-  accessToken: string;
 };
 
 export type updateReviewPayloadType = addReviewPayloadType;
 
 export type deleteReviewPayloadType = {
   reviewId: number;
-  accessToken: string;
 };
 
 export type addLikePayloadType = deleteReviewPayloadType;

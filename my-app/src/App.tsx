@@ -13,7 +13,6 @@ import ModifyUserInfo from './pages/ModifyUserInfo';
 import SignIn from './components/SignIn';
 import Resetpw from './pages/Resetpw';
 import { useSelector, useDispatch } from 'react-redux';
-import { store } from '.';
 import { RootState } from './modules';
 import { refreshThunk } from './modules/login';
 

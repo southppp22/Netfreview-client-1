@@ -16,10 +16,14 @@ export type UserInfo = {
 
 export type UserInfoState = {
   // UserProfile: UserInfo;
-  userId: string | undefined;
+  userId: string;
   userName: string;
   nickname: string;
   introduction: string;
   profileUrl: string | null;
   status: string; // idle, loading, failed
+};
+
+export type deleteUserPayloadType = {
+  userId: string;
 };

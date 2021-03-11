@@ -1,23 +1,24 @@
 import axios from 'axios';
 import React, { ChangeEvent, useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 // import useReactRouter from 'use-react-router';
 import { Link, useHistory } from 'react-router-dom';
-import useIsLogin from '../hooks/useIsLogin';
 import useUserInfo from '../hooks/useUserInfo';
 import profile from '../img/profileImg.png';
+import { RootState } from '../modules';
+import { deleteUserThunk } from '../modules/userInfo1';
 import '../scss/ModifyUserInfo.scss';
 
 function ModifyUserInfo() {
   const history = useHistory();
-  const {
-    userInfo,
-    onSetImg,
-    onSetNickname,
-    onSetIntroduction,
-  } = useUserInfo();
-  const { userId, userName, nickname, profileImgPath, introduction } = userInfo;
-  const { useLogin, onSetIsLogin, onSetToken } = useIsLogin();
-  const { accessToken } = useLogin;
+  const { status, isLogin, accessToken } = useSelector(
+    (state: RootState) => state.login
+  );
+  const { userId, userName, nickname, profileUrl, introduction } = useSelector(
+    (state: RootState) => state.userinfo
+  );
+
+  const dispatch = useDispatch();
 
   const [diffNickname, setDiffNickname] = useState(nickname);
   const [password, setPassword] = useState('');
@@ -27,7 +28,7 @@ function ModifyUserInfo() {
   const [isMatchPw, setIsMatchPw] = useState(true);
   const [imgFile, setImgFile] = useState<File | undefined>(undefined);
   const [previewURL, setPreviewURL] = useState<string | ArrayBuffer | null>(
-    profileImgPath
+    profileUrl
   );
 
   // const errorRef = useRef<HTMLDivElement>(null);
@@ -97,20 +98,18 @@ function ModifyUserInfo() {
     setPreviewURL(profile);
   };
 
-  const deleteAccount = () => {
+  const deleteAccount = async () => {
     const isDelete = confirm('정말로 탈퇴하시겠습니까?');
     if (isDelete) {
-      axios
-        .delete(`/users`, {
-          headers: { Authorization: `Bearer ${accessToken}` },
-        })
-        .then((res) => {
-          console.log(res);
-          onSetIsLogin(false);
-          onSetToken('');
-          history.push('/');
-        })
-        .catch((err) => console.log(err.response));
+      const payload = {
+        userId,
+      };
+      try {
+        dispatch(deleteUserThunk(payload));
+        history.push('/');
+      } catch (e) {
+        console.log(e.response);
+      }
     }
   };
 
@@ -225,9 +224,9 @@ function ModifyUserInfo() {
                     <img
                       className="table__td-cell__img"
                       src={
-                        typeof previewURL === 'string'
-                          ? previewURL
-                          : profileImgPath
+                        // src 타입이 맞지 않아서 임시 수정 했습니다.
+                        // typeof previewURL === 'string' ? previewURL : profileUrl
+                        typeof previewURL === 'string' ? previewURL : ''
                       }
                       alt="profile image"
                     />

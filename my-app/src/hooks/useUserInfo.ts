@@ -9,12 +9,9 @@ import {
 } from '../modules/userInfo';
 import { useCallback } from 'react';
 import axios from 'axios';
-import useIsLogin from './useIsLogin';
 import profile from '../img/profileImg.png';
 
 export default function useUserInfo() {
-  const { useLogin } = useIsLogin();
-  const { accessToken } = useLogin;
   const userInfo = useSelector((state: RootState) => state.userInfo);
 
   const dispatch = useDispatch();

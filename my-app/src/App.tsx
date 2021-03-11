@@ -11,10 +11,11 @@ import Search from './pages/Search';
 import Review from './pages/Review';
 import ModifyUserInfo from './pages/ModifyUserInfo';
 import SignIn from './components/SignIn';
-import useIsLogin from './hooks/useIsLogin';
 import Resetpw from './pages/Resetpw';
-import thunk from 'redux-thunk';
 import { useSelector, useDispatch } from 'react-redux';
+import { store } from '.';
+import { RootState } from './modules';
+import { refreshThunk } from './modules/login';
 
 // axios.defaults.baseURL = 'https://www.server.netfreview.com';
 // axios.defaults.withCredentials = true;
@@ -23,35 +24,28 @@ import { useSelector, useDispatch } from 'react-redux';
 /**********function*************/
 
 function App() {
-  const { useLogin, onSetIsLogin, onSetToken } = useIsLogin();
-  const { setIsLogin, accessToken } = useLogin;
-  axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+  const { status, isLogin } = useSelector((state: RootState) => state.login);
+
   const [isvideo, setIsVideo] = useState<any>([]);
   const dispatch = useDispatch();
   //만료시간
-  const JWT_EXPIRY_TIME = 24 * 3600 * 1000;
+  // const JWT_EXPIRY_TIME = 24 * 3600 * 1000;
 
   //이메일, 비번을 보내면 refreshToken과 acessToken을 return
-  const onLoginSuccess = (res: any) => {
-    const { accessToken } = res.data;
-    axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
-    setTimeout(onRefresh, JWT_EXPIRY_TIME - 60000); //로그인연장
-  };
+  // const onLoginSuccess = (res: any) => {
+  //   const { accessToken } = res.data;
+  //   axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+  //   setTimeout(onRefresh, JWT_EXPIRY_TIME - 60000); //로그인연장
+  // };
   //cookie에 담긴 refreshToken이 자동으로 보내지면, 새로운 refreshToekn과 accessToken을 return
   const onRefresh = () => {
-    axios
-      .get('users/refresh') // 쿠키에 있는 refresh 토큰을 보내서 -> accesstoken 발급받는다.
-      .then((res) => {
-        const { accessToken } = res.data.data;
-        onSetIsLogin(true);
-        onSetToken(accessToken);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    dispatch(refreshThunk());
   };
+
   useEffect(() => {
-    onRefresh();
+    if (!isLogin) {
+      onRefresh();
+    }
   }, []);
   return (
     <div className="wrapper">
@@ -59,7 +53,7 @@ function App() {
         <Header setIsVideo={setIsVideo} />
         <Switch>
           <Route path="/" exact component={Main} />
-          {setIsLogin ? (
+          {isLogin ? (
             <Route path="/mypage">
               <Switch>
                 <Route exact path="/mypage" component={Mypage} />

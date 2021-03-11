@@ -1,4 +1,8 @@
 import { ThunkAction } from 'redux-thunk';
+import { RootState } from '..';
+import { deleteUserPayloadType, UserInfoAction } from './types';
+import { deleteUserAsync } from './actions';
+import { deleteUser } from '../../api/deleteUser';
 // import { RootState } from '..';
 // import { fetchUserInfo } from '../../api/fetchUserInfo';
 // import { fetchUserInfoAsync } from './actions';
@@ -21,3 +25,18 @@ import { ThunkAction } from 'redux-thunk';
 //     }
 //   };
 // }
+
+export function deleteUserThunk(
+  payload: deleteUserPayloadType
+): ThunkAction<void, RootState, null, UserInfoAction> {
+  return async (dispatch) => {
+    const { request, success, failure } = deleteUserAsync;
+    dispatch(request());
+    try {
+      await deleteUser(payload);
+      dispatch(success());
+    } catch (e) {
+      dispatch(failure(e));
+    }
+  };
+}

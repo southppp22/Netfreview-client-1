@@ -9,8 +9,12 @@ import rootReducer from './modules';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import axios from 'axios';
 import thunk from 'redux-thunk';
-axios.defaults.baseURL = 'https://www.gettoday4.click';
+
+// axios.defaults.baseURL = 'https://www.gettoday4.click';
+axios.defaults.baseURL = 'https://server.netfreview.com';
 axios.defaults.withCredentials = true;
+axios.defaults.headers.post['Content-Type'] = 'application/json';
+
 const store = createStore(
   rootReducer,
   composeWithDevTools(applyMiddleware(thunk))

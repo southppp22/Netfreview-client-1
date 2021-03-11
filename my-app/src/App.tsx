@@ -14,15 +14,16 @@ import SignIn from './components/SignIn';
 import useIsLogin from './hooks/useIsLogin';
 import Resetpw from './pages/Resetpw';
 
-axios.defaults.baseURL = 'https://www.server.netfreview.com';
-axios.defaults.withCredentials = true;
-axios.defaults.headers.post['Content-Type'] = 'application/json';
+// axios.defaults.baseURL = 'https://www.server.netfreview.com';
+// axios.defaults.withCredentials = true;
+// axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 /**********function*************/
 
 function App() {
   const { useLogin, onSetIsLogin, onSetToken } = useIsLogin();
   const { setIsLogin, accessToken } = useLogin;
+  axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
   const [isvideo, setIsVideo] = useState<any>([]);
   //만료시간
   const JWT_EXPIRY_TIME = 24 * 3600 * 1000;

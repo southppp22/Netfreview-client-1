@@ -140,24 +140,48 @@ function ModifyUserInfo() {
           })
           .then((res) => {
             console.log(res.data.data.profileUrl);
-            onSetImg(res.data.data.profileUrl);
-            console.log('done');
+            axios.patch(
+              '/users',
+              { profileUrl: res.data.data.profileUrl },
+              {
+                headers: { Authorization: `Bearer ${accessToken}` },
+              }
+            );
           })
+          .then((res) => console.log(res))
           .catch((err) => console.log(err.response));
       } else if (previewURL === profile) {
         console.log('modify-deleteImg');
-
-        onSetImg('');
+        axios
+          .patch(
+            '/users',
+            { profileUrl: null },
+            {
+              headers: { Authorization: `Bearer ${accessToken}` },
+            }
+          )
+          .then((res) => {
+            console.log(res, 'Reset Image');
+          })
+          .catch((err) => console.log(err.response));
+        // onSetImg('');
       }
 
-      if (diffNickname !== nickname) {
+      if (diffNickname !== nickname || description !== introduction) {
         console.log('modify-nickname');
-        onSetNickname(diffNickname);
-      }
-
-      if (description !== introduction) {
-        console.log('modify-intro');
-        onSetIntroduction(description);
+        axios
+          .patch(
+            '/users',
+            { nickname: diffNickname, introduction: description },
+            {
+              headers: { Authorization: `Bearer ${accessToken}` },
+            }
+          )
+          .then((res) => {
+            console.log('save diff nickname');
+          })
+          .catch((err) => console.log(err.response));
+        // onSetNickname(diffNickname);
       }
 
       if (password && isValidPw && isMatchPw) {

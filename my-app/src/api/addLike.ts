@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { addLikePayloadType, Review } from '../modules/reviews/types';
+import { addLikePayloadType, Review } from '../modules/review/types';
 
 export async function addLike(payload: addLikePayloadType): Promise<Review> {
   const { accessToken, ...body } = payload;

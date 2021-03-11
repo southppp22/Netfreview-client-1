@@ -1,36 +1,45 @@
 import React, { useState } from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  Redirect,
-  useParams,
-} from 'react-router-dom';
 //import axios from 'axios';
 import '../scss/Myreview.scss';
 import plant from '../img/plant.png';
 import heart from '../img/heart.png';
-import useReviews from '../hooks/useReviews';
 import useUserInfo from '../hooks/useUserInfo';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../modules';
+import { addLikeThunk, deleteReviewThunk } from '../modules/review';
 
-function Myreview() {
+type MyReviewProps = {
+  setIsOn: (isOn: boolean) => void;
+};
+
+function Myreview({ setIsOn }: MyReviewProps) {
+  const reviews = useSelector((state: RootState) => state.review);
   const {
-    reviews,
-    onDeleteReview,
-    onSetRating,
-    onSetText,
-    onUpdate,
-  } = useReviews();
-  const { myReview } = reviews;
+    reviews: { myReview },
+  } = reviews;
 
   const { userInfo } = useUserInfo();
   const { nickname, profileImgPath } = userInfo;
 
-  const deleteReview = (id: number) => {
-    onDeleteReview(id);
-    onSetRating(0);
-    onSetText('');
+  const dispatch = useDispatch();
+
+  const deleteReview = (reviewId: number) => {
+    const payload = {
+      reviewId,
+      accessToken:
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRuZGRsMDMyQGdtYWlsLmNvbSIsInN1YiI6IjZlNjllMGJjLTZhYjYtNDM2OS04MWE2LWM2NjA0YzIwZWRjMyIsImlhdCI6MTYxNTQ2OTU1NywiZXhwIjoxNjE1NDc2NzU3fQ.yAkq09lvQB025VY-_wZzJgJvM1QJJ581TY34WL5w_xk',
+    };
+    dispatch(deleteReviewThunk(payload));
+  };
+
+  const addLike = (reviewId: number) => {
+    const accessToken =
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRuZGRsMDMyQGdtYWlsLmNvbSIsInN1YiI6IjZlNjllMGJjLTZhYjYtNDM2OS04MWE2LWM2NjA0YzIwZWRjMyIsImlhdCI6MTYxNTQ2OTU1NywiZXhwIjoxNjE1NDc2NzU3fQ.yAkq09lvQB025VY-_wZzJgJvM1QJJ581TY34WL5w_xk';
+    const payload = {
+      reviewId,
+      accessToken,
+    };
+    dispatch(addLikeThunk(payload));
   };
 
   if (myReview) {
@@ -49,18 +58,24 @@ function Myreview() {
                 <img className="img-rate" src={plant} />
                 <span className="rate-num">{rating}</span>
               </div>
-              <div className="count__heart">
+              <button
+                onClick={() => {
+                  addLike(id);
+                }}
+                type="button"
+                className="count__heart"
+              >
                 <img className="img-heart" src={heart} />
                 <span className="rate-num">{likeCount}</span>
-              </div>
+              </button>
             </div>
           </div>
           <div className="wholeInfo__div">{text}</div>
           <div className="wholeInfo__btn">
             <button
+              onClick={() => setIsOn(true)}
               className="btn__review"
               type="button"
-              onClick={() => onUpdate()}
             >
               수정
             </button>

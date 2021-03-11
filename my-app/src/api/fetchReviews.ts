@@ -2,7 +2,7 @@ import axios from 'axios';
 import {
   FetchReviewsPayloadType,
   FetchReviewsType,
-} from '../modules/reviews/types';
+} from '../modules/review/types';
 
 export async function fetchReviews(
   payload: FetchReviewsPayloadType

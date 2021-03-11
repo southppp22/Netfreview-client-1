@@ -20,7 +20,7 @@ function WriteReview({ setIsOn }: WriteReviewProps) {
 
   const [rating, setRating] = useState<number>(myReview?.rating || 0);
   const [hoverRating, setHoverRating] = useState<number>(0);
-  const [text, setText] = useState('');
+  const [text, setText] = useState(myReview?.text || '');
 
   const addReview = () => {
     const payload = {
@@ -28,9 +28,7 @@ function WriteReview({ setIsOn }: WriteReviewProps) {
       text,
       rating,
     };
-    const accessToken =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRuZGRsMDMyQGdtYWlsLmNvbSIsInN1YiI6IjZlNjllMGJjLTZhYjYtNDM2OS04MWE2LWM2NjA0YzIwZWRjMyIsImlhdCI6MTYxNTQ2OTU1NywiZXhwIjoxNjE1NDc2NzU3fQ.yAkq09lvQB025VY-_wZzJgJvM1QJJ581TY34WL5w_xk';
-    dispatch(addReviewThunk({ ...payload, accessToken }));
+    dispatch(addReviewThunk({ ...payload }));
   };
 
   const updateReview = () => {
@@ -39,9 +37,7 @@ function WriteReview({ setIsOn }: WriteReviewProps) {
       text,
       rating,
     };
-    const accessToken =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRuZGRsMDMyQGdtYWlsLmNvbSIsInN1YiI6IjZlNjllMGJjLTZhYjYtNDM2OS04MWE2LWM2NjA0YzIwZWRjMyIsImlhdCI6MTYxNTQ2OTU1NywiZXhwIjoxNjE1NDc2NzU3fQ.yAkq09lvQB025VY-_wZzJgJvM1QJJ581TY34WL5w_xk';
-    dispatch(updateReviewThunk({ ...payload, accessToken }));
+    dispatch(updateReviewThunk({ ...payload }));
     setIsOn(false);
   };
 

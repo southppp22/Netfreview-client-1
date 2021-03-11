@@ -19,6 +19,7 @@ function Review() {
   const currentPage = queryString.parse(location.search).page;
   const { videoId } = useParams<{ videoId: string }>();
 
+  const loginStatus = useSelector((state: RootState) => state.login.status);
   const reviews = useSelector((state: RootState) => state.review);
   const {
     reviews: { myReview },
@@ -44,11 +45,10 @@ function Review() {
   }, [videoId]);
 
   useEffect(() => {
-    console.log('test');
-    if (typeof currentPage === 'string') {
+    if (typeof currentPage === 'string' && loginStatus === 'idle') {
       getReviews(videoId, currentPage);
     }
-  }, [currentPage, videoId]);
+  }, [currentPage, videoId, loginStatus]);
 
   return (
     <div>
@@ -71,27 +71,3 @@ function Review() {
   );
 }
 export default Review;
-
-// useEffect 2
-
-// axios.get(`reviews/${videoId}/?page=${currentPage}`).then((res) => {
-//   const { myReview, totalCount, reviewList } = res.data;
-//   const { start, end, totalPage } = getPaging(
-//     totalCount,
-//     8,
-//     Number(currentPage)
-//   );
-//   const reviews = reviewList.map((review: any) => {
-//     const { id, nickname, profileUrl } = review.user;
-//     review.user = {
-//       id,
-//       nickname,
-//       profileUrl,
-//     };
-//     return review;
-//   });
-//   onFetchReviews(reviews);
-//   onFetchMyReviews(myReview);
-//   onUpdateCurrentPage(Number(currentPage));
-//   onUpdateStartEndPage({ start, end, total: totalPage });
-// });

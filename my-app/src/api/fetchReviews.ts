@@ -7,16 +7,9 @@ import {
 export async function fetchReviews(
   payload: FetchReviewsPayloadType
 ): Promise<FetchReviewsType> {
-  const { accessToken, videoId, page } = payload;
-  const config: { authorization?: string } = {};
+  const { videoId, page } = payload;
 
-  if (accessToken) {
-    config.authorization = `Bearer ${accessToken}`;
-  }
-
-  const res = await axios.get(`reviews/${videoId}/?page=${page}`, {
-    headers: config,
-  });
-
+  const res = await axios.get(`reviews/${videoId}/?page=${page}`);
+  console.log('res', res);
   return res.data;
 }

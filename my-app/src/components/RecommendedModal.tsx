@@ -16,7 +16,7 @@ type RecommendedModalProps = {
 function RecommendedModal({ open, close }: RecommendedModalProps) {
   const dispatch = useDispatch();
 
-  const { nickname } = useSelector((state: RootState) => state.userInfo);
+  const { nickname } = useSelector((state: RootState) => state.myInfo);
   const { status, isLogin } = useSelector((state: RootState) => state.login);
   const {
     videoInfoList: { videoList },

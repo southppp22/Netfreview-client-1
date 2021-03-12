@@ -11,6 +11,7 @@ import Review from './pages/Review';
 import ModifyUserInfo from './pages/ModifyUserInfo';
 import SignIn from './components/SignIn';
 import Resetpw from './pages/Resetpw';
+import Userpage from './pages/Userpage';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from './modules';
 import { refreshThunk } from './modules/login';
@@ -75,6 +76,7 @@ function App() {
           <Route path="/review/:videoId" component={Review} />
           <Route path="/signin" component={SignIn} />
           <Route path="/resetpw" component={Resetpw} />
+          <Route path="/userpage/:userId" component={Userpage} />
         </Switch>
         <Footer />
       </Router>

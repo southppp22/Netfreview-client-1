@@ -1,6 +1,6 @@
 .mypage {
   padding-top: 120px;
-  padding-bottom: 342px;
+  padding-bottom: 312px;
 }
 .user {
   width: 1280px;
@@ -126,7 +126,7 @@
 
 .review-container {
   width: 1280px;
-  margin: 30px auto 0;
+  margin: 50px auto 0;
   // border: 2px solid red;
   &__title {
     font: {
@@ -137,6 +137,7 @@
   }
   &__list {
     display: flex;
+    flex-wrap: wrap;
     margin-right: -40px;
   }
 }

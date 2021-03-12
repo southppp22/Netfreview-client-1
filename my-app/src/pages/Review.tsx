@@ -18,6 +18,7 @@ function Review() {
   const location = useLocation();
   const currentPage = queryString.parse(location.search).page;
   const { videoId } = useParams<{ videoId: string }>();
+  console.log(currentPage);
 
   const loginStatus = useSelector((state: RootState) => state.login.status);
   const reviews = useSelector((state: RootState) => state.review);

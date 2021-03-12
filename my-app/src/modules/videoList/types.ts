@@ -22,9 +22,6 @@ export type VideoInfo = {
 };
 
 export type VideoList = {
-  top5VideoList?: VideoInfo[];
-  mostReviewVidList?: VideoInfo[];
-  lessReviewVidList?: VideoInfo[];
   videoList?: VideoInfo[];
 };
 

@@ -25,9 +25,6 @@ const initVideoInfo: VideoInfo = {
 };
 
 const initVideoList: VideoList = {
-  // top5VideoList: [],
-  // mostReviewVidList: [],
-  // lessReviewVidList: [],
   videoList: [],
 };
 

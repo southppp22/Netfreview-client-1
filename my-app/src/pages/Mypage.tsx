@@ -8,7 +8,7 @@ import { RootState } from '../modules';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutThunk } from '../modules/login';
 import { fetchUserInfoThunk } from '../modules/userInfo';
-import { fetchVideoListThunk } from '../modules/videoList';
+import { fetchVideoListThunk, resetVideoList } from '../modules/videoList';
 
 function Mypage() {
   const location = useLocation().pathname;
@@ -25,12 +25,13 @@ function Mypage() {
   } = useSelector((state: RootState) => state.videoList);
 
   useEffect(() => {
-    try {
+    if (isLogin) {
       dispatch(fetchUserInfoThunk());
       dispatch(fetchVideoListThunk({ pathname: 'myPage' }));
-    } catch (e) {
-      console.log(e.response);
     }
+    return () => {
+      dispatch(resetVideoList());
+    };
   }, [dispatch]);
 
   const renderVideoList = () => {

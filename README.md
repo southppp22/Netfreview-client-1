@@ -17,4 +17,4 @@ Netfreview는 당신을 위해 넷플릭스 영상에 대한 리뷰를 제공합
 ## FRONT
 
 ## BACK
-![](https://img.shields.io/badge/BACK-Node-3776AB?style=for-the-badge&logo=Node.js)
+![](https://img.shields.io/style=for-the-badge&logo=Node.js)

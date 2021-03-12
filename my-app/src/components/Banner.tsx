@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { RootState } from '../modules';
 
 import BannerSlide from './BannerSlide';
@@ -15,9 +14,10 @@ type VideoInfo = {
 };
 
 function Banner() {
-  const { top5VideoList, lessReviewVidList } = useSelector(
-    (state: RootState) => state.mainVideo.videoInfoList
-  );
+  const {
+    videoInfoList: { top5VideoList, lessReviewVidList },
+    status,
+  } = useSelector((state: RootState) => state.mainVideo);
 
   const [topVideo, setTopVideo] = useState<VideoInfo>({
     id: 0,
@@ -33,9 +33,11 @@ function Banner() {
   });
 
   useEffect(() => {
-    top5VideoList && setTopVideo(top5VideoList[0]);
-    lessReviewVidList && setLessVideo(lessReviewVidList[0]);
-  }, [top5VideoList, lessReviewVidList]);
+    if (status === 'idle') {
+      top5VideoList && setTopVideo(top5VideoList[0]);
+      lessReviewVidList && setLessVideo(lessReviewVidList[0]);
+    }
+  }, [top5VideoList, lessReviewVidList, status]);
 
   return (
     <Swiper
@@ -51,7 +53,7 @@ function Banner() {
         <BannerSlide subTitle="넷프리뷰의 NO.1" video={topVideo} />
       </SwiperSlide>
       <SwiperSlide>
-        <BannerSlide video={lessVideo} />
+        <BannerSlide subTitle="당신의 리뷰가 필요한" video={lessVideo} />
       </SwiperSlide>
       <SwiperSlide> slide3 </SwiperSlide>
     </Swiper>

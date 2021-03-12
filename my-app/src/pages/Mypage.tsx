@@ -20,14 +20,14 @@ function Mypage() {
   const { userName, nickname, introduction, profileUrl } = useSelector(
     (state: RootState) => state.userInfo
   );
-  const { videoList } = useSelector(
-    (state: RootState) => state.videoList.videoInfoList
-  );
+  const {
+    videoInfoList: { videoList },
+  } = useSelector((state: RootState) => state.videoList);
 
   useEffect(() => {
     try {
       dispatch(fetchUserInfoThunk());
-      dispatch(fetchVideoListThunk('myPage'));
+      dispatch(fetchVideoListThunk({ pathname: 'myPage' }));
     } catch (e) {
       console.log(e.response);
     }

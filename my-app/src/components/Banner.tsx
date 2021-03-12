@@ -12,7 +12,7 @@ type VideoInfo = {
 
 function Banner() {
   const { top5VideoList } = useSelector(
-    (state: RootState) => state.videoList.videoInfoList
+    (state: RootState) => state.mainVideo.videoInfoList
   );
 
   const [topVideo, setTopVideo] = useState<VideoInfo>({

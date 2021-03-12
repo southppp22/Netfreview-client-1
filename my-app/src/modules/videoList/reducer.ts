@@ -3,7 +3,6 @@ import {
   FETCH_VIDEOLIST,
   FETCH_VIDEOLIST_SUCCESS,
   FETCH_VIDEOLIST_FAILURE,
-  RESET_VIDEOLIST,
 } from './actions';
 import { VideoListAction, VideoInfo, VideoList, VideoListState } from './types';
 
@@ -26,9 +25,9 @@ const initVideoInfo: VideoInfo = {
 };
 
 const initVideoList: VideoList = {
-  top5VideoList: [],
-  mostReviewVidList: [],
-  lessReviewVidList: [],
+  // top5VideoList: [],
+  // mostReviewVidList: [],
+  // lessReviewVidList: [],
   videoList: [],
 };
 
@@ -50,10 +49,6 @@ const videoList = createReducer<VideoListState, VideoListAction>(initialState, {
   [FETCH_VIDEOLIST_FAILURE]: (state) => ({
     ...state,
     status: 'failed',
-  }),
-  [RESET_VIDEOLIST]: (state) => ({
-    ...state,
-    ...initialState,
   }),
 });
 

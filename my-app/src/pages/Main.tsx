@@ -8,11 +8,12 @@ import RecommendedModal from '../components/RecommendedModal';
 import Banner from '../components/Banner';
 
 import '../scss/Main.scss';
+import { fetchMainVideoThunk } from '../modules/mainVideo';
 
 function Main() {
   const dispatch = useDispatch();
   const { top5VideoList, mostReviewVidList, lessReviewVidList } = useSelector(
-    (state: RootState) => state.videoList.videoInfoList
+    (state: RootState) => state.mainVideo.videoInfoList
   );
   const [isModal, setIsModal] = useState<boolean>(false);
 
@@ -27,8 +28,7 @@ function Main() {
   // };
 
   useEffect(() => {
-    const payload = { pathname: 'main' };
-    dispatch(fetchVideoListThunk(payload));
+    dispatch(fetchMainVideoThunk());
   }, [dispatch]);
 
   return (

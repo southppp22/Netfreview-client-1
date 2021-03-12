@@ -14,13 +14,6 @@ import {
 } from '../modules/videoList';
 import { RootState } from '../modules';
 
-type Video = {
-  id: number;
-  title: string;
-  posterUrl: string;
-  rating: number;
-};
-
 function Search() {
   const location = useLocation();
   const query = queryString.parse(location.search).q;
@@ -38,6 +31,7 @@ function Search() {
     }
     return () => {
       dispatch(resetVideoList());
+      console.log('hey');
     };
   }, [query]);
   return (

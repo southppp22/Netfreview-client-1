@@ -7,8 +7,9 @@ import SignIn from './SignIn';
 import '../scss/RecommendedModal.scss';
 import { isMainThread } from 'node:worker_threads';
 import { useLocation } from 'react-router';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../modules';
+import { fetchVideoListThunk } from '../modules/videoList';
 
 type RecommendedModalProps = {
   open: boolean;
@@ -22,17 +23,18 @@ type Video = {
   rating: number;
 };
 function RecommendedModal({ open, close }: RecommendedModalProps) {
+  const dispatch = useDispatch();
   const { nickname } = useSelector((state: RootState) => state.userInfo);
   const { status, isLogin, accessToken } = useSelector(
     (state: RootState) => state.login
   );
+  const {
+    videoInfoList: { videoList },
+  } = useSelector((state: RootState) => state.videoList);
+  console.log(videoList);
 
   const [recommendVideo, setRecommendVideo] = useState<Video[] | undefined>();
   const [isLoginModal, setIsLoginModal] = useState(false);
-  // const [isMain, setIsMain] = useState(false);
-
-  const location = useLocation().pathname;
-  // console.log(useLocation());
 
   useEffect(() => {
     if (open) {
@@ -49,47 +51,29 @@ function RecommendedModal({ open, close }: RecommendedModalProps) {
   // 배열을 넣을 경우: 화면 첫페이지에서 한번 실행되기 때문에 추후 모달창이 뜰때 변경이 되지 않는다
   useEffect(() => {
     if (isLogin) {
-      axios
-        .get('/videos/videolist/?path=aboutThis', {
-          headers: { Authorization: `Bearer ${accessToken}` },
-        })
-        .then((res) => {
-          console.log(res.data);
-          const { videoList } = res.data;
-          const videos = videoList.map((video: Video) => ({
-            id: video.id,
-            title: video.title,
-            posterUrl: video.posterUrl,
-            rating: video.rating,
-          }));
-          setRecommendVideo(videos);
-        })
-        .catch((err) => console.log(err.response));
+      dispatch(fetchVideoListThunk({ pathname: 'aboutThis' }));
+      // axios
+      //   .get('/videos/videolist/?path=aboutThis', {
+      //     headers: { Authorization: `Bearer ${accessToken}` },
+      //   })
+      //   .then((res) => {
+      //     console.log(res.data);
+      //     const { videoList } = res.data;
+      //     const videos = videoList.map((video: Video) => ({
+      //       id: video.id,
+      //       title: video.title,
+      //       posterUrl: video.posterUrl,
+      //       rating: video.rating,
+      //     }));
+      //     setRecommendVideo(videos);
+      //   })
+      //   .catch((err) => console.log(err.response));
     }
-    return () => {
-      if (isLogin) {
-        axios
-          .get('/videos/videolist/?path=aboutThis', {
-            headers: { Authorization: `Bearer ${accessToken}` },
-          })
-          .then((res) => {
-            console.log(res.data);
-            const { videoList } = res.data;
-            const videos = videoList.map((video: Video) => ({
-              id: video.id,
-              title: video.title,
-              posterUrl: video.posterUrl,
-              rating: video.rating,
-            }));
-            setRecommendVideo(videos);
-          })
-          .catch((err) => console.log(err.response));
-      }
-    };
-  }, [isLogin]);
+  }, [status === 'idle']);
+
   const renderPosterList = () => {
-    if (recommendVideo && recommendVideo.length > 0) {
-      return recommendVideo?.map((video) => {
+    if (videoList) {
+      return videoList.map((video) => {
         const { id, title, posterUrl, rating } = video;
         return (
           <BigPoster

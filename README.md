@@ -1,3 +1,3 @@
 # Netfreview-client
 
-![넷프리뷰 로고 사진](https://i.imgur.com/sf2D8SO.png)
+<img src="https://i.imgur.com/sf2D8SO.png" width="700" height="370">

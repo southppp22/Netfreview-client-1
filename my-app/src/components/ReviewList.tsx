@@ -1,12 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ReviewComment from './ReviewComment';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  Redirect,
-} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 // import axios from 'axios';
 import '../scss/ReviewList.scss';
 import left from '../img/left.png';

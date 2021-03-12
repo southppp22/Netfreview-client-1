@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import profile from '../img/profileImg.svg';
-import SignIn from './SignIn';
-import '../scss/Header.scss';
 import { RootState } from '../modules';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUserInfoThunk } from '../modules/userInfo';
+import profile from '../img/profileImg.svg';
+import SignIn from './SignIn';
+import '../scss/Header.scss';
 
 /************** 함수 *************/
 

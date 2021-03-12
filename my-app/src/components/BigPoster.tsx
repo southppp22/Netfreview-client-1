@@ -10,8 +10,6 @@ type BigPosterProps = {
 };
 
 function BigPoster({ id, rating, title, posterUrl }: BigPosterProps) {
-  console.log(typeof rating);
-
   return (
     <article className="poster-big poster-recommend">
       <div className="poster-big__img">

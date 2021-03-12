@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../modules';
-import { fetchVideoListThunk } from '../modules/videoList';
+import { fetchMainVideoThunk } from '../modules/mainVideo';
 
 import PosterContainer from '../components/PosterContainer';
 import RecommendedModal from '../components/RecommendedModal';
 import Banner from '../components/Banner';
 
 import '../scss/Main.scss';
-import { fetchMainVideoThunk } from '../modules/mainVideo';
 
 function Main() {
   const dispatch = useDispatch();

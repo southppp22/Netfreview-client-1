@@ -1,25 +1,18 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { loginThunk } from '../modules/login/thunks';
 import { useForm } from 'react-hook-form';
+import { RootState } from '../modules';
 import _ from 'lodash/fp';
+
+import SignUp from './SignUp';
+import Findpw from './Findpw';
+
 import img from '../img/logo.png';
 import facebook from '../img/facebook.png';
 import google from '../img/google.png';
 import kakao from '../img/kakao-talk.png';
 import '../scss/SignIn.scss';
-// import {
-//   BrowserRouter as Router,
-//   Switch,
-//   Route,
-//   Link,
-//   Redirect,
-//   useHistory,
-// } from 'react-router-dom';
-import SignUp from './SignUp';
-import Findpw from './Findpw';
-import axios from 'axios';
-import { RootState } from '../modules';
 
 /*********type************/
 interface FormInput {
@@ -27,20 +20,18 @@ interface FormInput {
   password: string;
 }
 
-type token = {
-  onLoginSuccess: () => void;
-  onRefresh: () => void;
-};
+// type token = {
+//   onLoginSuccess: () => void;
+//   onRefresh: () => void;
+// };
 
 type isModalprops = {
   closeModal: () => void;
 };
 
 /*********Function********/
-function SignIn(
-  { closeModal }: isModalprops,
-  { onLoginSuccess, onRefresh }: token
-) {
+function SignIn({ closeModal }: isModalprops) {
+  // { onLoginSuccess, onRefresh }: token
   const { status } = useSelector((state: RootState) => state.login);
 
   const { register, handleSubmit, errors } = useForm<FormInput>();
@@ -77,7 +68,7 @@ function SignIn(
   // };
 
   //만료시간
-  const JWT_EXPIRY_TIME = 24 * 3600 * 1000;
+  // const JWT_EXPIRY_TIME = 24 * 3600 * 1000;
 
   const onSubmit = async () => {
     await dispatch(

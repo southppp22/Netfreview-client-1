@@ -1,22 +1,20 @@
-import React, { ChangeEvent, MouseEvent, useState, useEffect } from 'react';
-import axios from 'axios';
-import SmallPoster from '../components/SmallPoster';
-import '../scss/Mypage.scss';
-import { Link, useHistory, useLocation } from 'react-router-dom';
-import profile from '../img/profileImg.png';
+import React, { useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import { RootState } from '../modules';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutThunk } from '../modules/login';
 import { fetchUserInfoThunk } from '../modules/userInfo';
 import { fetchVideoListThunk, resetVideoList } from '../modules/videoList';
 
+import SmallPoster from '../components/SmallPoster';
+import profile from '../img/profileImg.png';
+import '../scss/Mypage.scss';
+
 function Mypage() {
-  const location = useLocation().pathname;
+  // const location = useLocation().pathname;
   const history = useHistory();
   const dispatch = useDispatch();
-  const { status, isLogin, accessToken } = useSelector(
-    (state: RootState) => state.login
-  );
+  const { isLogin } = useSelector((state: RootState) => state.login);
   const { userName, nickname, introduction, profileUrl } = useSelector(
     (state: RootState) => state.userInfo
   );
@@ -32,7 +30,7 @@ function Mypage() {
     return () => {
       dispatch(resetVideoList());
     };
-  }, [dispatch]);
+  }, [dispatch, isLogin]);
 
   const renderVideoList = () => {
     if (videoList) {

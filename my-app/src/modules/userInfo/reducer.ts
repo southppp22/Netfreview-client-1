@@ -43,7 +43,7 @@ const userInfo = createReducer<UserInfoState, UserInfoAction>(initialState, {
     ...state,
     status: 'loading',
   }),
-  [DELETE_USER_SUCCESS]: (state) => ({
+  [DELETE_USER_SUCCESS]: (/*state*/) => ({
     ...initialState,
   }),
   [DELETE_USER_FAILURE]: (state) => ({

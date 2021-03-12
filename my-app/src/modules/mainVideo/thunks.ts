@@ -2,7 +2,7 @@ import { ThunkAction } from 'redux-thunk';
 import { RootState } from '..';
 import { fetchMainVideo } from '../../api/fetchMainVideo';
 import { fetchMainVideoAsync } from './actions';
-import { fetchMainVideoPayloadType, MainVideoAction } from './types';
+import { MainVideoAction } from './types';
 
 export function fetchMainVideoThunk(): ThunkAction<
   void,

@@ -1,10 +1,9 @@
 import axios from 'axios';
 import React, { ChangeEvent, useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-// import useReactRouter from 'use-react-router';
 import { Link, useHistory } from 'react-router-dom';
 import { RootState } from '../modules';
-// import useUserInfo from '../hooks/useUserInfo';
+
 import '../scss/ModifyUserInfo.scss';
 
 function Resetpw() {
@@ -28,10 +27,7 @@ function Resetpw() {
     } else if (password === confirmPw) {
       setIsMatchPw(true);
     }
-  });
-  const handleNickname = (e: ChangeEvent<HTMLInputElement>) => {
-    setDiffNickname(e.target.value);
-  };
+  }, [password, confirmPw]);
 
   //비밀번호 유효성 검사
   const handlePW = (e: ChangeEvent<HTMLInputElement>) => {
@@ -49,10 +45,6 @@ function Resetpw() {
   };
   const isPwMatches = (e: ChangeEvent<HTMLInputElement>) => {
     setConfirmPw(e.target.value);
-  };
-
-  const handleIntroduction = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setDescription(e.target.value);
   };
 
   const checkModified = () => {

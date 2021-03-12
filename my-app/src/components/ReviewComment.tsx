@@ -1,21 +1,11 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
-// import InfoCard from './InfoCard';
-// import {
-//   BrowserRouter as Router,
-//   Switch,
-//   Route,
-//   Link,
-//   Redirect,
-// } from 'react-router-dom';
-//import axios from 'axios';
-import '../scss/ReviewComment.scss';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { addLikeThunk } from '../modules/review';
 import profile from '../img/profile.png';
 import plant from '../img/plant.png';
 import heart from '../img/heart.png';
-import { useDispatch } from 'react-redux';
-import { addLikeThunk } from '../modules/review';
-// import { addLike } from '../modules/reviews';
+import '../scss/ReviewComment.scss';
 type ReviewCommentProps = {
   rating: number;
   id: number;

@@ -5,25 +5,25 @@ import {
   FETCH_MAINVIDEO_FAILURE,
   RESET_MAINVIDEO,
 } from './actions';
-import { MainVideoAction, VideoInfo, MainVideo, MainVideoState } from './types';
+import { MainVideoAction, MainVideo, MainVideoState } from './types';
 
-const initVideoInfo: VideoInfo = {
-  id: 0,
-  title: '',
-  description: '',
-  director: '',
-  actor: '',
-  runtime: '',
-  ageLimit: '',
-  releaseYear: '',
-  posterUrl: '',
-  bannerUrl: '',
-  netflixUrl: '',
-  type: '',
-  createdAt: new Date(),
-  updatedAt: new Date(),
-  rating: 0,
-};
+// const initVideoInfo: VideoInfo = {
+//   id: 0,
+//   title: '',
+//   description: '',
+//   director: '',
+//   actor: '',
+//   runtime: '',
+//   ageLimit: '',
+//   releaseYear: '',
+//   posterUrl: '',
+//   bannerUrl: '',
+//   netflixUrl: '',
+//   type: '',
+//   createdAt: new Date(),
+//   updatedAt: new Date(),
+//   rating: 0,
+// };
 
 const initMainVideo: MainVideo = {
   top5VideoList: [],

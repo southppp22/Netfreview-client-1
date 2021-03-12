@@ -4,25 +4,7 @@ import {
   FETCH_VIDEOLIST_SUCCESS,
   FETCH_VIDEOLIST_FAILURE,
 } from './actions';
-import { VideoListAction, VideoInfo, VideoList, VideoListState } from './types';
-
-const initVideoInfo: VideoInfo = {
-  id: 0,
-  title: '',
-  description: '',
-  director: '',
-  actor: '',
-  runtime: '',
-  ageLimit: '',
-  releaseYear: '',
-  posterUrl: '',
-  bannerUrl: '',
-  netflixUrl: '',
-  type: '',
-  createdAt: new Date(),
-  updatedAt: new Date(),
-  rating: 0,
-};
+import { VideoListAction, VideoList, VideoListState } from './types';
 
 const initVideoList: VideoList = {
   videoList: [],

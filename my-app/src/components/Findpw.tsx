@@ -1,17 +1,9 @@
+import axios from 'axios';
 import React, { useState, useRef /*FormEvent*/ } from 'react';
-//import ReactDOM from 'react-dom';
 import { useForm } from 'react-hook-form';
+import SignIn from './SignIn';
 import img from '../img/logo.png';
 import '../scss/Findpw.scss';
-// import {
-//   BrowserRouter as Router,
-//   Switch,
-//   Route,
-//   Link,
-//   Redirect,
-// } from 'react-router-dom';
-import SignIn from './SignIn';
-import axios from 'axios';
 
 /********* type ********/
 interface FormInput {

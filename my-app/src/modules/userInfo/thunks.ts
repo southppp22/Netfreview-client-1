@@ -3,7 +3,6 @@ import { RootState } from '..';
 import {
   deleteUserPayloadType,
   updateUserPayloadType,
-  UserInfo,
   UserInfoAction,
 } from './types';
 import {

@@ -1,25 +1,117 @@
-.reviewbanner {
-  width: 100vw;
+.bg-color {
+  height: 100%;
+}
+.wrap {
+  position: relative;
   height: 400px;
-  background-color: lightgrey;
+}
+.text-wrapper {
+  //border: 1px solid red;
+  display: flex;
+  position: absolute;
+  top: 0px;
+  width: 1280px;
+  overflow: hidden;
+  z-index: 5;
+}
+.reviewbanner-wrapper {
+  //border: 1px solid blue;
+  display: flex;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  -webkit-box-pack: center;
+  justify-content: center;
+  background: black;
+  width: 100%;
+  overflow: hidden;
+}
+
+.reviewbanner-left {
+  //border: 1px solid red;
+  //flex: 1 1 0%;
+  background: rgb(0, 0, 0);
+  width: 30%;
+  height: 400px;
+}
+
+.reviewbanner-background {
+  // width: 100vw;
+  // height: 400px;
+  // background-color: black;
   // background: linear-gradient(blue, pink);
+  // background-position: center;
+  // background-size: contain;
+  // background-repeat: no-repeat;
+  // opacity: 0.8;
+  //border: 1px solid yellow;
+  position: relative;
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
-  opacity: 0.8;
+  top: auto;
+  left: auto;
+  width: 800px;
+  height: 400px;
+  filter: none;
 }
+
+.reviewbanner-right {
+  //border: 1px solid red;
+  // flex: 1 1 0%;
+  background: rgb(0, 0, 0);
+  width: 30%;
+  height: 400px;
+}
+.reviewbackground-left {
+  //border: 1px solid red;
+  // margin-left: 150px;
+  display: block;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  background-image: linear-gradient(
+    -90deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgb(0, 0, 0) 100%
+  );
+  width: 300px;
+}
+.reviewbackground-right {
+  //border: 1px solid red;
+  display: block;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  background-image: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgb(0, 0, 0) 100%
+  );
+  width: 300px;
+  // margin-right: 100px;
+}
+
 .review-wrap {
+  //border: 1px solid greenyellow;
   width: 1280px;
   margin: 0 auto;
+  z-index: 5;
+  left: 1000;
+  overflow: hidden;
 }
 .reviewbanner__title {
-  //border: 1px solid blue;
+  //border: 1px solid greenyellow;
   font-size: 48px;
   padding-top: 185px;
   margin-bottom: 15px;
   font-weight: bold;
+  color: white;
 }
 .reviewbanner__netflix {
+  //border: 1px solid pink;
   width: 130px;
   height: 36px;
   line-height: 36px;
@@ -28,4 +120,5 @@
   color: #fff;
   font-size: 14px;
   text-align: center;
+  margin-top: 30px;
 }

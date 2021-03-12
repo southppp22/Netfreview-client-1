@@ -1,9 +1,19 @@
 import { ThunkAction } from 'redux-thunk';
 import { RootState } from '..';
-import { deleteUserPayloadType, UserInfoAction } from './types';
-import { deleteUserAsync, fetchUserInfoAsync } from './actions';
+import {
+  deleteUserPayloadType,
+  updateUserPayloadType,
+  UserInfo,
+  UserInfoAction,
+} from './types';
+import {
+  deleteUserAsync,
+  fetchUserInfoAsync,
+  updateUserAsync,
+} from './actions';
 import { deleteUser } from '../../api/deleteUser';
 import { fetchUserInfo } from '../../api/fetchUserInfo';
+import { updateUserInfo } from '../../api/updateUserInfo';
 
 export function fetchUserInfoThunk(): ThunkAction<
   void,
@@ -33,6 +43,25 @@ export function deleteUserThunk(
       await deleteUser(payload);
       dispatch(success());
     } catch (e) {
+      dispatch(failure(e));
+    }
+  };
+}
+
+export function updateUserThunk(
+  payload: updateUserPayloadType
+): ThunkAction<void, RootState, null, UserInfoAction> {
+  return async (dispatch) => {
+    console.log('3');
+    const { request, success, failure } = updateUserAsync;
+    dispatch(request());
+    console.log('4 시작');
+    try {
+      const userInfo = await updateUserInfo(payload);
+      console.log('userinfo', userInfo);
+      dispatch(success(userInfo));
+    } catch (e) {
+      console.log('err');
       dispatch(failure(e));
     }
   };

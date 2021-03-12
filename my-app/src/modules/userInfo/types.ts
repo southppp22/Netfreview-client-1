@@ -9,9 +9,9 @@ export type UserInfo = {
   nickname: string;
   introduction: string;
   profileUrl: string | null;
-  lastLogin: Date;
-  createdAt: Date;
-  updatedAt: Date;
+  lastLogin?: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
 };
 
 export type UserInfoState = {
@@ -26,4 +26,11 @@ export type UserInfoState = {
 
 export type deleteUserPayloadType = {
   userId: string;
+};
+
+export type updateUserPayloadType = {
+  profileUrl?: string;
+  introduction?: string;
+  password?: string;
+  nickname?: string;
 };

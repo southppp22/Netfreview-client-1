@@ -3,10 +3,15 @@ import React, { ChangeEvent, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // import useReactRouter from 'use-react-router';
 import { Link, useHistory } from 'react-router-dom';
+import { updateUserInfo } from '../api/updateUserInfo';
 // import useUserInfo from '../hooks/useUserInfo';
 import profile from '../img/profileImg.png';
 import { RootState } from '../modules';
-import { deleteUserThunk } from '../modules/userInfo';
+import {
+  deleteUserThunk,
+  updateUserPayloadType,
+  updateUserThunk,
+} from '../modules/userInfo';
 import '../scss/ModifyUserInfo.scss';
 
 function ModifyUserInfo() {
@@ -125,77 +130,32 @@ function ModifyUserInfo() {
     return false;
   };
 
-  const confirmModified = () => {
+  const canPasswordSave = [isValidPw, isMatchPw, password].every(Boolean);
+
+  const confirmModified = async () => {
     const isModified = confirm('회원정보 변경 사항을 적용하시겠습니까?');
     if (isModified) {
+      let profileUrl = '';
       if (imgFile) {
         const formData = new FormData();
         formData.append('image', imgFile);
 
-        axios
-          .post('/image', formData, {
-            headers: { Authorization: `Bearer ${accessToken}` },
-          })
-          .then((res) => {
-            console.log(res.data.data.profileUrl);
-            axios.patch(
-              '/users',
-              { profileUrl: res.data.data.profileUrl },
-              {
-                headers: { Authorization: `Bearer ${accessToken}` },
-              }
-            );
-          })
-          .then((res) => console.log(res))
-          .catch((err) => console.log(err.response));
-      } else if (previewURL === profile) {
-        console.log('modify-deleteImg');
-        axios
-          .patch(
-            '/users',
-            { profileUrl: null },
-            {
-              headers: { Authorization: `Bearer ${accessToken}` },
-            }
-          )
-          .then((res) => {
-            console.log(res, 'Reset Image');
-          })
-          .catch((err) => console.log(err.response));
-        // onSetImg('');
+        const res = await axios.post('/image', formData, {
+          headers: { Authorization: `Bearer ${accessToken}` },
+        });
+        profileUrl = res.data.data.profileUrl;
       }
-
-      if (diffNickname !== nickname || description !== introduction) {
-        console.log('modify-nickname');
-        axios
-          .patch(
-            '/users',
-            { nickname: diffNickname, introduction: description },
-            {
-              headers: { Authorization: `Bearer ${accessToken}` },
-            }
-          )
-          .then((res) => {
-            console.log('save diff nickname');
-          })
-          .catch((err) => console.log(err.response));
-        // onSetNickname(diffNickname);
+      const payload: updateUserPayloadType = {
+        nickname: diffNickname,
+        introduction: description,
+      };
+      if (canPasswordSave) {
+        payload.password = password;
       }
-
-      if (password && isValidPw && isMatchPw) {
-        axios
-          .patch(
-            '/users',
-            { password },
-            {
-              headers: { Authorization: `Bearer ${accessToken}` },
-            }
-          )
-          .then((res) => {
-            console.log('modify-pw!');
-          })
-          .catch((err) => console.log(err.response));
+      if (profileUrl) {
+        payload.profileUrl = profileUrl;
       }
+      await dispatch(updateUserThunk(payload));
       history.push('/mypage');
     }
   };
@@ -324,7 +284,7 @@ function ModifyUserInfo() {
                     cols={30}
                     rows={10}
                     onChange={handleIntroduction}
-                    value={description}
+                    value={description ? description : ''}
                   >
                     {/* {description} */}
                   </textarea>

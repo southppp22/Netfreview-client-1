@@ -59,6 +59,7 @@ const login = createReducer<LoginState, LoginAction>(initailState, {
   }),
   [LOGOUT_FAILURE]: (state) => ({
     ...state,
+    ...initailState,
     status: 'failed',
   }),
 });

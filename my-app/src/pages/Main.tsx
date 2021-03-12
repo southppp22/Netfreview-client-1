@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../modules';
-import { fetchVideoListThunk } from '../modules/videoList';
+import { fetchMainVideoThunk } from '../modules/mainVideo';
 
 import PosterContainer from '../components/PosterContainer';
 import RecommendedModal from '../components/RecommendedModal';
@@ -12,7 +12,7 @@ import '../scss/Main.scss';
 function Main() {
   const dispatch = useDispatch();
   const { top5VideoList, mostReviewVidList, lessReviewVidList } = useSelector(
-    (state: RootState) => state.videoList.videoInfoList
+    (state: RootState) => state.mainVideo.videoInfoList
   );
   const [isModal, setIsModal] = useState<boolean>(false);
 
@@ -27,8 +27,7 @@ function Main() {
   // };
 
   useEffect(() => {
-    const payload = { pathname: 'main' };
-    dispatch(fetchVideoListThunk(payload));
+    dispatch(fetchMainVideoThunk());
   }, [dispatch]);
 
   return (

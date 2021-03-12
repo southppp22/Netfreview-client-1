@@ -1,7 +1,7 @@
 import { ActionType } from 'typesafe-actions';
 import * as actions from './actions';
 
-export type VideoListAction = ActionType<typeof actions>;
+export type MainVideoAction = ActionType<typeof actions>;
 
 export type VideoInfo = {
   id: number;
@@ -21,16 +21,18 @@ export type VideoInfo = {
   rating: number;
 };
 
-export type VideoList = {
-  videoList?: VideoInfo[];
+export type MainVideo = {
+  top5VideoList?: VideoInfo[];
+  mostReviewVidList?: VideoInfo[];
+  lessReviewVidList?: VideoInfo[];
 };
 
-export type VideoListState = {
-  videoInfoList: VideoList;
+export type MainVideoState = {
+  videoInfoList: MainVideo;
   status: string;
 };
 
-export type fetchVideoListPayloadType = {
+export type fetchMainVideoPayloadType = {
   pathname?: string;
   query?: string;
 };

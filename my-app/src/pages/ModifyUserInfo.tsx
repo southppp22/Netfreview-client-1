@@ -1,10 +1,7 @@
 import axios from 'axios';
 import React, { ChangeEvent, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import useReactRouter from 'use-react-router';
 import { Link, useHistory } from 'react-router-dom';
-import { updateUserInfo } from '../api/updateUserInfo';
-// import useUserInfo from '../hooks/useUserInfo';
 import profile from '../img/profileImg.png';
 import { RootState } from '../modules';
 import {
@@ -17,9 +14,7 @@ import '../scss/ModifyUserInfo.scss';
 function ModifyUserInfo() {
   const history = useHistory();
   const dispatch = useDispatch();
-  const { status, isLogin, accessToken } = useSelector(
-    (state: RootState) => state.login
-  );
+  const { accessToken } = useSelector((state: RootState) => state.login);
   const { userId, userName, nickname, profileUrl, introduction } = useSelector(
     (state: RootState) => state.userInfo
   );
@@ -49,7 +44,7 @@ function ModifyUserInfo() {
         setIsMatchPw(true);
       }
     };
-  });
+  }, [password, confirmPw]);
   const handleNickname = (e: ChangeEvent<HTMLInputElement>) => {
     setDiffNickname(e.target.value);
   };

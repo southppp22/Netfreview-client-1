@@ -1,27 +1,14 @@
+import axios from 'axios';
 import React, { useState, useRef /*FormEvent*/ } from 'react';
-import thunk from 'redux-thunk';
-import { useSelector, useDispatch } from 'react-redux';
-import { loginThunk } from '../modules/login/thunks';
-import _ from 'lodash/fp';
-//import ReactDOM from 'react-dom';
 import { useForm } from 'react-hook-form';
+import _ from 'lodash/fp';
+import SignIn from './SignIn';
+
 import img from '../img/logo.png';
 import facebook from '../img/facebook.png';
 import google from '../img/google.png';
 import kakao from '../img/kakao-talk.png';
 import '../scss/SignUp.scss';
-// import {
-//   BrowserRouter as Router,
-//   Switch,
-//   Route,
-//   Link,
-//   Redirect,
-// } from 'react-router-dom';
-// import axios from 'axios';
-import SignIn from './SignIn';
-import axios from 'axios';
-import { NumberLiteralType } from 'typescript';
-import { Dispatch } from 'redux';
 
 /********* type ********/
 interface FormInput {
@@ -44,10 +31,10 @@ function SignUp({ closeModal }: isModalprops) {
   const [nickname, setNickname] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [rePassword, setRePassword] = useState<string>('');
+  // const [rePassword, setRePassword] = useState<string>('');
   const number = 4;
   // console.log(watch('password-confirm'));
-  const dispatch = useDispatch();
+
   const Password = useRef();
   Password.current = watch('Password');
 

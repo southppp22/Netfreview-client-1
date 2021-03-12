@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import axios from 'axios';
 import './App.css';
 /***** Components *****/
 import Header from './components/Header';
@@ -23,9 +22,8 @@ import { refreshThunk } from './modules/login';
 /**********function*************/
 
 function App() {
-  const { status, isLogin } = useSelector((state: RootState) => state.login);
+  const { isLogin } = useSelector((state: RootState) => state.login);
 
-  const [isvideo, setIsVideo] = useState<any>([]);
   const dispatch = useDispatch();
   //만료시간
   // const JWT_EXPIRY_TIME = 24 * 3600 * 1000;
@@ -37,15 +35,23 @@ function App() {
   //   setTimeout(onRefresh, JWT_EXPIRY_TIME - 60000); //로그인연장
   // };
   //cookie에 담긴 refreshToken이 자동으로 보내지면, 새로운 refreshToekn과 accessToken을 return
-  const onRefresh = () => {
-    dispatch(refreshThunk());
-  };
+
+  // const onRefresh = () => {
+  //   dispatch(refreshThunk());
+  // };
+
+  // useEffect(() => {
+  //   if (!isLogin) {
+  //     onRefresh();
+  //   }
+  // }, [isLogin, onRefresh]);
 
   useEffect(() => {
     if (!isLogin) {
-      onRefresh();
+      dispatch(refreshThunk());
     }
-  }, []);
+  }, [isLogin, dispatch]);
+
   return (
     <div className="wrapper">
       <Router>

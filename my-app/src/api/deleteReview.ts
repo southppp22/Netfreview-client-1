@@ -1,5 +1,7 @@
 import axios from 'axios';
-import { deleteReviewPayloadType, MyReview } from '../modules/review/types';
+import {
+  deleteReviewPayloadType /*, MyReview */,
+} from '../modules/review/types';
 
 export async function deleteReview(
   payload: deleteReviewPayloadType

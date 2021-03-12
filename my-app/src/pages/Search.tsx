@@ -1,11 +1,5 @@
-import axios from 'axios';
-import React, { useState, useEffect } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
-import queryString from 'query-string';
-import SmallPoster from '../components/SmallPoster';
-// import Header from '../components/Header';
-import nosearch from '../img/nosearch.png';
-import '../scss/Search.scss';
+import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   fetchVideoListThunk,
@@ -13,13 +7,10 @@ import {
   VideoInfo,
 } from '../modules/videoList';
 import { RootState } from '../modules';
-
-type Video = {
-  id: number;
-  title: string;
-  posterUrl: string;
-  rating: number;
-};
+import queryString from 'query-string';
+import SmallPoster from '../components/SmallPoster';
+import nosearch from '../img/nosearch.png';
+import '../scss/Search.scss';
 
 function Search() {
   const location = useLocation();
@@ -28,7 +19,7 @@ function Search() {
 
   const {
     videoInfoList: { videoList },
-    status,
+    // status,
   } = useSelector((state: RootState) => state.videoList);
 
   useEffect(() => {
@@ -39,7 +30,7 @@ function Search() {
     return () => {
       dispatch(resetVideoList());
     };
-  }, [query]);
+  }, [query, dispatch]);
   return (
     <div className="whole">
       {/* {isSearch ? (  */}

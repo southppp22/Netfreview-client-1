@@ -1,59 +1,36 @@
-import React, { ChangeEvent, MouseEvent, useState, useEffect } from 'react';
-import axios from 'axios';
-import SmallPoster from '../components/SmallPoster';
-import '../scss/Mypage.scss';
-import { Link, useHistory, useLocation } from 'react-router-dom';
-import profile from '../img/profileImg.png';
+import React, { useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import { RootState } from '../modules';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutThunk } from '../modules/login';
 import { fetchUserInfoThunk } from '../modules/userInfo';
+import { fetchVideoListThunk, resetVideoList } from '../modules/videoList';
+
+import SmallPoster from '../components/SmallPoster';
+import profile from '../img/profileImg.png';
+import '../scss/Mypage.scss';
 
 function Mypage() {
-  const location = useLocation().pathname;
+  // const location = useLocation().pathname;
   const history = useHistory();
   const dispatch = useDispatch();
-  const { status, isLogin, accessToken } = useSelector(
-    (state: RootState) => state.login
-  );
+  const { isLogin } = useSelector((state: RootState) => state.login);
   const { userName, nickname, introduction, profileUrl } = useSelector(
     (state: RootState) => state.userInfo
   );
-  const [img, setImg] = useState<File | undefined>(undefined);
-
-  type VideoList = {
-    id: number;
-    title: string;
-    posterUrl: string;
-    rating: number;
-  };
-  const [videoList, setVideoList] = useState<VideoList[] | undefined>(
-    undefined
-  );
+  const {
+    videoInfoList: { videoList },
+  } = useSelector((state: RootState) => state.videoList);
 
   useEffect(() => {
-    dispatch(fetchUserInfoThunk());
-    axios
-      .get('/videos/videolist/?path=myPage', {
-        headers: { Authorization: `Bearer ${accessToken}` },
-      })
-      .then((res) => {
-        const videoLists = res.data.videoList;
-        console.log(res.data.videoList);
-        if (videoLists && videoLists.length > 0) {
-          const videos = res.data.videoList.map((video: any) => {
-            return {
-              id: video.id,
-              title: video.title,
-              posterUrl: video.posterUrl,
-              rating: video.rating,
-            };
-          });
-          setVideoList(videos);
-        }
-      })
-      .catch((err) => console.log(err.response));
-  }, [status === 'idle']);
+    if (isLogin) {
+      dispatch(fetchUserInfoThunk());
+      dispatch(fetchVideoListThunk({ pathname: 'myPage' }));
+    }
+    return () => {
+      dispatch(resetVideoList());
+    };
+  }, [dispatch, isLogin]);
 
   const renderVideoList = () => {
     if (videoList) {

@@ -41,7 +41,7 @@ function WriteReview({ setIsOn }: WriteReviewProps) {
     setIsOn(false);
   };
 
-  const canSave = () => Boolean(rating && text); //에러처리해주기 액세스토큰도
+  // const canSave = () => Boolean(rating && text); //에러처리해주기 액세스토큰도
 
   return (
     <div className="writereview">

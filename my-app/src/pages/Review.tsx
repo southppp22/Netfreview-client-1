@@ -23,7 +23,7 @@ function Review() {
   const reviews = useSelector((state: RootState) => state.review);
   const {
     reviews: { myReview },
-    status,
+    // status,
   } = reviews;
 
   const dispatch = useDispatch();

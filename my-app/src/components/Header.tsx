@@ -1,12 +1,11 @@
-import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import profile from '../img/profileImg.svg';
-import SignIn from './SignIn';
-import '../scss/Header.scss';
 import { RootState } from '../modules';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUserInfoThunk } from '../modules/userInfo';
+import profile from '../img/profileImg.svg';
+import SignIn from './SignIn';
+import '../scss/Header.scss';
 
 /************** 함수 *************/
 
@@ -56,8 +55,10 @@ function Header() {
   });
 
   useEffect(() => {
-    dispatch(fetchUserInfoThunk());
-  }, [status === 'idle', dispatch]);
+    if (status === 'idle') {
+      dispatch(fetchUserInfoThunk());
+    }
+  }, [status, dispatch]);
 
   return (
     // path가 /(메인) 혹은 /review인 경우는 'header'와 headerClass로 className을 할당한다. 그 외에는 'header'만 할당해준다.

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { RootState } from '../modules';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchUserInfoThunk } from '../modules/userInfo';
+import { fetchMyInfoThunk } from '../modules/myInfo';
 import profile from '../img/profileImg.svg';
 import SignIn from './SignIn';
 import '../scss/Header.scss';
@@ -13,7 +13,7 @@ function Header() {
   const location = useLocation().pathname;
   const dispatch = useDispatch();
   const { status, isLogin } = useSelector((state: RootState) => state.login);
-  const { profileUrl } = useSelector((state: RootState) => state.userInfo);
+  const { profileUrl } = useSelector((state: RootState) => state.myInfo);
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [headerClass, setHeaderClass] = useState('basic');
@@ -56,7 +56,7 @@ function Header() {
 
   useEffect(() => {
     if (status === 'idle') {
-      dispatch(fetchUserInfoThunk());
+      dispatch(fetchMyInfoThunk());
     }
   }, [status, dispatch]);
 

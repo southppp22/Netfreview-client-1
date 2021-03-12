@@ -5,18 +5,18 @@ import { Link, useHistory } from 'react-router-dom';
 import profile from '../img/profileImg.png';
 import { RootState } from '../modules';
 import {
-  deleteUserThunk,
-  updateUserPayloadType,
-  updateUserThunk,
-} from '../modules/userInfo';
+  deleteMyInfoThunk,
+  updateMyInfoPayloadType,
+  updateMyInfoThunk,
+} from '../modules/myInfo';
 import '../scss/ModifyUserInfo.scss';
 
 function ModifyUserInfo() {
   const history = useHistory();
   const dispatch = useDispatch();
   const { accessToken } = useSelector((state: RootState) => state.login);
-  const { userId, userName, nickname, profileUrl, introduction } = useSelector(
-    (state: RootState) => state.userInfo
+  const { myId, myName, nickname, profileUrl, introduction } = useSelector(
+    (state: RootState) => state.myInfo
   );
 
   const [diffNickname, setDiffNickname] = useState(nickname);
@@ -101,10 +101,10 @@ function ModifyUserInfo() {
     const isDelete = confirm('정말로 탈퇴하시겠습니까?');
     if (isDelete) {
       const payload = {
-        userId,
+        myId,
       };
       try {
-        dispatch(deleteUserThunk(payload));
+        dispatch(deleteMyInfoThunk(payload));
         history.push('/');
       } catch (e) {
         console.log(e.response);
@@ -140,7 +140,7 @@ function ModifyUserInfo() {
         });
         profileUrl = res.data.data.profileUrl;
       }
-      const payload: updateUserPayloadType = {
+      const payload: updateMyInfoPayloadType = {
         nickname: diffNickname,
         introduction: description,
       };
@@ -150,7 +150,7 @@ function ModifyUserInfo() {
       if (profileUrl) {
         payload.profileUrl = profileUrl;
       }
-      await dispatch(updateUserThunk(payload));
+      await dispatch(updateMyInfoThunk(payload));
       history.push('/mypage');
     }
   };
@@ -165,7 +165,7 @@ function ModifyUserInfo() {
                 <div className="table__th-cell">이름</div>
               </th>
               <td className="table__td">
-                <div className="table__td-cell text">{userName}</div>
+                <div className="table__td-cell text">{myName}</div>
               </td>
             </tr>
             <tr className="table__name">

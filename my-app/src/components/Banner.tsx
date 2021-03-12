@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { RootState } from '../modules';
+
+import BannerSlide from './BannerSlide';
+import 'swiper/swiper.scss';
 
 type VideoInfo = {
   id: number;
@@ -11,9 +14,10 @@ type VideoInfo = {
 };
 
 function Banner() {
-  const { top5VideoList } = useSelector(
-    (state: RootState) => state.mainVideo.videoInfoList
-  );
+  const {
+    videoInfoList: { top5VideoList, lessReviewVidList },
+    status,
+  } = useSelector((state: RootState) => state.mainVideo);
 
   const [topVideo, setTopVideo] = useState<VideoInfo>({
     id: 0,
@@ -21,30 +25,38 @@ function Banner() {
     description: '',
     bannerUrl: '',
   });
+  const [lessVideo, setLessVideo] = useState<VideoInfo>({
+    id: 0,
+    title: '',
+    description: '',
+    bannerUrl: '',
+  });
 
   useEffect(() => {
-    top5VideoList && setTopVideo(top5VideoList[0]);
-  }, [top5VideoList]);
+    if (status === 'idle') {
+      top5VideoList && setTopVideo(top5VideoList[0]);
+      lessReviewVidList && setLessVideo(lessReviewVidList[0]);
+    }
+  }, [top5VideoList, lessReviewVidList, status]);
 
   return (
-    <section
-      className="banner"
-      style={{
-        backgroundImage: `url(${topVideo?.bannerUrl})`,
-      }}
+    <Swiper
+      className="swiper-container"
+      spaceBetween={0}
+      slidesPerView={1}
+      onSwiper={(swiper) => console.log(swiper)}
+      onSlideChange={() => console.log('slide change')}
+      loop={true}
+      style={{ height: '555px' }}
     >
-      <div className="bg-color">
-        <div className="banner__container">
-          <article>
-            <h1 className="banner__title">{topVideo?.title}</h1>
-            <p className="banner__synopsis">{topVideo?.description}</p>
-            <Link to={`/review/${topVideo?.id}/?page=1`}>
-              <button>리뷰보러가기</button>
-            </Link>
-          </article>
-        </div>
-      </div>
-    </section>
+      <SwiperSlide>
+        <BannerSlide subTitle="넷프리뷰의 NO.1" video={topVideo} />
+      </SwiperSlide>
+      <SwiperSlide>
+        <BannerSlide subTitle="당신의 리뷰가 필요한" video={lessVideo} />
+      </SwiperSlide>
+      <SwiperSlide> slide3 </SwiperSlide>
+    </Swiper>
   );
 }
 

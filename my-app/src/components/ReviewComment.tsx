@@ -6,6 +6,7 @@ import profile from '../img/profile.png';
 import plant from '../img/plant.png';
 import heart from '../img/heart.png';
 import '../scss/ReviewComment.scss';
+import { Link } from 'react-router-dom';
 type ReviewCommentProps = {
   rating: number;
   id: number;
@@ -22,13 +23,8 @@ type ReviewCommentProps = {
 };
 
 function ReviewComment(props: ReviewCommentProps) {
-  const {
-    user: { nickname, profileUrl },
-    id,
-    text,
-    rating,
-    likeCount,
-  } = props;
+  const { user, id, text, rating, likeCount } = props;
+  console.log(user.id);
 
   const dispatch = useDispatch();
 
@@ -48,9 +44,10 @@ function ReviewComment(props: ReviewCommentProps) {
         <div className="reviewList-top">
           <div className="wholeInfo__profile">
             <div className="profile__wrapper">
-              <img src={profileUrl || profile} className="profile__img" />
+              <img src={user.profileUrl || profile} className="profile__img" />
             </div>
-            <span className="profile__nickname">{nickname}</span>
+            <Link to={`/userpage/${user.id}`} />
+            <span className="profile__nickname">{user.nickname}</span>
           </div>
 
           <div className="wholeInfo__count">

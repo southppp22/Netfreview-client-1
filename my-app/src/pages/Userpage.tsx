@@ -1,36 +1,46 @@
 import React, { useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { RootState } from '../modules';
 import { useDispatch, useSelector } from 'react-redux';
-import { logoutThunk } from '../modules/login';
-import { fetchMyInfoThunk } from '../modules/myInfo';
-import { fetchVideoListThunk, resetVideoList } from '../modules/videoList';
+import { fetchUserInfoThunk } from '../modules/userInfo';
+import { resetVideoList } from '../modules/videoList';
+// import queryString from 'query-string';
 
 import SmallPoster from '../components/SmallPoster';
 import profile from '../img/profileImg.png';
 import '../scss/Mypage.scss';
 
-function Mypage() {
+// type UserpageProps = {
+//   userId: string;
+// };
+
+function Userpage() {
+  // const match = useRouteMatch();
   // const location = useLocation().pathname;
-  const history = useHistory();
   const dispatch = useDispatch();
+  const { userId } = useParams<{ userId: string }>();
   const { isLogin } = useSelector((state: RootState) => state.login);
-  const { myName, nickname, introduction, profileUrl } = useSelector(
-    (state: RootState) => state.myInfo
-  );
   const {
-    videoInfoList: { videoList },
-  } = useSelector((state: RootState) => state.videoList);
+    userName,
+    nickname,
+    introduction,
+    profileUrl,
+    videoList,
+  } = useSelector((state: RootState) => state.userInfo);
+
+  // const {
+  //   videoInfoList: { videoList },
+  // } = useSelector((state: RootState) => state.videoList);
 
   useEffect(() => {
     if (isLogin) {
-      dispatch(fetchMyInfoThunk());
-      dispatch(fetchVideoListThunk({ pathname: 'myPage' }));
+      dispatch(fetchUserInfoThunk(userId));
+      // dispatch(fetchVideoListThunk({ pathname: 'myPage' }));
     }
     return () => {
       dispatch(resetVideoList());
     };
-  }, [dispatch, isLogin]);
+  }, [dispatch, isLogin, userId]);
 
   const renderVideoList = () => {
     if (videoList) {
@@ -40,21 +50,21 @@ function Mypage() {
           id={video.id}
           title={video.title}
           posterUrl={video.posterUrl}
-          rating={video.rating}
+          rating={video.rating || 0}
         />
       ));
     }
     return null;
   };
 
-  const handleLogout = async () => {
-    try {
-      dispatch(logoutThunk());
-      history.push('/');
-    } catch (e) {
-      console.log(e.response);
-    }
-  };
+  // const handleLogout = async () => {
+  //   try {
+  //     dispatch(logoutThunk());
+  //     history.push('/');
+  //   } catch (e) {
+  //     console.log(e.response);
+  //   }
+  // };
 
   return (
     <div className="mypage">
@@ -66,12 +76,12 @@ function Mypage() {
             </div>
             <div className="user__info">
               <h3 className="user__id">{nickname}</h3>
-              <span className="user__name">{myName}</span>
+              <span className="user__name">{userName}</span>
             </div>
           </div>
           <p className="user__description">{introduction}</p>
           <div className="button">
-            <Link to="/mypage/modify">
+            {/* <Link to="/mypage/modify">
               <label>
                 <input
                   type="button"
@@ -87,7 +97,7 @@ function Mypage() {
                 value="로그아웃"
                 onClick={handleLogout}
               />
-            </label>
+            </label> */}
           </div>
         </article>
       </section>
@@ -99,4 +109,4 @@ function Mypage() {
   );
 }
 
-export default Mypage;
+export default Userpage;

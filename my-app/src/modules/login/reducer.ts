@@ -11,6 +11,7 @@ import {
   REFRESH_SUCCESS,
 } from './actions';
 import { LoginAction, LoginState } from './types';
+import storage from 'redux-persist/lib/storage';
 
 const initailState: LoginState = {
   status: 'idle',
@@ -49,10 +50,13 @@ const login = createReducer<LoginState, LoginAction>(initailState, {
     status: 'idle',
     isLogin: false,
   }),
-  [LOGOUT]: (state) => ({
-    ...state,
-    status: 'loading',
-  }),
+  [LOGOUT]: (state) => {
+    storage.removeItem('persist:root');
+    return {
+      ...state,
+      status: 'loading',
+    };
+  },
   [LOGOUT_SUCCESS]: (state) => ({
     ...state,
     ...initailState,

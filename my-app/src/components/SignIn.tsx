@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { loginThunk } from '../modules/login/thunks';
 import { useForm } from 'react-hook-form';
@@ -13,17 +13,13 @@ import facebook from '../img/facebook.png';
 import google from '../img/google.png';
 import kakao from '../img/kakao-talk.png';
 import '../scss/SignIn.scss';
+import { stat } from 'fs';
 
 /*********type************/
 interface FormInput {
   email: string;
   password: string;
 }
-
-// type token = {
-//   onLoginSuccess: () => void;
-//   onRefresh: () => void;
-// };
 
 type isModalprops = {
   closeModal: () => void;
@@ -69,7 +65,6 @@ function SignIn({ closeModal }: isModalprops) {
 
   //만료시간
   // const JWT_EXPIRY_TIME = 24 * 3600 * 1000;
-
   const onSubmit = async () => {
     await dispatch(
       loginThunk({
@@ -79,6 +74,8 @@ function SignIn({ closeModal }: isModalprops) {
     );
     if (status === 'idle') {
       closeModal();
+    } else if (status === 'loading') {
+      alert('이메일과 비밀번호를 확인해주세요.');
     }
 
     // catch (e) {
@@ -93,27 +90,6 @@ function SignIn({ closeModal }: isModalprops) {
     //   }
     // }
   };
-  // const onSubmit = async () => {
-  //   try {
-  //     await dispatch(
-  //       loginThunk({
-  //         email,
-  //         password,
-  //       })
-  //     );
-  //     setIsSignInClose(true);
-  //     closeModal();
-  //   } catch (e) {
-  //     console.log(e);
-  //     if (e.message === `비밀번호가 올바르지 않습니다.`) {
-  //       alert(`비밀번호가 틀렸습니다.`);
-  //     } else if (e.message === `이메일이 올바르지 않습니다.`) {
-  //       alert(`이메일이 틀렸습니다.`);
-  //     } else if (e.statusCode === 401) {
-  //       alert(`입력해주세요`);
-  //     }
-  //   }
-  // };
 
   return (
     <div>

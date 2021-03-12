@@ -7,7 +7,7 @@ import login from './login';
 import videoList from './videoList';
 import video from './video';
 import mainVideo from './mainVideo';
-
+import myInfo from './myInfo';
 // const persistConfig = {
 //   key: 'root',
 //   storage,
@@ -15,6 +15,7 @@ import mainVideo from './mainVideo';
 
 const rootReducer = combineReducers({
   userInfo,
+  myInfo,
   review,
   video,
   videoList,

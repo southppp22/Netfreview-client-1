@@ -20,9 +20,9 @@ function ReviewList() {
     : null;
   return (
     <div className="reviewList">
-      {reviews.reviews.reviewList.map((review: any) => (
-        <ReviewComment {...review} key={review.id} />
-      ))}
+      {reviews.reviews.reviewList.map((review: any) => {
+        return <ReviewComment {...review} key={review.id} />;
+      })}
       {pages ? (
         <div className="pagenation">
           <Link

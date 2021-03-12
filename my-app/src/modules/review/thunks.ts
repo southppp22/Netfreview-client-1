@@ -33,7 +33,6 @@ export function fetchReviewsThunk(
     try {
       const { page } = payload;
       const { reviewList, myReview, totalCount } = await fetchReviews(payload);
-
       const { start, end, totalPage } = getPaging(totalCount, 8, page);
 
       dispatch(updateCurrentPage(page));

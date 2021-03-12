@@ -14,6 +14,7 @@ import Resetpw from './pages/Resetpw';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from './modules';
 import { refreshThunk } from './modules/login';
+import { fetchReviews } from './api/fetchReviews';
 
 // axios.defaults.baseURL = 'https://www.server.netfreview.com';
 // axios.defaults.withCredentials = true;
@@ -51,7 +52,6 @@ function App() {
       dispatch(refreshThunk());
     }
   }, [isLogin, dispatch]);
-
   return (
     <div className="wrapper">
       <Router>

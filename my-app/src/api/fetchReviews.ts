@@ -10,6 +10,5 @@ export async function fetchReviews(
   const { videoId, page } = payload;
 
   const res = await axios.get(`reviews/${videoId}/?page=${page}`);
-  console.log('res', res);
   return res.data;
 }

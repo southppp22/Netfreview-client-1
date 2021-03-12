@@ -22,13 +22,15 @@ export type VideoInfo = {
 };
 
 export type VideoList = {
-  top5VideoList?: VideoInfo[];
-  mostReviewVidList?: VideoInfo[];
-  lessReviewVidList?: VideoInfo[];
   videoList?: VideoInfo[];
 };
 
 export type VideoListState = {
   videoInfoList: VideoList;
   status: string;
+};
+
+export type fetchVideoListPayloadType = {
+  pathname?: string;
+  query?: string;
 };

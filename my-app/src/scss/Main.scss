@@ -33,21 +33,11 @@ main {
 .banner {
   width: 100vw;
   height: 555px;
-  // background: url(https://wallpapercave.com/wp/wp4428130.jpg) no-repeat 50% 15%;
 
   background-color: #ccc;
-  // background-color: linear-gradient(
-  //   rgba(51, 51, 51, 1) 0%,
-  //   rgba(51, 51, 51, 0) 90%
-  // );
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50% 30%;
-  // &__img {
-  //   position: absolute;
-  //   width: 100%;
-  //   object-fit: cover;
-  // }
 
   .bg-color {
     height: 100%;
@@ -65,7 +55,7 @@ main {
     // border: 2px solid red;
     article {
       width: 450px;
-      margin-top: 170px;
+      margin-top: 180px;
       color: var(--color-white);
       button {
         width: 130px;

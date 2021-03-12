@@ -1,5 +1,5 @@
 import React from 'react';
-import { ReactComponent as StarSvg } from '../img/heart.svg';
+// import { ReactComponent as StarSvg } from '../img/heart.svg';
 import '../scss/StarIcon.scss';
 
 type StarIconProps = {

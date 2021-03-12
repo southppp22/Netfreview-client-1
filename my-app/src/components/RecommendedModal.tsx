@@ -1,41 +1,31 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../modules';
+import { fetchVideoListThunk, resetVideoList } from '../modules/videoList';
 
 import BigPoster from './BigPoster';
 import SignIn from './SignIn';
-// import useUserInfo from '../hooks/useUserInfo';
-import useIsLogin from '../hooks/useIsLogin';
 import '../scss/RecommendedModal.scss';
-import { isMainThread } from 'node:worker_threads';
-import { useLocation } from 'react-router';
-import { useSelector } from 'react-redux';
-import { RootState } from '../modules';
 
 type RecommendedModalProps = {
   open: boolean;
-  close: () => void;
+  // close: () => void;
+  close: Dispatch<SetStateAction<boolean>>;
 };
-type Video = {
-  id: number;
-  title: string;
-  posterUrl: string;
-  rating: number;
-};
+
 function RecommendedModal({ open, close }: RecommendedModalProps) {
+  const dispatch = useDispatch();
+
   const { nickname } = useSelector((state: RootState) => state.userInfo);
-  const { useLogin } = useIsLogin();
-  const { setIsLogin, accessToken } = useLogin;
+  const { status, isLogin } = useSelector((state: RootState) => state.login);
+  const {
+    videoInfoList: { videoList },
+  } = useSelector((state: RootState) => state.videoList);
 
-  const [recommendVideo, setRecommendVideo] = useState<Video[] | undefined>();
   const [isLoginModal, setIsLoginModal] = useState(false);
-  // const [isMain, setIsMain] = useState(false);
-
-  const location = useLocation().pathname;
-  // console.log(useLocation());
 
   useEffect(() => {
     if (open) {
-      // open이라는 상태(모달창이 떠있으면 true, 모달창이 close되어 있으면 false)로 분기
       // 스크롤 방지
       document.body.style.overflow = 'hidden';
     }
@@ -44,51 +34,20 @@ function RecommendedModal({ open, close }: RecommendedModalProps) {
       document.body.style.overflow = 'scroll';
       // document.body.style.overflow = 'unset';
     };
-  }); // 마지막에 배열을 넣지 않은 이유: 상태가 바뀔때마다 변경되어야되서
-  // 배열을 넣을 경우: 화면 첫페이지에서 한번 실행되기 때문에 추후 모달창이 뜰때 변경이 되지 않는다
+  });
+
   useEffect(() => {
-    if (setIsLogin) {
-      axios
-        .get('/videos/videolist/?path=aboutThis', {
-          headers: { Authorization: `Bearer ${accessToken}` },
-        })
-        .then((res) => {
-          console.log(res.data);
-          const { videoList } = res.data;
-          const videos = videoList.map((video: Video) => ({
-            id: video.id,
-            title: video.title,
-            posterUrl: video.posterUrl,
-            rating: video.rating,
-          }));
-          setRecommendVideo(videos);
-        })
-        .catch((err) => console.log(err.response));
+    if (isLogin && status === 'idle') {
+      dispatch(fetchVideoListThunk({ pathname: 'aboutThis' }));
     }
     return () => {
-      if (setIsLogin) {
-        axios
-          .get('/videos/videolist/?path=aboutThis', {
-            headers: { Authorization: `Bearer ${accessToken}` },
-          })
-          .then((res) => {
-            console.log(res.data);
-            const { videoList } = res.data;
-            const videos = videoList.map((video: Video) => ({
-              id: video.id,
-              title: video.title,
-              posterUrl: video.posterUrl,
-              rating: video.rating,
-            }));
-            setRecommendVideo(videos);
-          })
-          .catch((err) => console.log(err.response));
-      }
+      dispatch(resetVideoList());
     };
-  }, [setIsLogin]);
+  }, [status, dispatch, isLogin]);
+
   const renderPosterList = () => {
-    if (recommendVideo && recommendVideo.length > 0) {
-      return recommendVideo?.map((video) => {
+    if (videoList) {
+      return videoList.map((video) => {
         const { id, title, posterUrl, rating } = video;
         return (
           <BigPoster
@@ -104,20 +63,20 @@ function RecommendedModal({ open, close }: RecommendedModalProps) {
   };
 
   const handleLoginBtn = () => {
-    close();
+    close(false);
     setIsLoginModal(!isLoginModal);
   };
 
   return (
     <>
       <div className={open ? 'isModal recommend' : 'recommend'}>
-        <div className="dim" onClick={close}></div>
+        <div className="dim" onClick={() => close(false)}></div>
         {open ? (
           <section className="recommend__container">
-            <button className="close" onClick={close}>
+            <button className="close" onClick={() => close(false)}>
               닫기
             </button>
-            {setIsLogin ? (
+            {isLogin ? (
               <div className="recommend__wrap">
                 <h2 className="recommend__title">이거어때?</h2>
                 <p className="recommend__description">

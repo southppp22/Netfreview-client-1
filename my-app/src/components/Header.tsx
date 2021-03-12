@@ -1,54 +1,46 @@
-import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import useIsLogin from '../hooks/useIsLogin';
-import useUserInfo from '../hooks/useUserInfo';
+import { RootState } from '../modules';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchUserInfoThunk } from '../modules/userInfo';
 import profile from '../img/profileImg.svg';
 import SignIn from './SignIn';
 import '../scss/Header.scss';
 
-/**************** 타입 ***************/
-
-type ProfileUrl = {
-  profileUrl: string;
-};
-
-type inputTextProps = {
-  setIsVideo: (e: any) => void;
-};
-
 /************** 함수 *************/
 
-function Header({ setIsVideo }: inputTextProps) {
-  const { useLogin } = useIsLogin();
-  const { setIsLogin, accessToken } = useLogin;
-  const { userInfo } = useUserInfo();
-  const { profileImgPath } = userInfo;
-  // console.log(setIsLogin);
+function Header() {
   const location = useLocation().pathname;
+  const dispatch = useDispatch();
+  const { status, isLogin } = useSelector((state: RootState) => state.login);
+  const { profileUrl } = useSelector((state: RootState) => state.userInfo);
+
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [headerClass, setHeaderClass] = useState('basic');
-  const [profileImg, setProfileImg] = useState(profileImgPath);
-  const [inputText, setInputText] = useState<string>('');
-  const [isMain, setIsMain] = useState(false);
-  const [isReview, setIsReview] = useState(false);
+  const [query, setquery] = useState<string>('');
+  // const [isMain, setIsMain] = useState(false);
+  // const [isReview, setIsReview] = useState(false);
 
-  const Searchbtn = () => {
-    axios
-      .get(`/videos/videolist?q=${inputText}`)
-      .then((res) => {
-        console.log(res.data.videoList);
-        setIsVideo(res.data.videoList);
-      })
-      .catch((error) => console.log(error));
+  const IsMain = () => {
+    return location === '/';
+  };
+  const IsReview = () => {
+    return location.includes('/review/');
   };
 
   const onChangeText = (e: any) => {
-    setInputText(e.target.value);
+    setquery(e.target.value);
+  };
+  // const onCleanText = () => {
+  //   setInputText('');
+  // };
+
+  const openModal = () => {
+    setIsModalOpen(true);
   };
 
-  const onCleanText = () => {
-    setInputText('');
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   const handleScroll = () => {
@@ -58,44 +50,15 @@ function Header({ setIsVideo }: inputTextProps) {
       setHeaderClass('basic');
     }
   };
-  const isLogin = () => {
-    return setIsLogin;
-  };
-  const IsMain = () => {
-    return useLocation().pathname === '/';
-  };
-  const IsReview = () => {
-    return useLocation().pathname.includes('/review/');
-  };
-
-  useEffect(() => {
-    if (isLogin()) {
-      console.log(location);
-      axios
-        .get('/users/userinfo', {
-          headers: { Authorization: `Bearer ${accessToken}` },
-        })
-        .then((res) => {
-          const { profileUrl }: ProfileUrl = res.data;
-          if (profileUrl) {
-            setProfileImg(profileUrl);
-          }
-        })
-        .catch((err) => console.log(err.response));
-    }
-  }, [location]);
-
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
   });
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
+  useEffect(() => {
+    if (status === 'idle') {
+      dispatch(fetchUserInfoThunk());
+    }
+  }, [status, dispatch]);
 
   return (
     // path가 /(메인) 혹은 /review인 경우는 'header'와 headerClass로 className을 할당한다. 그 외에는 'header'만 할당해준다.
@@ -120,13 +83,14 @@ function Header({ setIsVideo }: inputTextProps) {
           <form className="search-form">
             <input
               onChange={onChangeText}
+              value={query}
               type="text"
               className="search-form__input"
               placeholder="작품 제목을 검색해 주세요"
             />
-            <Link to="/search">
+            <Link to={`/search?q=${query}`}>
               <button
-                onClick={Searchbtn}
+                onClick={() => setquery('')}
                 type="submit"
                 className="search-form__button"
               >
@@ -134,10 +98,10 @@ function Header({ setIsVideo }: inputTextProps) {
               </button>
             </Link>
           </form>
-          {isLogin() ? (
+          {isLogin ? (
             <div className="nav-right__auth profileImg">
               <Link to="/mypage">
-                <img src={profileImgPath} />
+                <img src={profileUrl || profile} />
               </Link>
             </div>
           ) : (

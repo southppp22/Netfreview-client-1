@@ -1,27 +1,47 @@
-import React, { useEffect, useState } from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  Redirect,
-  useParams,
-} from 'react-router-dom';
-//import axios from 'axios';
+import React, { useState } from 'react';
 import '../scss/WriteReview.scss';
-import useReviews, { addReviewType } from '../hooks/useReviews';
 import { Stars } from './Star';
+import { RootState } from '../modules';
+import { useDispatch, useSelector } from 'react-redux';
+import { addReviewThunk, updateReviewThunk } from '../modules/review';
 
-function WriteReview() {
-  const { onAddReview, onUpdateReview, reviews, onSetText } = useReviews();
-  const { status, myReview } = reviews;
+type WriteReviewProps = {
+  setIsOn: (isOn: boolean) => void;
+};
 
-  const { body } = reviews;
-  const { text, rating } = body;
+function WriteReview({ setIsOn }: WriteReviewProps) {
+  const dispatch = useDispatch();
+  const reviews = useSelector((state: RootState) => state.review);
+  const { id } = useSelector((state: RootState) => state.video.videoInfo);
+  const {
+    status,
+    reviews: { myReview },
+  } = reviews;
 
-  const [errorMessage, setErrorMessage] = useState<null | string>(null);
+  const [rating, setRating] = useState<number>(myReview?.rating || 0);
+  const [hoverRating, setHoverRating] = useState<number>(0);
+  const [text, setText] = useState(myReview?.text || '');
 
-  const isValid = () => Boolean(rating && text); //에러처리해주기
+  const addReview = () => {
+    const payload = {
+      videoId: id,
+      text,
+      rating,
+    };
+    dispatch(addReviewThunk({ ...payload }));
+  };
+
+  const updateReview = () => {
+    const payload = {
+      videoId: id,
+      text,
+      rating,
+    };
+    dispatch(updateReviewThunk({ ...payload }));
+    setIsOn(false);
+  };
+
+  // const canSave = () => Boolean(rating && text); //에러처리해주기 액세스토큰도
 
   return (
     <div className="writereview">
@@ -30,7 +50,16 @@ function WriteReview() {
           <h5 className="myscore__title">총평</h5>
           <div className="myscore__rate">
             {[1, 2, 3, 4, 5].map((idx) => {
-              return <Stars index={idx} key={idx}></Stars>;
+              return (
+                <Stars
+                  index={idx}
+                  key={idx}
+                  rating={rating}
+                  setRating={setRating}
+                  hoverRating={hoverRating}
+                  setHoverRating={setHoverRating}
+                ></Stars>
+              );
             })}
           </div>
         </div>
@@ -40,13 +69,13 @@ function WriteReview() {
           <div className="text__div">
             <textarea
               className={
-                isValid() || errorMessage === null
+                status !== 'failed'
                   ? 'text__textarea'
                   : 'text__textarea invalid'
               }
               defaultValue={myReview ? myReview.text : ''}
               onChange={(e) => {
-                onSetText(e.target.value);
+                setText(e.target.value);
               }}
             ></textarea>
           </div>
@@ -55,10 +84,10 @@ function WriteReview() {
             <button
               className="btn__review"
               onClick={() => {
-                if (status === 'updating') {
-                  onUpdateReview(body);
+                if (myReview) {
+                  updateReview();
                 } else {
-                  onAddReview(body);
+                  addReview();
                 }
               }}
             >

@@ -1,14 +1,6 @@
-import { url } from 'inspector';
-import React, { useState } from 'react';
+// import { url } from 'inspector';
+import React from 'react';
 import { useSelector } from 'react-redux';
-// import {
-//   BrowserRouter as Router,
-//   Switch,
-//   Route,
-//   Link,
-//   Redirect,
-// } from 'react-router-dom';
-// import axios from 'axios';
 import { RootState } from '../modules';
 import '../scss/ReviewBanner.scss';
 

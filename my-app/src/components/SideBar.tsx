@@ -1,17 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import InfoCard from './InfoCard';
-// import {
-//   BrowserRouter as Router,
-//   Switch,
-//   Route,
-//   Link,
-//   Redirect,
-// } from 'react-router-dom';
-//import axios from 'axios';
-import '../scss/SideBar.scss';
+
 import { StarIcon } from './StarsIcon';
 import { RootState } from '../modules';
 import { useSelector } from 'react-redux';
+import '../scss/SideBar.scss';
 
 function SideBar() {
   const { rating } = useSelector((state: RootState) => state.video.videoInfo);

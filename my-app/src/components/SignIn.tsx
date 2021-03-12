@@ -1,25 +1,18 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { loginThunk } from '../modules/login/thunks';
 import { useForm } from 'react-hook-form';
+import { RootState } from '../modules';
 import _ from 'lodash/fp';
+
+import SignUp from './SignUp';
+import Findpw from './Findpw';
+
 import img from '../img/logo.png';
 import facebook from '../img/facebook.png';
 import google from '../img/google.png';
 import kakao from '../img/kakao-talk.png';
 import '../scss/SignIn.scss';
-// import {
-//   BrowserRouter as Router,
-//   Switch,
-//   Route,
-//   Link,
-//   Redirect,
-//   useHistory,
-// } from 'react-router-dom';
-import SignUp from './SignUp';
-import Findpw from './Findpw';
-import axios from 'axios';
-import useIsLogin from '../hooks/useIsLogin';
 
 /*********type************/
 interface FormInput {
@@ -27,20 +20,20 @@ interface FormInput {
   password: string;
 }
 
-type token = {
-  onLoginSuccess: () => void;
-  onRefresh: () => void;
-};
+// type token = {
+//   onLoginSuccess: () => void;
+//   onRefresh: () => void;
+// };
 
 type isModalprops = {
   closeModal: () => void;
 };
 
 /*********Function********/
-function SignIn(
-  { closeModal }: isModalprops,
-  { onLoginSuccess, onRefresh }: token
-) {
+function SignIn({ closeModal }: isModalprops) {
+  // { onLoginSuccess, onRefresh }: token
+  const { status } = useSelector((state: RootState) => state.login);
+
   const { register, handleSubmit, errors } = useForm<FormInput>();
   // const { useLogin, onSetIsLogin, onSetToken } = useIsLogin();
   // const { setIsLogin, accessToken } = useLogin;
@@ -75,42 +68,54 @@ function SignIn(
   // };
 
   //만료시간
-  const JWT_EXPIRY_TIME = 24 * 3600 * 1000;
+  // const JWT_EXPIRY_TIME = 24 * 3600 * 1000;
 
-  // axios
-  //   .post('/users/signin', {
-  //     email,
-  //     password,
-  //   })
-  //   .then((res) => {
-  //     console.log(res);
-  //     onLoginSuccess;
-  //     // const { accessToken } = res.data.data.accessToken;
-  //     onSetIsLogin(true);
-  //     onSetToken(res.data.data.accessToken);
-  //     alert(`로그인 되었습니다.`);
   const onSubmit = async () => {
-    try {
-      await dispatch(
-        loginThunk({
-          email,
-          password,
-        })
-      );
-      setIsSignInClose(true);
+    await dispatch(
+      loginThunk({
+        email,
+        password,
+      })
+    );
+    if (status === 'idle') {
       closeModal();
-    } catch (e) {
-      console.log(e);
-      if (e.message === `비밀번호가 올바르지 않습니다.`) {
-        // alert(`비밀번호가 틀렸습니다.`);
-        <div>비밀번호가 틀렸습니다!</div>;
-      } else if (e.message === `이메일이 올바르지 않습니다.`) {
-        alert(`이메일이 틀렸습니다.`);
-      } else if (e.statusCode === 401) {
-        alert(`입력해주세요`);
-      }
     }
+    if (status === 'fail') {
+      alert(`다시입력해주세요!`);
+    }
+    // catch (e) {
+    //   console.log(e);
+    //   if (e.message === `비밀번호가 올바르지 않습니다.`) {
+    //     // alert(`비밀번호가 틀렸습니다.`);
+    //     <div>비밀번호가 틀렸습니다!</div>;
+    //   } else if (e.message === `이메일이 올바르지 않습니다.`) {
+    //     alert(`이메일이 틀렸습니다.`);
+    //   } else if (e.statusCode === 401) {
+    //     alert(`입력해주세요`);
+    //   }
+    // }
   };
+  // const onSubmit = async () => {
+  //   try {
+  //     await dispatch(
+  //       loginThunk({
+  //         email,
+  //         password,
+  //       })
+  //     );
+  //     setIsSignInClose(true);
+  //     closeModal();
+  //   } catch (e) {
+  //     console.log(e);
+  //     if (e.message === `비밀번호가 올바르지 않습니다.`) {
+  //       alert(`비밀번호가 틀렸습니다.`);
+  //     } else if (e.message === `이메일이 올바르지 않습니다.`) {
+  //       alert(`이메일이 틀렸습니다.`);
+  //     } else if (e.statusCode === 401) {
+  //       alert(`입력해주세요`);
+  //     }
+  //   }
+  // };
 
   return (
     <div>
@@ -156,21 +161,13 @@ function SignIn(
                   로그인
                 </button> */}
                 <button
-                  onClick={() => {
-                    dispatch(
-                      loginThunk({
-                        email,
-                        password,
-                      })
-                    );
-                  }}
+                  onClick={onSubmit}
                   type="submit"
                   id="loginBtn"
                   className="loginButton"
                 >
                   로그인
                 </button>
-
                 <button
                   onClick={openSignUp}
                   id="loginBtn"
@@ -179,7 +176,6 @@ function SignIn(
                 >
                   회원가입으로 이동
                 </button>
-
                 <button className="findpw" onClick={openFindpw} type="button">
                   비밀번호를 잊으셨나요?
                 </button>
@@ -188,7 +184,7 @@ function SignIn(
                 <li className="login-social__wrap">
                   <ul>
                     <a
-                      href="https://www.gettoday4.click/users/googe"
+                      href="https://www.gettoday4.click/users/google"
                       className="google"
                     >
                       <img className="logo" src={google} />

@@ -1,18 +1,9 @@
+import axios from 'axios';
 import React, { useState, useRef /*FormEvent*/ } from 'react';
-//import ReactDOM from 'react-dom';
 import { useForm } from 'react-hook-form';
-import useIsLogin from '../hooks/useIsLogin';
+import SignIn from './SignIn';
 import img from '../img/logo.png';
 import '../scss/Findpw.scss';
-// import {
-//   BrowserRouter as Router,
-//   Switch,
-//   Route,
-//   Link,
-//   Redirect,
-// } from 'react-router-dom';
-import SignIn from './SignIn';
-import axios from 'axios';
 
 /********* type ********/
 interface FormInput {
@@ -30,7 +21,6 @@ type isModalprops = {
 
 function Findpw({ closeModal }: isModalprops) {
   const { register, handleSubmit, watch } = useForm<FormInput>();
-  // const { useLogin, onSetIsLogin, onSetToken } = useIsLogin();
   // const { setIsLogin, accessToken } = useLogin;
   const [isSignInOpen, setIsSignInOpen] = useState<boolean>(false);
   const [isFindpwClose, setIsFindpwClose] = useState<boolean>(false);

@@ -65,7 +65,7 @@ function Review() {
   }, [currentPage, videoId, status]);
 
   return (
-    <div>
+    <div className="background">
       <ReviewBanner />
       <div className="area">
         <div className="left">

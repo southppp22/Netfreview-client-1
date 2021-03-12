@@ -102,7 +102,8 @@ function SignIn(
     } catch (e) {
       console.log(e);
       if (e.message === `비밀번호가 올바르지 않습니다.`) {
-        alert(`비밀번호가 틀렸습니다.`);
+        // alert(`비밀번호가 틀렸습니다.`);
+        <div>비밀번호가 틀렸습니다!</div>;
       } else if (e.message === `이메일이 올바르지 않습니다.`) {
         alert(`이메일이 틀렸습니다.`);
       } else if (e.statusCode === 401) {

@@ -49,15 +49,11 @@ function ReviewComment(props: ReviewCommentProps) {
           <div className="wholeInfo__profile">
             <div className="profile__wrapper">
               <img src={profileUrl || profile} className="profile__img" />
+              <span className="profile__nickname">{nickname}</span>
             </div>
-            <span className="profile__nickname">{nickname}</span>
           </div>
 
           <div className="wholeInfo__count">
-            <div className="count__rate">
-              <img className="img-rate" src={plant} />
-              <span className="rate-num">{rating}</span>
-            </div>
             <button
               onClick={async () => {
                 onAddLike(Number(id));
@@ -68,6 +64,10 @@ function ReviewComment(props: ReviewCommentProps) {
               <img className="img-heart" src={heart} />
               <span className="rate-num">{likeCount}</span>
             </button>
+            <div className="count__rate">
+              <img className="img-rate" src={plant} />
+              <span className="rate-num">{rating}</span>
+            </div>
           </div>
         </div>
         <p className="wholeInfo__textarea">{text}</p>

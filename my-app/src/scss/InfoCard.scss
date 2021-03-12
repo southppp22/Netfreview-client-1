@@ -6,10 +6,11 @@
 .infocard__title {
   //border: 1px solid red;
   color: #666;
-  font-size: 17px;
+  font-size: 16px;
 }
 .infocard__detail {
   //border: 1px solid blue;
+  word-break: keep-all;
   font-size: 14px;
   line-height: 15px;
 }

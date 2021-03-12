@@ -36,29 +36,33 @@ function Myreview() {
   if (myReview) {
     const { id, rating, text, likeCount } = myReview;
     return (
-      <div className="reviewList__wholeInfo">
-        <div className="reviewList-wrap">
-          <div className="reviewList-top">
-            <div className="wholeInfo__profile">
-              <img src={profileImgPath} alt="프로필" className="profile__img" />
-              <span className="profile__nickname">{nickname}</span>
+      <div className="MyreviewList__wholeInfo">
+        <div className="MyreviewList-wrap">
+          <div className="MyreviewList-top">
+            <div className="MywholeInfo__profile">
+              <img
+                src={profileImgPath}
+                alt="프로필"
+                className="Myprofile__img"
+              />
+              <span className="Myprofile__nickname">{nickname}</span>
             </div>
 
-            <div className="wholeInfo__count">
-              <div className="count__rate">
-                <img className="img-rate" src={plant} />
-                <span className="rate-num">{rating}</span>
+            <div className="MywholeInfo__count">
+              <div className="Mycount__rate">
+                <img className="Myimg-rate" src={plant} />
+                <span className="Myrate-num">{rating}</span>
               </div>
-              <div className="count__heart">
-                <img className="img-heart" src={heart} />
-                <span className="rate-num">{likeCount}</span>
+              <div className="Mycount__heart">
+                <img className="Myimg-heart" src={heart} />
+                <span className="Myrate-num">{likeCount}</span>
               </div>
             </div>
           </div>
-          <div className="wholeInfo__div">{text}</div>
-          <div className="wholeInfo__btn">
+          <div className="MywholeInfo__div">{text}</div>
+          <div className="MywholeInfo__btn">
             <button
-              className="btn__review"
+              className="Mybtn__review"
               type="button"
               onClick={() => onUpdate()}
             >
@@ -69,7 +73,7 @@ function Myreview() {
                 deleteReview(id);
               }}
               type="button"
-              className="btn__review"
+              className="Mybtn__review"
             >
               삭제
             </button>
@@ -78,7 +82,11 @@ function Myreview() {
       </div>
     );
   }
-  return <div>내 리뷰가 없습니다.</div>;
+  return (
+    <div className="nomyreview">
+      <h1>나의 리뷰가 존재하지 않습니다.</h1>
+    </div>
+  );
 }
 
 export default Myreview;

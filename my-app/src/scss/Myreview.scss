@@ -1,69 +1,87 @@
 .MyreviewList__wholeInfo {
-  border: 1px solid #c4c4c4;
+  //border: 1px solid #c4c4c4;
   width: 840px;
-  height: 275px;
+  height: auto;
   border-radius: 5px;
+  background-color: #fff;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 .MyreviewList-wrap {
   //border: 1px solid purple;
   width: 700px;
-  height: 180px;
-  margin: 40px auto;
+  height: auto;
+  margin: 0 auto;
+  position: relative;
+  padding-top: 40px;
+  padding-bottom: 60px;
 }
 .MyreviewList-top {
   //border-bottom: 2px solid #c4c4c4;
-
-  height: 58px;
-  position: relative;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
 }
 .MywholeInfo__profile {
-  float: left;
-  //border: 1px solid red;
+  width: 50%;
+  height: 30px;
+}
+.Myprofile__wrapper {
+  //border: 1px solid orange;
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  width: 30px;
+  height: 30px;
 }
 .Myprofile__img {
-  display: inline-block;
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  float: left;
 }
 .Myprofile__nickname {
-  float: right;
   line-height: 28px;
-  padding-left: 5px;
+  padding-left: 10px;
+  position: absolute;
+  width: 80px;
 }
 .MywholeInfo__count {
   //border: 1px solid blue;
-  width: 152px;
+  width: 50%;
   height: 30px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(125%, -50%);
+  position: relative;
+  float: right;
+  padding-right: 17px;
 }
 .Mycount__rate {
   //border: 1px solid black;
-  width: 60px;
+
+  width: 50px;
   height: 30px;
-  display: inline-block;
+  line-height: 22px;
+  float: right;
 }
 .Myimg-rate {
   float: left;
 }
 .Mycount__heart {
   //border: 1px solid black;
-  display: inline-block;
-  width: 60px;
+  width: 50px;
   height: 30px;
-  margin-left: 10px;
+  margin-left: 30px;
+  line-height: 22px;
+  float: right;
+  margin-top: -1px;
 }
 .Myimg-heart {
   float: left;
+  margin-top: 0px;
 }
 
 .Myrate-num {
+  //border: 1px solid red;
   float: right;
-  font-weight: bold;
-  font-size: var(--font-sub-title);
+  //line-height: 24px;
+  font-size: medium;
+  font-weight: 500;
 }
 
 .MywholeInfo__div {
@@ -107,7 +125,7 @@
   background-color: #fff;
 }
 
-h1 {
+.nothing {
   display: flex;
   justify-content: center;
   align-items: center;

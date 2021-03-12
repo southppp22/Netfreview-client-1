@@ -1,14 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../modules';
-// import {
-//   BrowserRouter as Router,
-//   Switch,
-//   Route,
-//   Link,
-//   Redirect,
-// } from 'react-router-dom';
-// import axios from 'axios';
 import '../scss/InfoCard.scss';
 
 function InfoCard() {

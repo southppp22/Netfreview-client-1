@@ -80,9 +80,7 @@ function SignIn({ closeModal }: isModalprops) {
     if (status === 'idle') {
       closeModal();
     }
-    if (status === 'fail') {
-      alert(`다시입력해주세요!`);
-    }
+
     // catch (e) {
     //   console.log(e);
     //   if (e.message === `비밀번호가 올바르지 않습니다.`) {

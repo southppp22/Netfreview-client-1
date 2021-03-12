@@ -1,10 +1,11 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addLikeThunk } from '../modules/review';
 import profile from '../img/profile.png';
-import plant from '../img/plant.png';
-import heart from '../img/heart.png';
+import leaf from '../img/leaf.svg';
+import heart from '../img/heart.svg';
+import emptyheart from '../img/emptyheart.svg';
 import '../scss/ReviewComment.scss';
 type ReviewCommentProps = {
   rating: number;
@@ -41,6 +42,13 @@ function ReviewComment(props: ReviewCommentProps) {
     };
     dispatch(addLikeThunk(payload));
   };
+  const [isclick, setIsClick] = useState<boolean>(false);
+  const onHeartClick = () => {
+    setIsClick(true);
+  };
+  const onemptyClick = () => {
+    setIsClick(false);
+  };
 
   return (
     <div className="reviewList__wholeInfo">
@@ -54,23 +62,52 @@ function ReviewComment(props: ReviewCommentProps) {
           </div>
 
           <div className="wholeInfo__count">
-            <button
-              onClick={() => {
-                addLike();
-              }}
-              type="button"
+            <div
+              // onClick={() => {
+              //   addLike();
+              // }}
+              // type="button"
               className="count__heart"
             >
               <img className="img-heart" src={heart} />
               <span className="rate-num">{likeCount}</span>
-            </button>
+            </div>
             <div className="count__rate">
-              <img className="img-rate" src={plant} />
+              <img className="img-rate" src={leaf} />
               <span className="rate-num">{rating}</span>
             </div>
           </div>
         </div>
         <p className="wholeInfo__textarea">{text}</p>
+        {isclick ? (
+          <button
+            onClick={() => {
+              addLike();
+              onemptyClick();
+            }}
+            type="button"
+            className="clickcount__heart"
+          >
+            <div>
+              <img className="img-clickheart" src={heart} />
+              <span>좋아요</span>
+            </div>
+          </button>
+        ) : (
+          <button
+            onClick={() => {
+              addLike();
+              onHeartClick();
+            }}
+            type="button"
+            className="clickcount__heart"
+          >
+            <div>
+              <img className="img-clickheart" src={emptyheart} />
+              <span>좋아요</span>
+            </div>
+          </button>
+        )}
       </div>
     </div>
   );

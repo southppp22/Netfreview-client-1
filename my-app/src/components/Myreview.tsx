@@ -2,9 +2,8 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../modules';
 import { addLikeThunk, deleteReviewThunk } from '../modules/review';
-
-import plant from '../img/plant.png';
-import heart from '../img/heart.png';
+import leaf from '../img/leaf.svg';
+import heart from '../img/heart.svg';
 import profile from '../img/profileImg.svg';
 import '../scss/Myreview.scss';
 
@@ -44,19 +43,17 @@ function Myreview({ setIsOn }: MyReviewProps) {
         <div className="MyreviewList-wrap">
           <div className="MyreviewList-top">
             <div className="MywholeInfo__profile">
-              <img
-                src={profileUrl || profile}
-                alt="프로필"
-                className="Myprofile__img"
-              />
-              <span className="Myprofile__nickname">{nickname}</span>
+              <div className="Myprofile__wrapper">
+                <img
+                  src={profileUrl || profile}
+                  alt="프로필"
+                  className="Myprofile__img"
+                />
+                <span className="Myprofile__nickname">{nickname}</span>
+              </div>
             </div>
 
             <div className="MywholeInfo__count">
-              <div className="Mycount__rate">
-                <img className="Myimg-rate" src={plant} />
-                <span className="Myrate-num">{rating}</span>
-              </div>
               <button
                 onClick={() => {
                   addLike(id);
@@ -67,6 +64,10 @@ function Myreview({ setIsOn }: MyReviewProps) {
                 <img className="Myimg-heart" src={heart} />
                 <span className="Myrate-num">{likeCount}</span>
               </button>
+              <div className="Mycount__rate">
+                <img className="Myimg-rate" src={leaf} />
+                <span className="Myrate-num">{rating}</span>
+              </div>
             </div>
           </div>
           <div className="MywholeInfo__div">{text}</div>
@@ -94,7 +95,7 @@ function Myreview({ setIsOn }: MyReviewProps) {
   }
   return (
     <div className="nomyreview">
-      <h1>나의 리뷰가 존재하지 않습니다.</h1>
+      <h1 className="nothing">나의 리뷰가 존재하지 않습니다.</h1>
     </div>
   );
 }

@@ -4,6 +4,7 @@ import ReviewList from '../components/ReviewList';
 import SideBar from '../components/SideBar';
 import WriteReview from '../components/WriteReview';
 import Myreview from '../components/Myreview';
+import Loading from '../components/loading';
 // import Header from '../components/Header';
 import '../scss/Review.scss';
 import { useLocation, useParams } from 'react-router-dom';
@@ -23,7 +24,7 @@ function Review() {
   const reviews = useSelector((state: RootState) => state.review);
   const {
     reviews: { myReview },
-    // status,
+    status,
   } = reviews;
 
   const dispatch = useDispatch();
@@ -51,22 +52,28 @@ function Review() {
   }, [currentPage, videoId, loginStatus]);
 
   return (
-    <div className="background">
-      <ReviewBanner />
-      <div className="area">
-        <div className="left">
-          <SideBar />
-        </div>
+    <div>
+      {status === 'loading' ? (
+        <Loading />
+      ) : (
+        <div className="background">
+          <ReviewBanner />
+          <div className="area">
+            <div className="left">
+              <SideBar />
+            </div>
 
-        <div className="right">
-          {myReview && !isOn ? (
-            <Myreview setIsOn={setIsOn} />
-          ) : (
-            <WriteReview setIsOn={setIsOn} />
-          )}
-          <ReviewList />
+            <div className="right">
+              {myReview && !isOn ? (
+                <Myreview setIsOn={setIsOn} />
+              ) : (
+                <WriteReview setIsOn={setIsOn} />
+              )}
+              <ReviewList />
+            </div>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

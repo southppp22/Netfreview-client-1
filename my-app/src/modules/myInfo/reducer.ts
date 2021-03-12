@@ -33,6 +33,7 @@ const myInfo = createReducer<MyInfoState, MyInfoAction>(initialState, {
     nickname: payload.nickname,
     introduction: payload.introduction,
     profileUrl: payload.profileUrl,
+    lastLogin: payload.lastLogin,
     status: 'idle',
   }),
   [FETCH_MYINFO_FAILURE]: (state) => ({

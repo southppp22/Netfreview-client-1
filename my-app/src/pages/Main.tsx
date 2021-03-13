@@ -24,9 +24,6 @@ function Main() {
   // const openModal = () => {
   //   setIsModal(true);
   // };
-  // const closeModal = () => {
-  //   setIsModal(false);
-  // };
 
   useEffect(() => {
     dispatch(fetchMainVideoThunk());

@@ -25,7 +25,7 @@ type ReviewCommentProps = {
 };
 
 function ReviewComment(props: ReviewCommentProps) {
-  const { user, id, text, rating, likeCount } = props;
+  const { user, id, text, rating, likeCount, isLike } = props;
   const { isLogin } = useSelector((state: RootState) => state.login);
 
   const dispatch = useDispatch();
@@ -38,13 +38,6 @@ function ReviewComment(props: ReviewCommentProps) {
       accessToken,
     };
     dispatch(addLikeThunk(payload));
-  };
-  const [isclick, setIsClick] = useState<boolean>(false);
-  const onHeartClick = () => {
-    setIsClick(true);
-  };
-  const onemptyClick = () => {
-    setIsClick(false);
   };
 
   return (
@@ -77,15 +70,13 @@ function ReviewComment(props: ReviewCommentProps) {
           </div>
         </div>
         <p className="wholeInfo__textarea">{text}</p>
-        {isclick ? (
+        {isLike ? (
           <button
             onClick={() => {
               addLike();
-              onemptyClick();
             }}
             type="button"
             className="clickcount__heart"
-            disabled={isLogin}
           >
             <div>
               <img className="img-clickheart" src={heart} />
@@ -97,11 +88,11 @@ function ReviewComment(props: ReviewCommentProps) {
             onClick={() => {
               if (isLogin) {
                 addLike();
-                onHeartClick();
               }
             }}
             type="button"
             className="clickcount__heart"
+            disabled={!isLogin}
           >
             <div>
               <img className="img-clickheart" src={emptyheart} />

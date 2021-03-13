@@ -12,4 +12,5 @@ export type LoginState = {
   status: string; // idle, loading, failed
   isLogin: boolean;
   accessToken: string;
+  error: string;
 };

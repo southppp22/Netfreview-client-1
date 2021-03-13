@@ -18,7 +18,6 @@ function Header() {
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [headerClass, setHeaderClass] = useState('basic');
-  const [errorMessage, setErrorMessage] = useState<string>('');
   const [query, setquery] = useState<string>('');
   // const [isMain, setIsMain] = useState(false);
   // const [isReview, setIsReview] = useState(false);
@@ -63,12 +62,7 @@ function Header() {
   useEffect(() => {
     if (isLogin && status === 'idle') {
       closeModal();
-    } else if (!isLogin && status === 'failed') {
-      setErrorMessage('아이디와 비밀번호를 확인해주세요');
     }
-    return () => {
-      setErrorMessage('');
-    };
   }, [isLogin, status]);
 
   return (
@@ -121,9 +115,7 @@ function Header() {
           )}
         </div>
       </nav>
-      {isModalOpen ? (
-        <SignIn errorMessage={errorMessage} closeModal={closeModal} />
-      ) : null}
+      {isModalOpen ? <SignIn closeModal={closeModal} /> : null}
     </header>
   );
 }

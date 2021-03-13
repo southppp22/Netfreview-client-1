@@ -1,4 +1,6 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { Dispatch, SetStateAction, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import rootReducer, { RootState } from '../modules';
 import '../scss/MyPageLogin.scss';
 import SignIn from './SignIn';
 
@@ -7,7 +9,8 @@ type MyPageLoginProps = {
   setIsModal: Dispatch<SetStateAction<boolean>>;
 };
 
-function MyPageLogin({ setIsModal, active }: MyPageLoginProps) {
+function MyPageLogin({ active, setIsModal }: MyPageLoginProps) {
+  const { status, isLogin } = useSelector((state: RootState) => state.login);
   const handleLoginBtn = () => {
     setIsModal(!active);
     document.body.style.overflow = 'unset';
@@ -15,6 +18,11 @@ function MyPageLogin({ setIsModal, active }: MyPageLoginProps) {
   if (active) {
     document.body.style.overflow = 'hidden';
   }
+  useEffect(() => {
+    if (isLogin && status === 'idle') {
+      setIsModal(false);
+    }
+  }, [isLogin, status]);
   return (
     <>
       <div className="mylogin__container">

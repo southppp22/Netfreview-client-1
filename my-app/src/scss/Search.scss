@@ -1,11 +1,13 @@
 .whole {
   width: 100%;
-  padding-bottom: 342px;
+  height: 100vh;
+  // padding-bottom: 342px;
   display: block;
 }
 .mysearchlist {
   //border: 1px solid red;
   width: 1280px;
+  height: 100%;
   margin: 0 auto;
   //padding-top: 7%;
 }
@@ -19,6 +21,8 @@
   display: flex;
   flex-wrap: wrap;
   width: 1320px;
+  height: 100%;
+
   padding-right: -40px;
 }
 
@@ -28,7 +32,8 @@
 .nosearch__info {
   //border: 1px solid black;
   height: 100%;
-  padding-top: 100px;
+  // padding-top: 100px;
+  top: 50%;
   margin: auto;
   display: flex;
   justify-content: center;
@@ -36,6 +41,11 @@
 }
 .info-wrapper {
   //border: 1px solid blue;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  transform: translateY(-40%);
 }
 .info-wrapper__img {
   display: flex;
@@ -54,4 +64,5 @@
 .info-wrapper__text {
   font-size: 15px;
   line-height: 40px;
+  margin: 0 auto;
 }

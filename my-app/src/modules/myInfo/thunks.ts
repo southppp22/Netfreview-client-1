@@ -51,16 +51,12 @@ export function updateMyInfoThunk(
   payload: updateMyInfoPayloadType
 ): ThunkAction<void, RootState, null, MyInfoAction> {
   return async (dispatch) => {
-    console.log('3');
     const { request, success, failure } = updateMyInfoAsync;
     dispatch(request());
-    console.log('4 시작');
     try {
       const myInfo = await updateMyInfo(payload);
-      console.log('myinfo', myInfo);
       dispatch(success(myInfo));
     } catch (e) {
-      console.log('err');
       dispatch(failure(e));
     }
   };

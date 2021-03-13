@@ -30,11 +30,11 @@
   // border: 1px solid orange;
   width: 30px;
   border-radius: 50%;
-  // overflow: hidden;
+  overflow: hidden;
   height: 30px;
 }
 .Myprofile__img {
-  height: 100%;
+  min-height: 100%;
   width: 100%;
   object-fit: contain;
   float: left;
@@ -42,7 +42,7 @@
 .Myprofile__nickname {
   line-height: 28px;
   padding-left: 10px;
-  width: 80px;
+  width: 100%;
 }
 .MywholeInfo__count {
   //border: 1px solid blue;

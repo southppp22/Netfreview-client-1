@@ -24,6 +24,7 @@ function Review() {
 
   const { status, isLogin } = useSelector((state: RootState) => state.login);
   const reviews = useSelector((state: RootState) => state.review);
+  const reviewStatus = reviews.status;
   const {
     reviews: { myReview },
   } = reviews;
@@ -43,10 +44,10 @@ function Review() {
   };
 
   useEffect(() => {
-    if (status === 'idle') {
+    if (status === 'idle' && reviewStatus === 'idle') {
       getVideoInfo(videoId);
     }
-  }, [videoId, status]);
+  }, [videoId, status, reviewStatus]);
 
   useEffect(() => {
     if (typeof currentPage === 'string' && status === 'idle') {

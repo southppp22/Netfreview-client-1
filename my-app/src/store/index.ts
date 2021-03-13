@@ -9,7 +9,7 @@ import { refreshToken } from '../middleware/refresh';
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['login'],
+  whitelist: ['login', 'myInfo'],
 };
 
 const enhanceReducer = persistReducer(persistConfig, rootReducer);

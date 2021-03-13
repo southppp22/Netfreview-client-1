@@ -80,7 +80,12 @@ input::placeholder {
   padding-left: 10px;
 }
 
-.signup-btn {
+// .signup-btn {
+.alert__sign-up {
+  color: var((--color-netflix));
+  text-align: center;
+}
+.login-btn {
   //border: 1px solid blue;
   margin-top: 20px;
 }
@@ -95,7 +100,8 @@ input::placeholder {
   font-size: 18px;
   line-height: 23px;
 }
-#Btn {
+
+.Btn {
   // border: 1px solid orange;
   width: 379px;
   height: 59px;

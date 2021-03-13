@@ -19,6 +19,7 @@ const initailState: LoginState = {
   status: 'idle',
   isLogin: false,
   accessToken: '',
+  error: '',
 };
 
 const login = createReducer<LoginState, LoginAction>(initailState, {
@@ -36,10 +37,12 @@ const login = createReducer<LoginState, LoginAction>(initailState, {
     ...state,
     status: 'failed',
     isLogin: false,
+    error: '이메일과 비밀번호를 확인해주세요',
   }),
   [LOGIN_STATUS_RESET]: (state) => ({
     ...state,
     status: 'idle',
+    error: '',
   }),
   [REFRESH]: (state) => ({
     ...state,
@@ -76,6 +79,7 @@ const login = createReducer<LoginState, LoginAction>(initailState, {
     ...state,
     accessToken: action.payload,
     isLogin: true,
+    status: 'idle',
   }),
 });
 

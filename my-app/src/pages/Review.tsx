@@ -13,18 +13,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchVideoThunk } from '../modules/video';
 import { RootState } from '../modules';
 import { fetchReviewsThunk } from '../modules/review';
+import MyPageLogin from '../components/MyPageLogin';
 
 function Review() {
   const [isOn, setIsOn] = useState(false);
   const location = useLocation();
+  const [isModal, setIsModal] = useState<boolean>(false);
   const currentPage = queryString.parse(location.search).page;
   const { videoId } = useParams<{ videoId: string }>();
 
-  const loginStatus = useSelector((state: RootState) => state.login.status);
+  const { status, isLogin } = useSelector((state: RootState) => state.login);
   const reviews = useSelector((state: RootState) => state.review);
+  const reviewStatus = reviews.status;
   const {
     reviews: { myReview },
-    status,
   } = reviews;
 
   const dispatch = useDispatch();
@@ -42,40 +44,38 @@ function Review() {
   };
 
   useEffect(() => {
-    if (status === 'idle') {
+    if (status === 'idle' && reviewStatus === 'idle') {
       getVideoInfo(videoId);
     }
-  }, [videoId, status]);
+  }, [videoId, status, reviewStatus]);
 
   useEffect(() => {
-    if (typeof currentPage === 'string' && loginStatus === 'idle') {
+    if (typeof currentPage === 'string' && status === 'idle') {
       getReviews(videoId, currentPage);
     }
-  }, [currentPage, videoId, loginStatus]);
+  }, [currentPage, videoId, status]);
 
   return (
     <div>
-      {status === 'loading' ? (
-        <Loading />
-      ) : (
-        <div className="background">
-          <ReviewBanner />
-          <div className="area">
-            <div className="left">
-              <SideBar />
-            </div>
+      <div className="background">
+        <ReviewBanner />
+        <div className="area">
+          <div className="left">
+            <SideBar />
+          </div>
 
-            <div className="right">
-              {myReview && !isOn ? (
-                <Myreview setIsOn={setIsOn} />
-              ) : (
-                <WriteReview setIsOn={setIsOn} />
-              )}
-              <ReviewList />
-            </div>
+          <div className="right">
+            {!isLogin ? (
+              <MyPageLogin active={isModal} setIsModal={setIsModal} />
+            ) : myReview && !isOn ? (
+              <Myreview setIsOn={setIsOn} />
+            ) : (
+              <WriteReview setIsOn={setIsOn} />
+            )}
+            <ReviewList />
           </div>
         </div>
-      )}
+      </div>
     </div>
   );
 }

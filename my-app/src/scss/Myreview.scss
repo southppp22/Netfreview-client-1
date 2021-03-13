@@ -22,15 +22,15 @@
   justify-content: space-between;
 }
 .MywholeInfo__profile {
+  display: flex;
   width: 50%;
   height: 30px;
 }
 .Myprofile__wrapper {
-  //border: 1px solid orange;
-  position: absolute;
+  // border: 1px solid orange;
   width: 30px;
   border-radius: 50%;
-  overflow: hidden;
+  // overflow: hidden;
   height: 30px;
 }
 .Myprofile__img {
@@ -42,7 +42,6 @@
 .Myprofile__nickname {
   line-height: 28px;
   padding-left: 10px;
-  position: absolute;
   width: 80px;
 }
 .MywholeInfo__count {

@@ -49,8 +49,8 @@ function Myreview({ setIsOn }: MyReviewProps) {
                   alt="프로필"
                   className="Myprofile__img"
                 />
-                <span className="Myprofile__nickname">{nickname}</span>
               </div>
+              <span className="Myprofile__nickname">{nickname}</span>
             </div>
 
             <div className="MywholeInfo__count">

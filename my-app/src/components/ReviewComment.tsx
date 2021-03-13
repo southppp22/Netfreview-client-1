@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addLikeThunk } from '../modules/review';
 import profile from '../img/profile.png';
 import leaf from '../img/leaf.svg';
@@ -8,6 +8,7 @@ import heart from '../img/heart.svg';
 import emptyheart from '../img/emptyheart.svg';
 import '../scss/ReviewComment.scss';
 import { Link } from 'react-router-dom';
+import { RootState } from '../modules';
 type ReviewCommentProps = {
   rating: number;
   id: number;
@@ -24,7 +25,8 @@ type ReviewCommentProps = {
 };
 
 function ReviewComment(props: ReviewCommentProps) {
-  const { user, id, text, rating, likeCount } = props;
+  const { user, id, text, rating, likeCount, isLike } = props;
+  const { isLogin } = useSelector((state: RootState) => state.login);
 
   const dispatch = useDispatch();
 
@@ -36,13 +38,6 @@ function ReviewComment(props: ReviewCommentProps) {
       accessToken,
     };
     dispatch(addLikeThunk(payload));
-  };
-  const [isclick, setIsClick] = useState<boolean>(false);
-  const onHeartClick = () => {
-    setIsClick(true);
-  };
-  const onemptyClick = () => {
-    setIsClick(false);
   };
 
   return (
@@ -77,11 +72,10 @@ function ReviewComment(props: ReviewCommentProps) {
           </div>
         </div>
         <p className="wholeInfo__textarea">{text}</p>
-        {isclick ? (
+        {isLike ? (
           <button
             onClick={() => {
               addLike();
-              onemptyClick();
             }}
             type="button"
             className="clickcount__heart"
@@ -94,11 +88,13 @@ function ReviewComment(props: ReviewCommentProps) {
         ) : (
           <button
             onClick={() => {
-              addLike();
-              onHeartClick();
+              if (isLogin) {
+                addLike();
+              }
             }}
             type="button"
             className="clickcount__heart"
+            disabled={!isLogin}
           >
             <div>
               <img className="img-clickheart" src={emptyheart} />

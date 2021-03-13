@@ -18,8 +18,8 @@ function WriteReview({ setIsOn }: WriteReviewProps) {
     reviews: { myReview },
   } = reviews;
 
-  const [rating, setRating] = useState<number>(myReview?.rating || 0);
-  const [hoverRating, setHoverRating] = useState<number>(0);
+  const [rating, setRating] = useState<number>(myReview?.rating || 1);
+  const [hoverRating, setHoverRating] = useState<number>(myReview?.rating || 1);
   const [text, setText] = useState(myReview?.text || '');
 
   const addReview = () => {
@@ -47,7 +47,7 @@ function WriteReview({ setIsOn }: WriteReviewProps) {
     <div className="writereview">
       <div className="writereview-wrap">
         <div className="writereview__myscore">
-          <h5 className="myscore__title">평점을 매겨주세요!</h5>
+          <h5 className="myscore__title">평점을 남겨주세요!</h5>
           <div className="myscore__rate">
             {[1, 2, 3, 4, 5].map((idx) => {
               return (

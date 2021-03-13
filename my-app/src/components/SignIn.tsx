@@ -13,7 +13,7 @@ import facebook from '../img/facebook.png';
 import google from '../img/btn_google_signin_light_normal_web@2x.png';
 import kakao from '../img/kakao-talk.png';
 import '../scss/SignIn.scss';
-import { stat } from 'fs';
+import { loginStatusReset } from '../modules/login';
 
 /*********type************/
 interface FormInput {
@@ -23,25 +23,19 @@ interface FormInput {
 
 type isModalprops = {
   closeModal: () => void;
-  errorMessage?: string;
 };
 
 /*********Function********/
-function SignIn({ closeModal, errorMessage }: isModalprops) {
-  console.log(errorMessage);
-  // { onLoginSuccess, onRefresh }: token
-  const { status } = useSelector((state: RootState) => state.login);
+function SignIn({ closeModal }: isModalprops) {
+  const { error } = useSelector((state: RootState) => state.login);
 
   const { register, handleSubmit, errors } = useForm<FormInput>();
-  // const { useLogin, onSetIsLogin, onSetToken } = useIsLogin();
-  // const { setIsLogin, accessToken } = useLogin;
   const [isSignUpOpen, setIsSignUpOpen] = useState<boolean>(false);
   const [isSignInClose, setIsSignInClose] = useState<boolean>(false);
   const [isFindpwOpen, setIsFindpwOpen] = useState<boolean>(false);
 
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  // const history = useHistory();
   const dispatch = useDispatch();
 
   const onChangeEmail = (e: any) => {
@@ -69,11 +63,27 @@ function SignIn({ closeModal, errorMessage }: isModalprops) {
     );
   };
 
+  const closeModalWithResetStatus = () => {
+    closeModal();
+    dispatch(loginStatusReset());
+  };
+
+  useEffect(() => {
+    if (!isSignInClose) {
+      // 스크롤 방지
+      document.body.style.overflow = 'hidden';
+    }
+    return () => {
+      // 스크롤 방지 해제
+      document.body.style.overflow = 'scroll';
+    };
+  });
+
   return (
     <div>
       {isSignInClose ? null : (
         <div className="signinModal">
-          <div onClick={closeModal} className="modal-back"></div>
+          <div onClick={closeModalWithResetStatus} className="modal-back"></div>
           <div className="login">
             <img className="img-login" src={img} />
             <section className="login__wrap">
@@ -103,16 +113,8 @@ function SignIn({ closeModal, errorMessage }: isModalprops) {
                   placeholder="비밀번호"
                 ></input>
               </form>
-              {errorMessage ? <p className="input">{errorMessage}</p> : <></>}
+              {error ? <p className="input">{error}</p> : <></>}
               <div className="login-btn">
-                {/* <button
-                  onClick={onSubmit}
-                  type="submit"
-                  id="loginBtn"
-                  className="loginButton"
-                >
-                  로그인
-                </button> */}
                 <button
                   onClick={onSubmit}
                   type="submit"
@@ -149,8 +151,8 @@ function SignIn({ closeModal, errorMessage }: isModalprops) {
           </div>
         </div>
       )}
-      {isSignUpOpen ? <SignUp closeModal={closeModal} /> : null}
-      {isFindpwOpen ? <Findpw closeModal={closeModal} /> : null}
+      {isSignUpOpen ? <SignUp closeModal={closeModalWithResetStatus} /> : null}
+      {isFindpwOpen ? <Findpw closeModal={closeModalWithResetStatus} /> : null}
     </div>
   );
 }

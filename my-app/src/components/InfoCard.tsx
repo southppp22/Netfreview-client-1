@@ -33,10 +33,6 @@ function InfoCard() {
         <span className="infocard__detail">{releaseYear}</span>
       </li>
       <li className="infocard">
-        <h6 className="infocard__title">관람 등급</h6>
-        <span className="infocard__detail">{ageLimit}</span>
-      </li>
-      <li className="infocard">
         <h6 className="infocard__title">장르</h6>
         <span className="infocard__detail">{genres.join(' ')}</span>
       </li>

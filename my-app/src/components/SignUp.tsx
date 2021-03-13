@@ -4,9 +4,9 @@ import { useForm } from 'react-hook-form';
 import _ from 'lodash/fp';
 import SignIn from './SignIn';
 
-import img from '../img/logo.png';
+import img from '../img/logo.svg';
 import facebook from '../img/facebook.png';
-import google from '../img/google.png';
+import google from '../img/btn_google_signin_light_normal_web@2x.png';
 import kakao from '../img/kakao-talk.png';
 import '../scss/SignUp.scss';
 import { useHistory } from 'react-router';
@@ -63,7 +63,7 @@ function SignUp({ closeModal }: isModalprops) {
   // const errorRef: any = useRef();
 
   const onSubmit = async () => {
-    console.log('hey');
+    //console.log('hey');
 
     if (!name || !nickname || !email || !password) {
       return alert('항목을 전부 입력해주세요');
@@ -90,14 +90,14 @@ function SignUp({ closeModal }: isModalprops) {
           password,
         })
         .then((res) => {
-          console.log(res);
+          //console.log(res);
           // alert(res.data);
           alert('축하드려요~! 회원가입되셨습니다!! :)');
           setIsSignInOpen(true);
           setIsSignUpClose(true);
         })
         .catch((error) => {
-          console.log(error.response.data);
+          //console.log(error.response.data);
           if (error.response.data.message === '이미 존재하는 이메일입니다.') {
             // <div>이미 존재하는 이메일입니다</div>;
             // alert(`이미 존재하는 이메일입니다.`);
@@ -143,9 +143,9 @@ function SignUp({ closeModal }: isModalprops) {
           <div onClick={closeModal} className="modal-back"></div>
           <section className="signup">
             <img className="img" src={img} />
-            <div className="login__wrap">
-              <h3 className="Login-title">회원가입</h3>
-              <form onSubmit={handleSubmit(onSubmit)} className="login-form">
+            <div className="signup__wrap">
+              <h3 className="signup-title">회원가입</h3>
+              <form onSubmit={handleSubmit(onSubmit)} className="signup-form">
                 <input
                   name="Name"
                   maxLength={number}
@@ -154,7 +154,7 @@ function SignUp({ closeModal }: isModalprops) {
                     minLength: 2,
                     pattern: /^[가-힣a-zA-Z]+$/,
                   })}
-                  className="login-input"
+                  className="signup-input"
                   type="text"
                   onChange={onChangeName}
                   placeholder="Name"
@@ -180,7 +180,7 @@ function SignUp({ closeModal }: isModalprops) {
                     minLength: 2,
                     // pattern: /^[가-힣a-zA-Z]+$/,
                   })}
-                  className="login-input"
+                  className="signup-input"
                   type="text"
                   placeholder="Nickname"
                 />
@@ -203,7 +203,7 @@ function SignUp({ closeModal }: isModalprops) {
                     required: true,
                     pattern: /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i,
                   })}
-                  className="login-input"
+                  className="signup-input"
                   type="text"
                   placeholder="Email"
                 />
@@ -222,7 +222,7 @@ function SignUp({ closeModal }: isModalprops) {
                     pattern: /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/,
                     // pattern: /([a-zA-Z0-9].*[!,@,#,$,%,^,&,*,?,_,~])|([!,@,#,$,%,^,&,*,?,_,~].*[a-zA-Z0-9])/,
                   })}
-                  className="login-input"
+                  className="signup-input"
                   type="password"
                   placeholder="Password"
                 />
@@ -243,7 +243,7 @@ function SignUp({ closeModal }: isModalprops) {
                     required: true,
                     validate: (value) => value === Password.current,
                   })}
-                  className="login-input"
+                  className="signup-input"
                   type="password"
                   placeholder="Password"
                 />
@@ -253,35 +253,39 @@ function SignUp({ closeModal }: isModalprops) {
                 {_.get('password-confirm.type', errors) === 'validate' && (
                   <p className="input">비밀번호가 맞지 않습니다!</p>
                 )}
+
+                {/* <div className="signup-btn"> */}
+                {/* <button
+                    type="submit"
+                    id="completebtn"
+                    className="signupcompleteButton"
+                  > */}
                 <div className="alert__sign-up">{warning}</div>
                 <div className="login-btn">
-                  <button type="submit" className="Btn completeButton">
+                  <button type="submit" className="signupcompleteButton">
                     입력완료
                   </button>
 
                   <button
                     onClick={openSignIn}
                     type="button"
-                    // id="Btn"
-                    className="Btn loginMoveButton"
+                    id="Btn"
+                    className="signupMoveButton"
                   >
                     로그인으로 이동
                   </button>
                 </div>
               </form>
 
-              <ul className="login-social">
-                <li className="login-social__wrap">
-                  <ul>
-                    <li className="google">
-                      <img className="logo" src={google} />
-                    </li>
-                    <li className="google">
-                      <img className="logo" src={kakao} />
-                    </li>
-                    <li className="facebook ">
-                      <img className="logo" src={facebook} />
-                    </li>
+              <ul className="signup-social">
+                <li className="signup-social__wrap">
+                  <ul className="signupsocial__wrap">
+                    <a
+                      href="https://www.gettoday4.click/users/google"
+                      className="google"
+                    >
+                      <div className="googlelogo">{/* {google} */}</div>
+                    </a>
                   </ul>
                 </li>
               </ul>

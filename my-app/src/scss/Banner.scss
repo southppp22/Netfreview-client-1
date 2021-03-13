@@ -12,33 +12,55 @@
   }
 
   &-prev {
-    width: 14px;
+    width: 35px;
     height: 23px;
     left: auto;
-    right: 150px;
+    right: 960px;
     top: auto;
-    bottom: 45px;
+    bottom: 20px;
     margin-top: 0;
-    background: url(../img/btn-prev.svg) no-repeat;
-    background-size: contain;
+    z-index: 40;
+
+    // background: url(../img/btn-prev.svg) no-repeat;
+    // background-size: contain;
   }
 
   &-next {
-    width: 14px;
+    width: 35px;
     height: 23px;
-    right: 100px;
+    right: 855px;
     top: auto;
-    bottom: 45px;
-    margin-top: 0;
-    background: url(../img/btn-next.svg) no-repeat;
-    background-size: contain;
+    bottom: 20px;
+    z-index: 40;
+
+    //background: url(../img/btn-next.svg) no-repeat;
+    // bottom: 45px;
+    // margin-top: 0;
+    // background: url(../img/btn-next.svg) no-repeat;
+    // background-size: contain;
   }
 }
-.swiper-button-prev::after,
+.swiper-container-rtl {
+  width: 300px;
+  height: 25px;
+  background-color: red;
+}
+
+.swiper-button-prev::after {
+  //display: none;
+  background: url(../img/btn-prev.svg) no-repeat;
+  background-size: 23px 23px;
+  color: transparent;
+}
 .swiper-button-next::after {
-  display: none;
-  color: var(--color-white);
-  box-shadow: 0px 0px 1px 0.5px rgba(0, 0, 0, 0.08);
+  //display: none;
+  // color: var(--color-white);
+  color: transparent;
+  background: url(../img/btn-next.svg) no-repeat;
+  background-size: 23px 23px;
+  // display: none;
+  // color: var(--color-white);
+  // box-shadow: 0px 0px 1px 0.5px rgba(0, 0, 0, 0.08);
 }
 
 .swiper-pagination {
@@ -52,8 +74,8 @@
       box-sizing: border-box !important;
     }
   }
-  &-clickable {
-  }
+  // &-clickable {
+  // }
 }
 .swiper-container {
   &-horizontal {
@@ -61,15 +83,17 @@
       width: 1280px;
       margin: 0 auto;
       left: 50%;
-      bottom: 50px;
+      bottom: 27px;
       transform: translateX(-50%);
-      display: flex;
+      display: inline-block;
       align-content: flex-start;
+      .swiper-pagination-bullet {
+        margin: 6px;
+      }
     }
   }
 }
-.swiper-pagination-clickable .swiper-pagination-bullets {
-}
+
 .banner {
   width: 100vw;
   height: 555px;
@@ -97,7 +121,7 @@
     article {
       width: 450px;
       height: 100%;
-      padding-top: 180px;
+      padding-top: 120px;
       color: var(--color-white);
       button {
         width: 130px;
@@ -122,7 +146,7 @@
     font-size: 18px;
     &.banner3 {
       font: {
-        size: 24px;
+        size: 20px;
         weight: var(--weight-medium);
       }
     }

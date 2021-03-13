@@ -59,13 +59,15 @@ function ReviewComment(props: ReviewCommentProps) {
           </div>
 
           <div className="wholeInfo__count">
-            <div className="count__heart">
-              <img className="img-heart" src={heart} />
-              <span className="rate-num">{likeCount}</span>
-            </div>
-            <div className="count__rate">
-              <img className="img-rate" src={leaf} />
-              <span className="rate-num">{rating}</span>
+            <div className="count-wrapper">
+              <div className="count__heart">
+                <img className="img-heart" src={heart} />
+                <span className="rate-num">{likeCount}</span>
+              </div>
+              <div className="count__rate">
+                <img className="img-rate" src={leaf} />
+                <span className="rate-num">{rating}</span>
+              </div>
             </div>
           </div>
         </div>

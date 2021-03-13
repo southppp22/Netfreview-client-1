@@ -13,7 +13,7 @@ function ReviewBanner() {
       <div className="reviewbanner-wrapper">
         <div className="text-wrapper">
           <div className="wrap">
-            <h1 className="reviewbanner__title"> {title || 'loading'} </h1>
+            <h1 className="reviewbanner__title"> {title || ''} </h1>
             <a
               href={netflixUrl || 'https://www.netflix.com/kr/'}
               target="_blank"

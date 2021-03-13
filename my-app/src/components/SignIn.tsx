@@ -28,7 +28,6 @@ type isModalprops = {
 
 /*********Function********/
 function SignIn({ closeModal, errorMessage }: isModalprops) {
-  console.log(errorMessage);
   // { onLoginSuccess, onRefresh }: token
   const { status } = useSelector((state: RootState) => state.login);
 

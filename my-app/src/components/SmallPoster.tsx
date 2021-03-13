@@ -6,7 +6,7 @@ type SmallPosterProps = {
   id: number;
   title: string;
   posterUrl: string;
-  rating: number;
+  rating: number | string;
 };
 
 function SmallPoster({ id, title, posterUrl, rating }: SmallPosterProps) {
@@ -22,7 +22,11 @@ function SmallPoster({ id, title, posterUrl, rating }: SmallPosterProps) {
         </span>
         <div className="smallPoster__poster-rate">
           <span className="poster-rate__name">평점</span>
-          <span className="poster-rate__rate-num">{rating}</span>
+          <span className="poster-rate__rate-num">
+            {typeof rating === 'string'
+              ? rating.slice(0, 3)
+              : rating.toFixed(1)}
+          </span>
         </div>
       </div>
     </article>

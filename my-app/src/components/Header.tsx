@@ -17,6 +17,7 @@ function Header() {
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [headerClass, setHeaderClass] = useState('basic');
+  const [errorMessage, setErrorMessage] = useState<string>('');
   const [query, setquery] = useState<string>('');
   // const [isMain, setIsMain] = useState(false);
   // const [isReview, setIsReview] = useState(false);
@@ -59,6 +60,17 @@ function Header() {
       dispatch(fetchMyInfoThunk());
     }
   }, [status, dispatch]);
+
+  useEffect(() => {
+    if (isLogin && status === 'idle') {
+      closeModal();
+    } else if (!isLogin && status === 'failed') {
+      setErrorMessage('아이디와 비밀번호를 확인해주세요');
+    }
+    return () => {
+      setErrorMessage('');
+    };
+  }, [isLogin, status]);
 
   return (
     // path가 /(메인) 혹은 /review인 경우는 'header'와 headerClass로 className을 할당한다. 그 외에는 'header'만 할당해준다.
@@ -111,7 +123,9 @@ function Header() {
           )}
         </div>
       </nav>
-      {isModalOpen ? <SignIn closeModal={closeModal} /> : null}
+      {isModalOpen ? (
+        <SignIn errorMessage={errorMessage} closeModal={closeModal} />
+      ) : null}
     </header>
   );
 }

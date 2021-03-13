@@ -69,6 +69,18 @@ function SignIn({ closeModal, errorMessage }: isModalprops) {
     );
   };
 
+  useEffect(() => {
+    if (!isSignInClose) {
+      // 스크롤 방지
+      document.body.style.overflow = 'hidden';
+    }
+    return () => {
+      // 스크롤 방지 해제
+      document.body.style.overflow = 'scroll';
+      // document.body.style.overflow = 'unset';
+    };
+  });
+
   return (
     <div>
       {isSignInClose ? null : (

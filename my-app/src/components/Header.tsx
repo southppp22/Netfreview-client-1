@@ -82,10 +82,10 @@ function Header() {
           <Link to="/" className="nav-left__logo"></Link>
           <ul className="nav-left__type">
             <li>
-              <Link to="/">영화</Link>
+              <Link to="/tvprogram">영화</Link>
             </li>
             <li>
-              <Link to="/TVprogram">TV 프로그램</Link>
+              <Link to="/tvprogram">TV 프로그램</Link>
             </li>
           </ul>
         </div>

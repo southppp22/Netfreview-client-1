@@ -49,7 +49,9 @@ function ReviewList() {
           </Link>
         </div>
       ) : (
-        <div>리뷰가 존재하지 않습니다.</div>
+        <div className="noreview">
+          <h1 className="nothingexist">리뷰가 존재하지 않습니다.</h1>
+        </div>
       )}
     </div>
   );

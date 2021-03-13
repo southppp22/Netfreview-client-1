@@ -26,7 +26,7 @@ function Footer() {
                 Github ( Server )
               </a>
             </li>
-            <li>처리방침회사 안내</li>
+            {/* <li>클릭하시면 깃허브 페이지로 이동합니다</li> */}
           </ul>
           <ul className="footer__service">
             <li>

@@ -1,0 +1,14 @@
+.leaf-active {
+  margin-right: 5px;
+  height: 25px;
+  cursor: pointer;
+}
+
+.leaf-no-active {
+  filter: invert(0%) sepia(0%) saturate(100%) hue-rotate(0.01deg)
+    brightness(280%) contrast(70%);
+  // background: #a5dfa8;
+  margin-right: 5px;
+  height: 25px;
+  cursor: pointer;
+}

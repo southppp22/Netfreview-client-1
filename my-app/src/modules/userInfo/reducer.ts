@@ -34,7 +34,7 @@ const userInfo = createReducer<UserInfoState, UserInfoAction>(initialState, {
     nickname: payload.nickname,
     introduction: payload.introduction,
     profileUrl: payload.profileUrl,
-    videoList: payload.video,
+    videoList: payload.videoList,
     status: 'idle',
   }),
   [FETCH_USERINFO_FAILURE]: (state) => ({

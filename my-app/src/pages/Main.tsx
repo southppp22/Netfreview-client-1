@@ -39,11 +39,11 @@ function Main() {
       ) : (
         <main>
           <button className="btn-recommend" onClick={() => setIsModal(true)}>
-            <span>
+            {/* <span>
               이거
               <br />
               어때?
-            </span>
+            </span> */}
           </button>
           <RecommendedModal open={isModal} close={setIsModal} />
           <div className="bg-color__top"></div>

@@ -8,9 +8,9 @@ import _ from 'lodash/fp';
 import SignUp from './SignUp';
 import Findpw from './Findpw';
 
-import img from '../img/logo.png';
+import img from '../img/logo.svg';
 import facebook from '../img/facebook.png';
-import google from '../img/google.png';
+import google from '../img/btn_google_signin_light_normal_web@2x.png';
 import kakao from '../img/kakao-talk.png';
 import '../scss/SignIn.scss';
 import { stat } from 'fs';
@@ -135,19 +135,13 @@ function SignIn({ closeModal, errorMessage }: isModalprops) {
               </div>
               <ul className="login-social">
                 <li className="login-social__wrap">
-                  <ul>
+                  <ul className="loginsocial__wrap">
                     <a
                       href="https://www.gettoday4.click/users/google"
                       className="google"
                     >
-                      <img className="logo" src={google} />
+                      <div className="googlelogo">{/* {google} */}</div>
                     </a>
-                    <li className="google">
-                      <img className="logo" src={kakao} />
-                    </li>
-                    <li className="facebook ">
-                      <img className="logo" src={facebook} />
-                    </li>
                   </ul>
                 </li>
               </ul>

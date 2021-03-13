@@ -59,27 +59,27 @@ function Findpw({ closeModal }: isModalprops) {
         <div className="findpwModal">
           <div onClick={closeModal} className="modal-back"></div>
           <section className="section-findpw">
-            <img className="img" src={img} />
-            <div className="login__wrap">
-              <h3 className="Login-title">비밀번호찾기</h3>
-              <form onSubmit={handleSubmit(onSubmit)} className="login-form">
+            <img className="pwimg" src={img} />
+            <div className="pw__wrap">
+              <h3 className="pw-title">비밀번호찾기</h3>
+              <form onSubmit={handleSubmit(onSubmit)} className="pw-form">
                 <input
                   name="email"
                   ref={register({
                     required: true,
                     pattern: /^[가-힣]+$/,
                   })}
-                  className="login-input"
+                  className="pw-input"
                   // type='text'
                   onChange={onChangeEmail}
                   placeholder="Email"
                 />
 
-                <div className="login-btn">
+                <div className="pw-btn">
                   <button
                     onClick={onSubmit}
                     type="submit"
-                    id="Btn"
+                    id="pwBtn"
                     className="completeButton"
                   >
                     이메일 전송
@@ -88,7 +88,7 @@ function Findpw({ closeModal }: isModalprops) {
                     onClick={openSignIn}
                     type="submit"
                     id="Btn"
-                    className="loginMoveButton"
+                    className="pwMoveButton"
                   >
                     로그인으로 이동
                   </button>

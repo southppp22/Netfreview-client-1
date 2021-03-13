@@ -53,18 +53,18 @@ p.input::before {
   content: '⚠ ';
 }
 
-.img {
+.pwimg {
   margin: auto;
   margin-top: 55px;
 }
-.login__wrap {
+.pw__wrap {
   //border: 1px solid red;
   margin-top: 60px;
   width: 379px;
   margin-left: 47px;
   margin-right: 47px;
 }
-.Login-title {
+.pw-title {
   font-family: Roboto;
   font-style: normal;
   font-weight: bold;
@@ -73,24 +73,25 @@ p.input::before {
   color: black;
 }
 
-.login-form {
+.pw-form {
   //border: 1px solid green;
   margin-top: 30px;
 }
 
-.login-input {
+.pw-input {
   width: 379px;
   height: 47px;
   margin-bottom: 10px;
   background-color: #f0efef;
+  padding-left: 10px;
 }
 
-.login-btn {
+.pw-btn {
   //border: 1px solid blue;
   margin-top: 40px;
 }
 
-#Btn {
+#pwBtn {
   // border: 1px solid orange;
   width: 379px;
   height: 59px;
@@ -107,18 +108,6 @@ p.input::before {
   color: #fff;
   margin-top: -20px;
 }
-.loginMoveButton {
+.pwMoveButton {
   border: 2px solid #df2e1c;
-}
-
-.login-social {
-  //border-top: 2px solid #d4cece;
-  margin-top: 20px;
-  padding-top: 24px;
-}
-.login-social__wrap {
-  //border: 1px solid black;
-  width: 170px;
-  height: 30px;
-  margin-left: 104px;
 }

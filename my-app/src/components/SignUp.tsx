@@ -4,9 +4,9 @@ import { useForm } from 'react-hook-form';
 import _ from 'lodash/fp';
 import SignIn from './SignIn';
 
-import img from '../img/logo.png';
+import img from '../img/logo.svg';
 import facebook from '../img/facebook.png';
-import google from '../img/google.png';
+import google from '../img/btn_google_signin_light_normal_web@2x.png';
 import kakao from '../img/kakao-talk.png';
 import '../scss/SignUp.scss';
 
@@ -120,9 +120,9 @@ function SignUp({ closeModal }: isModalprops) {
           <div onClick={closeModal} className="modal-back"></div>
           <section className="signup">
             <img className="img" src={img} />
-            <div className="login__wrap">
-              <h3 className="Login-title">회원가입</h3>
-              <form onSubmit={handleSubmit(onSubmit)} className="login-form">
+            <div className="signup__wrap">
+              <h3 className="signup-title">회원가입</h3>
+              <form onSubmit={handleSubmit(onSubmit)} className="signup-form">
                 <input
                   name="Name"
                   maxLength={number}
@@ -131,7 +131,7 @@ function SignUp({ closeModal }: isModalprops) {
                     minLength: 2,
                     pattern: /^[가-힣]+$/,
                   })}
-                  className="login-input"
+                  className="signup-input"
                   type="text"
                   onChange={onChangeName}
                   placeholder="Name"
@@ -157,7 +157,7 @@ function SignUp({ closeModal }: isModalprops) {
                     minLength: 2,
                     pattern: /^[가-힣a-zA-Z]+$/,
                   })}
-                  className="login-input"
+                  className="signup-input"
                   type="text"
                   placeholder="Nickname"
                 />
@@ -180,7 +180,7 @@ function SignUp({ closeModal }: isModalprops) {
                     required: true,
                     pattern: /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i,
                   })}
-                  className="login-input"
+                  className="signup-input"
                   type="text"
                   placeholder="Email"
                 />
@@ -199,7 +199,7 @@ function SignUp({ closeModal }: isModalprops) {
                     // pattern: /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/,
                     pattern: /([a-zA-Z0-9].*[!,@,#,$,%,^,&,*,?,_,~])|([!,@,#,$,%,^,&,*,?,_,~].*[a-zA-Z0-9])/,
                   })}
-                  className="login-input"
+                  className="signup-input"
                   type="password"
                   placeholder="Password"
                 />
@@ -220,7 +220,7 @@ function SignUp({ closeModal }: isModalprops) {
                     required: true,
                     validate: (value) => value === Password.current,
                   })}
-                  className="login-input"
+                  className="signup-input"
                   type="password"
                   placeholder="Password"
                 />
@@ -231,8 +231,12 @@ function SignUp({ closeModal }: isModalprops) {
                   <p className="input">비밀번호가 맞지 않습니다!</p>
                 )}
 
-                <div className="login-btn">
-                  <button type="submit" id="Btn" className="completeButton">
+                <div className="signup-btn">
+                  <button
+                    type="submit"
+                    id="completebtn"
+                    className="signupcompleteButton"
+                  >
                     입력완료
                   </button>
 
@@ -240,25 +244,22 @@ function SignUp({ closeModal }: isModalprops) {
                     onClick={openSignIn}
                     type="button"
                     id="Btn"
-                    className="loginMoveButton"
+                    className="signupMoveButton"
                   >
                     로그인으로 이동
                   </button>
                 </div>
               </form>
 
-              <ul className="login-social">
-                <li className="login-social__wrap">
-                  <ul>
-                    <li className="google">
-                      <img className="logo" src={google} />
-                    </li>
-                    <li className="google">
-                      <img className="logo" src={kakao} />
-                    </li>
-                    <li className="facebook ">
-                      <img className="logo" src={facebook} />
-                    </li>
+              <ul className="signup-social">
+                <li className="signup-social__wrap">
+                  <ul className="signupsocial__wrap">
+                    <a
+                      href="https://www.gettoday4.click/users/google"
+                      className="google"
+                    >
+                      <div className="googlelogo">{/* {google} */}</div>
+                    </a>
                   </ul>
                 </li>
               </ul>

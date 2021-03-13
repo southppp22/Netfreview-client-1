@@ -262,7 +262,11 @@ function SignUp({ closeModal }: isModalprops) {
                   > */}
                 <div className="alert__sign-up">{warning}</div>
                 <div className="login-btn">
-                  <button type="submit" className="signupcompleteButton">
+                  <button
+                    type="submit"
+                    id="completebtn"
+                    className="signupcompleteButton"
+                  >
                     입력완료
                   </button>
 

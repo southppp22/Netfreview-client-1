@@ -76,8 +76,8 @@ function Banner() {
   }, [top5VideoList, lessReviewVidList, status]);
 
   const autoPlay = {
-    delaty: 10,
-    disableOnInteraction: false,
+    delay: 1000,
+    disableOnInteraction: true,
   };
   return (
     <Swiper
@@ -89,17 +89,20 @@ function Banner() {
       // onSwiper={(swiper) => console.log(swiper)}
       // onSlideChange={() => console.log('slide change')}
       loop={true}
-      autoplay={autoPlay}
+      autoplay={{
+        delay: 1000,
+        disableOnInteraction: false,
+      }}
       // style={{ height: '555px' }}
     >
       <div className="slide-container">
-        <SwiperSlide>
+        <SwiperSlide data-swiper-autoplay="2000">
           <BannerSlide subTitle="넷프리뷰의 NO.1" video={topVideo} />
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide data-swiper-autoplay="2000">
           <BannerSlide subTitle="당신의 리뷰가 필요한" video={lessVideo} />
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide data-swiper-autoplay="2000">
           <section
             className="banner"
             style={{

@@ -1,5 +1,5 @@
 import { AxiosError } from 'axios';
-import { createAsyncAction } from 'typesafe-actions';
+import { createAction, createAsyncAction } from 'typesafe-actions';
 
 export const LOGIN_REQUEST = 'login/LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'login/LOGIN_SUCCESS';
@@ -12,6 +12,8 @@ export const REFRESH_FAILURE = 'login/REFRESH_FAILURE';
 export const LOGOUT = 'login/LOGOUT';
 export const LOGOUT_SUCCESS = 'login/LOGOUT_SUCCESS';
 export const LOGOUT_FAILURE = 'login/LOGOUT_FAILURE';
+
+export const OUATH_LOGIN = 'login/OAUTH_LOGIN';
 
 export const loginAsync = createAsyncAction(
   LOGIN_REQUEST,
@@ -30,3 +32,5 @@ export const logoutAsync = createAsyncAction(
   LOGOUT_SUCCESS,
   LOGOUT_FAILURE
 )<undefined, undefined, AxiosError>();
+
+export const oauthLogin = createAction(OUATH_LOGIN)<string>();

@@ -6,6 +6,7 @@ import {
   LOGOUT,
   LOGOUT_FAILURE,
   LOGOUT_SUCCESS,
+  OUATH_LOGIN,
   REFRESH,
   REFRESH_FAILURE,
   REFRESH_SUCCESS,
@@ -65,6 +66,11 @@ const login = createReducer<LoginState, LoginAction>(initailState, {
     ...state,
     ...initailState,
     status: 'failed',
+  }),
+  [OUATH_LOGIN]: (state, action) => ({
+    ...state,
+    accessToken: action.payload,
+    isLogin: true,
   }),
 });
 

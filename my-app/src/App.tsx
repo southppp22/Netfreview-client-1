@@ -14,6 +14,7 @@ import Resetpw from './pages/Resetpw';
 import Userpage from './pages/Userpage';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from './modules';
+import Oauth from './pages/Oauth';
 
 // axios.defaults.baseURL = 'https://www.server.netfreview.com';
 // axios.defaults.withCredentials = true;
@@ -47,6 +48,7 @@ function App() {
           <Route path="/signin" component={SignIn} />
           <Route path="/resetpw" component={Resetpw} />
           <Route path="/userpage/:userId" component={Userpage} />
+          <Route path="/oauth" component={Oauth} />
         </Switch>
         <Footer />
       </Router>

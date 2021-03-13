@@ -17,7 +17,7 @@ function Myreview({ setIsOn }: MyReviewProps) {
     reviews: { myReview },
   } = reviews;
   const { nickname, profileUrl } = useSelector(
-    (state: RootState) => state.userInfo
+    (state: RootState) => state.myInfo
   );
 
   const dispatch = useDispatch();

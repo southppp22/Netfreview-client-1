@@ -62,10 +62,6 @@ function ReviewComment(props: ReviewCommentProps) {
                 {user.nickname}
               </Link>
             </div>
-
-            <Link to={`/userpage/${user.id}`}>
-              <span className="profile__nickname">{user.nickname}</span>
-            </Link>
           </div>
 
           <div className="wholeInfo__count">

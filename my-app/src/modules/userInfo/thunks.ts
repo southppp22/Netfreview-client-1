@@ -22,6 +22,7 @@ export function fetchUserInfoThunk(
     dispatch(request());
     try {
       const userInfo = await fetchUserInfo(userId);
+      console.log(userInfo);
       dispatch(success(userInfo));
     } catch (e) {
       dispatch(failure(e));

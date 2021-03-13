@@ -19,6 +19,8 @@ function Userpage() {
   // const location = useLocation().pathname;
   const dispatch = useDispatch();
   const { userId } = useParams<{ userId: string }>();
+  console.log(userId);
+
   const { isLogin } = useSelector((state: RootState) => state.login);
   const {
     userName,
@@ -27,10 +29,7 @@ function Userpage() {
     profileUrl,
     videoList,
   } = useSelector((state: RootState) => state.userInfo);
-
-  // const {
-  //   videoInfoList: { videoList },
-  // } = useSelector((state: RootState) => state.videoList);
+  console.log(videoList);
 
   useEffect(() => {
     if (isLogin) {
@@ -38,7 +37,7 @@ function Userpage() {
       // dispatch(fetchVideoListThunk({ pathname: 'myPage' }));
     }
     return () => {
-      dispatch(resetVideoList());
+      // dispatch(resetVideoList());
     };
   }, [dispatch, isLogin, userId]);
 
@@ -57,15 +56,6 @@ function Userpage() {
     return null;
   };
 
-  // const handleLogout = async () => {
-  //   try {
-  //     dispatch(logoutThunk());
-  //     history.push('/');
-  //   } catch (e) {
-  //     console.log(e.response);
-  //   }
-  // };
-
   return (
     <div className="mypage">
       <section className="user">
@@ -80,29 +70,11 @@ function Userpage() {
             </div>
           </div>
           <p className="user__description">{introduction}</p>
-          <div className="button">
-            {/* <Link to="/mypage/modify">
-              <label>
-                <input
-                  type="button"
-                  className="button__edit"
-                  value="정보 수정"
-                />
-              </label>
-            </Link>
-            <label>
-              <input
-                type="button"
-                className="button__close"
-                value="로그아웃"
-                onClick={handleLogout}
-              />
-            </label> */}
-          </div>
+          <div className="button"></div>
         </article>
       </section>
       <section className="review-container">
-        <h2 className="review-container__title">내가 쓴 리뷰List</h2>
+        <h2 className="review-container__title">{nickname}님이 쓴 리뷰List</h2>
         <div className="review-container__list">{renderVideoList()}</div>
       </section>
     </div>

@@ -46,8 +46,9 @@ function ReviewComment(props: ReviewCommentProps) {
             <div className="profile__wrapper">
               <img src={user.profileUrl || profile} className="profile__img" />
             </div>
-            <Link to={`/userpage/${user.id}`} />
-            <span className="profile__nickname">{user.nickname}</span>
+            <Link to={`/userpage/${user.id}`}>
+              <span className="profile__nickname">{user.nickname}</span>
+            </Link>
           </div>
 
           <div className="wholeInfo__count">

@@ -11,9 +11,10 @@ import '../scss/Main.scss';
 
 function Main() {
   const dispatch = useDispatch();
-  const { top5VideoList, mostReviewVidList, lessReviewVidList } = useSelector(
-    (state: RootState) => state.mainVideo.videoInfoList
-  );
+  const {
+    videoInfoList: { top5VideoList, mostReviewVidList, lessReviewVidList },
+    status,
+  } = useSelector((state: RootState) => state.mainVideo);
   const [isModal, setIsModal] = useState<boolean>(false);
 
   // const handleModal = () => {
@@ -33,11 +34,11 @@ function Main() {
   return (
     <main>
       <button className="btn-recommend" onClick={() => setIsModal(true)}>
-        <span>
+        {/* <span>
           이거
           <br />
           어때?
-        </span>
+        </span> */}
       </button>
       <RecommendedModal open={isModal} close={setIsModal} />
       <div className="bg-color__top"></div>

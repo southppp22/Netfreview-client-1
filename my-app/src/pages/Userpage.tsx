@@ -28,7 +28,6 @@ function Userpage() {
     profileUrl,
     videoList,
   } = useSelector((state: RootState) => state.userInfo);
-  console.log(videoList);
 
   useEffect(() => {
     if (isLogin) {

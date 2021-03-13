@@ -19,7 +19,6 @@ function Userpage() {
   // const location = useLocation().pathname;
   const dispatch = useDispatch();
   const { userId } = useParams<{ userId: string }>();
-  console.log(userId);
 
   const { isLogin } = useSelector((state: RootState) => state.login);
   const {

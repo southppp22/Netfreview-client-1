@@ -1,7 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-function BannerSlide({ subTitle, video }: any) {
+type video = {
+  actor?: string;
+  ageLimit?: string;
+  bannerUrl: string;
+  createdAt?: Date;
+  description: string;
+  director?: string;
+  id: number;
+  netflixUrl?: string;
+  posterUrl?: string;
+  rating?: number;
+  releaseYear?: string;
+  title: string;
+  type?: string;
+  updatedAt?: Date;
+};
+
+type BannerSlideProps = {
+  subTitle: string;
+  video: video;
+};
+
+function BannerSlide({ subTitle, video }: BannerSlideProps) {
   return (
     <section
       className="banner"

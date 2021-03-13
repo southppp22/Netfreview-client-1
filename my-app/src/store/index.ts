@@ -4,6 +4,7 @@ import thunk from 'redux-thunk';
 import rootReducer from '../modules';
 import storage from 'redux-persist/lib/storage';
 import { persistStore, persistReducer } from 'redux-persist';
+import { refreshToken } from '../middleware/refresh';
 
 const persistConfig = {
   key: 'root',
@@ -16,7 +17,7 @@ const enhanceReducer = persistReducer(persistConfig, rootReducer);
 export default function configureStore() {
   const store = createStore(
     enhanceReducer,
-    composeWithDevTools(applyMiddleware(thunk))
+    composeWithDevTools(applyMiddleware(refreshToken, thunk))
   );
   const persistor = persistStore(store);
   return { store, persistor };

@@ -2,9 +2,8 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../modules';
 import { addLikeThunk, deleteReviewThunk } from '../modules/review';
-
-import plant from '../img/plant.png';
-import heart from '../img/heart.png';
+import leaf from '../img/leaf.svg';
+import heart from '../img/heart.svg';
 import profile from '../img/profileImg.svg';
 import '../scss/Myreview.scss';
 
@@ -18,7 +17,7 @@ function Myreview({ setIsOn }: MyReviewProps) {
     reviews: { myReview },
   } = reviews;
   const { nickname, profileUrl } = useSelector(
-    (state: RootState) => state.userInfo
+    (state: RootState) => state.myInfo
   );
 
   const dispatch = useDispatch();
@@ -40,40 +39,42 @@ function Myreview({ setIsOn }: MyReviewProps) {
   if (myReview) {
     const { id, rating, text, likeCount } = myReview;
     return (
-      <div className="reviewList__wholeInfo">
-        <div className="reviewList-wrap">
-          <div className="reviewList-top">
-            <div className="wholeInfo__profile">
-              <img
-                src={profileUrl || profile}
-                alt="프로필"
-                className="profile__img"
-              />
-              <span className="profile__nickname">{nickname}</span>
+      <div className="MyreviewList__wholeInfo">
+        <div className="MyreviewList-wrap">
+          <div className="MyreviewList-top">
+            <div className="MywholeInfo__profile">
+              <div className="Myprofile__wrapper">
+                <img
+                  src={profileUrl || profile}
+                  alt="프로필"
+                  className="Myprofile__img"
+                />
+                <span className="Myprofile__nickname">{nickname}</span>
+              </div>
             </div>
 
-            <div className="wholeInfo__count">
-              <div className="count__rate">
-                <img className="img-rate" src={plant} />
-                <span className="rate-num">{rating}</span>
-              </div>
+            <div className="MywholeInfo__count">
               <button
                 onClick={() => {
                   addLike(id);
                 }}
                 type="button"
-                className="count__heart"
+                className="Mycount__heart"
               >
-                <img className="img-heart" src={heart} />
-                <span className="rate-num">{likeCount}</span>
+                <img className="Myimg-heart" src={heart} />
+                <span className="Myrate-num">{likeCount}</span>
               </button>
+              <div className="Mycount__rate">
+                <img className="Myimg-rate" src={leaf} />
+                <span className="Myrate-num">{rating}</span>
+              </div>
             </div>
           </div>
-          <div className="wholeInfo__div">{text}</div>
-          <div className="wholeInfo__btn">
+          <div className="MywholeInfo__div">{text}</div>
+          <div className="MywholeInfo__btn">
             <button
               onClick={() => setIsOn(true)}
-              className="btn__review"
+              className="Mybtn__review"
               type="button"
             >
               수정
@@ -83,7 +84,7 @@ function Myreview({ setIsOn }: MyReviewProps) {
                 deleteReview(id);
               }}
               type="button"
-              className="btn__review"
+              className="Mybtn__review"
             >
               삭제
             </button>
@@ -92,7 +93,11 @@ function Myreview({ setIsOn }: MyReviewProps) {
       </div>
     );
   }
-  return <div>내 리뷰가 없습니다.</div>;
+  return (
+    <div className="nomyreview">
+      <h1 className="nothing">나의 리뷰가 존재하지 않습니다.</h1>
+    </div>
+  );
 }
 
 export default Myreview;

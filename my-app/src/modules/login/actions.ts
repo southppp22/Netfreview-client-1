@@ -14,6 +14,7 @@ export const LOGOUT_SUCCESS = 'login/LOGOUT_SUCCESS';
 export const LOGOUT_FAILURE = 'login/LOGOUT_FAILURE';
 
 export const OUATH_LOGIN = 'login/OAUTH_LOGIN';
+export const LOGIN_STATUS_RESET = 'login/LOGIN_STATUS_RESET';
 
 export const loginAsync = createAsyncAction(
   LOGIN_REQUEST,
@@ -34,3 +35,4 @@ export const logoutAsync = createAsyncAction(
 )<undefined, undefined, AxiosError>();
 
 export const oauthLogin = createAction(OUATH_LOGIN)<string>();
+export const loginStatusReset = createAction(LOGIN_STATUS_RESET)<undefined>();

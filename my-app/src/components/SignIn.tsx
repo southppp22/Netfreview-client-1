@@ -23,10 +23,12 @@ interface FormInput {
 
 type isModalprops = {
   closeModal: () => void;
+  errorMessage?: string;
 };
 
 /*********Function********/
-function SignIn({ closeModal }: isModalprops) {
+function SignIn({ closeModal, errorMessage }: isModalprops) {
+  console.log(errorMessage);
   // { onLoginSuccess, onRefresh }: token
   const { status } = useSelector((state: RootState) => state.login);
 
@@ -58,37 +60,13 @@ function SignIn({ closeModal }: isModalprops) {
     setIsFindpwOpen(true);
   };
 
-  // const closeSignin = () => {
-  //   setIsSignInClose(true);
-  //   onSetIsLogin(true);
-  // };
-
-  //만료시간
-  // const JWT_EXPIRY_TIME = 24 * 3600 * 1000;
-  const onSubmit = async () => {
-    await dispatch(
+  const onSubmit = () => {
+    dispatch(
       loginThunk({
         email,
         password,
       })
     );
-    if (status === 'idle') {
-      closeModal();
-    } else if (status === 'loading') {
-      alert('이메일과 비밀번호를 확인해주세요.');
-    }
-
-    // catch (e) {
-    //   console.log(e);
-    //   if (e.message === `비밀번호가 올바르지 않습니다.`) {
-    //     // alert(`비밀번호가 틀렸습니다.`);
-    //     <div>비밀번호가 틀렸습니다!</div>;
-    //   } else if (e.message === `이메일이 올바르지 않습니다.`) {
-    //     alert(`이메일이 틀렸습니다.`);
-    //   } else if (e.statusCode === 401) {
-    //     alert(`입력해주세요`);
-    //   }
-    // }
   };
 
   return (
@@ -125,6 +103,7 @@ function SignIn({ closeModal }: isModalprops) {
                   placeholder="비밀번호"
                 ></input>
               </form>
+              {errorMessage ? <p className="input">{errorMessage}</p> : <></>}
               <div className="login-btn">
                 {/* <button
                   onClick={onSubmit}

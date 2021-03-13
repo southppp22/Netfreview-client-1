@@ -18,13 +18,6 @@ function Main() {
   } = useSelector((state: RootState) => state.mainVideo);
   const [isModal, setIsModal] = useState<boolean>(false);
 
-  // const handleModal = () => {
-  //   setIsModal(!isModal);
-  // };
-  // const openModal = () => {
-  //   setIsModal(true);
-  // };
-
   useEffect(() => {
     dispatch(fetchMainVideoThunk());
   }, [dispatch]);

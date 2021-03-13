@@ -25,7 +25,6 @@ type ReviewCommentProps = {
 
 function ReviewComment(props: ReviewCommentProps) {
   const { user, id, text, rating, likeCount } = props;
-  console.log(user.id);
 
   const dispatch = useDispatch();
 

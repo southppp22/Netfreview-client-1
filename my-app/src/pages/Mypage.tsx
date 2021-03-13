@@ -15,7 +15,7 @@ function Mypage() {
   const history = useHistory();
   const dispatch = useDispatch();
   const { isLogin } = useSelector((state: RootState) => state.login);
-  const { myName, nickname, introduction, profileUrl, status } = useSelector(
+  const { myName, nickname, introduction, profileUrl } = useSelector(
     (state: RootState) => state.myInfo
   );
   const {

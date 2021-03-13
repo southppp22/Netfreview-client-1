@@ -7,7 +7,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 
 import BannerSlide from './BannerSlide';
-import banner3BG from '../img/banner3_bestReview.jpg';
 import 'swiper/swiper.scss';
 import 'swiper/components/navigation/navigation.scss';
 import 'swiper/components/pagination/pagination.scss';
@@ -61,6 +60,19 @@ function Banner() {
       top5VideoList && setTopVideo(top5VideoList[0]);
       lessReviewVidList && setLessVideo(lessReviewVidList[0]);
     }
+    return () => {
+      axios
+        .get('reviews/reviewKing')
+        .then((res) => {
+          const { user, video } = res.data;
+          setBestReviewer({ nickname: user.nickname, videoId: video.id });
+        })
+        .catch((e) => console.log(e.response));
+      if (status === 'idle') {
+        top5VideoList && setTopVideo(top5VideoList[0]);
+        lessReviewVidList && setLessVideo(lessReviewVidList[0]);
+      }
+    };
   }, [top5VideoList, lessReviewVidList, status]);
 
   const autoPlay = {
@@ -74,8 +86,8 @@ function Banner() {
       slidesPerView={1}
       navigation //*
       pagination={{ clickable: true }} //*
-      onSwiper={(swiper) => console.log(swiper)}
-      onSlideChange={() => console.log('slide change')}
+      // onSwiper={(swiper) => console.log(swiper)}
+      // onSlideChange={() => console.log('slide change')}
       loop={true}
       autoplay={autoPlay}
       // style={{ height: '555px' }}

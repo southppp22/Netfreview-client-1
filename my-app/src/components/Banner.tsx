@@ -127,6 +127,10 @@ function Banner() {
           </section>
         </SwiperSlide>
       </div>
+      {/* <div className="swiper-button-wrap">
+        <div className="swiper-button-next"></div>
+        <div className="swiper-button-prev"></div>
+      </div> */}
     </Swiper>
   );
 }

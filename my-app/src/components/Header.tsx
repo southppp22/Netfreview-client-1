@@ -71,11 +71,10 @@ function Header() {
           <Link to="/" className="nav-left__logo"></Link>
           <ul className="nav-left__type">
             <li>
-              {/* <Link to="/resetpw">영화</Link> */}
-              영화
+              <Link to="/">영화</Link>
             </li>
             <li>
-              <Link to="/">TV 프로그램</Link>
+              <Link to="/TVprogram">TV 프로그램</Link>
             </li>
           </ul>
         </div>

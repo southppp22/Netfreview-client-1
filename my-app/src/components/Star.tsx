@@ -1,21 +1,22 @@
 import React, { useMemo } from 'react';
-import { Writeleaficon } from './Writeleaficon';
 
-type leafProps = {
+import { StarIcon } from './StarsIcon';
+
+type StarsProps = {
   index: number;
   rating: number;
-  hoverRating: number;
   setRating: (rating: number) => void;
-  setHoverRating: (hoverRating: number) => void;
+  hoverRating: number;
+  setHoverRating: (rating: number) => void;
 };
 
 export function Stars({
   index,
   rating,
-  hoverRating,
   setRating,
+  hoverRating,
   setHoverRating,
-}: leafProps) {
+}: StarsProps) {
   const isFill = useMemo(() => {
     if (hoverRating >= index) {
       return true;
@@ -31,7 +32,7 @@ export function Stars({
       onMouseLeave={() => setHoverRating(0)}
       onClick={() => setRating(index)}
     >
-      <Writeleaficon isActive={isFill} />
+      <StarIcon isActive={isFill} />
     </div>
   );
 }

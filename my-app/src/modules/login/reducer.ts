@@ -76,6 +76,7 @@ const login = createReducer<LoginState, LoginAction>(initailState, {
     ...state,
     accessToken: action.payload,
     isLogin: true,
+    status: 'idle',
   }),
 });
 

@@ -43,8 +43,10 @@ function Review() {
   };
 
   useEffect(() => {
-    getVideoInfo(videoId);
-  }, [videoId]);
+    if (status === 'idle') {
+      getVideoInfo(videoId);
+    }
+  }, [videoId, status]);
 
   useEffect(() => {
     if (typeof currentPage === 'string' && status === 'idle') {
@@ -63,7 +65,7 @@ function Review() {
 
           <div className="right">
             {!isLogin ? (
-              <MyPageLogin close={setIsModal} />
+              <MyPageLogin active={isModal} setIsModal={setIsModal} />
             ) : myReview && !isOn ? (
               <Myreview setIsOn={setIsOn} />
             ) : (

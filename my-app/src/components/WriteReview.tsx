@@ -18,8 +18,8 @@ function WriteReview({ setIsOn }: WriteReviewProps) {
     reviews: { myReview },
   } = reviews;
 
-  const [rating, setRating] = useState<number>(myReview?.rating || 0);
-  const [hoverRating, setHoverRating] = useState<number>(0);
+  const [rating, setRating] = useState<number>(myReview?.rating || 1);
+  const [hoverRating, setHoverRating] = useState<number>(myReview?.rating || 1);
   const [text, setText] = useState(myReview?.text || '');
 
   const addReview = () => {

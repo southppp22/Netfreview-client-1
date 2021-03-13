@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addLikeThunk } from '../modules/review';
 import profile from '../img/profile.png';
 import leaf from '../img/leaf.svg';
@@ -8,6 +8,7 @@ import heart from '../img/heart.svg';
 import emptyheart from '../img/emptyheart.svg';
 import '../scss/ReviewComment.scss';
 import { Link } from 'react-router-dom';
+import { RootState } from '../modules';
 type ReviewCommentProps = {
   rating: number;
   id: number;
@@ -25,6 +26,7 @@ type ReviewCommentProps = {
 
 function ReviewComment(props: ReviewCommentProps) {
   const { user, id, text, rating, likeCount } = props;
+  const { isLogin } = useSelector((state: RootState) => state.login);
 
   const dispatch = useDispatch();
 
@@ -83,6 +85,7 @@ function ReviewComment(props: ReviewCommentProps) {
             }}
             type="button"
             className="clickcount__heart"
+            disabled={isLogin}
           >
             <div>
               <img className="img-clickheart" src={heart} />
@@ -92,8 +95,10 @@ function ReviewComment(props: ReviewCommentProps) {
         ) : (
           <button
             onClick={() => {
-              addLike();
-              onHeartClick();
+              if (isLogin) {
+                addLike();
+                onHeartClick();
+              }
             }}
             type="button"
             className="clickcount__heart"

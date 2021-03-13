@@ -2,15 +2,18 @@ import { createReducer } from 'typesafe-actions';
 import {
   LOGIN_FAILURE,
   LOGIN_REQUEST,
+  LOGIN_STATUS_RESET,
   LOGIN_SUCCESS,
   LOGOUT,
   LOGOUT_FAILURE,
   LOGOUT_SUCCESS,
+  OUATH_LOGIN,
   REFRESH,
   REFRESH_FAILURE,
   REFRESH_SUCCESS,
 } from './actions';
 import { LoginAction, LoginState } from './types';
+import storage from 'redux-persist/lib/storage';
 
 const initailState: LoginState = {
   status: 'idle',
@@ -34,6 +37,10 @@ const login = createReducer<LoginState, LoginAction>(initailState, {
     status: 'failed',
     isLogin: false,
   }),
+  [LOGIN_STATUS_RESET]: (state) => ({
+    ...state,
+    status: 'idle',
+  }),
   [REFRESH]: (state) => ({
     ...state,
     status: 'loading',
@@ -49,10 +56,13 @@ const login = createReducer<LoginState, LoginAction>(initailState, {
     status: 'idle',
     isLogin: false,
   }),
-  [LOGOUT]: (state) => ({
-    ...state,
-    status: 'loading',
-  }),
+  [LOGOUT]: (state) => {
+    storage.removeItem('persist:root');
+    return {
+      ...state,
+      status: 'loading',
+    };
+  },
   [LOGOUT_SUCCESS]: (state) => ({
     ...state,
     ...initailState,
@@ -61,6 +71,11 @@ const login = createReducer<LoginState, LoginAction>(initailState, {
     ...state,
     ...initailState,
     status: 'failed',
+  }),
+  [OUATH_LOGIN]: (state, action) => ({
+    ...state,
+    accessToken: action.payload,
+    isLogin: true,
   }),
 });
 

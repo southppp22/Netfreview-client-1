@@ -15,8 +15,7 @@ import Userpage from './pages/Userpage';
 import TVprogram from './pages/TVprogram';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from './modules';
-import { refreshThunk } from './modules/login';
-import { fetchReviews } from './api/fetchReviews';
+import Oauth from './pages/Oauth';
 
 // axios.defaults.baseURL = 'https://www.server.netfreview.com';
 // axios.defaults.withCredentials = true;
@@ -26,34 +25,6 @@ import { fetchReviews } from './api/fetchReviews';
 
 function App() {
   const { isLogin } = useSelector((state: RootState) => state.login);
-
-  const dispatch = useDispatch();
-  //만료시간
-  // const JWT_EXPIRY_TIME = 24 * 3600 * 1000;
-
-  //이메일, 비번을 보내면 refreshToken과 acessToken을 return
-  // const onLoginSuccess = (res: any) => {
-  //   const { accessToken } = res.data;
-  //   axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
-  //   setTimeout(onRefresh, JWT_EXPIRY_TIME - 60000); //로그인연장
-  // };
-  //cookie에 담긴 refreshToken이 자동으로 보내지면, 새로운 refreshToekn과 accessToken을 return
-
-  // const onRefresh = () => {
-  //   dispatch(refreshThunk());
-  // };
-
-  // useEffect(() => {
-  //   if (!isLogin) {
-  //     onRefresh();
-  //   }
-  // }, [isLogin, onRefresh]);
-
-  useEffect(() => {
-    if (!isLogin) {
-      dispatch(refreshThunk());
-    }
-  }, [isLogin, dispatch]);
   return (
     <div className="wrapper">
       <Router>
@@ -79,6 +50,7 @@ function App() {
           <Route path="/resetpw" component={Resetpw} />
           <Route path="/userpage/:userId" component={Userpage} />
           <Route path="/tvprogram" component={TVprogram} />
+          <Route path="/oauth" component={Oauth} />
         </Switch>
         <Footer />
       </Router>

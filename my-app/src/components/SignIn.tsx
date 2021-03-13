@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { loginThunk } from '../modules/login/thunks';
 import { useForm } from 'react-hook-form';
@@ -13,6 +13,7 @@ import facebook from '../img/facebook.png';
 import google from '../img/google.png';
 import kakao from '../img/kakao-talk.png';
 import '../scss/SignIn.scss';
+import { stat } from 'fs';
 
 /*********type************/
 interface FormInput {
@@ -20,17 +21,14 @@ interface FormInput {
   password: string;
 }
 
-// type token = {
-//   onLoginSuccess: () => void;
-//   onRefresh: () => void;
-// };
-
 type isModalprops = {
   closeModal: () => void;
+  errorMessage?: string;
 };
 
 /*********Function********/
-function SignIn({ closeModal }: isModalprops) {
+function SignIn({ closeModal, errorMessage }: isModalprops) {
+  console.log(errorMessage);
   // { onLoginSuccess, onRefresh }: token
   const { status } = useSelector((state: RootState) => state.login);
 
@@ -62,58 +60,14 @@ function SignIn({ closeModal }: isModalprops) {
     setIsFindpwOpen(true);
   };
 
-  // const closeSignin = () => {
-  //   setIsSignInClose(true);
-  //   onSetIsLogin(true);
-  // };
-
-  //만료시간
-  // const JWT_EXPIRY_TIME = 24 * 3600 * 1000;
-
-  const onSubmit = async () => {
-    await dispatch(
+  const onSubmit = () => {
+    dispatch(
       loginThunk({
         email,
         password,
       })
     );
-    if (status === 'idle') {
-      closeModal();
-    }
-
-    // catch (e) {
-    //   console.log(e);
-    //   if (e.message === `비밀번호가 올바르지 않습니다.`) {
-    //     // alert(`비밀번호가 틀렸습니다.`);
-    //     <div>비밀번호가 틀렸습니다!</div>;
-    //   } else if (e.message === `이메일이 올바르지 않습니다.`) {
-    //     alert(`이메일이 틀렸습니다.`);
-    //   } else if (e.statusCode === 401) {
-    //     alert(`입력해주세요`);
-    //   }
-    // }
   };
-  // const onSubmit = async () => {
-  //   try {
-  //     await dispatch(
-  //       loginThunk({
-  //         email,
-  //         password,
-  //       })
-  //     );
-  //     setIsSignInClose(true);
-  //     closeModal();
-  //   } catch (e) {
-  //     console.log(e);
-  //     if (e.message === `비밀번호가 올바르지 않습니다.`) {
-  //       alert(`비밀번호가 틀렸습니다.`);
-  //     } else if (e.message === `이메일이 올바르지 않습니다.`) {
-  //       alert(`이메일이 틀렸습니다.`);
-  //     } else if (e.statusCode === 401) {
-  //       alert(`입력해주세요`);
-  //     }
-  //   }
-  // };
 
   return (
     <div>
@@ -149,6 +103,7 @@ function SignIn({ closeModal }: isModalprops) {
                   placeholder="비밀번호"
                 ></input>
               </form>
+              {errorMessage ? <p className="input">{errorMessage}</p> : <></>}
               <div className="login-btn">
                 {/* <button
                   onClick={onSubmit}

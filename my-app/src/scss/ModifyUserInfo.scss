@@ -95,6 +95,15 @@
           margin-top: 2px;
           font-size: 12px;
         }
+        &__nickname {
+          &.error {
+            border: 1px solid var(--color-netflix);
+            background-color: var(--color-white);
+            &:focus {
+              border-color: var(--color-netflix);
+            }
+          }
+        }
         &__pw {
           &.error {
             border: 1px solid var(--color-netflix);

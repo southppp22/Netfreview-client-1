@@ -15,9 +15,14 @@ function ModifyUserInfo() {
   const history = useHistory();
   const dispatch = useDispatch();
   const { accessToken } = useSelector((state: RootState) => state.login);
-  const { myId, myName, nickname, profileUrl, introduction } = useSelector(
-    (state: RootState) => state.myInfo
-  );
+  const {
+    myId,
+    myName,
+    nickname,
+    profileUrl,
+    introduction,
+    status,
+  } = useSelector((state: RootState) => state.myInfo);
 
   const [diffNickname, setDiffNickname] = useState(nickname);
   const [password, setPassword] = useState('');
@@ -29,6 +34,8 @@ function ModifyUserInfo() {
   const [previewURL, setPreviewURL] = useState<string | ArrayBuffer | null>(
     profileUrl
   );
+  const [isValidNickname, setIsValidNickname] = useState(true);
+  const [isModify, setIsModify] = useState(false);
 
   // const errorRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -45,6 +52,32 @@ function ModifyUserInfo() {
       }
     };
   }, [password, confirmPw]);
+
+  useEffect(() => {
+    if (isModify) {
+      if (status === 'failed') {
+        setIsValidNickname(false);
+      } else if (checkModified()) {
+        history.push('/mypage');
+      }
+    }
+  }, [status]);
+  useEffect(() => {
+    if (diffNickname !== nickname) {
+      setIsValidNickname(true);
+    }
+  }, [diffNickname]);
+  // useEffect(() => {
+  //   console.log('isModify');
+  //   if (status === 'failed') {
+  //     console.log('isModify-fail');
+  //     setIsValidNickname(false);
+  //   } else if (diffNickname === nickname) {
+  //     console.log('isModify-idle');
+  //     // history.push('/mypage');
+  //   }
+  // }, [isModify]);
+
   const handleNickname = (e: ChangeEvent<HTMLInputElement>) => {
     setDiffNickname(e.target.value);
   };
@@ -114,7 +147,7 @@ function ModifyUserInfo() {
 
   const checkModified = () => {
     if (
-      diffNickname !== nickname ||
+      (diffNickname !== nickname && isValidNickname) ||
       password ||
       description !== introduction ||
       imgFile ||
@@ -128,32 +161,34 @@ function ModifyUserInfo() {
   const canPasswordSave = [isValidPw, isMatchPw, password].every(Boolean);
 
   const confirmModified = async () => {
-    const isModified = confirm('회원정보 변경 사항을 적용하시겠습니까?');
-    if (isModified) {
-      let profileUrl = '';
-      if (imgFile) {
-        const formData = new FormData();
-        formData.append('image', imgFile);
+    let profileUrl = '';
+    if (imgFile) {
+      const formData = new FormData();
+      formData.append('image', imgFile);
 
-        const res = await axios.post('/image', formData, {
-          headers: { Authorization: `Bearer ${accessToken}` },
-        });
-        profileUrl = res.data.data.profileUrl;
-      }
-      const payload: updateMyInfoPayloadType = {
-        nickname: diffNickname,
-        introduction: description,
-      };
-      if (canPasswordSave) {
-        payload.password = password;
-      }
-      if (profileUrl) {
-        payload.profileUrl = profileUrl;
-      }
-      await dispatch(updateMyInfoThunk(payload));
-      history.push('/mypage');
+      const res = await axios.post('/image', formData, {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
+      profileUrl = res.data.data.profileUrl;
     }
+    const payload: updateMyInfoPayloadType = {
+      // nickname: diffNickname,
+      introduction: description,
+    };
+
+    if (diffNickname !== nickname) {
+      payload.nickname = diffNickname;
+    }
+    if (canPasswordSave) {
+      payload.password = password;
+    }
+    if (profileUrl) {
+      payload.profileUrl = profileUrl;
+    }
+    dispatch(updateMyInfoThunk(payload));
+    setIsModify(true);
   };
+
   return (
     <section className="modify-user">
       <article className="modify-user-wrap">
@@ -210,10 +245,24 @@ function ModifyUserInfo() {
               <td className="table__td">
                 <div className="table__td-cell">
                   <input
+                    className={
+                      isValidNickname
+                        ? 'table__td-cell__nickname'
+                        : 'table__td-cell__nickname error'
+                    }
                     type="text"
                     onChange={handleNickname}
                     value={diffNickname}
                   />
+                  <div
+                    className={
+                      isValidNickname
+                        ? 'table__td-cell__caution'
+                        : 'table__td-cell__caution error'
+                    }
+                  >
+                    {isValidNickname ? null : '닉네임이 중복됩니다.'}
+                  </div>
                 </div>
               </td>
             </tr>

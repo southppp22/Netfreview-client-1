@@ -6,6 +6,7 @@ import { fetchMyInfoThunk } from '../modules/myInfo';
 import profile from '../img/profileImg.svg';
 import SignIn from './SignIn';
 import '../scss/Header.scss';
+import { loginStatusReset } from '../modules/login';
 
 /************** 함수 *************/
 
@@ -42,6 +43,7 @@ function Header() {
 
   const closeModal = () => {
     setIsModalOpen(false);
+    dispatch(loginStatusReset());
   };
 
   const handleScroll = () => {

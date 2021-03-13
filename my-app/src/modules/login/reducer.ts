@@ -2,6 +2,7 @@ import { createReducer } from 'typesafe-actions';
 import {
   LOGIN_FAILURE,
   LOGIN_REQUEST,
+  LOGIN_STATUS_RESET,
   LOGIN_SUCCESS,
   LOGOUT,
   LOGOUT_FAILURE,
@@ -35,6 +36,10 @@ const login = createReducer<LoginState, LoginAction>(initailState, {
     ...state,
     status: 'failed',
     isLogin: false,
+  }),
+  [LOGIN_STATUS_RESET]: (state) => ({
+    ...state,
+    status: 'idle',
   }),
   [REFRESH]: (state) => ({
     ...state,

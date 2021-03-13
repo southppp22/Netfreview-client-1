@@ -16,7 +16,7 @@
   padding-bottom: 80px;
 }
 .MyreviewList-top {
-  //border-bottom: 2px solid #c4c4c4;
+  border-bottom: 1px solid #c4c4c4;
   height: 60px;
   display: flex;
   justify-content: space-between;
@@ -29,6 +29,8 @@
   //border: 1px solid orange;
   position: absolute;
   width: 30px;
+  border-radius: 50%;
+  overflow: hidden;
   height: 30px;
 }
 .Myprofile__img {

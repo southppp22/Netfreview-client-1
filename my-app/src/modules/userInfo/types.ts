@@ -27,7 +27,7 @@ export type UserInfo = {
   nickname: string;
   introduction: string;
   profileUrl: string | null;
-  video: Video[];
+  videoList: Video[];
   lastLogin?: Date;
   createdAt?: Date;
   updatedAt?: Date;

@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, connect } from 'react-redux';
 import { RootState } from '../modules';
 import '../scss/loading.scss';
-import spinner from '../img/Spinner-1s-98px.gif';
+import spinner from '../img/Spinner.gif';
 //import netfreivew from '../img/netfreview.gif';
 
 function loading() {

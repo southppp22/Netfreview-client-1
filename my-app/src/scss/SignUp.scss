@@ -76,13 +76,16 @@ p.input::before {
   margin-bottom: 10px;
   background-color: #f0efef;
 }
-
+.alert__sign-up {
+  color: var((--color-netflix));
+  text-align: center;
+}
 .login-btn {
   //border: 1px solid blue;
   margin-top: 40px;
 }
 
-#Btn {
+.Btn {
   // border: 1px solid orange;
   width: 379px;
   height: 59px;

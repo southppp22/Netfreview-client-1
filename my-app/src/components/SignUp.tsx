@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState, useRef /*FormEvent*/ } from 'react';
+import React, { useState, useRef /*FormEvent*/, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import _ from 'lodash/fp';
 import SignIn from './SignIn';
@@ -9,6 +9,7 @@ import facebook from '../img/facebook.png';
 import google from '../img/google.png';
 import kakao from '../img/kakao-talk.png';
 import '../scss/SignUp.scss';
+import { useHistory } from 'react-router';
 
 /********* type ********/
 interface FormInput {
@@ -25,14 +26,18 @@ type isModalprops = {
 /************ Function *************/
 
 function SignUp({ closeModal }: isModalprops) {
+  const history = useHistory();
   const { register, handleSubmit, watch, errors } = useForm<FormInput>();
   // const [isLogin, setIsLogin] = useState<boolean>(false);
   const [name, setName] = useState<string>('');
   const [nickname, setNickname] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [warning, setWarning] = useState('');
+  const [isSignInOpen, setIsSignInOpen] = useState<boolean>(false);
+  const [isSignUpClose, setIsSignUpClose] = useState<boolean>(false);
   // const [rePassword, setRePassword] = useState<string>('');
-  const number = 4;
+  const number = 12;
   // console.log(watch('password-confirm'));
 
   const Password = useRef();
@@ -58,6 +63,8 @@ function SignUp({ closeModal }: isModalprops) {
   // const errorRef: any = useRef();
 
   const onSubmit = async () => {
+    console.log('hey');
+
     if (!name || !nickname || !email || !password) {
       return alert('항목을 전부 입력해주세요');
     } else {
@@ -85,24 +92,29 @@ function SignUp({ closeModal }: isModalprops) {
         .then((res) => {
           console.log(res);
           // alert(res.data);
+          alert('축하드려요~! 회원가입되셨습니다!! :)');
+          setIsSignInOpen(true);
+          setIsSignUpClose(true);
         })
         .catch((error) => {
           console.log(error.response.data);
-          if (error.response.data.message === `이미 존재하는 이메일입니다.`) {
-            <div>이미 존재하는 이메일입니다</div>;
+          if (error.response.data.message === '이미 존재하는 이메일입니다.') {
+            // <div>이미 존재하는 이메일입니다</div>;
             // alert(`이미 존재하는 이메일입니다.`);
+            setWarning('이미 존재하는 이메일입니다');
+            return;
           }
           if (error.response.data.message === `이미 존재하는 닉네임입니다.`) {
-            alert(`이미 존재하는 닉네임입니다`);
-          } else if (error.response.data.status !== 422) {
-            alert(`제대로 입력해주세요!`);
+            setWarning(`이미 존재하는 닉네임입니다`);
+            return;
           }
+          // else if (error.response.data.status !== 422) {
+          //   setWarning(`입력사항을 다시한번더 확인주세요!`);
+          //   return;
+          // }
         });
     }
   };
-
-  const [isSignInOpen, setIsSignInOpen] = useState<boolean>(false);
-  const [isSignUpClose, setIsSignUpClose] = useState<boolean>(false);
 
   const openSignIn = () => {
     setIsSignInOpen(true);
@@ -112,6 +124,17 @@ function SignUp({ closeModal }: isModalprops) {
   // const closeSignIn = () => {
   //   setIsSignInOpen(false);
   // };
+  useEffect(() => {
+    if (!isSignUpClose) {
+      // 스크롤 방지
+      document.body.style.overflow = 'hidden';
+    }
+    return () => {
+      // 스크롤 방지 해제
+      document.body.style.overflow = 'scroll';
+      // document.body.style.overflow = 'unset';
+    };
+  });
 
   return (
     <div>
@@ -129,7 +152,7 @@ function SignUp({ closeModal }: isModalprops) {
                   ref={register({
                     required: true,
                     minLength: 2,
-                    pattern: /^[가-힣]+$/,
+                    pattern: /^[가-힣a-zA-Z]+$/,
                   })}
                   className="login-input"
                   type="text"
@@ -140,7 +163,7 @@ function SignUp({ closeModal }: isModalprops) {
                   <p className="input">입력해주세요!</p>
                 )}
                 {_.get('Name.type', errors) === 'maxLength' && (
-                  <p className="input">5자 미만으로 적어주세요!</p>
+                  <p className="input">13자 미만으로 적어주세요!</p>
                 )}
                 {_.get('Name.type', errors) === 'minLength' && (
                   <p className="input">2글자 이상 적어주세요!</p>
@@ -155,7 +178,7 @@ function SignUp({ closeModal }: isModalprops) {
                     required: true,
                     maxLength: 15,
                     minLength: 2,
-                    pattern: /^[가-힣a-zA-Z]+$/,
+                    // pattern: /^[가-힣a-zA-Z]+$/,
                   })}
                   className="login-input"
                   type="text"
@@ -170,9 +193,9 @@ function SignUp({ closeModal }: isModalprops) {
                 {_.get('Nickname.type', errors) === 'minLength' && (
                   <p className="input">2글자 이상 적어주세요!</p>
                 )}
-                {_.get('Nickname.type', errors) === 'pattern' && (
+                {/* {_.get('Nickname.type', errors) === 'pattern' && (
                   <p className="input">특수문자나 자음,모음만은 안되요!</p>
-                )}
+                )} */}
                 <input
                   onChange={onChangeEmail}
                   name="email"
@@ -196,8 +219,8 @@ function SignUp({ closeModal }: isModalprops) {
                   name="Password"
                   ref={register({
                     required: true,
-                    // pattern: /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/,
-                    pattern: /([a-zA-Z0-9].*[!,@,#,$,%,^,&,*,?,_,~])|([!,@,#,$,%,^,&,*,?,_,~].*[a-zA-Z0-9])/,
+                    pattern: /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/,
+                    // pattern: /([a-zA-Z0-9].*[!,@,#,$,%,^,&,*,?,_,~])|([!,@,#,$,%,^,&,*,?,_,~].*[a-zA-Z0-9])/,
                   })}
                   className="login-input"
                   type="password"
@@ -208,7 +231,7 @@ function SignUp({ closeModal }: isModalprops) {
                 )}
                 {_.get('Password.type', errors) === 'pattern' && (
                   <p className="input">
-                    영문,숫자,특수문자(!@$%^&* 만 허용)를 사용하여 6~16자까지
+                    영문,숫자,특수문자(!@$%^&* 만 허용)를 사용하여 8~15자까지
                     적어주세요!(영문은 대소문자를 구분합니다)
                   </p>
                 )}
@@ -230,17 +253,17 @@ function SignUp({ closeModal }: isModalprops) {
                 {_.get('password-confirm.type', errors) === 'validate' && (
                   <p className="input">비밀번호가 맞지 않습니다!</p>
                 )}
-
+                <div className="alert__sign-up">{warning}</div>
                 <div className="login-btn">
-                  <button type="submit" id="Btn" className="completeButton">
+                  <button type="submit" className="Btn completeButton">
                     입력완료
                   </button>
 
                   <button
                     onClick={openSignIn}
                     type="button"
-                    id="Btn"
-                    className="loginMoveButton"
+                    // id="Btn"
+                    className="Btn loginMoveButton"
                   >
                     로그인으로 이동
                   </button>

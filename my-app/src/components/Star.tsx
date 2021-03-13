@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 
 import { StarIcon } from './StarsIcon';
+import { Writeleaficon } from './Writeleaficon';
 
 type StarsProps = {
   index: number;
@@ -32,7 +33,7 @@ export function Stars({
       onMouseLeave={() => setHoverRating(0)}
       onClick={() => setRating(index)}
     >
-      <StarIcon isActive={isFill} />
+      <Writeleaficon isActive={isFill} />
     </div>
   );
 }

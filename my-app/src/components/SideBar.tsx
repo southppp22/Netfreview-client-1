@@ -12,7 +12,7 @@ function SideBar() {
     <aside className="video-info">
       <ul className="video-info__wrap">
         <li className="wrap__average">
-          <h5 className="wrap__average-title">총평</h5>
+          <h5 className="wrap__average-title">평균</h5>
           <div className="wrap__average-rate">
             <span className="wrap__average-score">
               {rating?.toFixed(1) || 3.1}

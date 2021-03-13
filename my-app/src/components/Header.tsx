@@ -33,9 +33,6 @@ function Header() {
   const onChangeText = (e: any) => {
     setquery(e.target.value);
   };
-  // const onCleanText = () => {
-  //   setInputText('');
-  // };
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -85,11 +82,10 @@ function Header() {
           <Link to="/" className="nav-left__logo"></Link>
           <ul className="nav-left__type">
             <li>
-              {/* <Link to="/resetpw">영화</Link> */}
-              영화
+              <Link to="/tvprogram">영화</Link>
             </li>
             <li>
-              <Link to="/">TV 프로그램</Link>
+              <Link to="/tvprogram">TV 프로그램</Link>
             </li>
           </ul>
         </div>

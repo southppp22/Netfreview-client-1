@@ -33,9 +33,6 @@ function Header() {
   const onChangeText = (e: any) => {
     setquery(e.target.value);
   };
-  // const onCleanText = () => {
-  //   setInputText('');
-  // };
 
   const openModal = () => {
     setIsModalOpen(true);

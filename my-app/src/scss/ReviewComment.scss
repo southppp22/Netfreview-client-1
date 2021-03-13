@@ -26,25 +26,29 @@
   width: 50%;
   height: 30px;
 }
+.wholeInfo-wrap {
+  //border: 1px solid black;
+  position: relative;
+  width: 40%;
+  height: 30px;
+}
 
 .profile__wrapper {
   //border: 1px solid orange;
-  position: absolute;
   width: 30px;
   height: 30px;
+  float: left;
 }
 .profile__img {
-  height: 100%;
-  width: 100%;
+  height: 30px;
+  width: 30px;
   object-fit: contain;
-  float: left;
 }
 .profile__nickname {
   //border: 1px solid green;
-  position: absolute;
-  width: 80px;
   line-height: 28px;
   padding-left: 10px;
+  float: left;
 }
 .wholeInfo__count {
   //border: 1px solid skyblue;

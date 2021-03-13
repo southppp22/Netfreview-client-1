@@ -51,9 +51,18 @@ function ReviewComment(props: ReviewCommentProps) {
       <div className="reviewList-wrap">
         <div className="reviewList-top">
           <div className="wholeInfo__profile">
-            <div className="profile__wrapper">
-              <img src={user.profileUrl || profile} className="profile__img" />
+            <div className="wholeInfo-wrap">
+              <div className="profile__wrapper">
+                <img
+                  src={user.profileUrl || profile}
+                  className="profile__img"
+                />
+              </div>
+              <Link className="profile__nickname" to={`/userpage/${user.id}`}>
+                {user.nickname}
+              </Link>
             </div>
+
             <Link to={`/userpage/${user.id}`}>
               <span className="profile__nickname">{user.nickname}</span>
             </Link>

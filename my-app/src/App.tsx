@@ -12,6 +12,7 @@ import ModifyUserInfo from './pages/ModifyUserInfo';
 import SignIn from './components/SignIn';
 import Resetpw from './pages/Resetpw';
 import Userpage from './pages/Userpage';
+import TVprogram from './pages/TVprogram';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from './modules';
 import Oauth from './pages/Oauth';
@@ -48,6 +49,7 @@ function App() {
           <Route path="/signin" component={SignIn} />
           <Route path="/resetpw" component={Resetpw} />
           <Route path="/userpage/:userId" component={Userpage} />
+          <Route path="/tvprogram" component={TVprogram} />
           <Route path="/oauth" component={Oauth} />
         </Switch>
         <Footer />

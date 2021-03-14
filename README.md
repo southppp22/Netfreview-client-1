@@ -189,4 +189,4 @@ Hello reviewer, Welcome to Netfreview ;)🙋‍♂🙋‍♀
 
 ## 📊 Server Flow Chart
 
-<img src="https://github.com/codestates/Netfreview-client/blob/dev/img/flowchart/server-flowchart.png?raw=true" width="900" height="600" />
+<img src="https://github.com/codestates/Netfreview-client/blob/dev/img/flowchart/server-flowchart.png?raw=true" width="1020" height="800" />

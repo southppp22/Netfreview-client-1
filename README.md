@@ -155,9 +155,9 @@ Hello reviewer, Welcome to Netfreview ;)🙋‍♂🙋‍♀
 - Contributions
 - **Server**
      - 공동작업
-     - Typescript, Nestjs, typeorm을 통한 개발환경 구축
-     - dbdiagram을 사용하여 스키마 작성
-     - git book을 사용하여 API 문서 작업
+        - Typescript, Nestjs, typeorm을 통한 개발환경 구축
+        - dbdiagram을 사용하여 스키마 작성
+        - git book을 사용하여 API 문서 작업
   
    - DATABASE
      - DB스키마를 토대로 엔티티 생성, 엔티티 관계설정을 통해 DB관계 설정

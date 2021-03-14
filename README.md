@@ -152,31 +152,41 @@ Hello reviewer, Welcome to Netfreview ;)🙋‍♂🙋‍♀
 - Stack : React,React-Hooks, Typescript, Redux, Redux-Thunk, SCSS, CSS, typescript, nest.js, typeorm, jwt, mysql, aws cloudfront, s3
 - Contributions
 - **Client**
-  - UI 기획 및 디자인
-    - 유아이디자인
+- 모든 비동기 요청시 토큰의 만료기한을 확인하고 토큰이 만료가 되었다면 refreshToken을 이용해 서버에게 토큰 발급 요청
+  - 로그인 모달창
+    - Redux, React-Hook를 이용한 상태관리 및 Reducer 생성
+    - Redux-thunk를 사용하여 로그인 로직 리팩토링
+    - Redux-persist를 이용하여 로그인 상태 유지
+    - 구글 로그인 기능 구현
   - 메인페이지
     - 메인페이지 디자인
-  - 로그인모달창
-    - 
-  - 회원가입모달창
-    - 
   - 리뷰페이지
-    - 
-  - 영화추천모달창
-    - 
+    - Redux, React-Hook를 이용한 상태관리 및 Reducer 생성
+    - 페이지네이션 구현
+    - 별점기능 구현
+    - 리뷰 추가, 리뷰 수정, 리뷰 삭제 구현
+    - 유저 정보(비로그인, 게시글의 나의 리뷰가 있을 경우, 없을 경우)에 따라 로그인으로 이동하는 컴포넌트, 리뷰를 작성하는 컴포넌트, 나의 리뷰를 보여주는 컴포넌트 랜더링
+    - redux-thunk를 사용하여 비디오 정보를 가져와 화면에 랜더링
   - 마이페이지
-    - 
-  - 유저정보수정페이지
-    - 
-  - 유저페이지
-    - 
-  - 검색페이지
-    - 
+    - Redux, React-Hook를 이용한 상태관리 및 Reducer 생성(회원탈퇴, 정보수정)
 - **Server**
-   - DB설계
-     - 
+   - 공동작업
+     - Typescript, Nestjs, typeorm을 통한 개발환경 구축
+     - dbdiagram을 사용하여 스키마 작성
+     - git book을 사용하여 API 문서 작업
+   - DATABASE
+     - typeorm을 사용하여 엔티티 구성 및 관계 설정
    - API
-
+     - Mysql과 typeorm을 이용하여 로그인, 로그아웃, 회원가입, 회원탈퇴, 유저 정보 수정,  유저 정보 조회
+     - nodemailer를 사용하여 유저의 이메일로 비밀번호 재설정 링크를 전송하여 유저의 비밀번호 재설정 구현
+   - image upload
+     - aws sdk를 사용하여 사용자 프로필 이미지 등록 및 변경 기능 구현
+   - 인증
+     - 토큰 생성 및 유효성 검사 구현
+     - 구글 소셜 로그인 구현
+   - 배포
+     - AWS s3, AWS cli를 이용하여 정적 파일 호스팅
+     - HTTPS 배포를 위한 AWS Certification 인증서 발급 및 Cloud front 설정
 
 </details>
 <br>

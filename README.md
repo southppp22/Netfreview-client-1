@@ -154,10 +154,54 @@ Hello reviewer, Welcome to Netfreview ;)🙋‍♂🙋‍♀
 - Stack : Typescript, nest.js, typeorm, jwt, mysql, aws cloudfront, s3, rds, route53, elb, aws certificate manager, ec2
 - Contributions
 - **Server**
-   - DB설계
-     - 
-   - API
-     - 
+     - 공동작업
+     - Typescript, Nestjs, typeorm을 통한 개발환경 구축
+     - dbdiagram을 사용하여 스키마 작성
+     - git book을 사용하여 API 문서 작업
+  
+   - DATABASE
+     - DB스키마를 토대로 엔티티 생성, 엔티티 관계설정을 통해 DB관계 설정
+     - typeOrm 을 통한 쿼리문 작성
+     - MySQL workbench를 통한 DB관리
+
+   - NEST JS
+     - nest js를 통한 서버 구축
+     - passport를 통한 유효성 검사
+     - jwt를 통한 토큰 발급
+
+   - User API
+     - 특정 유저의 ID를 받아 해당 유저의 정보를 주는 API 작성
+     - JWT를 통한 토큰 유효성 검사
+     - 유저정보 수정 api 작성 
+     - 비밀번호 찾기 시 보안을 고려하여 3분간 유효한 토큰으로 유효성 검사 실행
+ 
+   - Video API
+     - 특정 유저가 리뷰를 단 비디오 정보를 토대로, 그 유저와 같은 비디오를 많이 본 다른 유저가 본 비디오 중, 해당 유저가 보지 않은 비디오를 추천하는 알고리즘 및 query문 구현
+     - 특정 비디오의 리뷰를 불러오는 api 구현
+     - JWT를 사용하여 admin 권한으로 Video를 홈페이지에 추가 가능한 api 구현
+     - 비디오의 평균 별점을 기준으로 가장 높은 별점을 가진 비디오 5개를 받는 api 구현
+     - 비디오의 리뷰 개수를 기준으로 가장 많은 리뷰를 가진 비디오 5개, 적은 리뷰를 가진 비디오 5개를 받는 api 구현
+     - 유저를 입력받아 해당 유저가 작성한 리뷰가 있는 비디오를 리턴해주는 api 구현
+     
+   - Review API
+     - 모든 리뷰 중 가장 좋아요가 많은 리뷰에서 그 리뷰의 대상인 비디오와, 그 리뷰를 쓴 유저의 정보를 주는 api 구현
+     - 한 유저가 어떤 리뷰에 대해 좋아요를 생성 및 제거 할 수 있는 api 구현
+     - 특정 비디오ID값을 받아 해당 비디오의 reviewList를 평균 평점이 높은 순으로 리턴하는 api 구현
+     - 비회원 로그인으로 접근 시 임시로 guest유저의 권한을 주도록 하여 접근 가능하도록 구현
+     - 리뷰의 생성, 삭제, 수정 기능 api 구현
+
+   - 배포
+     - AWS RDS 사용
+     - AWS Route53을 통한 도메인 사용
+     - AWS ELB를 통하여 AWS certificate manager적용(https)
+     - AWS EC2로 route53, elb를 통하여 배포
+     - pm2를 이용한 서버 실시간 배포
+
+   - 기타
+     - 웹 크롤링을 통하여 DB video 데이터 축적(cheerio사용)
+     - Amazon Cli를 통한 S3배포 자동화
+     - 서버 에러 핸들링
+
 </details>
 <div>
 

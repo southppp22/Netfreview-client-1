@@ -121,7 +121,8 @@ Hello reviewer, Welcome to Netfreview ;)🙋‍♂🙋‍♀
 
 <br>
 <a href=https://github.com/southppp22><img src=https://img.shields.io/badge/github-southppp22-blueviolet?style=for-the-badge&logo=GitHub/></a><br />
-  <img src=https://img.shields.io/badge/position-fullstack-red?style=for-the-badge />
+<img src=https://img.shields.io/badge/position-fullstack-red?style=for-the-badge />
+
 - <strong>Stack</strong> : React,React-Hooks, Typescript, Redux, Redux-Thunk, SCSS, CSS, typescript, nest.js, typeorm, jwt, mysql, aws cloudfront, s3
 - Contributions
     - **Client**

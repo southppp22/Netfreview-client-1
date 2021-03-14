@@ -1,7 +1,7 @@
 ![](https://img.shields.io/endpoint?color=green&label=project&logo=ddd&logoColor=green&style=for-the-badge&url=%2Fendpoint)
 
 
-<img src="https://github.com/codestates/Netfreview-client/blob/dev/img/Logo/netfreview-logo.png?raw=true" width="700" height="150" style="margin-left: auto; margin-right: auto; display: block;" />
+<center><img src="https://github.com/codestates/Netfreview-client/blob/dev/img/Logo/netfreview-logo.png?raw=true" width="700" height="150"></center>
 
 # 🎥 Netfreview
 
@@ -22,26 +22,13 @@
 여러분이 만들어 가는 넷플릭스 영상의 리뷰 사이트 netfreview 입니다.<br />
 Hello reviewer, Welcome to Netfreview ;)🙋‍♂🙋‍♀
 
-
-
-# 🛠 Stack
-
-
-## FRONT
-
-
-## BACK
+- **팀 명 :**Reveiw4U**
+- **프로젝트 명 :**Netfreview**
+- **프로젝트 형태 :** **수강생 프로젝트**
+- **팀원 :** **조슬지(팀장), 최정완, 김남인, 최재선**
 
 
 
-- **팀 명 :** **팀 명을 영어로 적어주세요**
-- **프로젝트 명 :** **프로젝트 명을 영어로 적어주세요**
-- **프로젝트 형태 :** **수강생 프로젝트? / 기업협업 프로젝트?**
-- **팀원 :** **팀원1(팀장), 팀원2, 팀원3, 팀원4**
-- **배포 링크 :** **링크를 넣어주세요**
+# 🛠 Stack Architecture
+# 🗃 Flow
 
-## 프로젝트를 소개해 주시기 바랍니다. 아래의 내용이 들어가면 좋습니다. 
-1. 프로젝트 짧은 소개 
-2. 사용 스택 및 스택 아키텍쳐
-3. 기능 Flow 
-4. 주요 기능별 시연 GIF

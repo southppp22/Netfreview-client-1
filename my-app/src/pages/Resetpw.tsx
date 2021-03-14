@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { access } from 'node:fs';
 import React, { ChangeEvent, useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
@@ -19,6 +20,8 @@ function Resetpw() {
   const [description, setDescription] = useState(introduction);
   const [isValidPw, setIsValidPw] = useState(true);
   const [isMatchPw, setIsMatchPw] = useState(true);
+
+  const accessToken = history.location.pathname.slice(9);
 
   // const errorRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -62,8 +65,11 @@ function Resetpw() {
           nickname: diffNickname,
           password,
           introduction: description,
-        })
+        }, {headers : {
+          Authorization : `bearer ${accessToken}`
+        }})
         .then(() => {
+          alert('비밀번호 재설정이 완료되었습니다. 다시 로그인 해주세요')
           history.push('/mypage');
         })
         .catch((err) => {

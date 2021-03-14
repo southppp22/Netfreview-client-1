@@ -47,7 +47,7 @@ function App() {
           />
           <Route path="/review/:videoId" component={Review} />
           <Route path="/signin" component={SignIn} />
-          <Route path="/resetpw" component={Resetpw} />
+          <Route path="/resetpw/:accessToken" component={Resetpw} />
           <Route path="/userpage/:userId" component={Userpage} />
           <Route path="/tvprogram" component={TVprogram} />
           <Route path="/oauth" component={Oauth} />

@@ -3,8 +3,9 @@
 
 
 <center><img src="https://github.com/codestates/Netfreview-client/blob/dev/img/Logo/netfreview-logo.png?raw=true" width="700" height="150"></center>
-******
 
+<br />
+*************
 # 🎥 Netfreview
 
 

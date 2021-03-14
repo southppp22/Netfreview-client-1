@@ -1,4 +1,4 @@
-<a href=https://netfreview.com>![](https://img.shields.io/badge/PROJECT-Netfreivew-red?style=for-the-badge)</a>
+<a href=https://netfreview.com target="_blank">![](https://img.shields.io/badge/PROJECT-Netfreivew-red?style=for-the-badge)</a>
 ![](https://img.shields.io/badge/Netfreview-Web-black?style=for-the-badge)
 
 ***********

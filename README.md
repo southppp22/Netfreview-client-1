@@ -51,25 +51,46 @@ Hello reviewer, Welcome to Netfreview ;)🙋‍♂🙋‍♀
 - Contributions
 - **Client**
   - UI 기획 및 디자인
-    - 유아이디자인
+    - 피그마를 이용하여 어플리케이션 컨셉, WireFramd 및 UI디자인 제작
+    - 포토샵 및 일러스트레이터를 이용한 어플리케이션 소스 및 로고 제작
   - 메인페이지
-    - 메인페이지 디자인
-  - 로그인모달창
-    - 
+    - 메인페이지 구조 설계 및 디자인
+    - Redux, React-Hook을 이용한 상태관리 및 Reducer 생성
+    - Redux-thunk, Axios를 통한 비동기 요청
+    - Redux-thunk를 통해 포스터를 가져와서 섹션별로 나누어 메이페이지 구현 및 스타일링
+    - 포스터 클릭 시 리뷰페이지로 이동하는 라우팅 작업
+    - 이거 어때 모달창 버튼생성
+    - 스와이퍼를 이용한 베너 구현 및 스타일링
+  - Header, Footer
+    - 레이아웃 설정 및 UI 디자인
+    - Header, Footer UI, 기능 컨셉 및 컴포넌트 설계
+    - 로고 클릭이벤트 후 라우팅 작업
+    - 풋터 링크를 통한 깃허브 페이지 연결
   - 회원가입모달창
-    - 
-  - 리뷰페이지
-    - 
+    - 유효성 검사, 회원가입을 한 후의 인터렉션 요소 리팩토링
   - 영화추천모달창
-    - 
+    - 모달창 구조 설계 및 디자인
+    - 비회원인 경우 로그인모달창 연결 로직 구현
+    - 리뷰를 작성하지 않거나 리뷰 개수가 적은 경우 메인페이지 연결 로직 구현
+    - Redux, React-Hook을 이용한 상태관리 및 Reducer 생성
+    - Redux-thunk, Axios를 통한 비동기 요청
+    - 그 외의 경우 Redux-thunks를 이용해 포스터 구현 및 리뷰페이지 라우팅 작업
   - 마이페이지
-    - 
+    - 구조 설계 및 디자인
+    - Redux, React-Hook을 이용한 상태관리 및 Reducer 생성
+    - Redux-thunk, Axios를 통한 비동기 요청
+    - Redux-thunk를 통해 유저가 작성한 리뷰 목록을 가져와서 Redux 상태 업데이트 후 화면에 포스터를 배치하는 UI 작업
+    - 회원정보 버튼 클릭시 회원정보 수정페이지 라우팅 작업
   - 유저정보수정페이지
-    - 
+    - 구조 설계 및 디자인
+    - Redux, React-Hook을 이용한 상태관리 및 Reducer 생성
+    - Redux-thunk Axios를 통한 비동기 요청
+    - Redux-thunk를 통해 기본 유저 정보를 가져와 수정(프로필 이미지, 비밀번호, 닉네임, 자기소개) 후 상태업데이트하여 마이페이지에 구현
+    - thunk를 통해 닉네임 중복검사 및 비밀번호 유효성 검사후 문제없으면 마이페이지로 이동
   - 유저페이지
-    - 
-  - 검색페이지
-    - 
+    - 구조 설계 및 디자인
+    - Redux, React-Hook을 이용한 상태관리 및 Reducer 생성
+    - Redux-thunk Axios를 통한 비동기 요청으로 다른 유저정보와 유저가 작성한 리뷰리스트 구현
 </details>
 
 <br>
@@ -158,8 +179,6 @@ Hello reviewer, Welcome to Netfreview ;)🙋‍♂🙋‍♀
     - Redux-thunk를 사용하여 로그인 로직 리팩토링
     - Redux-persist를 이용하여 로그인 상태 유지
     - 구글 로그인 기능 구현
-  - 메인페이지
-    - 메인페이지 디자인
   - 리뷰페이지
     - Redux, React-Hook를 이용한 상태관리 및 Reducer 생성
     - 페이지네이션 구현

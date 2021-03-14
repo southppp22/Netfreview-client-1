@@ -50,6 +50,7 @@ Hello reviewer, Welcome to Netfreview ;)🙋‍♂🙋‍♀
   <li><span><strong>Contributions</strong></span>
      <ul>
        <li>
+          <strong>Client</strong>
             - UI 기획 및 디자인
                -  
             - 메인페이지
@@ -88,6 +89,7 @@ Hello reviewer, Welcome to Netfreview ;)🙋‍♂🙋‍♀
   <li><span>Contributions</span>
      <ul>
        <li>
+          <strong>Client</strong>
             - UI 기획 및 디자인
                -  
             - 메인페이지
@@ -125,6 +127,7 @@ Hello reviewer, Welcome to Netfreview ;)🙋‍♂🙋‍♀
    <li><span>Contributions</span>
    <ul>
       <li>
+         <strong>Client</strong>
          - UI 기획 및 디자인
             -  
          - 메인페이지
@@ -147,8 +150,11 @@ Hello reviewer, Welcome to Netfreview ;)🙋‍♂🙋‍♀
             - 
         </li> 
         <li>
-           - 서버
-           - 
+           <strong>Server</strong>
+           - DB설계
+            - 
+           - API
+            - 
         </li>
       </ul>
    </li>
@@ -166,8 +172,11 @@ Hello reviewer, Welcome to Netfreview ;)🙋‍♂🙋‍♀
    <li><span>Contributions</span>
      <ul>
        <li>
-          - 서버
-          - 기능별 구현
+          <strong>Server</strong>
+          - DB설계
+            - 
+          - API
+            - 
         </li>  
       </ul>
    </li>

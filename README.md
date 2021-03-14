@@ -152,9 +152,26 @@ Hello reviewer, Welcome to Netfreview ;)🙋‍♂🙋‍♀
 - 유저정보
    - 로그인, 로그아웃, 회원가입 기능
    - 유저정보의 수정 및 비밀번호 찾기 기능
-- 리뷰작성 및 수정
-- passport-Auth Social Login(구글 로그인)
+   - 다른 유저의 정보 불러오기
+   - accessToken, refreshToken을 통한 유효성 검사
+
+- 리뷰작성
+   - 리뷰 작성, 수정, 삭제
+   - 리뷰에 대해 좋아요 추가 및 제거
+   - 한 비디오에 대한 리뷰 리스트 좋아요 순으로 정렬하여 얻음
+   - OAuth Social Login(구글 로그인)
+
+- 비디오
+   - 비디오 추가기능(관리자 계정)
+   - 비디오 검색 기능
+   - 페이지 별 비디오 리스트
+   - 유저의 리뷰를 기반으로 한 비디오 추천 기능
+   - 별점별, 리뷰 개수 별 비디오 추천 기능
+
 - typeorm 관계 설정 및 구성
+- AWS route53, elb, ec2를 통한 배포
+- AWS certificate manager을 통한 Https 적용
+- AWS RDS 사용
 - MVC구성
 
 

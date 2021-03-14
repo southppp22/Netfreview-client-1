@@ -189,6 +189,8 @@ Hello reviewer, Welcome to Netfreview ;)🙋‍♂🙋‍♀
 ******
 # 🛠 Stack Architecture
 
+<img src="https://github.com/codestates/Netfreview-client/blob/dev/img/flowchart/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202021-03-14%20%EC%98%A4%ED%9B%84%2011.08.25.png?raw=true" />
+
 <br />
 
 ******

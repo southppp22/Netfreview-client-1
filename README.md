@@ -45,36 +45,31 @@ Hello reviewer, Welcome to Netfreview ;)🙋‍♂🙋‍♀
 <ul>
    <br />
 <a href=https://github.com/Seulji-jo><img src=https://img.shields.io/badge/github-Seulji--jo-fcba03?style=for-the-badge&logo=GitHub/></a><br />
-   <img src=https://img.shields.io/badge/position-frontend-red?style=for-the-badge />
-  <li> <strong>Stack</strong> : React,React-Hooks, Typescript, Redux, Redux-Thunk,SCSS,CSS</li>
-  <li><span><strong>Contributions</strong></span>
-     <ul>
-       <li>
-          <strong>Client</strong>
-            - UI 기획 및 디자인
-               -  
-            - 메인페이지
-               - 
-            - 로그인모달창
-               - 
-            - 회원가입모달창
-               - 
-            - 리뷰페이지
-               - 
-            - 영화추천모달창
-               - 
-            - 마이페이지
-               - 
-            - 유저정보수정페이지
-               - 
-            - 유저페이지
-               - 
-            - 검색페이지
-               - 
-        </li>  
-      </ul>
-   </li>
- </ul>
+<img src=https://img.shields.io/badge/position-frontend-red?style=for-the-badge />
+   
+- Stack : React,React-Hooks, Typescript, Redux, Redux-Thunk,SCSS,CSS</li>
+- Contributions
+- **Client**
+  - UI 기획 및 디자인
+    - 유아이디자인
+  - 메인페이지
+    - 메인페이지 디자인
+  - 로그인모달창
+    - 
+  - 회원가입모달창
+    - 
+  - 리뷰페이지
+    - 
+  - 영화추천모달창
+    - 
+  - 마이페이지
+    - 
+  - 유저정보수정페이지
+    - 
+  - 유저페이지
+    - 
+  - 검색페이지
+    - 
 </details>
 
 <br>
@@ -85,35 +80,30 @@ Hello reviewer, Welcome to Netfreview ;)🙋‍♂🙋‍♀
 <br>
 <a href=https://github.com/choijw1116><img src=https://img.shields.io/badge/github-choijw1116-brightgreen?style=for-the-badge&logo=GitHub/></a><br />
    <img src=https://img.shields.io/badge/position-frontend-red?style=for-the-badge />
-  <li> <strong>Stack</strong> : React,React-Hooks, Typescript, Redux, Redux-Thunk,SCSS,CSS</li>
-  <li><span>Contributions</span>
-     <ul>
-       <li>
-          <strong>Client</strong>
-            - UI 기획 및 디자인
-               -  
-            - 메인페이지
-               - 
-            - 로그인모달창
-               - 
-            - 회원가입모달창
-               - 
-            - 리뷰페이지
-               - 
-            - 영화추천모달창
-               - 
-            - 마이페이지
-               - 
-            - 유저정보수정페이지
-               - 
-            - 유저페이지
-               - 
-            - 검색페이지
-               - 
-        </li>  
-      </ul>
-   </li>
- </ul>
+   
+- Stack : React,React-Hooks, Typescript, Redux, Redux-Thunk,SCSS,CSS</li>
+- Contributions
+- **Client**
+  - UI 기획 및 디자인
+    - 유아이디자인
+  - 메인페이지
+    - 메인페이지 디자인
+  - 로그인모달창
+    - 
+  - 회원가입모달창
+    - 
+  - 리뷰페이지
+    - 
+  - 영화추천모달창
+    - 
+  - 마이페이지
+    - 
+  - 유저정보수정페이지
+    - 
+  - 유저페이지
+    - 
+  - 검색페이지
+    - 
 </details>
 <br>
 
@@ -156,23 +146,18 @@ Hello reviewer, Welcome to Netfreview ;)🙋‍♂🙋‍♀
 
 <details>
 <summary>최재선</summary>
-<ul>
+
   <br>
-  <a href=https://github.com/10o0o><img src=https://img.shields.io/badge/github-10o0o-blue?style=for-the-badge&logo=GitHub/></a><br />
-     <img src=https://img.shields.io/badge/position-backend-red?style=for-the-badge />
-   <li> <strong>Stack</strong> : Typescript, nest.js, typeorm, jwt, mysql, aws cloudfront, s3, rds, route53, elb, aws certificate manager, ec2</li>
-   <li><span>Contributions</span>
-     <ul>
-       <li>
-          <strong>Server</strong>
-          - DB설계
-            - 
-          - API
-            - 
-        </li>  
-      </ul>
-   </li>
- </ul>
+<a href=https://github.com/10o0o><img src=https://img.shields.io/badge/github-10o0o-blue?style=for-the-badge&logo=GitHub/></a><br />
+<img src=https://img.shields.io/badge/position-backend-red?style=for-the-badge />
+   
+- Stack : Typescript, nest.js, typeorm, jwt, mysql, aws cloudfront, s3, rds, route53, elb, aws certificate manager, ec2
+- Contributions
+- **Server**
+   - DB설계
+     - 
+   - API
+     - 
 </details>
 <div>
 

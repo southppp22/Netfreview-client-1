@@ -1,7 +1,7 @@
 ![](https://img.shields.io/endpoint?color=green&label=project&logo=ddd&logoColor=green&style=for-the-badge&url=%2Fendpoint)
 
 
-<img src="https://github.com/codestates/Netfreview-client/blob/dev/img/Logo/netfreview-logo.png?raw=true" width="700" height="150">
+<center><img src="https://github.com/codestates/Netfreview-client/blob/dev/img/Logo/netfreview-logo.png?raw=true" width="700" height="150"></center>
 
 # 🎥 Netfreview
 

@@ -120,10 +120,11 @@ Hello reviewer, Welcome to Netfreview ;)🙋‍♂🙋‍♀
 <details>
 <summary>김남인</summary>
 <a href=https://github.com/southppp22><img src=https://img.shields.io/badge/github-southppp22-blueviolet?style=for-the-badge&logo=GitHub/></a><br />
-  <img src=https://img.shields.io/badge/position-fullstack-red?style=for-the-badge />
-   - Stack : React,React-Hooks, Typescript, Redux, Redux-Thunk, SCSS, CSS, typescript, nest.js, typeorm, jwt, mysql, aws cloudfront, s3
-   - Contributions
-     - **Client**
+<img src=https://img.shields.io/badge/position-fullstack-red?style=for-the-badge />
+   
+- Stack : React,React-Hooks, Typescript, Redux, Redux-Thunk, SCSS, CSS, typescript, nest.js, typeorm, jwt, mysql, aws cloudfront, s3
+- Contributions
+   - **Client**
       - UI 기획 및 디자인
          -  
       - 메인페이지
@@ -144,11 +145,12 @@ Hello reviewer, Welcome to Netfreview ;)🙋‍♂🙋‍♀
          - 
       - 검색페이지
         - 
-     - Server
+   - **Server**
       - DB설계
         - 
       - API
-        - 
+
+
 </details>
 <br>
 

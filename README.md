@@ -1,5 +1,5 @@
 ![](https://img.shields.io/badge/PROJECT-Netfreivew-red?style=for-the-badge)
-![](https://img.shields.io/badge/Netfreview-Web-orange?style=for-the-badge)
+![](https://img.shields.io/badge/Netfreview-Web-black?style=for-the-badge)
 
 
 <center><img src="https://github.com/codestates/Netfreview-client/blob/dev/img/Logo/netfreview-logo.png?raw=true" width="700" height="150"></center>

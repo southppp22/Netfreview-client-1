@@ -1,8 +1,7 @@
 ![](https://img.shields.io/endpoint?color=green&label=project&logo=ddd&logoColor=green&style=for-the-badge&url=%2Fendpoint)
 
 
-<img src="https://raw.githubusercontent.com/codestates/Netfreview-client/449efc09fc99dd7bebf7547c96aaebc743b63279/img/Logo/Group%20133.svg?token=AQLVYXWDP6QMMSWVVJDUSULAJWPA6" width="700" height="150">
-<img src="https://raw.githubusercontent.com/codestates/Netfreview-client/449efc09fc99dd7bebf7547c96aaebc743b63279/img/Logo/Group%20134.svg?token=AQLVYXRALWJFHLWSYEV2BU3AJWPDA" width="400" height="100">
+<img src="https://github.com/codestates/Netfreview-client/blob/dev/img/Logo/netfreview-logo.png?raw=true" width="700" height="150">
 
 # 🎥 Netfreview
 

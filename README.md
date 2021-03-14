@@ -149,10 +149,14 @@ Hello reviewer, Welcome to Netfreview ;)🙋‍♂🙋‍♀
 📉 Back
 ---------------------------------------------------------------------------
 
-- 로그인, 회원가입, 유저정보 저장 및 요청
+- 유저정보
+   - 로그인, 로그아웃, 회원가입 기능
+   - 유저정보의 수정 및 비밀번호 찾기 기능
+- 리뷰작성 및 수정
 - passport-Auth Social Login(구글 로그인)
-- MYSql-Sequelize-CLI 구성
+- typeorm 관계 설정 및 구성
 - MVC구성
+
 
 </div>
 <br>

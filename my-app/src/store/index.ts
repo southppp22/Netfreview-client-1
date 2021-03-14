@@ -1,19 +1,17 @@
+// store/index.js
 import { applyMiddleware, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import rootReducer from '../modules';
-import storage from 'redux-persist/lib/storage';
+import storage from 'redux-persist/lib/storage/session';
 import { persistStore, persistReducer } from 'redux-persist';
 import { refreshToken } from '../middleware/refresh';
-
 const persistConfig = {
   key: 'root',
   storage,
   whitelist: ['login', 'myInfo'],
 };
-
 const enhanceReducer = persistReducer(persistConfig, rootReducer);
-
 export default function configureStore() {
   const store = createStore(
     enhanceReducer,

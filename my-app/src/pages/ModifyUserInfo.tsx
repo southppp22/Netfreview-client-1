@@ -54,10 +54,12 @@ function ModifyUserInfo() {
   }, [password, confirmPw]);
 
   useEffect(() => {
+    console.log('status change');
+
     if (isModify) {
       if (status === 'failed') {
         setIsValidNickname(false);
-      } else if (checkModified()) {
+      } else if (status === 'idle') {
         history.push('/mypage');
       }
     }
@@ -185,6 +187,7 @@ function ModifyUserInfo() {
     if (profileUrl) {
       payload.profileUrl = profileUrl;
     }
+
     dispatch(updateMyInfoThunk(payload));
     setIsModify(true);
   };

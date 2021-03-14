@@ -61,7 +61,6 @@ function SignIn({ closeModal }: isModalprops) {
         password,
       })
     );
-    closeModal();
   };
 
   const closeModalWithResetStatus = () => {

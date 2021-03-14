@@ -125,30 +125,30 @@ Hello reviewer, Welcome to Netfreview ;)🙋‍♂🙋‍♀
 - Stack : React,React-Hooks, Typescript, Redux, Redux-Thunk, SCSS, CSS, typescript, nest.js, typeorm, jwt, mysql, aws cloudfront, s3
 - Contributions
    - **Client**
-      - UI 기획 및 디자인
-         -  
-      - 메인페이지
-         - 
-      - 로그인모달창
-         - 
-      - 회원가입모달창
-         - 
-      - 리뷰페이지
-         - 
-      - 영화추천모달창
-         - 
-      - 마이페이지
-         - 
-      - 유저정보수정페이지
-         - 
-      - 유저페이지
-         - 
-      - 검색페이지
-        - 
+         - UI 기획 및 디자인
+            -  
+         - 메인페이지
+            - 
+         - 로그인모달창
+            - 
+         - 회원가입모달창
+            - 
+         - 리뷰페이지
+            - 
+         - 영화추천모달창
+            - 
+         - 마이페이지
+            - 
+         - 유저정보수정페이지
+            - 
+         - 유저페이지
+            - 
+         - 검색페이지
+           - 
    - **Server**
-      - DB설계
-        - 
-      - API
+         - DB설계
+           - 
+         - API
 
 
 </details>

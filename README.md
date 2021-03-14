@@ -3,7 +3,7 @@
 
 
 <center><img src="https://github.com/codestates/Netfreview-client/blob/dev/img/Logo/netfreview-logo.png?raw=true" width="700" height="150"></center>
-
+******
 # 🎥 Netfreview
 
 
@@ -34,6 +34,7 @@ Hello reviewer, Welcome to Netfreview ;)🙋‍♂🙋‍♀
 🐭 **Teammates** : **조슬지(팀장), 최정완, 김남인, 최재선** <br />
 <br />
 <br />
+******
 ## 📌 Roles
 
 <details>
@@ -94,9 +95,6 @@ Hello reviewer, Welcome to Netfreview ;)🙋‍♂🙋‍♀
 </li>
 </ul>
 </details>
-
-<br>
-<br>
 <div>
 
 ----------------------------------------------------------------------------------
@@ -165,10 +163,11 @@ Hello reviewer, Welcome to Netfreview ;)🙋‍♂🙋‍♀
 <br>
 
 
-
+******
 # 🛠 Stack Architecture
 
 <br />
 
+******
 # 🗃 Flow
 

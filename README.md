@@ -40,8 +40,6 @@ Hello reviewer, Welcome to Netfreview ;)🙋‍♂🙋‍♀
 
 <br>
 <br>
-<details>
-<summary>List</summary>
 <div>
 
 ----------------------------------------------------------------------------------
@@ -104,7 +102,7 @@ Back
 - MYSql-Sequelize-CLI 구성
 - MVC구성(?)
 </div>
-</details>
+
 
 
 <br>

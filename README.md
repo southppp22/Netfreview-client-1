@@ -114,6 +114,7 @@ Hello reviewer, Welcome to Netfreview ;)🙋‍♂🙋‍♀
 📈 Front
 ----------------------------------------------------------------------------------
 <details>
+   <summary>Front</summary>
 
 - 로그인, 회원가입 기능
    - 회원가입,로그인 유효성검사
@@ -152,6 +153,7 @@ Hello reviewer, Welcome to Netfreview ;)🙋‍♂🙋‍♀
 📉 Back
 ---------------------------------------------------------------------------
 <details>
+   <summary>Back</summary>
 - 유저정보
    - 로그인, 로그아웃, 회원가입 기능
    - 유저정보의 수정 및 비밀번호 찾기 기능

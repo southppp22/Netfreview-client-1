@@ -75,7 +75,7 @@ Hello reviewer, Welcome to Netfreview ;)🙋‍♂🙋‍♀
 <a href=https://github.com/southppp22><img src=https://img.shields.io/badge/github-southppp22-blueviolet?style=for-the-badge&logo=GitHub/></a></li>
   <li>Position: Backend</li>
   <li>Stack</li>
-<p>NODE js, EXPRESS, MYSql, Sequelize, React-Native, React-Hooks, React-Navigation, React-Native-Element, Firebase-Auth</p>
+<p>NODE js, Nest js, MYSql, typeOrm, passport js - auth, typescript, JWT-token, AWS RDS, AWS route53, AWS ec2</p>
   <li><span>Contributions</span>
     <ul>
     </ul>
@@ -91,7 +91,7 @@ Hello reviewer, Welcome to Netfreview ;)🙋‍♂🙋‍♀
  </li>
   <li>Position: Backend</li>
   <li>Stack</li>
-<p>NODE js, EXPRESS, MYSql, Sequelize, React-Native, React-Hooks, React-Navigation, React-Native-Element, Firebase-Auth</p>
+<p>NODE js, Nest js, MYSql, typeOrm, passport js - auth, typescript, JWT-token, AWS RDS, AWS route53, AWS ec2</p>
   <li><span>Contributions</span>
 <ul>
 </ul>

@@ -46,6 +46,12 @@ function RecommendedModal({ open, close }: RecommendedModalProps) {
     };
   }, [status, dispatch, isLogin]);
 
+  useEffect(() => {
+    if (isLogin && status === 'idle') {
+      setIsLoginModal(false);
+    }
+  }, [isLogin, status]);
+
   const renderPosterList = () => {
     if (videoList) {
       if (videoList.length > 4) {

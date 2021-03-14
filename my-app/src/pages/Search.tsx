@@ -40,19 +40,19 @@ function Search() {
         </div>
         <div className="searchlist-wrapper">
           {!videoList || videoList.length === 0 ? (
-            <section className="mysearchlist">
-              <div className="nosearch__info">
-                <div className="info-wrapper">
+            <section className="mysearchlist no-search">
+              <div className="nosearch__info no-search">
+                <div className="info-wrapper no-search">
                   <img
-                    className="info-wrapper__img"
+                    className="info-wrapper__img no-search"
                     src={nosearch}
                     alt="검색결과"
                   />
                   {/* 검색어가 사라지게 구현을 해서 잠시 수정 해두었습니다. */}
-                  <h3 className="info-wrapper__title">
+                  <h3 className="info-wrapper__title no-search">
                     {query}에 대한 검색결과가 없습니다.
                   </h3>
-                  <span className="info-wrapper__text">
+                  <span className="info-wrapper__text no-search">
                     단어철자가 정확한지 확인하거나 다른 키워드로 검색해보세요!
                   </span>
                 </div>

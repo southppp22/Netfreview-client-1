@@ -40,13 +40,13 @@ Hello reviewer, Welcome to Netfreview ;)🙋‍♂🙋‍♀
 ## 📌 Roles
 
 <details>
-<summary>조슬지</summary>
+<summary>조슬지 <img src=https://img.shields.io/badge/조슬지-Frontend-black?style=for-the-badge /></summary>
 
 <ul>
 <li>
-  <a href=https://github.com/Seulji-jo><img src=https://img.shields.io/badge/github-Seulji--jo-fcba03?style=for-the-badge&logo=GitHub/></a>
+<!--   <a href=https://github.com/Seulji-jo><img src=https://img.shields.io/badge/github-Seulji--jo-fcba03?style=for-the-badge&logo=GitHub/></a> -->
    <img src=https://img.shields.io/badge/position-frontend-red?style=for-the-badge />
-   <img src=https://img.shields.io/badge/stack-react,reacthooks,typescript,redux,reduxthunk-black?style=for-the-badge />
+   
  </li>
  
 <!--   <li><strong>Position : </strong> Frontend</li> -->

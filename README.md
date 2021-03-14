@@ -203,7 +203,6 @@ Hello reviewer, Welcome to Netfreview ;)🙋‍♂🙋‍♀
 
    - NEST JS
      - nest js를 통한 서버 구축
-     - passport를 통한 유효성 검사
      - jwt를 통한 토큰 발급
 
    - User API

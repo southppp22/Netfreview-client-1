@@ -194,3 +194,6 @@ Hello reviewer, Welcome to Netfreview ;)🙋‍♂🙋‍♀
 ## 📊 Client Flow Chart
 
 <img src="https://github.com/codestates/Netfreview-client/blob/dev/img/flowchart/client-flowchart.png?raw=true" />
+
+## 📊 Feature Flow Chart
+< img src="https://github.com/codestates/Netfreview-client/blob/dev/img/flowchart/feature-flowchart.png?raw=true" />

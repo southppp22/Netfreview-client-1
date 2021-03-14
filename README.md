@@ -33,6 +33,139 @@ Hello reviewer, Welcome to Netfreview ;)🙋‍♂🙋‍♀
 <br />
 🐭 **Teammates** : **조슬지(팀장), 최정완, 김남인, 최재선** <br />
 <br />
+<br />
+## 📌 Roles
+
+<h1> 각자의 역할을 적어주세요!  </h1>
+
+<br>
+<br>
+<details>
+<summary>List</summary>
+<div>
+
+----------------------------------------------------------------------------------
+기획
+----------------------------------------------------------------------------------
+
+- 아이디어 기획
+- 프로젝트 전체적인 흐름 및 태스크 관리
+- 전체적인 앱 디자인 및 figma 작업
+- 스플래시 스크린 디자인 및 구현
+- 앱 전체 UI/UX 디자인
+- 클라페이지구성하기
+
+----------------------------------------------------------------------------------
+Front
+----------------------------------------------------------------------------------
+
+- Login page
+    - 로그인 기능
+
+- signup page
+    - 회원가입 기능
+
+- Main page
+    - how to use
+
+- Upload page
+    - 사진 drag & drop
+    - remove background API
+    - color기능(background에 색깔입히기)
+    - download기능(클릭시 사진이 local computer로 다운로드)
+    - post기능(클릭시 postpage로 넘어가서 사진업로드, 사진 저장기능 (서버 전달), 사진에 대한 description 작성(글작성모달창))
+
+
+- Post page
+    - 서버에서 이미지 가져오기
+
+
+- Mypage(post)
+    - 로그아웃 기능
+    - 사진삭제기능(삭제버튼클릭시 mypage와 postpage에서 둘다삭제)
+    - 사진밑에 글내용 수정기능(수정버튼 클릭시 글내용 수정가능)
+
+
+- Mypage(about me)
+    - 로그아웃 기능
+    - 자기소개 수정기능(수정버튼(클릭시 내용이수정가능하게), 저장버튼(클릭시 내용저장))
+    - 프로필 표시
+
+---------------------------------------------------------------------------
+Back
+---------------------------------------------------------------------------
+
+- 유저 컨트롤러(자기소개 변경, 유저정보 저장 및 요청)
+- 포토 컨트롤러(사진 업로드, 사진 삭제, 스토리보드(Mypage1) 요청, 사진 설명 업데이트)
+- //Firebase-Auth Social Login(구글 로그인, 페이스북 로그인)
+- 로그인(signin, signup and signout)
+- Signin (비회원 login)
+
+- MYSql-Sequelize-CLI 구성
+- MVC구성(?)
+</div>
+</details>
+
+
+<br>
+<details>
+<summary>조슬지</summary>
+
+<ul>
+<br>
+<li><a href=https://github.com/Seulji-jo><img src=https://img.shields.io/badge/github-Seulji--jo-fcba03?style=for-the-badge&logo=GitHub/></a></li>
+  <li>Position: Frontend</li>
+  <li>Stack: React-Hooks</li>
+  <li><span>Contributions</span>
+    <ul>
+      <li>
+  </li>  
+</ul>
+</details>
+<br>
+<details>
+<summary>최정완</summary>
+<ul>
+<br>
+<li><a href=https://github.com/choijw1116><img src=https://img.shields.io/badge/github-choijw1116-brightgreen?style=for-the-badge&logo=GitHub/></a></li>
+  <li>Position: Front-End</li>
+  <li>Stack: React(Hook) Typescript</li>
+  <li><span>Contributions</span>
+    <ul>
+</ul>
+</details>
+<br>
+<details>
+<summary>김남인</summary>
+<ul>
+<li>
+<br>
+<a href=https://github.com/southppp22><img src=https://img.shields.io/badge/github-southppp22-blueviolet?style=for-the-badge&logo=GitHub/></a></li>
+  <li>Position: Backend</li>
+  <li>Stack</li>
+<p>NODE js, EXPRESS, MYSql, Sequelize, React-Native, React-Hooks, React-Navigation, React-Native-Element, Firebase-Auth</p>
+  <li><span>Contributions</span>
+    <ul>
+    </ul>
+</ul>
+</details>
+<br>
+
+<details>
+<summary>최재선</summary>
+<ul>
+<br>
+  <li><a href=https://github.com/10o0o><img src=https://img.shields.io/badge/github-10o0o-blue?style=for-the-badge&logo=GitHub/></a> 
+ </li>
+  <li>Position: Backend</li>
+  <li>Stack</li>
+<p>NODE js, EXPRESS, MYSql, Sequelize, React-Native, React-Hooks, React-Navigation, React-Native-Element, Firebase-Auth</p>
+  <li><span>Contributions</span>
+<ul>
+</ul>
+</li>
+</ul>
+</details>
 
 
 # 🛠 Stack Architecture

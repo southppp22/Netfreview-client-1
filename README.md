@@ -1,6 +1,6 @@
 # Netfreview-client
 
-<img src="https://i.imgur.com/sf2D8SO.png" width="900" height="200">
+<img src="https://raw.githubusercontent.com/codestates/Netfreview-client/6d32dacd5b740dfc89fcec09e055f26cf34665dc/img/Logo/Group%20133.svg?token=AQLVYXTKVSC23HI3KRMFVM3AJWNIA" width="900" height="200">
 
 혹시 넷플릭스를 사용 하시나요?
 
@@ -14,7 +14,9 @@ Netfreview는 당신을 위해 넷플릭스 영상에 대한 리뷰를 제공합
 
 # 💜 사용한 기술
 
+
 ## FRONT
+
 
 ## BACK
 ![](https://img.shields.io/endpoint?color=green&label=back&logo=ddd&logoColor=green&style=for-the-badge&url=%2Fendpoint)

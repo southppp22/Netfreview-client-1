@@ -45,9 +45,9 @@ Hello reviewer, Welcome to Netfreview ;)🙋‍♂🙋‍♀
 <ul>
 <br>
 <li><a href=https://github.com/Seulji-jo><img src=https://img.shields.io/badge/github-Seulji--jo-fcba03?style=for-the-badge&logo=GitHub/></a></li>
-  <li>Position: Frontend</li>
-  <li>Stack: `React`,`React-Hooks`, `Typescript`,`Redux`,`Redux-Thunk`</li>
-  <li><span>Contributions</span>
+  <li> **Position** : Frontend</li>
+  <li> **Stack** : React,React-Hooks, Typescript, Redux, Redux-Thunk</li>
+  <li><span><strong>Contributions</strong></span>
     <ul>
       <li>
   </li>  

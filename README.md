@@ -1,4 +1,4 @@
-<a href="https://netfreview.com" target="_blank">![](https://img.shields.io/badge/PROJECT-Netfreivew-red?style=for-the-badge)</a>
+![](https://img.shields.io/badge/PROJECT-Netfreivew-red?style=for-the-badge)
 ![](https://img.shields.io/badge/Netfreview-Web-black?style=for-the-badge)
 
 ***********
@@ -107,7 +107,6 @@ Hello reviewer, Welcome to Netfreview ;)🙋‍♂🙋‍♀
 - 아이디어 기획
 - 프로젝트 전체적인 흐름 및 태스크 관리
 - 전체적인 앱 디자인 및 figma 작업
-- 스플래시 스크린 디자인 및 구현
 - 앱 전체 UI/UX 디자인
 - 클라페이지구성하기
 
@@ -115,54 +114,44 @@ Hello reviewer, Welcome to Netfreview ;)🙋‍♂🙋‍♀
 📈 Front
 ----------------------------------------------------------------------------------
 
-- Login page
-    - 로그인 기능
+- 로그인, 회원가입 기능
+   - 회원가입,로그인 유효성검사
+   - 비밀번호를 잊었을시, 비밀번호 재설정
+   - 구글 oauth
 
-- signup page
-    - 회원가입 기능
+- 마이페이지
+   - 개인정보수정
+   - 프로필 이미지 수정
+   - 내가 쓴 리뷰
 
-- Main page
-    - how to use
+- 메인페이지
+   - 탑5 리스트 추천
+   - 최다리뷰작품 추천
+   - 리뷰가 없는 작품추천
+   - 배너슬라이드(리뷰1위작품,리뷰가 필요한 작품, 베스트리뷰어)
 
-- Upload page
-    - 사진 drag & drop
-    - remove background API
-    - color기능(background에 색깔입히기)
-    - download기능(클릭시 사진이 local computer로 다운로드)
-    - post기능(클릭시 postpage로 넘어가서 사진업로드, 사진 저장기능 (서버 전달), 사진에 대한 description 작성(글작성모달창))
+- 리뷰페이지
+   - 작품 총평점
+   - 작품 상세설명
+   - 리뷰쓰기
+   - 쓰여진 리뷰 리스트
 
+- 서치페이지
+   - 단어를 적었을때, 단어에 해당하는 작품서치
 
-- Post page
-    - 서버에서 이미지 가져오기
-
-
-- Mypage(post)
-    - 로그아웃 기능
-    - 사진삭제기능(삭제버튼클릭시 mypage와 postpage에서 둘다삭제)
-    - 사진밑에 글내용 수정기능(수정버튼 클릭시 글내용 수정가능)
-
-
-- Mypage(about me)
-    - 로그아웃 기능
-    - 자기소개 수정기능(수정버튼(클릭시 내용이수정가능하게), 저장버튼(클릭시 내용저장))
-    - 프로필 표시
+- 영화추천모달창
+   - 내가 적은 리뷰를 통해, 도전해보지 않았던 작품추천 
 
 ---------------------------------------------------------------------------
 📉 Back
 ---------------------------------------------------------------------------
 
-- 유저 컨트롤러(자기소개 변경, 유저정보 저장 및 요청)
-- 포토 컨트롤러(사진 업로드, 사진 삭제, 스토리보드(Mypage1) 요청, 사진 설명 업데이트)
-- //Firebase-Auth Social Login(구글 로그인, 페이스북 로그인)
-- 로그인(signin, signup and signout)
-- Signin (비회원 login)
-
+- 로그인, 회원가입, 유저정보 저장 및 요청
+- passport-Auth Social Login(구글 로그인)
 - MYSql-Sequelize-CLI 구성
-- MVC구성(?)
+- MVC구성
+
 </div>
-
-
-
 <br>
 
 

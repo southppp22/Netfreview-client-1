@@ -75,7 +75,7 @@ Hello reviewer, Welcome to Netfreview ;)🙋‍♂🙋‍♀
 <a href=https://github.com/southppp22><img src=https://img.shields.io/badge/github-southppp22-blueviolet?style=for-the-badge&logo=GitHub/></a></li>
   <li>Position: Backend</li>
   <li>Stack</li>
-<p>NODE js, Nest js, MYSql, typeOrm, passport js - auth, typescript, JWT-token, AWS RDS, AWS route53, AWS ec2</p>
+<p>NODE js, EXPRESS, MYSql, Sequelize, React-Native, React-Hooks, React-Navigation, React-Native-Element, Firebase-Auth</p>
   <li><span>Contributions</span>
     <ul>
     </ul>
@@ -91,7 +91,7 @@ Hello reviewer, Welcome to Netfreview ;)🙋‍♂🙋‍♀
  </li>
   <li>Position: Backend</li>
   <li>Stack</li>
-<p>NODE js, Nest js, MYSql, typeOrm, passport js - auth, typescript, JWT-token, AWS RDS, AWS route53, AWS ec2</p>
+<p>NODE js, EXPRESS, MYSql, Sequelize, React-Native, React-Hooks, React-Navigation, React-Native-Element, Firebase-Auth</p>
   <li><span>Contributions</span>
 <ul>
 </ul>
@@ -114,9 +114,8 @@ Hello reviewer, Welcome to Netfreview ;)🙋‍♂🙋‍♀
 📈 Front
 ----------------------------------------------------------------------------------
 <details>
-   <ul>
-      <li>
-         - 로그인, 회원가입 기능
+
+- 로그인, 회원가입 기능
    - 회원가입,로그인 유효성검사
    - 비밀번호를 잊었을시, 비밀번호 재설정
    - 구글 oauth
@@ -146,8 +145,6 @@ Hello reviewer, Welcome to Netfreview ;)🙋‍♂🙋‍♀
    - 내가 적은 리뷰를 통해, 도전해보지 않았던 장르의 작품추천
    - 로그인 후에 사용가능
    - 로그인 한 후에, 내가 적은 리뷰가 없으면, 메인페이지로 이동
-      </li>
-   </ul>
 </details>
 
 

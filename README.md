@@ -22,8 +22,7 @@
 여러분이 만들어 가는 넷플릭스 영상의 리뷰 사이트 netfreview 입니다.<br />
 Hello reviewer, Welcome to Netfreview ;)🙋‍♂🙋‍♀
 
-## Info
-<br />
+## 📎 Info
 🐶 **Team Name** :**Reveiw4U**<br />
 <br /> 
 🦊 **Project Name** :**Netfreview**<br />

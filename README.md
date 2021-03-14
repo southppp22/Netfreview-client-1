@@ -140,7 +140,7 @@ Hello reviewer, Welcome to Netfreview ;)🙋‍♂🙋‍♀
     - axios를 통해 비동기 요청
   
   - Netfreview에 들어갈 더미데이터구현
-  - banner에 들어갈 
+  - workbench를 이용해 banner에 들어갈 이미지 수정 
 </details>
 <br>
 

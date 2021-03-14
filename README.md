@@ -43,10 +43,14 @@ Hello reviewer, Welcome to Netfreview ;)🙋‍♂🙋‍♀
 <summary>조슬지</summary>
 
 <ul>
-<li><a href=https://github.com/Seulji-jo><img src=https://img.shields.io/badge/github-Seulji--jo-fcba03?style=for-the-badge&logo=GitHub/></a></li>
-  <img src=https://img.shields.io/badge/position-frontend-red?style=for-the-badge />
+<li>
+  <a href=https://github.com/Seulji-jo><img src=https://img.shields.io/badge/github-Seulji--jo-fcba03?style=for-the-badge&logo=GitHub/></a>
+   <img src=https://img.shields.io/badge/position-frontend-red?style=for-the-badge />
+   <img src=https://img.shields.io/badge/stack-react,react-hooks,typescript,redux,redux-thunk-orange?style=for-the-badge />
+ </li>
+ 
 <!--   <li><strong>Position : </strong> Frontend</li> -->
-  <li> <strong>Stack</strong> : React,React-Hooks, Typescript, Redux, Redux-Thunk</li>
+  <!-- <li> <strong>Stack</strong> : React,React-Hooks, Typescript, Redux, Redux-Thunk</li> -->
   <li><span><strong>Contributions</strong></span>
     <ul>
       <li>

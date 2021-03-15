@@ -376,3 +376,6 @@ Hello reviewer, Welcome to Netfreview ;)🙋‍♂🙋‍♀
 
 ## 📊 Feature Flow Chart
 <img src="https://github.com/codestates/Netfreview-client/blob/dev/img/flowchart/feature-flowchart.png?raw=true" />
+
+## 📊 DB Schema 
+<img src="https://github.com/codestates/Netfreview-client/blob/dev/img/스크린샷 2021-03-15 오후 8.17.25.png?raw=true" />

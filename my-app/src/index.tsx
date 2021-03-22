@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import axios from 'axios';
 import configureStore from './store';
 import { PersistGate } from 'redux-persist/integration/react';
-// axios.defaults.baseURL = 'https://www.gettoday4.click';
+
 axios.defaults.baseURL = 'https://server.netfreview.com';
 axios.defaults.withCredentials = true;
 axios.defaults.headers.post['Content-Type'] = 'application/json';

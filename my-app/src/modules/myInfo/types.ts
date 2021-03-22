@@ -29,7 +29,7 @@ export type deleteMyInfoPayloadType = {
 };
 
 export type updateMyInfoPayloadType = {
-  profileUrl?: string;
+  profileUrl?: string | null;
   introduction?: string;
   password?: string;
   nickname?: string;

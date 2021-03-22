@@ -187,6 +187,11 @@ function ModifyUserInfo() {
     if (profileUrl) {
       payload.profileUrl = profileUrl;
     }
+    if (previewURL === profile) {
+      payload.profileUrl = null;
+    }
+
+    console.log(payload);
 
     dispatch(updateMyInfoThunk(payload));
     setIsModify(true);
@@ -217,8 +222,8 @@ function ModifyUserInfo() {
                       className="table__td-cell__img"
                       src={
                         // src 타입이 맞지 않아서 임시 수정 했습니다.
-                        // typeof previewURL === 'string' ? previewURL : profileUrl
-                        typeof previewURL === 'string' ? previewURL : ''
+                        typeof previewURL === 'string' ? previewURL : profile
+                        // typeof previewURL === 'string' ? previewURL : ''
                       }
                       alt="profile image"
                     />

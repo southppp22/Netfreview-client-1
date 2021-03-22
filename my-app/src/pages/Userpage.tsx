@@ -10,17 +10,9 @@ import SmallPoster from '../components/SmallPoster';
 import profile from '../img/profileImg.png';
 import '../scss/Mypage.scss';
 
-// type UserpageProps = {
-//   userId: string;
-// };
-
 function Userpage() {
-  // const match = useRouteMatch();
-  // const location = useLocation().pathname;
   const dispatch = useDispatch();
   const { userId } = useParams<{ userId: string }>();
-
-  const { isLogin } = useSelector((state: RootState) => state.login);
   const {
     userName,
     nickname,
@@ -30,14 +22,8 @@ function Userpage() {
   } = useSelector((state: RootState) => state.userInfo);
 
   useEffect(() => {
-    if (isLogin) {
-      dispatch(fetchUserInfoThunk(userId));
-      // dispatch(fetchVideoListThunk({ pathname: 'myPage' }));
-    }
-    return () => {
-      // dispatch(resetVideoList());
-    };
-  }, [dispatch, isLogin, userId]);
+    dispatch(fetchUserInfoThunk(userId));
+  }, [dispatch, userId]);
 
   const renderVideoList = () => {
     if (videoList) {

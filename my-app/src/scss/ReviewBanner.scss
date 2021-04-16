@@ -3,14 +3,14 @@
 }
 .wrap {
   position: relative;
-  height: 400px;
+  height: 40rem;
 }
 .text-wrapper {
   //border: 1px solid red;
   display: flex;
   position: absolute;
   top: 0px;
-  width: 1280px;
+  width: 80%;
   overflow: hidden;
   z-index: 5;
 }
@@ -18,8 +18,8 @@
   //border: 1px solid blue;
   display: flex;
   position: absolute;
-  top: 0px;
-  left: 0px;
+  top: 0rem;
+  left: 0rem;
   -webkit-box-pack: center;
   justify-content: center;
   background: black;
@@ -32,7 +32,7 @@
   //flex: 1 1 0%;
   background: rgb(0, 0, 0);
   width: 30%;
-  height: 400px;
+  height: 40rem;
 }
 
 .reviewbanner-background {
@@ -51,8 +51,8 @@
   background-repeat: no-repeat;
   top: auto;
   left: auto;
-  width: 800px;
-  height: 400px;
+  width: 80rem;
+  height: 40rem;
   filter: none;
 }
 
@@ -61,7 +61,7 @@
   // flex: 1 1 0%;
   background: rgb(0, 0, 0);
   width: 30%;
-  height: 400px;
+  height: 40rem;
 }
 .reviewbackground-left {
   //border: 1px solid red;
@@ -69,34 +69,34 @@
   display: block;
   position: absolute;
   top: 0px;
-  bottom: 0px;
-  left: 0px;
+  bottom: 0rem;
+  left: 0rem;
   background-image: linear-gradient(
     -90deg,
     rgba(0, 0, 0, 0) 0%,
     rgb(0, 0, 0) 100%
   );
-  width: 300px;
+  width: 30rem;
 }
 .reviewbackground-right {
   //border: 1px solid red;
   display: block;
   position: absolute;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
+  top: 0rem;
+  right: 0rem;
+  bottom: 0rem;
   background-image: linear-gradient(
     90deg,
     rgba(0, 0, 0, 0) 0%,
     rgb(0, 0, 0) 100%
   );
-  width: 300px;
+  width: 30rem;
   // margin-right: 100px;
 }
 
 .review-wrap {
   //border: 1px solid greenyellow;
-  width: 1280px;
+  width: 128rem;
   margin: 0 auto;
   z-index: 5;
   left: 1000;
@@ -104,21 +104,21 @@
 }
 .reviewbanner__title {
   //border: 1px solid greenyellow;
-  font-size: 48px;
-  padding-top: 185px;
-  margin-bottom: 15px;
+  font-size: 4.8rem;
+  padding-top: 18.5rem;
+  margin-bottom: 1.5rem;
   font-weight: bold;
   color: white;
 }
 .reviewbanner__netflix {
   //border: 1px solid pink;
-  width: 130px;
-  height: 36px;
-  line-height: 36px;
-  border-radius: 5px;
+  width: 13rem;
+  height: 3.6rem;
+  line-height: 3.6rem;
+  border-radius: 0.5rem;
   background-color: #e50914;
   color: #fff;
-  font-size: 14px;
+  font-size: 1.4rem;
   text-align: center;
-  margin-top: 30px;
+  margin-top: 3rem;
 }

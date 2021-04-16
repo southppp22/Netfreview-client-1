@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import '../scss/WriteReview.scss';
-import { Stars } from './Star';
-import { RootState } from '../modules';
-import { useDispatch, useSelector } from 'react-redux';
-import { addReviewThunk, updateReviewThunk } from '../modules/review';
+import React, { useState } from "react";
+import "../scss/WriteReview.scss";
+import { Stars } from "./Star";
+import { RootState } from "../modules";
+import { useDispatch, useSelector } from "react-redux";
+import { addReviewThunk, updateReviewThunk } from "../modules/review";
 
 type WriteReviewProps = {
   setIsOn: (isOn: boolean) => void;
@@ -20,7 +20,7 @@ function WriteReview({ setIsOn }: WriteReviewProps) {
 
   const [rating, setRating] = useState<number>(myReview?.rating || 1);
   const [hoverRating, setHoverRating] = useState<number>(myReview?.rating || 1);
-  const [text, setText] = useState(myReview?.text || '');
+  const [text, setText] = useState(myReview?.text || "");
 
   const addReview = () => {
     const payload = {
@@ -69,11 +69,11 @@ function WriteReview({ setIsOn }: WriteReviewProps) {
           <div className="text__div">
             <textarea
               className={
-                status !== 'failed'
-                  ? 'text__textarea'
-                  : 'text__textarea invalid'
+                status !== "failed"
+                  ? "text__textarea"
+                  : "text__textarea invalid"
               }
-              defaultValue={myReview ? myReview.text : ''}
+              defaultValue={myReview ? myReview.text : ""}
               onChange={(e) => {
                 setText(e.target.value);
               }}

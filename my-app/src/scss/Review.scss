@@ -1,13 +1,29 @@
 .background {
   background-color: #efefef;
+  width: 100%;
 }
 .area {
-  width: 1280px;
+  width: 80%;
   display: flex;
-  margin: 20px auto 0;
-  padding-top: 50px;
-  padding-bottom: 350px;
+  margin: 2rem auto;
+  padding-top: 5rem;
+  padding-bottom: 35rem;
+
+  & > * {
+    float: left;
+
+    &:not(:last-child) {
+      margin-right: 4rem;
+    }
+  }
 }
 .left {
-  margin-right: 40px;
+  width: calc((100% - 4rem) / 10 * 3.2);
+}
+
+.right {
+  width: calc((100% - 4rem) / 10 * 6.8);
+  & > * {
+    margin: 0 auto;
+  }
 }

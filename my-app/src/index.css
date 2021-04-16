@@ -40,6 +40,18 @@ html {
   font-size: 62.5%;
 }
 
+@media all and (min-width: 768px) and (max-width: 1279px) {
+  html {
+    font-size: 50%;
+  }
+}
+
+@media all and (max-width: 768px) {
+  html {
+    font-size: 37.5%;
+  }
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -47,7 +59,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-size: var(--font-small);
   font-family: var(--font-kor);
-  letter-spacing: -0.2rem;
+  letter-spacing: -0.01rem;
   color: var(--color-black);
   cursor: default;
   -ms-overflow-style: none;

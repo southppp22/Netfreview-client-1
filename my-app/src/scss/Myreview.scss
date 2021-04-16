@@ -1,37 +1,37 @@
 .MyreviewList__wholeInfo {
   //border: 1px solid #c4c4c4;
-  width: 840px;
+  max-width: 96rem;
   height: auto;
-  border-radius: 5px;
+  border-radius: 0.5rem;
   background-color: #fff;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  filter: drop-shadow(0rem 0.4rem 0.4rem rgba(0, 0, 0, 0.25));
 }
 .MyreviewList-wrap {
   //border: 1px solid purple;
-  width: 700px;
+  width: 90%;
   height: auto;
   margin: 0 auto;
   position: relative;
-  padding-top: 40px;
-  padding-bottom: 80px;
+  padding-top: 4rem;
+  padding-bottom: 8rem;
 }
 .MyreviewList-top {
-  border-bottom: 1px solid #c4c4c4;
-  height: 60px;
+  border-bottom: 0.1rem solid #c4c4c4;
+  height: 6rem;
   display: flex;
   justify-content: space-between;
 }
 .MywholeInfo__profile {
   display: flex;
   width: 50%;
-  height: 30px;
+  height: 3rem;
 }
 .Myprofile__wrapper {
   // border: 1px solid orange;
-  width: 30px;
+  width: 3rem;
   border-radius: 50%;
   overflow: hidden;
-  height: 30px;
+  height: 3rem;
 }
 .Myprofile__img {
   min-height: 100%;
@@ -40,23 +40,23 @@
   float: left;
 }
 .Myprofile__nickname {
-  line-height: 28px;
-  padding-left: 10px;
+  line-height: 2.8rem;
+  padding-left: 1rem;
   width: 100%;
 }
 .MywholeInfo__count {
   //border: 1px solid blue;
   width: 50%;
-  height: 30px;
+  height: 3rem;
   position: relative;
   float: right;
-  padding-right: 17px;
+  padding-right: 1.7rem;
 }
 .Mycount__rate {
   //border: 1px solid black;
-  width: 40px;
-  height: 22px;
-  line-height: 22px;
+  width: 4rem;
+  height: 2.2rem;
+  line-height: 2.2rem;
   float: right;
 }
 .Myimg-rate {
@@ -64,32 +64,32 @@
 }
 .Mycount__heart {
   //border: 1px solid black;
-  width: 40px;
-  height: 20px;
-  margin-left: 20px;
+  width: 4rem;
+  height: 2rem;
+  margin-left: 2rem;
   float: right;
   margin-top: -1px;
 }
 .Myimg-heart {
   float: left;
-  margin-top: 0px;
+  // margin-top: 0px;
   // line-height: 22px;
 }
 
 .Myrate-num {
   //border: 1px solid red;
   float: right;
-  line-height: 19px;
+  line-height: 1.9rem;
   font-size: medium;
   font-weight: 500;
 }
 
 .MywholeInfo__div {
   //border: 1px solid #c4c4c4;
-  width: 700px;
-  min-height: 68px;
-  padding: 12px;
-  border-radius: 10px;
+
+  min-height: 6.8rem;
+  padding: 1.2rem;
+  word-wrap: break-word;
 }
 .MywholeInfo__btn {
   //border: 1px solid orange;
@@ -105,23 +105,22 @@
   margin-top: 5px;
 }
 
-.My update__textarea {
-  border: 1px solid #c4c4c4;
+// .My update__textarea {
+//   border: 1px solid #c4c4c4;
 
-  resize: none;
-  width: 700px;
-  min-height: 68px;
-  padding: 12px;
-  border-radius: 10px;
-  line-height: 1.6;
-  overflow-y: scroll;
-}
+//   resize: none;
+//   min-height: 6.8rem;
+//   padding: 1.2rem;
+//   // border-radius: 10px;
+//   line-height: 1.6;
+//   overflow-y: scroll;
+// }
 
 .nomyreview {
   border-radius: 5px;
-  width: 840px;
-  height: 100px;
-  line-height: 100px;
+  width: 84rem;
+  height: 10rem;
+  line-height: 10rem;
   background-color: #fff;
 }
 
@@ -129,5 +128,5 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 20px;
+  font-size: 2rem;
 }

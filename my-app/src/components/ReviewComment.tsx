@@ -1,14 +1,14 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { addLikeThunk } from '../modules/review';
-import profile from '../img/profile.png';
-import leaf from '../img/leaf.svg';
-import heart from '../img/heart.svg';
-import emptyheart from '../img/emptyheart.svg';
-import '../scss/ReviewComment.scss';
-import { Link } from 'react-router-dom';
-import { RootState } from '../modules';
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addLikeThunk } from "../modules/review";
+import profile from "../img/profile.png";
+import leaf from "../img/leaf.svg";
+import heart from "../img/heart.svg";
+import emptyheart from "../img/emptyheart.svg";
+import "../scss/ReviewComment.scss";
+import { Link } from "react-router-dom";
+import { RootState } from "../modules";
 type ReviewCommentProps = {
   rating: number;
   id: number;
@@ -32,7 +32,7 @@ function ReviewComment(props: ReviewCommentProps) {
 
   const addLike = () => {
     const accessToken =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRuZGRsMDMyQGdtYWlsLmNvbSIsInN1YiI6IjZlNjllMGJjLTZhYjYtNDM2OS04MWE2LWM2NjA0YzIwZWRjMyIsImlhdCI6MTYxNTQ2OTU1NywiZXhwIjoxNjE1NDc2NzU3fQ.yAkq09lvQB025VY-_wZzJgJvM1QJJ581TY34WL5w_xk';
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRuZGRsMDMyQGdtYWlsLmNvbSIsInN1YiI6IjZlNjllMGJjLTZhYjYtNDM2OS04MWE2LWM2NjA0YzIwZWRjMyIsImlhdCI6MTYxNTQ2OTU1NywiZXhwIjoxNjE1NDc2NzU3fQ.yAkq09lvQB025VY-_wZzJgJvM1QJJ581TY34WL5w_xk";
     const payload = {
       reviewId: id,
       accessToken,

@@ -1,11 +1,11 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../modules';
-import { addLikeThunk, deleteReviewThunk } from '../modules/review';
-import leaf from '../img/leaf.svg';
-import heart from '../img/heart.svg';
-import profile from '../img/profileImg.svg';
-import '../scss/Myreview.scss';
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../modules";
+import { addLikeThunk, deleteReviewThunk } from "../modules/review";
+import leaf from "../img/leaf.svg";
+import heart from "../img/heart.svg";
+import profile from "../img/profileImg.svg";
+import "../scss/Myreview.scss";
 
 type MyReviewProps = {
   setIsOn: (isOn: boolean) => void;
